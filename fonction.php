@@ -28,6 +28,47 @@ function entete(){
             h6 {
                 font-family: 'Times New Roman', sans-serif;
             }
+
+
+            /* Existing styles */
+            /* ... */
+    
+            /* New styles for burger menu */
+            .burger-menu {
+                display: none; /* Hide the burger menu by default */
+                cursor: pointer;
+                margin-right: 10px;
+            }
+            
+            .bar {
+                width: 25px;
+                height: 2.5px;
+                background-color: white;
+                margin-bottom: 6px;
+            }
+    
+            @media screen and (max-width: 1020px) {
+                /* Show burger menu icon and hide the regular menu on small screens */
+                #myNavbar {
+                    display: none;
+                }
+                
+                .burger-menu {
+                    width: 100%;
+                    height: 20px;
+                    margin-top: 15px;
+                    display: block!important;
+                }
+            }
+
+            .burger-menu {
+                display: none;
+            }
+
+            #burgerMenu {
+                display: none;
+            }
+
         </style>
      </head>";
     }
@@ -41,77 +82,112 @@ function footer() {
         </div>
     </footer>";
     }
-function navbar(){ 
-    echo "<div class='w3-top w3-hide-small' style='display: flex; justify-content: space-between; align-items: center;'>
-    <div class='w3-bar w3-xlarge' style='background-color: rgb(32, 47, 74); color: white; opacity: 1; hover-opacity: 0;' id='myNavbar'>
-        <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
-        <a href='contact.php' class='w3-bar-item w3-button'>CONTACT</a>
-        <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRE</a>
-        <a href='#'><img src='image/logo_cjf.png' style='float: right; width: 10%; margin-top: 5px; margin-right: 10px;'></a>
-        <div class='w3-button-container'>
-            <a href='article.php' class='w3-bar-item w3-button'>ARTICLE</a>
-            <div class='w3-dropdown-hover'>
-                <a class='w3-button'>COLLECTIF</a>
-                <div class='w3-dropdown-content w3-bar-block w3-card-4'>
-                    <a href='coach.php' class='w3-bar-item w3-button'>COACH</a>
-                    <a href='athletes.php' class='w3-bar-item w3-button'>ATHLETES</a>
-                </div>
-            </div>
-            <div class='w3-dropdown-hover'>
-                <a class='w3-button'>LE CLUB</a>
-                <div class='w3-dropdown-content w3-bar-block w3-card-3'>
-                    <a href='record.php' class='w3-bar-item w3-button'>RECORD</a>
-                    <a href='creneaux.php' class='w3-bar-item w3-button'>CRENEAUX</a>
-                </div>
-            </div>
-            ";
 
 
-    if (isset($_SESSION['role'])) {
-        if ($_SESSION['role'] == 'user') {
-            echo "<a href='compte.php' class='w3-bar-item w3-button'>COMPTE</a>";
-        } elseif ($_SESSION['role'] == 'admin') {
-            echo "<a href='parametre.php' class='w3-bar-item w3-button'>PARAMETRE</a>";
+    function navbar() {
+        echo "<div class='w3-top' style='background-color: rgb(32, 47, 74); color: white;'>
+            <div class='w3-bar w3-xlarge' id='myNavbar'>
+                <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
+                <a href='contact.php' class='w3-bar-item w3-button'>CONTACT</a>
+                <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRE</a>
+                <a href='#'><img src='image/logo_cjf.png' style='float: right; width: 10%; margin-top: 5px; margin-right: 10px;'></a>
+                <div class='w3-button-container'>
+                    <a href='article.php' class='w3-bar-item w3-button'>ARTICLE</a>
+                    <div class='w3-dropdown-hover'>
+                        <a class='w3-button'>COLLECTIF</a>
+                        <div class='w3-dropdown-content w3-bar-block w3-card-4'>
+                            <a href='coach.php' class='w3-bar-item w3-button'>COACH</a>
+                            <a href='athletes.php' class='w3-bar-item w3-button'>ATHLETES</a>
+                        </div>
+                    </div>
+                    <div class='w3-dropdown-hover'>
+                        <a class='w3-button'>LE CLUB</a>
+                        <div class='w3-dropdown-content w3-bar-block w3-card-3'>
+                            <a href='record.php' class='w3-bar-item w3-button'>RECORD</a>
+                            <a href='creneaux.php' class='w3-bar-item w3-button'>CRENEAUX</a>
+                        </div>
+                    </div>";
+    
+        // Check if user is logged in and display appropriate menu items
+        if (isset($_SESSION['role'])) {
+            if ($_SESSION['role'] == 'user') {
+                echo "<a href='compte.php' class='w3-bar-item w3-button'>COMPTE</a>";
+            } elseif ($_SESSION['role'] == 'admin') {
+                echo "<a href='parametre.php' class='w3-bar-item w3-button'>PARAMETRE</a>";
+            }
         }
-    }
-    echo"<div class='w3-button-container' style='margin-left: auto;'>";
-    if (isset($_SESSION['role'])) {
-        echo "<a href='deconnexion.php' class='w3-right'><button  style='float: right' type='button'>Déconnexion</button></a>";
-    } else {
-        echo "<a href='connexion.php' class='w3-right'><button style='float: right' type='button'>Connexion</button></a>";
-    }
-
-
-    echo"<style>
-        button {
-            width: 150px;
-            height: 40px;
-            background-color: #FFFFFF;
-            color: #FFFFFF
-            font-size: 10px;
-            display: inline-block;
-            border-radius: 5px;
-            border: 4px double #00000;
-            text-align: center;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-            -o-transition: all 0.5s;
-            transition: all 0.5s;
-            cursor: pointer;
-            margin: 5px; 
+    
+        echo "</div></div>";
+    
+        // Show burger menu icon on small screens
+        echo "<div class='w3-bar w3-xlarge burger-menu' onclick='toggleMenu()'>
+                <div class='bar'></div>
+                <div class='bar'></div>
+                <div class='bar'></div>
+              </div>";
+    
+        // Hide the regular menu on small screens
+        echo "<div class='w3-bar-block w3-large' id='burgerMenu'>
+                <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
+                <a href='contact.php' class='w3-bar-item w3-button'>CONTACT</a>
+                <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRE</a>
+                <a href='article.php' class='w3-bar-item w3-button'>ARTICLE</a>
+                <a href='coach.php' class='w3-bar-item w3-button'>COACH</a>
+                <a href='athletes.php' class='w3-bar-item w3-button'>ATHLETES</a>
+                <a href='record.php' class='w3-bar-item w3-button'>RECORD</a>
+                <a href='creneaux.php' class='w3-bar-item w3-button'>CRENEAUX</a>";
+    
+        // Check if user is logged in and display appropriate menu items in the burger menu
+        if (isset($_SESSION['role'])) {
+            if ($_SESSION['role'] == 'user') {
+                echo "<a href='compte.php' class='w3-bar-item w3-button'>COMPTE</a>";
+            } elseif ($_SESSION['role'] == 'admin') {
+                echo "<a href='parametre.php' class='w3-bar-item w3-button'>PARAMETRE</a>";
+            }
         }
-        .w3-button-container {
-            display: flex;
-            align-items: center;
-        }
-        </style>
+    
+        echo "</div>";
+    
+        // JavaScript function to toggle the burger menu
+        echo "<script>
+                function toggleMenu() {
+                    var menu = document.getElementById('burgerMenu');
+                    //menu.classList.toggle('w3-show');
+                    if (menu.style.display === 'block') {
+                        menu.style.display = 'none';
+                    } else {
+                        menu.style.display = 'block';
+                    }
+                }
+
+                function checkWindowWidth() {
+                    var x = document.getElementById('myNavbar');
+                    var burgerMenu = document.getElementById('burgerMenu');
+                    if (window.innerWidth <= 1020) {
+                        // Hide the regular menu and display the burger menu on small screens
+                        x.style.display = 'none';
+                        burgerMenu.style.display = 'block';
+                    } else {
+                        // Show the regular menu and hide the burger menu on larger screens
+                        x.style.display = 'block';
+                        burgerMenu.style.display = 'none';
+                    }
+                }
         
-    </div>
-    </div>
-    </div>
-    </div>
-    ";
+                // Call the function on window load and resize
+                window.addEventListener('load', checkWindowWidth);
+                window.addEventListener('resize', checkWindowWidth);
+                
+              </script>";
+            
+
+        
     }
+    
+
+
+    
+    
 
 function accueil() {
     echo "
@@ -144,10 +220,11 @@ function accueil() {
     
     // Styles Bootstrap
     echo "
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.7.2/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <!--link href='https://cdn.jsdelivr.net/npm/bootstrap@5.7.2/dist/css/bootstrap.min.css' rel='stylesheet'-->
     
     <style>
     .carousel {
+      margin-top: 15px;
       position: relative;
     }
     
