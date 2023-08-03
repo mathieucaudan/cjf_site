@@ -1,0 +1,39 @@
+{
+    "athletes": [
+        {
+            "nom": "caudan",
+            "prenom": "Mathieu",
+            "identifiant": "mathieu",
+            "password": "password",
+            "role": "admin"
+        },
+        {
+            "nom": "tertrain",
+            "prenom": "Julien",
+            "identifiant": "julien",
+            "password": "password",
+            "role": "user"
+        },
+        {
+            "nom": "michardiere",
+            "prenom": "Yann",
+            "identifiant": "yann",
+            "password": "password",
+            "role": "user"
+        },
+        {
+            "nom": "le mazou",
+            "prenom": "Gurvan",
+            "identifiant": "gurvan",
+            "password": "password",
+            "role": "user"
+        },
+        {
+            "nom": "forgeoux",
+            "prenom": "etienne",
+            "identifiant": "etienne",
+            "password": "123",
+            "role": "user"
+        }
+    ]
+}
