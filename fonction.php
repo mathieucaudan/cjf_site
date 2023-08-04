@@ -17,7 +17,7 @@ function entete(){
 
         .topnav {
         overflow: hidden;
-        background-color: #333;
+        background-color: rgb(32, 47, 74);
         }
 
         .topnav a {
@@ -116,6 +116,27 @@ function entete(){
             width: 100%;
             text-align: left;
         }
+        button {
+            width: 150px;
+            height: 40px;
+            background-color: #FFFFFF;
+            color: #FFFFFF
+            font-size: 10px;
+            display: inline-block;
+            border-radius: 5px;
+            border: 4px double #00000;
+            text-align: center;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px; 
+        }
+        .w3-button-container {
+            display: flex;
+            align-items: center;
+        }
         }
 
         </style>
@@ -157,13 +178,27 @@ function navbar() {
         <a href='athletes.php'>CRENAUX</a>
       </div>
     </div>";
+    echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px;'>";
     if (isset($_SESSION['role'])) {
         echo "<a href='deconnexion.php' class='w3-right'><button  style='float: right' type='button'>Déconnexion</button></a>";
     } else {
         echo "<a href='connexion.php' class='w3-right'><button style='float: right' type='button'>Connexion</button></a>";
     }
-    echo "<a><img src='image/logo_cjf.png' style='float: right; width: 50%; margin-top: 5px; margin-right: 10px'></a>";
-
+    echo "
+    <script>
+        window.onload = function() {
+            adjustLogoWidth();
+            window.addEventListener('resize', adjustLogoWidth);
+        };
+    
+        function adjustLogoWidth() {
+            if (window.innerWidth <= 600) {
+                logo.style.width = '20vw';
+            } else {
+                logo.style.width = '10vw';
+            }
+        }
+    </script>";
 
 
     echo" 
