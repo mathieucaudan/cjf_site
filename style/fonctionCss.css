@@ -101,6 +101,10 @@ body {margin:0;font-family:Arial}
         border: inherit !important; /* Bordure lors de la survol */
         text-decoration: none !important; /* Supprime le soulignement lors de la survol */
     }
+
+    #logo {
+        width: 10vw;
+    }
     
     @media screen and (max-width: 600px) {
         .topnav.responsive {position: relative;}
@@ -108,6 +112,9 @@ body {margin:0;font-family:Arial}
             position: absolute;
             right: 0;
             top: 0;
+        }
+        #logo {
+            width: 20vw;
         }
         .topnav.responsive a {
             float: none;
