@@ -84,105 +84,111 @@ function footer() {
     }
 
 
-    function navbar() {
-        echo "<div class='w3-top' style='background-color: rgb(32, 47, 74); color: white;'>
-            <div class='w3-bar w3-xlarge' id='myNavbar'>
-                <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
-                <a href='contact.php' class='w3-bar-item w3-button'>CONTACT</a>
-                <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRE</a>
-                <a href='#'><img src='image/logo_cjf.png' style='float: right; width: 10%; margin-top: 5px; margin-right: 10px;'></a>
-                <div class='w3-button-container'>
-                    <a href='article.php' class='w3-bar-item w3-button'>ARTICLE</a>
-                    <div class='w3-dropdown-hover'>
-                        <a class='w3-button'>COLLECTIF</a>
-                        <div class='w3-dropdown-content w3-bar-block w3-card-4'>
-                            <a href='coach.php' class='w3-bar-item w3-button'>COACH</a>
-                            <a href='athletes.php' class='w3-bar-item w3-button'>ATHLETES</a>
-                        </div>
-                    </div>
-                    <div class='w3-dropdown-hover'>
-                        <a class='w3-button'>LE CLUB</a>
-                        <div class='w3-dropdown-content w3-bar-block w3-card-3'>
-                            <a href='record.php' class='w3-bar-item w3-button'>RECORD</a>
-                            <a href='creneaux.php' class='w3-bar-item w3-button'>CRENEAUX</a>
-                        </div>
-                    </div>";
-    
-        // Check if user is logged in and display appropriate menu items
-        if (isset($_SESSION['role'])) {
-            if ($_SESSION['role'] == 'user') {
-                echo "<a href='compte.php' class='w3-bar-item w3-button'>COMPTE</a>";
-            } elseif ($_SESSION['role'] == 'admin') {
-                echo "<a href='parametre.php' class='w3-bar-item w3-button'>PARAMETRE</a>";
-            }
-        }
-    
-        echo "</div></div>";
-    
-        // Show burger menu icon on small screens
-        echo "<div class='w3-bar w3-xlarge burger-menu' onclick='toggleMenu()'>
-                <div class='bar'></div>
-                <div class='bar'></div>
-                <div class='bar'></div>
-              </div>";
-    
-        // Hide the regular menu on small screens
-        echo "<div class='w3-bar-block w3-large' id='burgerMenu'>
-                <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
-                <a href='contact.php' class='w3-bar-item w3-button'>CONTACT</a>
-                <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRE</a>
+function navbar() {
+    echo "<div class='w3-top' style='background-color: rgb(32, 47, 74); color: white;'>
+        <div class='w3-bar w3-xlarge' id='myNavbar'>
+            <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
+            <a href='contact.php' class='w3-bar-item w3-button'>CONTACT</a>
+            <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRE</a>
+            <a href='#'><img src='image/logo_cjf.png' style='float: right; width: 10%; margin-top: 5px; margin-right: 10px;'></a>
+            <div class='w3-button-container'>
                 <a href='article.php' class='w3-bar-item w3-button'>ARTICLE</a>
-                <a href='coach.php' class='w3-bar-item w3-button'>COACH</a>
-                <a href='athletes.php' class='w3-bar-item w3-button'>ATHLETES</a>
-                <a href='record.php' class='w3-bar-item w3-button'>RECORD</a>
-                <a href='creneaux.php' class='w3-bar-item w3-button'>CRENEAUX</a>";
-    
-        // Check if user is logged in and display appropriate menu items in the burger menu
-        if (isset($_SESSION['role'])) {
-            if ($_SESSION['role'] == 'user') {
-                echo "<a href='compte.php' class='w3-bar-item w3-button'>COMPTE</a>";
-            } elseif ($_SESSION['role'] == 'admin') {
-                echo "<a href='parametre.php' class='w3-bar-item w3-button'>PARAMETRE</a>";
-            }
+                <div class='w3-dropdown-hover'>
+                    <a class='w3-button'>COLLECTIF</a>
+                    <div class='w3-dropdown-content w3-bar-block w3-card-4'>
+                        <a href='coach.php' class='w3-bar-item w3-button'>COACH</a>
+                        <a href='athletes.php' class='w3-bar-item w3-button'>ATHLETES</a>
+                    </div>
+                </div>
+                <div class='w3-dropdown-hover'>
+                    <a class='w3-button'>LE CLUB</a>
+                    <div class='w3-dropdown-content w3-bar-block w3-card-3'>
+                        <a href='record.php' class='w3-bar-item w3-button'>RECORD</a>
+                        <a href='creneaux.php' class='w3-bar-item w3-button'>CRENEAUX</a>
+                    </div>
+                </div>";
+
+    // Check if user is logged in and display appropriate menu items
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'user') {
+            echo "<a href='compte.php' class='w3-bar-item w3-button'>COMPTE</a>";
+        } elseif ($_SESSION['role'] == 'admin') {
+            echo "<a href='parametre.php' class='w3-bar-item w3-button'>PARAMETRE</a>";
         }
-    
-        echo "</div>";
-    
-        // JavaScript function to toggle the burger menu
-        echo "<script>
-                function toggleMenu() {
-                    var menu = document.getElementById('burgerMenu');
-                    //menu.classList.toggle('w3-show');
-                    if (menu.style.display === 'block') {
-                        menu.style.display = 'none';
-                    } else {
-                        menu.style.display = 'block';
-                    }
-                }
-
-                function checkWindowWidth() {
-                    var x = document.getElementById('myNavbar');
-                    var burgerMenu = document.getElementById('burgerMenu');
-                    if (window.innerWidth <= 1020) {
-                        // Hide the regular menu and display the burger menu on small screens
-                        x.style.display = 'none';
-                        burgerMenu.style.display = 'block';
-                    } else {
-                        // Show the regular menu and hide the burger menu on larger screens
-                        x.style.display = 'block';
-                        burgerMenu.style.display = 'none';
-                    }
-                }
-        
-                // Call the function on window load and resize
-                window.addEventListener('load', checkWindowWidth);
-                window.addEventListener('resize', checkWindowWidth);
-                
-              </script>";
-            
-
-        
     }
+    echo"<div class='w3-button-container' style='margin-left: auto;'>";
+    if (isset($_SESSION['role'])) {
+        echo "<a href='deconnexion.php' class='w3-right'><button  style='float: right' type='button'>Déconnexion</button></a>";
+    } else {
+        echo "<a href='connexion.php' class='w3-right'><button style='float: right' type='button'>Connexion</button></a>";
+    }
+
+    echo "</div></div></div>";
+
+    // Show burger menu icon on small screens
+    echo "<div class='w3-bar w3-xlarge burger-menu' onclick='toggleMenu()'>
+            <div class='bar'></div>
+            <div class='bar'></div>
+            <div class='bar'></div>
+            </div>";
+
+    // Hide the regular menu on small screens
+    echo "<div class='w3-bar-block w3-large' id='burgerMenu'>
+            <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
+            <a href='contact.php' class='w3-bar-item w3-button'>CONTACT</a>
+            <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRE</a>
+            <a href='article.php' class='w3-bar-item w3-button'>ARTICLE</a>
+            <a href='coach.php' class='w3-bar-item w3-button'>COACH</a>
+            <a href='athletes.php' class='w3-bar-item w3-button'>ATHLETES</a>
+            <a href='record.php' class='w3-bar-item w3-button'>RECORD</a>
+            <a href='creneaux.php' class='w3-bar-item w3-button'>CRENEAUX</a>";
+
+    // Check if user is logged in and display appropriate menu items in the burger menu
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'user') {
+            echo "<a href='compte.php' class='w3-bar-item w3-button'>COMPTE</a>";
+        } elseif ($_SESSION['role'] == 'admin') {
+            echo "<a href='parametre.php' class='w3-bar-item w3-button'>PARAMETRE</a>";
+        }
+    }
+
+    echo "</div>";
+
+    // JavaScript function to toggle the burger menu
+    echo "<script>
+            function toggleMenu() {
+                var menu = document.getElementById('burgerMenu');
+                //menu.classList.toggle('w3-show');
+                if (menu.style.display === 'block') {
+                    menu.style.display = 'none';
+                } else {
+                    menu.style.display = 'block';
+                }
+            }
+
+            function checkWindowWidth() {
+                var x = document.getElementById('myNavbar');
+                var burgerMenu = document.getElementById('burgerMenu');
+                if (window.innerWidth <= 1020) {
+                    // Hide the regular menu and display the burger menu on small screens
+                    x.style.display = 'none';
+                    burgerMenu.style.display = 'block';
+                } else {
+                    // Show the regular menu and hide the burger menu on larger screens
+                    x.style.display = 'block';
+                    burgerMenu.style.display = 'none';
+                }
+            }
+    
+            // Call the function on window load and resize
+            window.addEventListener('load', checkWindowWidth);
+            window.addEventListener('resize', checkWindowWidth);
+            
+            </script>";
+        
+
+    
+}
     
 
 
