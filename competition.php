@@ -3,7 +3,7 @@
 entete();
 echo"<body>";
 navbar();
-competition();
+
 footer();
 echo"</body>";
 ?>

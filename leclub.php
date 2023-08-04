@@ -3,7 +3,7 @@
 entete();
 echo"<body>";
 navbar();
-leclub();
+
 footer();
 echo"</body>";
 ?>
