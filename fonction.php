@@ -11,6 +11,7 @@ function entete(){
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Amatic+SC'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
         <link rel='stylesheet' href='style/fonctionCss.css'> <!-- Ajout de la référence au fichier CSS -->
+        <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'></script>
 
      </head>";
