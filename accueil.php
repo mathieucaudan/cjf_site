@@ -36,7 +36,8 @@ body { margin: 0; font: 16px/1.3 sans-serif; }
 .CSSgal {
   position: relative;
   overflow: hidden;
-  height: 100%; /* Or set a fixed height */
+  height: auto; /* Utiliser "auto" pour s'adapter à la hauteur des images */
+  max-height: 80%; /* Limiter la hauteur maximale à 100% de la fenêtre */
 }
 
 /* SLIDER */
@@ -80,13 +81,13 @@ body { margin: 0; font: 16px/1.3 sans-serif; }
     transform: translateX(0%);
   }
   40% {
-    transform: translateX(-100%);
+    transform: translateX(-101%);
   }
   60% {
-    transform: translateX(-100%);
+    transform: translateX(-101%);
   }
   80% {
-    transform: translateX(-200%);
+    transform: translateX(-202%);
   }
 }
 
