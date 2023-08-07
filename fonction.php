@@ -226,7 +226,7 @@ function ajoutimagecarousel() {
             echo "<div style='background-color: rgb(32, 47, 74);'>
                 <center><p class='w3-text-green' style='font-size: 24px;'>Fichier partagé avec succès !</p></center>";
         } else {
-            echo "<center><p class='w3-text-red' >Erreur lors du partage du fichier.</p></center>";
+            echo "<center><p class='w3-text-red' style='font-size: 24px;'>Erreur lors du partage du fichier.</p></center>";
             
         }
     }
