@@ -51,6 +51,11 @@ function navbar() {
         <a href='athletes.php'>CRENAUX</a>
       </div>
     </div>";
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'admin') {
+          echo "<a href='parametre.php' class='w3-bar-item w3-button'>PARAMETRES</a>";
+        }
+    }
     echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px;'>";
     if (isset($_SESSION['role'])) {
         echo "<a href='deconnexion.php' class='buttonContainer w3-right '><button class='myButton'  style='float: right' type='button'>Déconnexion</button></a>";
@@ -201,5 +206,44 @@ function ajoutarticle() {
                 </form>";
     
         echo "</div></div>";
+    }
+function ajoutimagecarousel() {
+    $dossierPartage = './image/carousel/';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier'])) {
+        $fichierTemporaire = $_FILES['fichier']['tmp_name'];
+        $nomFichierOriginal = $_FILES['fichier']['name'];
+        $nomFichierTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
+
+        // Récupérer l'extension du fichier
+        $extension = pathinfo($nomFichierOriginal, PATHINFO_EXTENSION);
+
+        // Générer un nouveau nom de fichier en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
+        $nouveauNomFichier = $nomFichierTelechargement ? $nomFichierTelechargement . '.' . $extension : $nomFichierOriginal;
+
+        // Déplacer le fichier vers le dossier de destination avec le nouveau nom
+        $cheminFichier = $dossierPartage . $nouveauNomFichier;
+        if (move_uploaded_file($fichierTemporaire, $cheminFichier)) {
+            echo "<div style='background-color: rgb(32, 47, 74);'>
+                <center><p class='w3-text-green' style='font-size: 24px;'>Fichier partagé avec succès !</p></center>";
+        } else {
+            echo "<center><p class='w3-text-red' >Erreur lors du partage du fichier.</p></center>";
+            
+        }
+    }
+
+    echo "
+    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+        <div class='w3-content'>
+            <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
+                <label class='w3-text-white'>Sélectionner une image :</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='fichier'>
+                <br>
+                <label class='w3-text-white'>Nom du fichier lors du téléchargement (facultatif) :</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='text' name='nom_telechargement'>
+                <br>
+                <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager'>
+            </form>";
+
+    echo "</div></div>";
     }
 ?>

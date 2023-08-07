@@ -1,9 +1,9 @@
 <?php
-  include 'fonction.php';
-  entete();
-  navbar();
-  
-  echo "<body>";
+include 'fonction.php';
+entete();
+navbar();
+
+echo "<body>";
 ?>
 
 <div class="CSSgal">
@@ -15,15 +15,26 @@
 
 
   <div class="slider">
-    <div>
-      <img class="custom-img" src="image/lisbonne_wc.jpeg" alt="Image 1">
-    </div>
-    <div>
-      <img class="custom-img" src="image/podium_indiv.jpg" alt="Image 2">
-    </div>
-    <div>
-      <img class="custom-img" src="image/podium_mixte.jpg" alt="Image 3">
-    </div>
+    <?php
+    $dir = 'image/carousel'; // Remplacez "chemin/vers/le/dossier" par le chemin réel vers votre dossier d'images
+
+    // Récupérer la liste des fichiers dans le dossier
+    $files = scandir($dir);
+
+    // Filtrer les fichiers pour ne garder que les images
+    $images = array_filter($files, function($file) {
+        $extension = pathinfo($file, PATHINFO_EXTENSION);
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif']; // Ajoutez d'autres extensions d'images si nécessaire
+        return in_array($extension, $allowedExtensions);
+    });
+
+    // Afficher les images dans le carousel
+    foreach ($images as $image) {
+        echo '<div>';
+        echo '<img class="custom-img" src="' . $dir . '/' . $image . '" alt="Image">';
+        echo '</div>';
+    }
+    ?>
   </div>
   
 </div>
@@ -133,25 +144,25 @@ function adjustImageSizes() {
 
 
 
-  // Fonction pour charger une image et retourner une promesse
-  function loadImage(src) {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => resolve(img);
-      img.onerror = reject;
-      img.src = src;
-    });
-  }
+// Fonction pour charger une image et retourner une promesse
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
 
-  // Appel initial pour ajuster les tailles d'images au chargement de la page
-  window.addEventListener('load', adjustImageSizes);
+// Appel initial pour ajuster les tailles d'images au chargement de la page
+window.addEventListener('load', adjustImageSizes);
 
-  // Appel pour ajuster les tailles d'images lors du redimensionnement de la fenÃªtre
-  window.addEventListener('resize', adjustImageSizes);
+// Appel pour ajuster les tailles d'images lors du redimensionnement de la fenêtre
+window.addEventListener('resize', adjustImageSizes);
 </script>
 
 
 <?php
-  footer();
-  echo "</body>";
+footer();
+echo "</body>";
 ?>
