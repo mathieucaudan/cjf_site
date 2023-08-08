@@ -38,9 +38,9 @@ navbar();
         echo '</table>';
     ?>
   </table>
-</div></center>
+</div>
 
-<center><div id="table2" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<div id="table2" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Triathlé</h3>
   <table>
   <?php
@@ -65,9 +65,9 @@ navbar();
         echo '</table>';
     ?>
   </table>
-</div></center>
+</div>
 
-<center><div id="table3" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="table3" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <h3>Tetrathlon</h3>
   <table>
   <?php
@@ -92,9 +92,9 @@ navbar();
         echo '</table>';
     ?>
   </table>
-</div></center>
+</div>
 
-<center><div id="table4" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<div id="table4" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Pentathlon</h3>
   <table>
   <?php
