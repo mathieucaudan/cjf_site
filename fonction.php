@@ -39,7 +39,7 @@ function navbar() {
         <i class='fa fa-caret-down'></i>
       </button>
       <div class='dropdown-content'>
-        <a href='coach.Php'>COACH</a>
+        <a href='coach.php'>COACH</a>
         <a href='athletes.php'>ATHLETES</a>
       </div>
     </div>
@@ -48,8 +48,8 @@ function navbar() {
         <i class='fa fa-caret-down'></i>
       </button>
       <div class='dropdown-content'>
-        <a href='coach.Php'>RECORD</a>
-        <a href='athletes.php'>CRENAUX</a>
+        <a href='record.Php'>RECORD</a>
+        <a href='creneaux.php'>CRENAUX</a>
       </div>
     </div>";
     if (isset($_SESSION['role'])) {
