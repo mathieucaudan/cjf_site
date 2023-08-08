@@ -4,33 +4,36 @@ entete();
 echo "<body>";
 navbar();
 ?>
-<div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'table1')">Tableau 1</button>
-  <button class="tablinks" onclick="openTab(event, 'table2')">Tableau 2</button>
-  <button class="tablinks" onclick="openTab(event, 'table3')">Tableau 3</button>
-</div>
 
-<div id="table1" class="tabcontent">
+<div class="tab" style='background-color: rgb(32, 47, 74);'><center>
+<h1 style='color: white;'>Record</h1>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'table1')">Laser Run</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'table2')">Triathlé</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'table3')">Tetrathlon</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'table4')">Pentathlon</button>
+</center></div>
+
+<div id="table1" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Laser Run</h3>
   <table>
     <!-- Contenu du tableau 1 -->
   </table>
 </div>
 
-<div id="table2" class="tabcontent">
+<div id="table2" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Triathlé</h3>
   <table>
-    <!-- Contenu du tableau 2 -->
+  
   </table>
 </div>
 
-<div id="table3" class="tabcontent">
+<div id="table3" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Tetrathlon</h3>
   <table>
     <!-- Contenu du tableau 3 -->
   </table>
 </div>
-<div id="table3" class="tabcontent">
+<div id="table4" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Pentathlon</h3>
   <table>
     <!-- Contenu du tableau 3 -->
