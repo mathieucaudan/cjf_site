@@ -13,32 +13,113 @@ navbar();
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'table4')">Pentathlon</button>
 </center></div>
 
-<div id="table1" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<center><div id="table1" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Laser Run</h3>
   <table>
-    <!-- Contenu du tableau 1 -->
-  </table>
-</div>
+  <?php
+        $jsonData = file_get_contents('record.json');
 
-<div id="table2" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+        $data = json_decode($jsonData, true);
+
+        echo '<table border="1">';
+        echo '<tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Temps</th><th>Lieu</th></tr>';
+
+        foreach ($data['Laser Run'] as $participant) {
+            echo '<tr>';
+            echo '<td style="text-align: center;">' . $participant['categorie'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['nom'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['prenom'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['date'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['temps'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['lieux'] . '</td>';
+            echo '</tr>';
+        }
+
+        echo '</table>';
+    ?>
+  </table>
+</div></center>
+
+<center><div id="table2" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Triathlé</h3>
   <table>
-  
-  </table>
-</div>
+  <?php
+        $jsonData = file_get_contents('record.json');
 
-<div id="table3" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+        $data = json_decode($jsonData, true);
+
+        echo '<table border="1">';
+        echo '<tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr>';
+
+        foreach ($data['Triathlé'] as $participant) {
+            echo '<tr>';
+            echo '<td style="text-align: center;">' . $participant['categorie'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['nom'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['prenom'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['date'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['points'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['lieux'] . '</td>';
+            echo '</tr>';
+        }
+
+        echo '</table>';
+    ?>
+  </table>
+</div></center>
+
+<center><div id="table3" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <h3>Tetrathlon</h3>
   <table>
-    <!-- Contenu du tableau 3 -->
+  <?php
+        $jsonData = file_get_contents('record.json');
+
+        $data = json_decode($jsonData, true);
+
+        echo '<table border="1">';
+        echo '<tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr>';
+
+        foreach ($data['Tetrathlon'] as $participant) {
+            echo '<tr>';
+            echo '<td style="text-align: center;">' . $participant['categorie'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['nom'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['prenom'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['date'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['points'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['lieux'] . '</td>';
+            echo '</tr>';
+        }
+
+        echo '</table>';
+    ?>
   </table>
-</div>
-<div id="table4" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+</div></center>
+
+<center><div id="table4" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Pentathlon</h3>
   <table>
-    <!-- Contenu du tableau 3 -->
+  <?php
+        $jsonData = file_get_contents('record.json');
+
+        $data = json_decode($jsonData, true);
+
+        echo '<table border="1">';
+        echo '<tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr>';
+
+        foreach ($data['Pentathlon'] as $participant) {
+            echo '<tr>';
+            echo '<td style="text-align: center;">' . $participant['categorie'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['nom'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['prenom'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['date'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['points'] . '</td>';
+            echo '<td style="text-align: center;">' . $participant['lieux'] . '</td>';
+            echo '</tr>';
+        }
+
+        echo '</table>';
+    ?>
   </table>
-</div>
+</div></center>
 <style>
     .tab {
   overflow: hidden;
