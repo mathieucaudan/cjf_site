@@ -247,4 +247,171 @@ function ajoutimagecarousel() {
 
     echo "</div></div>";
     }
+
+function changerecord() {
+    echo "
+    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+        <form method='POST' name='formulaire'>
+            Discipline<br>
+            <input type='radio' name='discipline' value='Laser Run'> Laser Run<br>
+            <input type='radio' name='discipline' value='Triathlé'> Triathlé<br>
+            <input type='radio' name='discipline' value='Tetrathlon'> Tetrathlon<br>
+            <input type='radio' name='discipline' value='Pentathlon'> Pentathlon<br>
+            <input type='submit' value='Envoyer'>
+        </form>
+    </div>";
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $discipline = $_POST['discipline'];
+
+        echo "
+        <form method='POST' name='record_form'>
+            Nom: <input type='text' name='nom'><br>
+            Prénom: <input type='text' name='prenom'><br>
+            Date: <input type='text' name='date'><br>
+            Lieu: <input type='text' name='lieu'><br>";
+
+        if ($discipline == 'Laser Run') {
+            echo "Temps : <input type='text' name='temps'><br>";
+        } else {
+            echo "Points: <input type='text' name='points'><br>";
+        }
+        
+        if ($discipline == 'Laser Run') {
+            echo "Catégorie:
+            <select name='categorie'>
+            <option value=0>U9 F</option>
+            <option value=1>U9 H</option>
+            <option value=2>U11 F</option>
+            <option value=3>U11 H</option>
+            <option value=4>U13 F</option>
+            <option value=5>U13 H</option>
+            <option value=6>U15 F</option>
+            <option value=7>U15 H</option>
+            <option value=8>U17 F</option>
+            <option value=9>U17 H</option>
+            <option value=10>U19 F</option>
+            <option value=11>U19 H</option>
+            <option value=12>U22 F</option>
+            <option value=13>U22 H</option>
+            <option value=14>Senior F</option>
+            <option value=15>Senior H</option>
+            <option value=16>M40 F</option>
+            <option value=17>M40 H</option>
+            <option value=18>M50 F</option>
+            <option value=19>M50 H</option>
+            <option value=20>M60 F</option>
+            <option value=21>M60 H</option>
+            <option value=22>M70 F</option>
+            <option value=23>M70 H</option>
+            <option value=24>Longue Distance F</option>
+            <option value=25>Longue Distance H</option>
+            </select><br>";
+        } elseif ($discipline == 'Triathlé') {
+            echo "Catégorie:
+            <select name='categorie'>
+                <option value=0>U9 F</option>
+                <option value=1>U9 H</option>
+                <option value=2>U11 F</option>
+                <option value=3>U11 H</option>
+                <option value=4>U13 F</option>
+                <option value=5>U13 H</option>
+                <option value=6>U15 F</option>
+                <option value=7>U15 H</option>
+                <option value=8>U17 F</option>
+                <option value=9>U17 H</option>
+                <option value=10>U19 F</option>
+                <option value=11>U19 H</option>
+                <option value=12>U22 F</option>
+                <option value=13>U22 H</option>
+                <option value=14>Senior F</option>
+                <option value=15>Senior H</option>
+                <option value=16>M40 F</option>
+                <option value=17>M40 H</option>
+                <option value=18>M50 F</option>
+                <option value=19>M50 H</option>
+                <option value=20>M60 F</option>
+                <option value=21>M60 H</option>
+                <option value=22>M70 F</option>
+                <option value=23>M70 H</option>
+            </select><br>";
+        } elseif ($discipline == 'Tetrathlon') {
+            echo "Catégorie:
+            <select name='categorie'>
+                <option value=0>U17 F</option>
+                <option value=1>U17 H</option>
+                <option value=2>U19 F</option>
+                <option value=3>U19 H</option>
+                <option value=4>U22 F</option>
+                <option value=5>U22 H</option>
+                <option value=6>Senior F</option>
+                <option value=7>Senior H</option>
+                <option value=8>M30 F</option>
+                <option value=9>M30 H</option>
+                <option value=10>M40 F</option>
+                <option value=11>M40 H</option>
+                <option value=12>M50 F</option>
+                <option value=13>M50 H</option>
+                <option value=14>M60 F</option>
+                <option value=15>M60 H</option>
+                <option value=16>M70 F</option>
+                <option value=17>M70 H</option>
+            </select><br>";
+        } elseif ($discipline == 'Pentathlon') {
+            echo "Catégorie:
+            <select name='categorie'>
+                <option value=0>U17 F</option>
+                <option value=1>U17 H</option>
+                <option value=2>U19 F</option>
+                <option value=3>U19 H</option>
+                <option value=4>U22 F</option>
+                <option value=5>U22 H</option>
+                <option value=6>Senior F</option>
+                <option value=7>Senior H</option>
+                <option value=8>M30 F</option>
+                <option value=9>M30 H</option>
+                <option value=10>M40 F</option>
+                <option value=11>M40 H</option>
+                <option value=12>M50 F</option>
+                <option value=13>M50 H</option>
+                <option value=14>M60 F</option>
+                <option value=15>M60 H</option>
+                <option value=16>M70 F</option>
+                <option value=17>M70 H</option>
+            </select><br>";
+        }
+
+        echo "<input type='hidden' name='discipline' value='$discipline'>
+                <input type='submit' value='Enregistrer'>
+            </form>";
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['categorie'])) {
+        $data = json_decode(file_get_contents('record.json'), true);
+        $discipline = $_POST['discipline'];
+        $cat = $_POST['categorie'];
+        $newnom = $_POST['nom'];
+        $newprenom = $_POST['prenom'];
+        $newdate = $_POST['date'];
+        $newlieu = $_POST['lieu'];
+    
+        if ($discipline == 'Laser Run') {
+            $newtemps = $_POST['temps'];
+            $data[$discipline][$cat]['temps'] = $newtemps;
+        } else {
+            $newpoints = $_POST['points'];
+            $data[$discipline][$cat]['points'] = $newpoints;
+        }
+    
+        $data[$discipline][$cat]['nom'] = $newnom;
+        $data[$discipline][$cat]['prenom'] = $newprenom;
+        $data[$discipline][$cat]['date'] = $newdate;
+        $data[$discipline][$cat]['lieux'] = $newlieu;
+    
+        // Sauvegardez le tableau mis à jour dans le fichier JSON
+        file_put_contents('record.json', json_encode($data, JSON_PRETTY_PRINT));
+    }
+}
+    
+    
 ?>
