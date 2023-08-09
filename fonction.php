@@ -257,7 +257,7 @@ function changerecord() {
             <input type='radio' name='discipline' value='Triathlé'> Triathlé<br>
             <input type='radio' name='discipline' value='Tetrathlon'> Tetrathlon<br>
             <input type='radio' name='discipline' value='Pentathlon'> Pentathlon<br>
-            <input type='submit' value='Envoyer'>
+            <input type='submit' value='Choisir'>
         </form>
     </div>";
 
@@ -265,8 +265,8 @@ function changerecord() {
         $discipline = $_POST['discipline'];
 
         echo "
-        <form method='POST' name='record_form'>
-            Nom: <input type='text' name='nom'><br>
+        <form method='POST' name='record_form' style='color:white;text-align: center;''>
+            Nom: <input type='text' name='nom' ><br>
             Prénom: <input type='text' name='prenom'><br>
             Date: <input type='text' name='date'><br>
             Lieu: <input type='text' name='lieu'><br>";
@@ -385,7 +385,6 @@ function changerecord() {
                 <input type='submit' value='Enregistrer'>
             </form>";
     }
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['categorie'])) {
         $data = json_decode(file_get_contents('record.json'), true);
         $discipline = $_POST['discipline'];
@@ -407,6 +406,7 @@ function changerecord() {
         $data[$discipline][$cat]['prenom'] = $newprenom;
         $data[$discipline][$cat]['date'] = $newdate;
         $data[$discipline][$cat]['lieux'] = $newlieu;
+        echo "<h1 style='color:green'><center>Changement enregistré avec succès </center></h1>";
     
         // Sauvegardez le tableau mis à jour dans le fichier JSON
         file_put_contents('record.json', json_encode($data, JSON_PRETTY_PRINT));
