@@ -102,7 +102,7 @@ navbar();
                 </div>
             </div>
         </div>
-        
+}
  
 </div>
 
@@ -151,12 +151,6 @@ navbar();
             perspective: 1000px;
             }
         }
-
-
-
-
-        
-
         .flip-card-inner {
         position: relative;
         width: 100%;

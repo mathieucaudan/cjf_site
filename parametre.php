@@ -17,12 +17,13 @@ if(isset($_GET['action'])) {
     } elseif($action == 'changerecord') {
         changerecord();
     }
+    
 } else {
     echo "<center id='actionLinks'>
     <a href='parametre.php?action=ajoutimagecarousel' style='font-size: 24px; color: white;' onclick='hideLinks();'>Ajouter une image au Carousel</a><br>
     <a href='parametre.php?action=ajoutarticle' style='font-size: 24px; color: white;' onclick='hideLinks();'>Ajouter un article</a><br>
-    <a href='parametre.php?action=changerecord' style='font-size: 24px; color: white;' onclick='hideLinks();'>Modifier les enregistrements</a>
-</center>";
+    <a href='parametre.php?action=changerecord' style='font-size: 24px; color: white;' onclick='hideLinks();'>Modifier les Records</a><br>
+    </center>";
 
 }
 

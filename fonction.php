@@ -35,23 +35,16 @@ function navbar() {
         <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRE</a>
         <a href='article.php' class='w3-bar-item w3-button'>ARTICLE</a>
     <div class='dropdown'>
-      <button class='dropbtn'>COLLECTIF 
-        <i class='fa fa-caret-down'></i>
-      </button>
-      <div class='dropdown-content'>
-        <a href='coach.php'>COACH</a>
-        <a href='athletes.php'>ATHLETES</a>
-      </div>
-    </div>
-    <div class='dropdown'>
       <button class='dropbtn'>LE CLUB 
         <i class='fa fa-caret-down'></i>
       </button>
       <div class='dropdown-content'>
         <a href='record.Php'>RECORD</a>
         <a href='creneaux.php'>CRENAUX</a>
+        <a href='nous.Php'>QUI SOMMES NOUS?</a>
       </div>
-    </div>";
+    </div>
+    <a href='inscription.php' class='w3-bar-item w3-button'>S'INSCRIRE</a>";
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'admin') {
           echo "<a href='parametre.php' class='w3-bar-item w3-button'>PARAMETRES</a>";
@@ -411,7 +404,54 @@ function changerecord() {
         // Sauvegardez le tableau mis à jour dans le fichier JSON
         file_put_contents('record.json', json_encode($data, JSON_PRETTY_PRINT));
     }
+    }
+ 
+function ajoutpartenaire() {
+    echo"<form method='POST' enctype='multipart/form-data'>
+    <label for='image'>Image :</label>
+    <input type='file' name='image' accept='image/*' required><br>
+    <label for='titre'>Titre :</label>
+    <input type='text' name='titre' required><br>
+    <label for='description'>Description :</label>
+    <input type='text' name='description' required><br>
+    <input type='submit' value='Ajouter la carte'>
+</form>";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Vérifiez si le dossier /image existe, sinon créez-le
+    if (!is_dir('image')) {
+        mkdir('image');
+    }
+
+    // Chemin de destination pour enregistrer l'image
+    $uploadDir = 'image/';
+    $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+
+    // Déplacez l'image téléchargée vers le dossier d'images
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+        // Récupérez les autres valeurs du formulaire
+        $titre = $_POST['titre'];
+        $description = $_POST['description'];
+
+        // Affichez la carte nouvellement ajoutée
+        echo "
+        <div class='item'>
+            <div class='flip-card'>
+                <div class='flip-card-inner'>
+                    <div class='flip-card-front'>
+                        <img src='$uploadFile'>
+                    </div>
+                    <div class='flip-card-back'>
+                        <h1>$titre</h1> 
+                        <p>$description</p>
+                    </div>
+                </div>
+            </div>
+        </div>";
+    } else {
+        echo "Erreur lors de l'upload de l'image.";
+    }
 }
-    
-    
+
+}
+
 ?>
