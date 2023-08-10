@@ -16,10 +16,18 @@ $dossierJson = './article/article_json/article.json';
         
 $jsonData = file_get_contents($dossierJson);
 $data = json_decode($jsonData, true);
+?>
+<section class="cards-wrapper">
+
+<?php
+
 
 foreach ($data as $article) {
     echo "<div class='card-grid-space'>
-        <a class='card' href='$dossierImage/{$article['image']}'>
+
+            <a class='card' href='$dossierPdf/{$article['titre']}.pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']})'>
+
+        
             <div>
                 <h1>{$article['titre']}</h1>
                 <p>{$article['description']}</p>
@@ -34,66 +42,8 @@ foreach ($data as $article) {
     </div>";
 }
 ?>
+</section>
 
-
-<!--<section class="cards-wrapper">
-  <div class="card-grid-space">
-    <a class="card" href="https://codetheweb.blog/2017/10/06/html-syntax/" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
-      <div>
-        <h1>Aziliz NAOUR</h1>
-        <p>Championnat de France U22</p>
-        <div class="date">6 Oct 2017</div>
-        <div class="tags">
-          <div class="tag">
-            <button class="card-button">Télécharger</button>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="card-grid-space">
-    <a class="card" href="article/" style="--bg-img: url('https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/basic-types-of-html-tags/cover.jpg')">
-      <div>
-        <h1>Championnat de France laser-run</h1>
-        <p>Learn about some of the most common HTML tags…</p>
-        <div class="date">9 Oct 2017</div>
-        <div class="tags">
-            <div class="tag">
-                <button class="card-button">Télécharger</button>
-            </div>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="card-grid-space">
-    <a class="card" href="https://codetheweb.blog/2017/10/14/links-images-about-file-paths/" style="--bg-img: url('https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/links-images-about-file-paths/cover.jpg')">
-      <div>
-        <h1>Triathlé</h1>
-        <p>Learn how to use links and images along with file paths…</p>
-        <div class="date">14 Oct 2017</div>
-        <div class="tags">
-            <div class="tag">
-                <button class="card-button">Télécharger</button>
-            </div>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="card-grid-space">
-    <a class="card" href="https://codetheweb.blog/2017/10/14/links-images-about-file-paths/" style="--bg-img: url('https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/links-images-about-file-paths/cover.jpg')">
-      <div>
-        <h1>Bilan Championnat du monde</h1>
-        <p>Learn how to use links and images along with file paths…</p>
-        <div class="date">14 Oct 2017</div>
-        <div class="tags">
-            <div class="tag">
-                <button class="card-button">Télécharger</button>
-            </div>
-        </div>
-      </div>
-    </a>
-  </div>
-</section>-->
 
 <style>
     @import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
@@ -136,7 +86,7 @@ a {
     --bg-filter-opacity: 0.5;
     background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);
     width: 100%;
-    font-size: 1em;
+    font-size: 2em;
     height: 100%;
     color: white;
     border-radius: 2em;

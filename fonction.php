@@ -378,6 +378,7 @@ function changerecord() {
 
 
 function ajoutarticle(){
+
     $dossierPdf = './article/article_pdf/';
     $dossierImage = './article/article_image/';
     $dossierJson = './article/article_json/article.json';
@@ -425,13 +426,18 @@ function ajoutarticle(){
         $date = $_POST['date_telechargement'];
         // Sauvegardez le tableau mis à jour dans le fichier JSON
         
-        $data['titre'] = $titre;
-        $data['image'] = $titre . '.' . $extensionImage;
-        $data['description'] = $description;
-        $data['date'] = $date;
-        
+        $nouvelArticle = array(
+            "titre" => $titre,
+            "image" => $titre . '.' . $extensionImage,
+            "description" => $description,
+            "date" => $date
+
+        );
+
+        $data[] = $nouvelArticle;
+
         $fileContent = json_encode($data, JSON_PRETTY_PRINT);
-    file_put_contents($dossierJson, $fileContent, FILE_APPEND);
+        file_put_contents($dossierJson, $fileContent);
 
         }
         
