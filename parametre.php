@@ -16,8 +16,12 @@ if(isset($_GET['action'])) {
         suppimagecarousel();
     }elseif($action == 'ajoutarticle') {
         ajoutarticle();
-    } elseif($action == 'changerecord') {
+    } elseif($action == 'supparticle') {
+        supparticle();
+    }elseif($action == 'changerecord') {
         changerecord();
+    }elseif($action == 'testarticle') {
+        testarticle();
     }
     
 } else {
@@ -25,7 +29,9 @@ if(isset($_GET['action'])) {
     <a href='parametre.php?action=ajoutimagecarousel' style='font-size: 24px; color: white;' onclick='hideLinks();'>Ajouter une image au Carousel</a><br>
     <a href='parametre.php?action=suppimagecarousel' style='font-size: 24px; color: white;' onclick='hideLinks();'>Supprimer une image du Carousel</a><br>
     <a href='parametre.php?action=ajoutarticle' style='font-size: 24px; color: white;' onclick='hideLinks();'>Ajouter un article</a><br>
+    <a href='parametre.php?action=supparticle' style='font-size: 24px; color: white;' onclick='hideLinks();'>Supprimer un article</a><br>
     <a href='parametre.php?action=changerecord' style='font-size: 24px; color: white;' onclick='hideLinks();'>Modifier les Records</a><br>
+    <a href='parametre.php?action=testarticle' style='font-size: 24px; color: white;' onclick='hideLinks();'>Modifier les Records</a><br>
     </center>";
 
 }

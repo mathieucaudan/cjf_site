@@ -1,17 +1,45 @@
 <?php
 include 'fonction.php';
 entete();
-echo "<body>";
+echo "<body style='background-color: rgb(32, 47, 74);'>";
 navbar();
-showarticle();
 ?>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ... autres balises meta et liens ... -->
 </head>
-
-<section class="cards-wrapper">
+<?php
+$dossierPartage = './article/';
+    
+        echo "
+        <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+            <div class='w3-content'>
+                <h2 class='w3-center'>Liste des fichiers partagés :</h2>";
+    
+        $fichiers = glob($dossierPartage . '*');
+    
+        if (count($fichiers) > 0) {
+            echo "<ul class='w3-ul'>";
+            foreach ($fichiers as $fichier) {
+                $nomFichier = basename($fichier);
+                echo "<li class='w3-padding'><span class='w3-large'>$nomFichier</span>";
+    
+                // Afficher le bouton de suppression pour les administrateurs
+                if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+                    echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$nomFichier'>Supprimer</a>";
+                }
+    
+                echo "</li>";
+            }
+            echo "</ul>";
+        } else {
+            echo "<p class='w3-center'>Aucun fichier partagé.</p>";
+        }
+    
+        echo "</div>";
+?>
+<!--<section class="cards-wrapper">
   <div class="card-grid-space">
     <a class="card" href="https://codetheweb.blog/2017/10/06/html-syntax/" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
       <div>
@@ -27,7 +55,7 @@ showarticle();
     </a>
   </div>
   <div class="card-grid-space">
-    <a class="card" href="https://codetheweb.blog/2017/10/09/basic-types-of-html-tags/" style="--bg-img: url('https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/basic-types-of-html-tags/cover.jpg')">
+    <a class="card" href="article/" style="--bg-img: url('https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/basic-types-of-html-tags/cover.jpg')">
       <div>
         <h1>Championnat de France laser-run</h1>
         <p>Learn about some of the most common HTML tags…</p>
@@ -68,7 +96,7 @@ showarticle();
       </div>
     </a>
   </div>
-</section>
+</section>-->
 
 <style>
     @import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
