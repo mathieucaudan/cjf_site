@@ -3,9 +3,9 @@ include 'fonction.php';
 entete();
 navbar();
 ?>
-<body style='background-color: rgb(32, 47, 74); color:white'>
+<body style='background-color: rgb(32, 47, 74); color:white; '>
 <h1 style='color:white'><center>Organigramme</center></h1>
-<center><div class="tab" style='background-color: rgb(32, 47, 74);'>
+<center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
     <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'bureau')">Bureau</button>
     <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'coach')">Coach</button>
     <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'athletes')">Athlètes</button>
@@ -29,7 +29,7 @@ navbar();
         <p>Coordination sportive et suivi des athlètes</p>
         <p>Responsable du développement</p>
         <p>Responsable de la Section Sportive Scolaire PENTATHLON MODERNE du collège LE BOCAGE
-de DINARD</p>
+        de DINARD</p>
       </div>
     </div>
 </div>
@@ -45,6 +45,8 @@ de DINARD</p>
         <p>ARNAUD EVEILLARD (BF1)</p>
         <img src="image/" style="display:block; margin:auto;">
         <p>JULIEN TERTRAIN (BF1)</p>
+        <img src="image/" style="display:block; margin:auto;">
+        <p>DANIEL BOURQUIN (partenariat avec le CJF Athlétisme)</p>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
         <h2>Natation</h2>

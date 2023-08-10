@@ -5,15 +5,15 @@ echo "<body>";
 navbar();
 ?>
 
-<div class="tab" style='background-color: rgb(32, 47, 74);'><center>
+<div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
 <h1 style='color: white;'>Record</h1>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'table1')">Laser Run</button>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'table2')">Triathlé</button>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'table3')">Tetrathlon</button>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'table4')">Pentathlon</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laser run')">Laser Run</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'triathlé')">Triathlé</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'tetrathlon')">Tetrathlon</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'pentathlon')">Pentathlon</button>
 </center></div>
 
-<center><div id="table1" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<center><div id="laser run" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Laser Run</h3>
   <table>
   <?php
@@ -40,7 +40,7 @@ navbar();
   </table>
 </div>
 
-<div id="table2" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<div id="triathlé" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Triathlé</h3>
   <table>
   <?php
@@ -67,7 +67,7 @@ navbar();
   </table>
 </div>
 
-<div id="table3" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="tetrathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <h3>Tetrathlon</h3>
   <table>
   <?php
@@ -94,7 +94,7 @@ navbar();
   </table>
 </div>
 
-<div id="table4" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<div id="pentathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Pentathlon</h3>
   <table>
   <?php

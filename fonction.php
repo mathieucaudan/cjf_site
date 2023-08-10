@@ -44,6 +44,7 @@ function navbar() {
         <a href='nous.Php'>QUI SOMMES NOUS?</a>
       </div>
     </div>
+    <a href='section.php' class='w3-bar-item w3-button'>SECTION</a>
     <a href='inscription.php' class='w3-bar-item w3-button'>S'INSCRIRE</a>";
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'admin') {
@@ -240,6 +241,56 @@ function ajoutimagecarousel() {
 
     echo "</div></div>";
     }
+function suppimagecarousel() {
+    $dossierPartage = './image/carousel/';
+    
+        echo "
+        <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+            <div class='w3-content'>
+                <h2 class='w3-center'>Liste des fichiers partagés :</h2>";
+    
+        $fichiers = glob($dossierPartage . '*');
+    
+        if (count($fichiers) > 0) {
+            echo "<ul class='w3-ul'>";
+            foreach ($fichiers as $fichier) {
+                $nomFichier = basename($fichier);
+                echo "<li class='w3-padding'><span class='w3-large'>$nomFichier</span>";
+    
+                // Afficher le bouton de suppression pour les administrateurs
+                if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+                    echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$nomFichier'>Supprimer</a>";
+                }
+                // Afficher le bouton d'affichage pour ouvrir le fichier dans un nouvel onglet
+                echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='$fichier' target='_blank'>Afficher</a>";
+    
+                echo "</li>";
+            }
+            echo "</ul>";
+        } else {
+            echo "<p class='w3-center'>Aucun fichier partagé.</p>";
+        }
+    
+        echo "</div>";
+    
+        // Supprimer le fichier si l'action 'supprimer' est spécifiée
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
+            $fichier = $_GET['fichier'];
+            $cheminFichier = $dossierPartage . $fichier;
+    
+            if (file_exists($cheminFichier)) {
+                if (unlink($cheminFichier)) {
+                    echo "<p class='w3-text-green' style='background-color: rgb(32, 47, 74)'>Fichier supprimé avec succès !</p>";
+                } else {
+                    echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression du fichier.</p>";
+                }
+            } else {
+                echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Le fichier n'existe pas.</p>";
+            }
+             echo "</div>";
+        }
+    }
+
 
 function changerecord() {
     echo "
@@ -405,53 +456,6 @@ function changerecord() {
         file_put_contents('record.json', json_encode($data, JSON_PRETTY_PRINT));
     }
     }
- 
-function ajoutpartenaire() {
-    echo"<form method='POST' enctype='multipart/form-data'>
-    <label for='image'>Image :</label>
-    <input type='file' name='image' accept='image/*' required><br>
-    <label for='titre'>Titre :</label>
-    <input type='text' name='titre' required><br>
-    <label for='description'>Description :</label>
-    <input type='text' name='description' required><br>
-    <input type='submit' value='Ajouter la carte'>
-</form>";
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Vérifiez si le dossier /image existe, sinon créez-le
-    if (!is_dir('image')) {
-        mkdir('image');
-    }
 
-    // Chemin de destination pour enregistrer l'image
-    $uploadDir = 'image/';
-    $uploadFile = $uploadDir . basename($_FILES['image']['name']);
-
-    // Déplacez l'image téléchargée vers le dossier d'images
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
-        // Récupérez les autres valeurs du formulaire
-        $titre = $_POST['titre'];
-        $description = $_POST['description'];
-
-        // Affichez la carte nouvellement ajoutée
-        echo "
-        <div class='item'>
-            <div class='flip-card'>
-                <div class='flip-card-inner'>
-                    <div class='flip-card-front'>
-                        <img src='$uploadFile'>
-                    </div>
-                    <div class='flip-card-back'>
-                        <h1>$titre</h1> 
-                        <p>$description</p>
-                    </div>
-                </div>
-            </div>
-        </div>";
-    } else {
-        echo "Erreur lors de l'upload de l'image.";
-    }
-}
-
-}
 
 ?>
