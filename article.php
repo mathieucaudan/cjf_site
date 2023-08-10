@@ -10,35 +10,32 @@ navbar();
     <!-- ... autres balises meta et liens ... -->
 </head>
 <?php
-$dossierPartage = './article/';
-    
-        echo "
-        <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-            <div class='w3-content'>
-                <h2 class='w3-center'>Liste des fichiers partagés :</h2>";
-    
-        $fichiers = glob($dossierPartage . '*');
-    
-        if (count($fichiers) > 0) {
-            echo "<ul class='w3-ul'>";
-            foreach ($fichiers as $fichier) {
-                $nomFichier = basename($fichier);
-                echo "<li class='w3-padding'><span class='w3-large'>$nomFichier</span>";
-    
-                // Afficher le bouton de suppression pour les administrateurs
-                if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
-                    echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$nomFichier'>Supprimer</a>";
-                }
-    
-                echo "</li>";
-            }
-            echo "</ul>";
-        } else {
-            echo "<p class='w3-center'>Aucun fichier partagé.</p>";
-        }
-    
-        echo "</div>";
+$dossierPdf = './article/article_pdf';
+$dossierImage = './article/article_image';
+$dossierJson = './article/article_json/article.json';
+        
+$jsonData = file_get_contents($dossierJson);
+$data = json_decode($jsonData, true);
+
+foreach ($data as $article) {
+    echo "<div class='card-grid-space'>
+        <a class='card' href='$dossierImage/{$article['image']}'>
+            <div>
+                <h1>{$article['titre']}</h1>
+                <p>{$article['description']}</p>
+                <div>{$article['date']}</div>
+                <div class='tags'>
+                    <div class='tag'>
+                        <button class='card-button'>Télécharger</button>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>";
+}
 ?>
+
+
 <!--<section class="cards-wrapper">
   <div class="card-grid-space">
     <a class="card" href="https://codetheweb.blog/2017/10/06/html-syntax/" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500&url=https://codetheweb.blog/assets/img/posts/html-syntax/cover.jpg)">
