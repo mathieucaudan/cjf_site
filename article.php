@@ -23,23 +23,24 @@ $data = json_decode($jsonData, true);
 
 
 foreach ($data as $article) {
-    echo "<div class='card-grid-space'>
+  echo "<div class='card-grid-space'>
+  <a class='card' href='$dossierPdf/{$article['titre']}.pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']})'>
+      <div>
+          <h1>{$article['titre']}</h1>
+          <p>{$article['description']}</p>
+          <div>{$article['date']}</div>
+          <div class='tags'>
+              <div class='tag'>
+                  <form action='download.php' method='post' style='display:inline;'>
+                      <input type='hidden' name='pdf' value='" . rawurlencode($article["titre"] . ".pdf") . "'>
+                      <button type='submit' class='card-button' name='download'>Télécharger</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </a>
+</div>";
 
-            <a class='card' href='$dossierPdf/{$article['titre']}.pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']})'>
-
-        
-            <div>
-                <h1>{$article['titre']}</h1>
-                <p>{$article['description']}</p>
-                <div>{$article['date']}</div>
-                <div class='tags'>
-                    <div class='tag'>
-                        <button class='card-button'>Télécharger</button>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>";
 }
 ?>
 </section>
@@ -247,6 +248,8 @@ a {
 
 
 </style>
+
+
 
 <?php
 footer();
