@@ -1,26 +1,8 @@
 [
     {
-        "titre": "zafafzaf",
-        "image": "zafafzaf.jpeg",
-        "description": "zafzafzafzafzafzaf",
-        "date": "01-01-01"
-    },
-    {
-        "titre": "test2",
-        "image": "test2.jpg",
-        "description": "ceci est une description",
-        "date": "02-02-02"
-    },
-    {
-        "titre": "",
-        "image": ".",
-        "description": null,
-        "date": null
-    },
-    {
-        "titre": "",
-        "image": ".",
-        "description": null,
-        "date": null
+        "titre": "coucou",
+        "image": "coucou.png",
+        "description": "test",
+        "date": "01\/01\/00"
     }
 ]

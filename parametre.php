@@ -17,7 +17,7 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 <div id="ajoutarticle" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
-    ajoutarticle();
+    ajoutarticle(); 
     ?>
   </table>
 </div>

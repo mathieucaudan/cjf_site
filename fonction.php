@@ -383,39 +383,36 @@ function ajoutarticle(){
     $dossierImage = './article/article_image/';
     $dossierJson = './article/article_json/article.json';
     
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['img'])) {
+            // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
             $fichierTemporaire = $_FILES['fichier']['tmp_name'];
             $nomFichierOriginal = $_FILES['fichier']['name'];
             $nomFichierTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
-    
-            // Récupérer l'extension du fichier
-            $extension = pathinfo($nomFichierOriginal, PATHINFO_EXTENSION);
-    
-            // Générer un nouveau nom de fichier en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
-            $nouveauNomFichier = $nomFichierTelechargement ? $nomFichierTelechargement . '.' . $extension : $nomFichierOriginal;
-    
-            // Déplacer le fichier vers le dossier de destination avec le nouveau nom
-            $cheminFichier = $dossierPdf . $nouveauNomFichier;
-    
-            if (move_uploaded_file($fichierTemporaire, $cheminFichier)) {
-                echo "<p class='w3-text-green'>Fichier partagé avec succès !</p>";
-            } else {
-                echo "<p class='w3-text-red'>Erreur lors du partage du fichier.</p>";
-            }
+
+            
             $imageTemporaire = $_FILES['img']['tmp_name'];
             $nomImageOriginal = $_FILES['img']['name'];
             $nomImageTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
     
             // Récupérer l'extension du fichier
+            $extension = pathinfo($nomFichierOriginal, PATHINFO_EXTENSION);
+
+            // Récupérer l'extension de l'image
             $extensionImage = pathinfo($nomImageOriginal, PATHINFO_EXTENSION);
     
             // Générer un nouveau nom de fichier en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
+            $nouveauNomFichier = $nomFichierTelechargement ? $nomFichierTelechargement . '.' . $extension : $nomFichierOriginal;
+    
+            // Générer un nouveau nom d'image en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
             $nouveauNomImage = $nomImageTelechargement ? $nomImageTelechargement . '.' . $extensionImage : $nomImageOriginal;
     
             // Déplacer le fichier vers le dossier de destination avec le nouveau nom
+            $cheminFichier = $dossierPdf . $nouveauNomFichier;
+
+            // Déplacer l'image  vers le dossier de destination avec le nouveau nom
             $cheminImage = $dossierImage . $nouveauNomImage;
     
-            if (move_uploaded_file($imageTemporaire, $cheminImage)) {
+            if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
                 echo "<p class='w3-text-green'>Fichier partagé avec succès !</p>";
             } else {
                 echo "<p class='w3-text-red'>Erreur lors du partage du fichier.</p>";
@@ -431,7 +428,6 @@ function ajoutarticle(){
             "image" => $titre . '.' . $extensionImage,
             "description" => $description,
             "date" => $date
-
         );
 
         $data[] = $nouvelArticle;
@@ -461,11 +457,11 @@ function ajoutarticle(){
                     <label class='w3-text-white'>Sélectionner une image :</label>
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='img'>
                     <br>
-                    <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager'>
+                    <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
                 </form>";
     
         echo "</div></div>";
-}
+    }
 function ajoutimagecarousel() {
     $dossierPartage = './image/carousel/';
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier'])) {
