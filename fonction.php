@@ -464,6 +464,8 @@ function ajoutarticle(){
     }
 function ajoutimagecarousel() {
     $dossierPartage = './image/carousel/';
+    $message = ""; // Variable pour stocker les messages de succès ou d'erreur
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier'])) {
         $fichierTemporaire = $_FILES['fichier']['tmp_name'];
         $nomFichierOriginal = $_FILES['fichier']['name'];
@@ -478,13 +480,13 @@ function ajoutimagecarousel() {
         // Déplacer le fichier vers le dossier de destination avec le nouveau nom
         $cheminFichier = $dossierPartage . $nouveauNomFichier;
         if (move_uploaded_file($fichierTemporaire, $cheminFichier)) {
-            echo "<div style='background-color: rgb(32, 47, 74);'>
-                <center><p class='w3-text-green' style='font-size: 24px;'>Fichier partagé avec succès !</p></center>";
+            $message = "Fichier partagé avec succès !";
         } else {
-            echo "<center><p class='w3-text-red' style='font-size: 24px;'>Erreur lors du partage du fichier.</p></center>";
-
+            $message = "Erreur lors du partage du fichier.";
         }
     }
+
+    $_SESSION['ajoutimagecarousel_message'] = $message;
 
     echo "
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
@@ -497,10 +499,13 @@ function ajoutimagecarousel() {
                 <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='text' name='nom_telechargement'>
                 <br>
                 <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager'>
-            </form>";
-
-    echo "</div></div>";
-    }   
+            </form>
+        </div>
+    </div>";
+}
+    
+    
+    
 
 
 ?>

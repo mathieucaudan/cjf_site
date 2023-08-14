@@ -13,11 +13,27 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppimagecarousel')">Supprimer une image</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'changerecord')">Changer un record</button>
 </center></div>
+<div id="messageDiv">
+    <?php
+    if (isset($_SESSION['ajoutimagecarousel_message'])) {
+        $message = $_SESSION['ajoutimagecarousel_message'];
+        echo "<div style='background-color: rgb(32, 47, 74);'>
+            <center><p class='w3-text-green' style='font-size: 24px;'>$message</p></center>
+        </div>";
+        unset($_SESSION['ajoutimagecarousel_message']); // Efface le message après l'affichage
+    }
+    ?>
+</div>
 
 <div id="ajoutarticle" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
-    ajoutarticle(); 
+    ajoutarticle();
+    if (isset($_GET['ajoutarticle_message'])) {
+        echo "<div style='background-color: rgb(32, 47, 74);'>
+                <center><p class='w3-text-green' style='font-size: 24px;'>{$_GET['ajoutarticle_message']}</p></center>
+              </div>";
+    }
     ?>
   </table>
 </div>
@@ -26,6 +42,11 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
   <table>
   <?php
     supparticle();
+    if (isset($_GET['supparticle_message'])) {
+        echo "<div style='background-color: rgb(32, 47, 74);'>
+                <center><p class='w3-text-green' style='font-size: 24px;'>{$_GET['supparticle_message']}</p></center>
+              </div>";
+    }
     ?>
   </table>
 </div>
@@ -34,6 +55,11 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
   <table>
   <?php
     ajoutimagecarousel();
+    if (isset($_GET['ajoutimagecarousel_message'])) {
+        echo "<div style='background-color: rgb(32, 47, 74);'>
+                <center><p class='w3-text-green' style='font-size: 24px;'>{$_GET['ajoutimagecarousel_message']}</p></center>
+              </div>";
+    }
     ?>
   </table>
 </div>
@@ -42,6 +68,11 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
   <table>
   <?php
     suppimagecarousel();
+    if (isset($_GET['suppimagecarousel_message'])) {
+        echo "<div style='background-color: rgb(32, 47, 74);'>
+                <center><p class='w3-text-green' style='font-size: 24px;'>{$_GET['suppimagecarousel_message']}</p></center>
+              </div>";
+    }
     ?>
   </table>
 </div>
@@ -50,11 +81,14 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
   <table>
   <?php
     changerecord();
+    if (isset($_GET['changerecord_message'])) {
+        echo "<div style='background-color: rgb(32, 47, 74);'>
+                <center><p class='w3-text-green' style='font-size: 24px;'>{$_GET['changerecord_message']}</p></center>
+              </div>";
+    }
     ?>
   </table>
 </div>
-
-
 
 <?php
 footer();
