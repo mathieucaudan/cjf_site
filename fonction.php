@@ -110,52 +110,78 @@ function connexion(){
     </div>";
     }
 function supparticle() {
-        $dossierPartage = './article/';
-    
-        echo "
-        <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-            <div class='w3-content'>
-                <h2 class='w3-center'>Liste des fichiers partagés :</h2>";
-    
-        $fichiers = glob($dossierPartage . '*');
-    
-        if (count($fichiers) > 0) {
-            echo "<ul class='w3-ul'>";
-            foreach ($fichiers as $fichier) {
-                $nomFichier = basename($fichier);
-                echo "<li class='w3-padding'><span class='w3-large'>$nomFichier</span>";
-    
-                // Afficher le bouton de suppression pour les administrateurs
-                if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
-                    echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$nomFichier'>Supprimer</a>";
-                }
-    
-                echo "</li>";
+    $dossierPartage = './article/';
+
+    echo "
+    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+        <div class='w3-content'>
+            <h2 class='w3-center'>Liste des fichiers partagés :</h2>";
+
+    $fichiers = glob($dossierPartage . 'article_pdf/*');
+
+    if (count($fichiers) > 0) {
+        echo "<ul class='w3-ul'>";
+        foreach ($fichiers as $fichier) {
+            $nomFichier = basename($fichier);
+            echo "<li class='w3-padding'><span class='w3-large'>$nomFichier</span>";
+
+            // Afficher le bouton de suppression pour les administrateurs
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+                echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$nomFichier'>Supprimer</a>";
             }
-            echo "</ul>";
-        } else {
-            echo "<p class='w3-center'>Aucun fichier partagé.</p>";
+
+            echo "</li>";
         }
+        echo "</ul>";
+    } else {
+        echo "<p class='w3-center'>Aucun fichier partagé.</p>";
+    }
+
+    echo "</div>";
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
+        $fichier = $_GET['fichier'];
+        $cheminFichierPDF = $dossierPartage . 'article_pdf/' . $fichier . '.pdf';
+        $cheminImage = $dossierPartage . 'article_image/' . $fichier . '.JPG';
     
-        echo "</div>";
+        // Vérifier si les fichiers existent
+        if (file_exists($cheminFichierPDF) && file_exists($cheminImage)) {
+            // Suppression du fichier PDF associé
+            if (unlink($cheminFichierPDF) && unlink($cheminImage)) {
+                // Charger et mettre à jour le fichier article.json
+                $cheminArticleJSON = $dossierPartage . 'article_json/article.json';
+                if (file_exists($cheminArticleJSON)) {
+                    $articlesJson = file_get_contents($cheminArticleJSON);
+                    $articles = json_decode($articlesJson, true);
     
-        // Supprimer le fichier si l'action 'supprimer' est spécifiée
-        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
-            $fichier = $_GET['fichier'];
-            $cheminFichier = $dossierPartage . $fichier;
+                    foreach ($articles as $key => $article) {
+                        if ($article['titre'] == $fichier) {
+                            unset($articles[$key]);
+                            break;
+                        }
+                    }
     
-            if (file_exists($cheminFichier)) {
-                if (unlink($cheminFichier)) {
-                    echo "<p class='w3-text-green' style='background-color: rgb(32, 47, 74)'>Fichier supprimé avec succès !</p>";
+                    file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
+    
+                    echo "<p class='w3-text-green' style='background-color: rgb(32, 47, 74)'>Article et fichiers associés supprimés avec succès !</p>";
                 } else {
-                    echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression du fichier.</p>";
+                    echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la lecture du fichier article.json.</p>";
                 }
             } else {
-                echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Le fichier n'existe pas.</p>";
+                echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression des fichiers.</p>";
             }
-             echo "</div>";
+        } else {
+            echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Le fichier n'existe pas.</p>";
         }
     }
+    
+
+        echo "</div>";
+    }
+
+    
+    
+    
     
 function suppimagecarousel() {
     $dossierPartage = './image/carousel/';
