@@ -143,38 +143,46 @@ function supparticle() {
         $fichierAvecExtension = $_GET['fichier'];
         $fichier = pathinfo($fichierAvecExtension, PATHINFO_FILENAME); // Obtient le nom de fichier sans l'extension
         $cheminFichierPDF = 'article/article_pdf/' . $fichier . '.pdf';
-        $cheminImage = 'article/article_image/' . $fichier . '.JPG';
-    
+        $cheminImages = glob('article/article_image/' . $fichier . '.*');
+        
         // Vérifier si les fichiers existent
-        if (file_exists($cheminFichierPDF) && file_exists($cheminImage)) {
+        if (file_exists($cheminFichierPDF) && !empty($cheminImages)) {
             // Suppression du fichier PDF associé
-            if (unlink($cheminFichierPDF) && unlink($cheminImage)) {
-                // Charger et mettre à jour le fichier article.json
-                $cheminArticleJSON = $dossierPartage . 'article_json/article.json';
-                if (file_exists($cheminArticleJSON)) {
-                    $articlesJson = file_get_contents($cheminArticleJSON);
-                    $articles = json_decode($articlesJson, true);
-    
-                    foreach ($articles as $key => $article) {
-                        if ($article['titre'] == $fichier) {
-                            unset($articles[$key]);
-                            break;
+            if (unlink($cheminFichierPDF)) {
+                // Suppression des fichiers images associés
+                foreach ($cheminImages as $cheminImage) {
+                    if (file_exists($cheminImage) && unlink($cheminImage)) {
+                        // Charger et mettre à jour le fichier article.json
+                        $cheminArticleJSON = $dossierPartage . 'article_json/article.json';
+                        if (file_exists($cheminArticleJSON)) {
+                            $articlesJson = file_get_contents($cheminArticleJSON);
+                            $articles = json_decode($articlesJson, true);
+        
+                            foreach ($articles as $key => $article) {
+                                if ($article['titre'] == $fichier) {
+                                    unset($articles[$key]);
+                                    break;
+                                }
+                            }
+        
+                            file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
+        
+                            echo "<p class='w3-text-green' style='background-color: rgb(32, 47, 74)'>Article et fichiers associés supprimés avec succès !</p>";
+                        } else {
+                            echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la lecture du fichier article.json.</p>";
                         }
+                    } else {
+                        echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression des fichiers images.</p>";
                     }
-    
-                    file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
-    
-                    echo "<p class='w3-text-green' style='background-color: rgb(32, 47, 74)'>Article et fichiers associés supprimés avec succès !</p>";
-                } else {
-                    echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la lecture du fichier article.json.</p>";
                 }
             } else {
-                echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression des fichiers.</p>";
+                echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression du fichier PDF.</p>";
             }
         } else {
             echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Le fichier n'existe pas.</p>";
         }
     }
+    
     
 
         echo "</div>";
