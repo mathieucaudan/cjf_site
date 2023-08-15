@@ -140,9 +140,10 @@ function supparticle() {
     echo "</div>";
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
-        $fichier = $_GET['fichier'];
-        $cheminFichierPDF = $dossierPartage . 'article_pdf/' . $fichier . '.pdf';
-        $cheminImage = $dossierPartage . 'article_image/' . $fichier . '.JPG';
+        $fichierAvecExtension = $_GET['fichier'];
+        $fichier = pathinfo($fichierAvecExtension, PATHINFO_FILENAME); // Obtient le nom de fichier sans l'extension
+        $cheminFichierPDF = 'article/article_pdf/' . $fichier . '.pdf';
+        $cheminImage = 'article/article_image/' . $fichier . '.JPG';
     
         // Vérifier si les fichiers existent
         if (file_exists($cheminFichierPDF) && file_exists($cheminImage)) {

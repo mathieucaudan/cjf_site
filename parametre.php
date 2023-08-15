@@ -3,7 +3,6 @@ include 'fonction.php';
 entete();
 navbar();
 echo "<body style='background-color: rgb(32, 47, 74);'>";
-supparticle();
 ?>
 
 <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
