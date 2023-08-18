@@ -1,0 +1,11 @@
+a faire:
+	image de qualité(carousel et organigramme)
+	fonction partenaires
+	info partenaires
+	contact
+	record responsive
+	section
+	inscription
+	potentiel galerie photo
+	contenu page accueil
+	+footer
