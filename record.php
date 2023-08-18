@@ -22,20 +22,19 @@ navbar();
         $data = json_decode($jsonData, true);
 
         echo '<table border="1">';
-        echo '<tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Temps</th><th>Lieu</th></tr>';
+        echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Temps</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Laser Run'] as $participant) {
-            echo '<tr>';
-            echo '<td style="text-align: center;">' . $participant['categorie'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['nom'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['prenom'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['date'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['temps'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['lieux'] . '</td>';
-            echo '</tr>';
+          echo '<tr>';
+          echo '<td style="text-align: center;" data-title="Catégorie">' . $participant['categorie'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Nom">' . $participant['nom'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Prénom">' . $participant['prenom'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Date">' . $participant['date'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Temps">' . $participant['temps'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Lieu">' . $participant['lieux'] . '</td>';
+          echo '</tr>';
         }
-
-        echo '</table>';
+        echo '</tbody></table>';
     ?>
   </table>
 </div>
@@ -49,20 +48,20 @@ navbar();
         $data = json_decode($jsonData, true);
 
         echo '<table border="1">';
-        echo '<tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr>';
+        echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Triathlé'] as $participant) {
-            echo '<tr>';
-            echo '<td style="text-align: center;">' . $participant['categorie'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['nom'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['prenom'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['date'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['points'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['lieux'] . '</td>';
-            echo '</tr>';
+          echo '<tr>';
+          echo '<td style="text-align: center;" data-title="Catégorie">' . $participant['categorie'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Nom">' . $participant['nom'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Prénom">' . $participant['prenom'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Date">' . $participant['date'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Points">' . $participant['points'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Lieu">' . $participant['lieux'] . '</td>';
+          echo '</tr>';
         }
 
-        echo '</table>';
+        echo '</tbody></table>';
     ?>
   </table>
 </div>
@@ -76,20 +75,20 @@ navbar();
         $data = json_decode($jsonData, true);
 
         echo '<table border="1">';
-        echo '<tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr>';
+        echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Tetrathlon'] as $participant) {
-            echo '<tr>';
-            echo '<td style="text-align: center;">' . $participant['categorie'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['nom'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['prenom'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['date'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['points'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['lieux'] . '</td>';
-            echo '</tr>';
+          echo '<tr>';
+          echo '<td style="text-align: center;" data-title="Catégorie">' . $participant['categorie'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Nom">' . $participant['nom'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Prénom">' . $participant['prenom'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Date">' . $participant['date'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Points">' . $participant['points'] . '</td>';
+          echo '<td style="text-align: center;" data-title="Lieu">' . $participant['lieux'] . '</td>';
+          echo '</tr>';
         }
 
-        echo '</table>';
+        echo '</tbody></table>';
     ?>
   </table>
 </div>
@@ -103,50 +102,113 @@ navbar();
         $data = json_decode($jsonData, true);
 
         echo '<table border="1">';
-        echo '<tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr>';
+        echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Pentathlon'] as $participant) {
             echo '<tr>';
-            echo '<td style="text-align: center;">' . $participant['categorie'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['nom'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['prenom'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['date'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['points'] . '</td>';
-            echo '<td style="text-align: center;">' . $participant['lieux'] . '</td>';
+            echo '<td style="text-align: center;" data-title="Catégorie">' . $participant['categorie'] . '</td>';
+            echo '<td style="text-align: center;" data-title="Nom">' . $participant['nom'] . '</td>';
+            echo '<td style="text-align: center;" data-title="Prénom">' . $participant['prenom'] . '</td>';
+            echo '<td style="text-align: center;" data-title="Date">' . $participant['date'] . '</td>';
+            echo '<td style="text-align: center;" data-title="Points">' . $participant['points'] . '</td>';
+            echo '<td style="text-align: center;" data-title="Lieu">' . $participant['lieux'] . '</td>';
             echo '</tr>';
         }
-
-        echo '</table>';
+        echo '</tbody></table>';
     ?>
   </table>
 </div></center>
 <style>
-    .tab {
-  overflow: hidden;
-}
+  table {
+    margin: 1rem auto;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    border: 1px solid;
+  }
 
-.tab button {
-  background-color: #ccc;
-  border: none;
-  color: black;
-  padding: 10px 20px;
-  cursor: pointer;
-}
+  table th, table td {
+    padding: 8px 0;
+  }
 
-.tab button:hover {
-  background-color: #ddd;
-}
+  thead {
+    background-color: rgb(32, 47, 74);
+    color: white;
+  }
 
-.tab button.active {
-  background-color: #fff;
-}
+  tbody tr:nth-child(even) {
+    background-color: #ddd;
+  }
 
-.tabcontent {
-  display: none;
-  padding: 20px;
-  border: 1px solid #ccc;
-}
+  @media only screen and (max-width: 800px) {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    td {
+      position: relative;
+      padding-left: 50%;
+      white-space: normal;
+      text-align: left;
+    }
+
+    td:before {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      font-weight: bold;
+      white-space: nowrap;
+      text-align: left;
+      content: attr(data-title);
+    }
+  }
+
+  .tab {
+    overflow: hidden;
+  }
+
+  .tab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .tab button:hover {
+    background-color: #ddd;
+  }
+
+  .tab button.active {
+    background-color: #fff;
+  }
+
+  .tabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+  /* Cacher les bordures pour les cellules vides */
+  table td:empty {
+    border: none;
+  }
 </style>
+
 <script>
     function openTab(evt, tabName) {
   var i, tabcontent, tablinks;

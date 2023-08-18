@@ -2,35 +2,35 @@
     "Laser Run": [
         {
             "categorie": "U9 F",
-            "nom": " ",
-            "prenom": " ",
-            "date": " ",
-            "temps": " ",
-            "lieux": " "
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "temps": "-",
+            "lieux": "-"
         },
         {
             "categorie": "U9 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "temps": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "temps": "-",
+            "lieux": "-"
         },
         {
             "categorie": "U11 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "temps": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "temps": "-",
+            "lieux": "-"
         },
         {
             "categorie": "U11 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "temps": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "temps": "-",
+            "lieux": "-"
         },
         {
             "categorie": "U13 F",
@@ -162,35 +162,35 @@
         },
         {
             "categorie": "M60 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "temps": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "temps": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M60 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "temps": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "temps": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M70 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "temps": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "temps": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M70 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "temps": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "temps": "-",
+            "lieux": "-"
         },
         {
             "categorie": "Longue Distance F",
@@ -284,11 +284,11 @@
         },
         {
             "categorie": "U17 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "U19 F",
@@ -340,11 +340,11 @@
         },
         {
             "categorie": "M40 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M40 H",
@@ -356,19 +356,19 @@
         },
         {
             "categorie": "M50 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M50 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M60 F",
@@ -380,45 +380,45 @@
         },
         {
             "categorie": "M60 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M70 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M70 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         }
     ],
     "Tetrathlon": [
         {
             "categorie": "U17 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "U17 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "U19 F",
@@ -470,27 +470,27 @@
         },
         {
             "categorie": "M30 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M30 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M40 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M40 H",
@@ -502,85 +502,85 @@
         },
         {
             "categorie": "M50 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M50 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M60 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M60 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M70 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M70 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         }
     ],
     "Pentathlon": [
         {
             "categorie": "U17 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "U17 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "U19 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "U19 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "U22 F",
@@ -592,11 +592,11 @@
         },
         {
             "categorie": "U22 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "Senior F",
@@ -608,105 +608,91 @@
         },
         {
             "categorie": "Senior H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M30 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M30 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M40 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M40 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M50 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M50 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M60 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M60 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M70 F",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         },
         {
             "categorie": "M70 H",
-            "nom": "",
-            "prenom": "",
-            "date": "",
-            "points": "",
-            "lieux": ""
+            "nom": "-",
+            "prenom": "-",
+            "date": "-",
+            "points": "-",
+            "lieux": "-"
         }
-    ],
-    "0": {
-        "temps": "marche",
-        "nom": "je",
-        "prenom": "test",
-        "date": "si",
-        "lieu": "ca"
-    },
-    "4": {
-        "temps": "marche",
-        "nom": "paris",
-        "prenom": "Mathieu",
-        "date": "05\/23",
-        "lieu": "ca"
-    }
+    ]
 }

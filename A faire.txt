@@ -1,9 +1,8 @@
 a faire:
-	image de qualité(carousel et organigramme)
+	image de qualité(organigramme)
 	fonction partenaires
 	info partenaires
 	contact
-	record responsive
 	section
 	inscription
 	potentiel galerie photo
