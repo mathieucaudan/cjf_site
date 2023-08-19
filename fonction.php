@@ -117,7 +117,7 @@ function supparticle() {
         <div class='w3-content'>
             <h2 class='w3-center'>Liste des fichiers partagés :</h2>";
 
-    $fichiers = glob($dossierPartage . 'article_pdf/*');
+    $fichiers = glob($dossierPartage . 'article_image/*');
 
     if (count($fichiers) > 0) {
         echo "<ul class='w3-ul'>";
@@ -141,17 +141,17 @@ function supparticle() {
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
-        $fichier = pathinfo($fichierAvecExtension, PATHINFO_FILENAME); // Obtient le nom de fichier sans l'extension
-        $cheminFichierPDF = 'article/article_pdf/' . $fichier . '.pdf';
-        $cheminImages = glob('article/article_image/' . $fichier . '.*');
+        $nomFichierPDF = pathinfo($fichierAvecExtension, PATHINFO_FILENAME); // Obtient le nom de fichier pdf sans l'extension
+        $cheminImages = 'article/article_image/' . $fichierAvecExtension ;
+        $cheminFichierPDF = glob('article/article_pdf/' . $nomFichierPDF . '.*');
         
         // Vérifier si les fichiers existent
-        if (file_exists($cheminFichierPDF) && !empty($cheminImages)) {
-            // Suppression du fichier PDF associé
-            if (unlink($cheminFichierPDF)) {
-                // Suppression des fichiers images associés
-                foreach ($cheminImages as $cheminImage) {
-                    if (file_exists($cheminImage) && unlink($cheminImage)) {
+        if (file_exists($cheminImages) && !empty($cheminFichierPDF)) {
+            // Suppression du fichier image associé
+            if (unlink($cheminImages)) {
+                // Suppression du fichier pdf associés
+                foreach ($cheminFichierPDF as $cheminFichierPDF) {
+                    if (file_exists($cheminFichierPDF) && unlink($cheminFichierPDF)) {
                         // Charger et mettre à jour le fichier article.json
                         $cheminArticleJSON = $dossierPartage . 'article_json/article.json';
                         if (file_exists($cheminArticleJSON)) {
@@ -159,7 +159,7 @@ function supparticle() {
                             $articles = json_decode($articlesJson, true);
         
                             foreach ($articles as $key => $article) {
-                                if ($article['titre'] == $fichier) {
+                                if ($article['image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
                                     unset($articles[$key]);
                                     break;
                                 }
@@ -182,6 +182,7 @@ function supparticle() {
             echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Le fichier n'existe pas.</p>";
         }
     }
+
     
     
 
@@ -453,14 +454,15 @@ function ajoutarticle(){
                 echo "<p class='w3-text-red'>Erreur lors du partage du fichier.</p>";
             }
         $data = json_decode(file_get_contents($dossierJson), true);
-        $titre = $_POST['nom_telechargement'];
+        $titre = $_POST['titre'];
+        $image = $_POST['nom_telechargement'];
         $description = $_POST['description_telechargement'];
         $date = $_POST['date_telechargement'];
         // Sauvegardez le tableau mis à jour dans le fichier JSON
         
         $nouvelArticle = array(
             "titre" => $titre,
-            "image" => $titre . '.' . $extensionImage,
+            "image" => $image . '.' . $extensionImage,
             "description" => $description,
             "date" => $date
         );
@@ -480,7 +482,10 @@ function ajoutarticle(){
                     <label class='w3-text-white'>Sélectionner un article :</label>
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='fichier'>
                     <br>
-                    <label class='w3-text-white'>Nom du fichier lors du téléchargement (facultatif) :</label>
+                    <label class='w3-text-white'>Titre :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='text' name='titre'>
+                    <br>
+                    <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='text' name='nom_telechargement'>
                     <br>
                     <label class='w3-text-white'>Description :</label>

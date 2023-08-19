@@ -24,7 +24,7 @@ $data = json_decode($jsonData, true);
 
 foreach ($data as $article) {
   echo "<div class='card-grid-space'>
-  <a class='card' href='$dossierPdf/{$article['titre']}.pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']})'>
+  <a class='card' href='$dossierPdf/" . pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']})'>
       <div>
           <h1>{$article['titre']}</h1>
           <p>{$article['description']}</p>
@@ -32,7 +32,7 @@ foreach ($data as $article) {
           <div class='tags'>
               <div class='tag'>
                   <form action='download.php' method='post' style='display:inline;'>
-                      <input type='hidden' name='pdf' value='" . rawurlencode($article["titre"] . ".pdf") . "'>
+                      <input type='hidden' name='pdf' value='" . rawurlencode(pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf") . "'>
                       <button type='submit' class='card-button' name='download'>Télécharger</button>
                   </form>
               </div>
