@@ -13,6 +13,7 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppimagecarousel')">Supprimer une image</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'changerecord')">Changer un record</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutpartenaires')">Ajouter un partenaire</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'supppartenaires')">Supprimer un partenaire</button>
 </center></div>
 
 <div id="ajoutarticle" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
@@ -63,6 +64,13 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
   </table>
 </div>
 
+<div id="supppartenaires" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+  <table>
+  <?php
+    supppartenaire(); 
+    ?>
+  </table>
+</div>
 
 <?php
 footer();

@@ -610,4 +610,71 @@ function ajoutpartenaire(){
         echo "</div></div>";
     }
 
+function supppartenaire() {
+    $dossierPartage = './partenaires/';
+
+    echo "
+    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+        <div class='w3-content'>
+            <h2 class='w3-center'>Liste des partenaires partagés :</h2>";
+
+    $fichiers = glob($dossierPartage . 'partenaires_images/*');
+
+    if (count($fichiers) > 0) {
+        echo "<ul class='w3-ul'>";
+        foreach ($fichiers as $fichier) {
+            $nomFichier = basename($fichier);
+            echo "<li class='w3-padding'><span class='w3-large'>$nomFichier</span>";
+
+            // Afficher le bouton de suppression pour les administrateurs
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+                echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$nomFichier'>Supprimer</a>";
+            }
+
+            echo "</li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "<p class='w3-center'>Aucun fichier partagé.</p>";
+    }
+
+    echo "</div>";
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
+        $fichierAvecExtension = $_GET['fichier'];
+        $cheminImages = 'partenaires/partenaires_images/' . $fichierAvecExtension ;
+
+        
+        // Vérifier si les fichiers existent
+        if (file_exists($cheminImages)) {
+            // Suppression du fichier image associé
+            if (unlink($cheminImages)) {
+                        // Charger et mettre à jour le fichier article.json
+                        $cheminArticleJSON = $dossierPartage . 'partenaires_json/partenaires.json';
+                        if (file_exists($cheminArticleJSON)) {
+                            $articlesJson = file_get_contents($cheminArticleJSON);
+                            $articles = json_decode($articlesJson, true);
+        
+                            foreach ($articles as $key => $article) {
+                                if ($article['image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
+                                    unset($articles[$key]);
+                                    break;
+                                }
+                            }
+        
+                            file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
+        
+                            echo "<p class='w3-text-green' style='background-color: rgb(32, 47, 74)'>Article et fichiers associés supprimés avec succès !</p>";
+                        } else {
+                            echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la lecture du fichier article.json.</p>";
+                        }
+            } else {
+                echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression du fichier PDF.</p>";
+            }
+        } else {
+            echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Le fichier n'existe pas.</p>";
+        }
+    }
+    }
+    
 ?>
