@@ -20,6 +20,7 @@ function footer() {
     echo "
     <footer class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
     <p>En espérant vous voir à l'entraînement</p>
+    
         <div>
             <a href='https://www.instagram.com/cjf_pentathlonmoderne/' target='_blank'><img src='image/logo_insta.png' alt='Instagram' style='width: 50px; height: 50px;'></a>
             <a href='https://www.facebook.com/profile.php?id=100085812112831'><img src='image/logo_facebook.png' alt='Facebook' style='width: 50px; height: 50px;'></a>
@@ -547,10 +548,10 @@ function ajoutpartenaire(){
     $dossierImage = './partenaires/partenaires_images/';
     $dossierJson = './partenaires/partenaires_json/partenaires.json';
     
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['img'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
             // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
-            $imageTemporaire = $_FILES['img']['tmp_name'];
-            $nomImageOriginal = $_FILES['img']['name'];
+            $imageTemporaire = $_FILES['image']['tmp_name'];
+            $nomImageOriginal = $_FILES['image']['name'];
             $nomImageTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
 
             // Récupérer l'extension de l'image
@@ -561,12 +562,12 @@ function ajoutpartenaire(){
 
             // Déplacer l'image  vers le dossier de destination avec le nouveau nom
             $cheminImage = $dossierImage . $nouveauNomImage;
-    
             if (move_uploaded_file($imageTemporaire, $cheminImage)) {
                 echo "<p class='w3-text-green'>Fichier partagé avec succès !</p>";
             } else {
-                echo "<p class='w3-text-red'>Erreur lors du partage du fichier : " . $_FILES['img']['error'] . "</p>";
+                echo "<p class='w3-text-red'>Erreur lors du partage du fichier : " . $_FILES['image']['error'] . "</p>";
             }
+            
         $data = json_decode(file_get_contents($dossierJson), true);
         $titre = $_POST['titre'];
         $image = $_POST['nom_telechargement'];
@@ -601,7 +602,7 @@ function ajoutpartenaire(){
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement'>
                     <br>
                     <label class='w3-text-white'>Sélectionner une image :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img'>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image'>
                     <br>
                     <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
                 </form>";
