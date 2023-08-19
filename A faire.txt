@@ -1,6 +1,6 @@
 a faire:
 	image de qualité(organigramme)
-	fonction partenaires
+	fonction partenaires a améliorer
 	info partenaires
 	contact
 	section

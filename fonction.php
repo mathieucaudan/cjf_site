@@ -480,22 +480,22 @@ function ajoutarticle(){
             <div class='w3-content'>
                 <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
                     <label class='w3-text-white'>Sélectionner un article :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='fichier'>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='fichier'>
                     <br>
                     <label class='w3-text-white'>Titre :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='text' name='titre'>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre'>
                     <br>
                     <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='text' name='nom_telechargement'>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement'>
                     <br>
                     <label class='w3-text-white'>Description :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='text' name='description_telechargement'>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement'>
                     <br>
                     <label class='w3-text-white'>Date :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='text' name='date_telechargement'>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date_telechargement'>
                     <br>
                     <label class='w3-text-white'>Sélectionner une image :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='img'>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img'>
                     <br>
                     <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
                 </form>";
@@ -534,7 +534,7 @@ function ajoutimagecarousel() {
                 <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='fichier'>
                 <br>
                 <label class='w3-text-white'>Nom du fichier lors du téléchargement (facultatif) :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='text' name='nom_telechargement'>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement'>
                 <br>
                 <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager'>
             </form>";
@@ -543,4 +543,71 @@ function ajoutimagecarousel() {
     }   
 
 
-?>
+function ajoutpartenaire(){
+
+    $dossierImage = './partenaires/partenaires_images/';
+    $dossierJson = './partenaires/partenaires_json/partenaires.json';
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['img'])) {
+            // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
+            $imageTemporaire = $_FILES['img']['tmp_name'];
+            $nomImageOriginal = $_FILES['img']['name'];
+            $nomImageTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
+
+            // Récupérer l'extension de l'image
+            $extensionImage = pathinfo($nomImageOriginal, PATHINFO_EXTENSION);
+
+            // Générer un nouveau nom d'image en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
+            $nouveauNomImage = $nomImageTelechargement ? $nomImageTelechargement . '.' . $extensionImage : $nomImageOriginal;
+
+            // Déplacer l'image  vers le dossier de destination avec le nouveau nom
+            $cheminImage = $dossierImage . $nouveauNomImage;
+    
+            if (move_uploaded_file($imageTemporaire, $cheminImage)) {
+                echo "<p class='w3-text-green'>Fichier partagé avec succès !</p>";
+            } else {
+                echo "<p class='w3-text-red'>Erreur lors du partage du fichier : " . $_FILES['img']['error'] . "</p>";
+            }
+        $data = json_decode(file_get_contents($dossierJson), true);
+        $titre = $_POST['titre'];
+        $image = $_POST['nom_telechargement'];
+        $description = $_POST['description_telechargement'];
+        // Sauvegardez le tableau mis à jour dans le fichier JSON
+        
+        $nouveauPartenaire = array(
+            "titre" => $titre,
+            "image" => $image . '.' . $extensionImage,
+            "description" => $description,
+        );
+
+        $data[] = $nouveauPartenaire;
+
+        $fileContent = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents($dossierJson, $fileContent);
+
+        }
+        
+    
+        echo "
+        <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+            <div class='w3-content'>
+                <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
+                    <label class='w3-text-white'>Titre :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre'>
+                    <br>
+                    <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement'>
+                    <br>
+                    <label class='w3-text-white'>Description :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement'>
+                    <br>
+                    <label class='w3-text-white'>Sélectionner une image :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img'>
+                    <br>
+                    <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
+                </form>";
+    
+        echo "</div></div>";
+    }
+
+    ?>

@@ -14,97 +14,33 @@ navbar();
         <p style="color: white;">Description du partenaire</p>
     </div>
 </div>-->
+<?php
+$dossierImage = './partenaires/partenaires_images/';
+$dossierJson = './partenaires/partenaires_json/partenaires.json';
+        
+$jsonData = file_get_contents($dossierJson);
+$data = json_decode($jsonData, true);
 
+echo"<div class='containerResponsive'>";
+foreach ($data as $article) {
+    echo "<div class='item'>
+            <div class='flip-card'>
+                <div class='flip-card-inner'>
+                        <div class='flip-card-front'>
+                        <img src='" . $article['image'] . "'>
+                        </div>
+                            <div class='flip-card-back'>
+                            <h1>{$article['titre']}</h1> 
+                            <p>{$article['description']}</p> 
+                        </div>
+                </div>
+            </div>
+        </div>
+  </div>";
+  
+  }
 
-<div class="containerResponsive">
-
-        <div class="item">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="image/swisslife.png">
-                        </div>
-                            <div class="flip-card-back">
-                            <h1>John Doe</h1> 
-                            <p>Architect & Engineer</p> 
-                            <p>We love that guy</p>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="image/swisslife.png">
-                        </div>
-                            <div class="flip-card-back">
-                            <h1>John Doe</h1> 
-                            <p>Architect & Engineer</p> 
-                            <p>We love that guy</p>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="image/coach_julien.jpg">
-                        </div>
-                            <div class="flip-card-back">
-                            <h1>John Doe</h1> 
-                            <p>Architect & Engineer</p> 
-                            <p>We love that guy</p>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="image/coach_julien.jpg">
-                        </div>
-                            <div class="flip-card-back">
-                            <h1>John Doe</h1> 
-                            <p>Architect & Engineer</p> 
-                            <p>We love that guy</p>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="image/coach_julien.jpg">
-                        </div>
-                            <div class="flip-card-back">
-                            <h1>John Doe</h1> 
-                            <p>Architect & Engineer</p> 
-                            <p>We love that guy</p>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="image/swisslife.png">
-                        </div>
-                            <div class="flip-card-back">
-                            <h1>John Doe</h1> 
-                            <p>Architect & Engineer</p> 
-                            <p>We love that guy</p>
-                        </div>
-                </div>
-            </div>
-        </div>
-}
- 
-</div>
+?>
 
 <style>
         .containerResponsive {
