@@ -27,20 +27,22 @@ foreach ($data as $article) {
             <div class='flip-card'>
                 <div class='flip-card-inner'>
                         <div class='flip-card-front'>
-                        <img src='" . $article['image'] . "'>
+                        <img src='" .$dossierImage. $article['image'] . "'>
                         </div>
-                            <div class='flip-card-back'>
+                        <div class='flip-card-back'>
                             <h1>{$article['titre']}</h1> 
                             <p>{$article['description']}</p> 
                         </div>
                 </div>
             </div>
-        </div>
-  </div>";
+        </div>";
   
   }
-
+echo"</div>";
 ?>
+
+ 
+</div>
 
 <style>
         .containerResponsive {

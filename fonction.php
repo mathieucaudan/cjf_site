@@ -544,7 +544,6 @@ function ajoutimagecarousel() {
 
 
 function ajoutpartenaire(){
-
     $dossierImage = './partenaires/partenaires_images/';
     $dossierJson = './partenaires/partenaires_json/partenaires.json';
     
@@ -610,4 +609,4 @@ function ajoutpartenaire(){
         echo "</div></div>";
     }
 
-    ?>
+?>
