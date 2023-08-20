@@ -7,7 +7,7 @@ navbar();
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- ... autres balises meta et liens ... -->
+
 </head>
 <?php
 $dossierPdf = './article/article_pdf';
@@ -17,37 +17,41 @@ $dossierJson = './article/article_json/article.json';
 $jsonData = file_get_contents($dossierJson);
 $data = json_decode($jsonData, true);
 ?>
-<section class="cards-wrapper">
 
-<?php
+<main class="content">
+  <div id="cardsWrapper">
+    <section class="cards-wrapper"  >
 
+      <?php
+      foreach ($data as $article) {
+        echo "<div class='card-grid-space'>
+        <a class='card' href='$dossierPdf/" . pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']})'>
+            <div>
+                <h1>{$article['titre']}</h1>
+                <p>{$article['description']}</p>
+                <div>{$article['date']}</div>
+                <div class='tags'>
+                    <div class='tag'>
+                        <form action='download.php' method='post' style='display:inline;'>
+                            <input type='hidden' name='pdf' value='" . rawurlencode(pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf") . "'>
+                            <button type='submit' class='card-button' name='download'>Télécharger</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </a>
+      </div>";
 
-foreach ($data as $article) {
-  echo "<div class='card-grid-space'>
-  <a class='card' href='$dossierPdf/" . pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']})'>
-      <div>
-          <h1>{$article['titre']}</h1>
-          <p>{$article['description']}</p>
-          <div>{$article['date']}</div>
-          <div class='tags'>
-              <div class='tag'>
-                  <form action='download.php' method='post' style='display:inline;'>
-                      <input type='hidden' name='pdf' value='" . rawurlencode(pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf") . "'>
-                      <button type='submit' class='card-button' name='download'>Télécharger</button>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </a>
-</div>";
+      }
+      ?>
 
-}
-?>
-</section>
+    </section>
+  </div>
+</main>
 
 
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
+  @import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
 
 :root {
   --color: #3c3163;
@@ -68,6 +72,11 @@ body {
 a {
   color: inherit;
 }
+
+.content {
+        min-height: calc(300vh); /* Adjust the value as needed */
+}
+
 
 .cards-wrapper {
     display: grid;
@@ -249,9 +258,58 @@ a {
 
 </style>
 
+<div class="footer">
+  <div style="clear: both">
+  <?php
+  footer();
+  ?>
+  </div>
+</div>
 
 
-<?php
-footer();
-echo "</body>";
-?>
+<style>
+    .footer {
+        position : bottom;
+    }
+</style>
+
+
+<script>
+  function adjustContentHeight() {
+    const cardsWrapper = document.getElementById('cardsWrapper');
+    const content = document.querySelector('.content');
+    const cards = cardsWrapper.querySelectorAll('.card');
+    
+
+    
+    let totalHeight = 0;
+    cards.forEach(card => {
+      totalHeight += card.clientHeight;
+    });
+    
+
+    // Déterminez le nombre d'articles par ligne en fonction de la largeur de l'écran
+    let articlesPerRow = 2.7; // Par défaut, 3 articles par ligne
+    content.style.minHeight = totalHeight / articlesPerRow + 'px';
+    
+    if (window.innerWidth <= 1285 && window.innerWidth > 900) {
+      articlesPerRow = 1.8; // 2 articles par ligne entre 900px et 1285px
+      content.style.minHeight = totalHeight / articlesPerRow + 'px';
+    } else if (window.innerWidth <= 900) {
+      articlesPerRow = 1; // 1 article par ligne en dessous de 500px
+      content.style.minHeight = totalHeight * (articlesPerRow + 0.15) + 'px';
+    }
+
+    
+    
+    console.log('Nouvelle hauteur de .content:', totalHeight + 'px');
+  }
+
+  document.addEventListener('DOMContentLoaded', adjustContentHeight);
+  window.addEventListener('resize', adjustContentHeight);
+</script>
+
+
+
+
+

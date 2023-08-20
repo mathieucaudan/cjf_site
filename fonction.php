@@ -11,28 +11,75 @@ function entete(){
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Amatic+SC'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
         <link rel='stylesheet' href='style/fonctionCss.css'> <!-- Ajout de la référence au fichier CSS -->
+        <link rel='stylesheet' href='style/footer.css'> <!-- Ajout de la référence au fichier CSS -->
+
         <link rel='shortcut icon' href='image/favicon.png'>
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'></script>
 
      </head>";
-    }
+}
+
+
 function footer() {
     echo "
-    <footer class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-    <p>En espérant vous voir à l'entraînement</p>
-    
-        <div>
-            <a href='https://www.instagram.com/cjf_pentathlonmoderne/' target='_blank'><img src='image/logo_insta.png' alt='Instagram' style='width: 50px; height: 50px;'></a>
-            <a href='https://www.facebook.com/profile.php?id=100085812112831'><img src='image/logo_facebook.png' alt='Facebook' style='width: 50px; height: 50px;'></a>
+    <footer class='footer-distributed' style='clear: both;'>
+
+        <div class='footer-left'>
+
+            <h3>En espérant vous voir <span>à l'entraînement</span></h3>
+
+            <p class='footer-links'>
+                <a href='accueil.php' class='link-1'>Accueil</a>
+                <a href='partenaire.php'>Partenaires</a>
+                <a href='article.php'>Articles</a>
+                <a href='record.php'>Records</a>
+                <a href='creneaux.php'>Créneaux</a>
+                <a href='nous.php'>Qui sommes nous ?</a>
+                <a href='section.php'>Section</a>
+                <a href='inscription.php'>S'inscrire</a>
+            </p>
+
+            <p class='footer-company-name'>Company Name © 2015</p>
         </div>
+
+        <div class='footer-center'>
+            <div>
+                <i class='fa fa-map-marker'></i>
+                <p><span>22 avenue de Marvile</p>
+            </div>
+
+            <div>
+                <i class='fa fa-phone'></i>
+                <p>06 08 10 56 44</p>
+            </div>
+
+            <div>
+                <i class='fa fa-envelope'></i>
+                <p><a href='mailto:cjf.saintmalo.pentathlonmoderne@gmail.com'>cjf.saintmalo.pentathlonmoderne@gmail.com</a></p>
+            </div>
+        </div>
+
+        <div class='footer-right'>
+            <p class='footer-company-about'>
+                <span>Nous suivre sur les réseaux</span>
+            </p>
+
+            <div>
+                <a href='https://www.instagram.com/cjf_pentathlonmoderne/' target='_blank'><img src='image/logo_insta.png' alt='Instagram' style='width: 50px; height: 50px;'></a>
+                <a href='https://www.facebook.com/profile.php?id=100085812112831'><img src='image/logo_facebook.png' alt='Facebook' style='width: 50px; height: 50px;'></a>
+            </div>
+
+        </div>
+
     </footer>";
-    }
+
+}
+
 
 
 function navbar() {
     echo "<div class='topnav' id='myTopnav'>
     <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
-        <a href='contact.php' class='w3-bar-item w3-button'>CONTACT</a>
         <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRE</a>
         <a href='article.php' class='w3-bar-item w3-button'>ARTICLE</a>
     <div class='dropdown'>
