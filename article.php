@@ -96,7 +96,7 @@ a {
     --bg-filter-opacity: 0.5;
     background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);
     width: 100%;
-    font-size: 2em;
+    font-size: 1em;
     height: 100%;
     color: white;
     border-radius: 2em;
@@ -289,15 +289,15 @@ a {
     
 
     // Déterminez le nombre d'articles par ligne en fonction de la largeur de l'écran
-    let articlesPerRow = 2.7; // Par défaut, 3 articles par ligne
+    let articlesPerRow = 2.5; // Par défaut, 3 articles par ligne
     content.style.minHeight = totalHeight / articlesPerRow + 'px';
     
     if (window.innerWidth <= 1285 && window.innerWidth > 900) {
-      articlesPerRow = 1.8; // 2 articles par ligne entre 900px et 1285px
+      articlesPerRow = 1.5; // 2 articles par ligne entre 900px et 1285px
       content.style.minHeight = totalHeight / articlesPerRow + 'px';
     } else if (window.innerWidth <= 900) {
       articlesPerRow = 1; // 1 article par ligne en dessous de 500px
-      content.style.minHeight = totalHeight * (articlesPerRow + 0.15) + 'px';
+      content.style.minHeight = totalHeight * (articlesPerRow + 0.3) + 'px';
     }
 
     
