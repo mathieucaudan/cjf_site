@@ -22,7 +22,7 @@ navbar();
                 $pdf = $article['pdf'];
                 echo "<center><h2>$titre</h2></center>";
                 echo "<div class='article'>";
-                echo "<embed src='$pdf' type='application/pdf' width='100%' height='100%' style='min-height: 200px;' />";
+                echo "<object data='./section/articles/$pdf' type='application/pdf' width='100%' height='100%'></object>";
                 echo "</div>";
             }
             ?>

@@ -17,9 +17,7 @@ function entete(){
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'></script>
 
      </head>";
-}
-
-
+    }
 function footer() {
     echo "
     <footer class='footer-distributed' style='clear: both;'>
@@ -73,7 +71,7 @@ function footer() {
 
     </footer>";
 
-}
+    }
 
 
 
@@ -725,45 +723,54 @@ function supppartenaire() {
     }
 
 function ajoutArticleSection() {
+    $dossierJson = './section/articles.json';
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Récupérer les données du formulaire
-        $nouveauTitreArticle = $_POST['nouveau_titre'];
+        $nouveauTitreArticle = $_POST['titre'];
 
         // Vérifier si un fichier PDF a été téléchargé
-        if (isset($_FILES['nouveau_pdf']) && $_FILES['nouveau_pdf']['error'] === 0) {
-            $nomFichierPDF = $_FILES['nouveau_pdf']['name'];
+        if (isset($_FILES['pdf']) && $_FILES['pdf']['error'] === 0) {
+            $nomFichierPDF = $_FILES['pdf']['name'];
             $cheminFichierPDF = './section/articles/' . $nomFichierPDF;
 
             // Déplacer le fichier PDF vers le répertoire approprié
-            if (move_uploaded_file($_FILES['nouveau_pdf']['tmp_name'], $cheminFichierPDF)) {
-                // Ajouter les données de l'article au fichier JSON
-                $articles = json_decode(file_get_contents('./section/articles.json'), true);
-                $nouvelArticle = [
-                    'titre' => $nouveauTitreArticle,
-                    'pdf' => $cheminFichierPDF
-                ];
-                $articles[] = $nouvelArticle;
+            if (move_uploaded_file($_FILES['pdf']['tmp_name'], $cheminFichierPDF)) {
+                $data = json_decode(file_get_contents('./section/articles.json'), true);
+                    $titre = $_POST['titre'];
 
-                // Enregistrer les données mises à jour dans le fichier JSON
-                file_put_contents('./section/articles.json', json_encode($articles, JSON_PRETTY_PRINT));
+                // Sauvegardez le tableau mis à jour dans le fichier JSON
+                $nouvelArticle = array(
+                    "titre" => $titre,
+                    "pdf" => $nomFichierPDF
+                );
 
-                echo "Article ajouté avec succès.";
+        $data[] = $nouvelArticle;
+
+        $fileContent = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents($dossierJson, $fileContent);
+
+        }
+
+        echo "Article ajouté avec succès.";
             }
         }
-    }
+    
+    
+
 
     echo"
         <form method='POST' enctype='multipart/form-data'>
-            <label for='nouveau_titre'>Titre de l'article:</label>
-            <input type='text' name='nouveau_titre' required /><br>
+            <label for='titre'>Titre de l'article:</label>
+            <input type='text' name='titre' required /><br>
             
-            <label for='nouveau_pdf'>Sélectionnez un PDF:</label>
-            <input type='file' name='nouveau_pdf' accept='.pdf' required /><br>
+            <label for='pdf'>Sélectionnez un PDF:</label>
+            <input type='file' name='pdf' accept='.pdf' required /><br>
             
             <input type='submit' value='Ajouter l'article' />
         </form>";
 
-}
+    }
 function suppArticleSection() {
     $dossierSection = './section/';
 
