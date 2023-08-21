@@ -14,6 +14,8 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'changerecord')">Changer un record</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutpartenaires')">Ajouter un partenaire</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'supppartenaires')">Supprimer un partenaire</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutArticleSection')">Ajouter un articles de section</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppArticleSection')">Supprimer les articles de section</button>
 </center></div>
 
 <div id="ajoutarticle" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
@@ -67,7 +69,22 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 <div id="supppartenaires" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
-    supppartenaire(); 
+    supppartenaire();
+    ?>
+  </table>
+</div>
+
+<div id="ajoutArticleSection" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+  <table>
+  <?php
+    ajoutArticleSection(); 
+    ?>
+  </table>
+</div>
+<div id="suppArticleSection" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+  <table>
+  <?php
+    suppArticleSection(); 
     ?>
   </table>
 </div>

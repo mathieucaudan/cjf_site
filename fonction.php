@@ -723,5 +723,114 @@ function supppartenaire() {
         }
     }
     }
-    
+
+function ajoutArticleSection() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les données du formulaire
+        $nouveauTitreArticle = $_POST['nouveau_titre'];
+
+        // Vérifier si un fichier PDF a été téléchargé
+        if (isset($_FILES['nouveau_pdf']) && $_FILES['nouveau_pdf']['error'] === 0) {
+            $nomFichierPDF = $_FILES['nouveau_pdf']['name'];
+            $cheminFichierPDF = './section/articles/' . $nomFichierPDF;
+
+            // Déplacer le fichier PDF vers le répertoire approprié
+            if (move_uploaded_file($_FILES['nouveau_pdf']['tmp_name'], $cheminFichierPDF)) {
+                // Ajouter les données de l'article au fichier JSON
+                $articles = json_decode(file_get_contents('./section/articles.json'), true);
+                $nouvelArticle = [
+                    'titre' => $nouveauTitreArticle,
+                    'pdf' => $cheminFichierPDF
+                ];
+                $articles[] = $nouvelArticle;
+
+                // Enregistrer les données mises à jour dans le fichier JSON
+                file_put_contents('./section/articles.json', json_encode($articles, JSON_PRETTY_PRINT));
+
+                echo "Article ajouté avec succès.";
+            }
+        }
+    }
+
+    echo"
+        <form method='POST' enctype='multipart/form-data'>
+            <label for='nouveau_titre'>Titre de l'article:</label>
+            <input type='text' name='nouveau_titre' required /><br>
+            
+            <label for='nouveau_pdf'>Sélectionnez un PDF:</label>
+            <input type='file' name='nouveau_pdf' accept='.pdf' required /><br>
+            
+            <input type='submit' value='Ajouter l'article' />
+        </form>";
+
+}
+function suppArticleSection() {
+    $dossierSection = './section/';
+
+    echo "
+    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+        <div class='w3-content'>
+            <h2 class='w3-center'>Liste des articles de la section :</h2>";
+
+    $fichiers = glob($dossierSection . 'articles/*');
+
+    if (count($fichiers) > 0) {
+        echo "<ul class='w3-ul'>";
+        foreach ($fichiers as $fichier) {
+            $nomFichier = basename($fichier);
+            echo "<li class='w3-padding'><span class='w3-large'>$nomFichier</span>";
+
+            // Afficher le bouton de suppression pour les administrateurs
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+                echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$nomFichier'>Supprimer</a>";
+            }
+
+            echo "</li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "<p class='w3-center'>Aucun article dans la section.</p>";
+    }
+
+    echo "</div>";
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
+        $fichierAvecExtension = $_GET['fichier'];
+        $cheminArticles = $dossierSection . 'articles/' . $fichierAvecExtension;
+
+        // Vérifier si les fichiers existent
+        if (file_exists($cheminArticles)) {
+            // Suppression du fichier article associé
+            if (unlink($cheminArticles)) {
+                // Charger et mettre à jour le fichier articles.json
+                $cheminArticlesJSON = $dossierSection . 'articles.json';
+                if (file_exists($cheminArticlesJSON)) {
+                    $articlesJson = file_get_contents($cheminArticlesJSON);
+                    $articles = json_decode($articlesJson, true);
+
+                    foreach ($articles as $key => $article) {
+                        if ($article['pdf'] == $fichierAvecExtension) {
+                            unset($articles[$key]);
+                            break;
+                        }
+                    }
+
+                    // Réindexer le tableau pour éviter les trous
+                    $articles = array_values($articles);
+
+                    file_put_contents($cheminArticlesJSON, json_encode($articles, JSON_PRETTY_PRINT));
+
+                    echo "<p class='w3-text-green' style='background-color: rgb(32, 47, 74)'>Article et fichiers associés supprimés avec succès !</p>";
+                } else {
+                    echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la lecture du fichier articles.json.</p>";
+                }
+            } else {
+                echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression de l'article.</p>";
+            }
+        } else {
+            echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>L'article n'existe pas.</p>";
+        }
+    }
+}
+
 ?>
