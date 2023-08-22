@@ -263,8 +263,7 @@ a {
   <?php
   footer();
   ?>
-  </div>
-</div>
+  
 
 
 <style>
@@ -279,35 +278,31 @@ a {
     const cardsWrapper = document.getElementById('cardsWrapper');
     const content = document.querySelector('.content');
     const cards = cardsWrapper.querySelectorAll('.card');
-    
 
-    
     let totalHeight = 0;
     cards.forEach(card => {
       totalHeight += card.clientHeight;
     });
-    
 
     // Déterminez le nombre d'articles par ligne en fonction de la largeur de l'écran
-    let articlesPerRow = 2.5; // Par défaut, 3 articles par ligne
-    content.style.minHeight = totalHeight / articlesPerRow + 'px';
-    
+    let articlesPerRow = 3; // Par défaut, 3 articles par ligne
     if (window.innerWidth <= 1285 && window.innerWidth > 900) {
-      articlesPerRow = 1.5; // 2 articles par ligne entre 900px et 1285px
-      content.style.minHeight = totalHeight / articlesPerRow + 'px';
+      articlesPerRow = 2; // 2 articles par ligne entre 900px et 1285px
     } else if (window.innerWidth <= 900) {
-      articlesPerRow = 1; // 1 article par ligne en dessous de 500px
-      content.style.minHeight = totalHeight * (articlesPerRow + 0.3) + 'px';
+      articlesPerRow = 1; // 1 article par ligne en dessous de 900px
     }
 
-    
-    
-    console.log('Nouvelle hauteur de .content:', totalHeight + 'px');
+    // Calculez la hauteur minimale de la section de contenu en fonction du nombre d'articles par ligne
+    const minHeight = Math.ceil(cards.length / articlesPerRow) * totalHeight / articlesPerRow;
+    content.style.minHeight = minHeight + 'px';
+
+    console.log('Nouvelle hauteur de .content:', minHeight + 'px');
   }
 
   document.addEventListener('DOMContentLoaded', adjustContentHeight);
   window.addEventListener('resize', adjustContentHeight);
 </script>
+
 
 
 

@@ -1,9 +1,6 @@
 a faire:
 	image de qualité(organigramme)
 	info partenaires
-	contact
-	section
 	inscription
 	potentiel galerie photo
 	contenu page accueil
-	+footer
