@@ -5,15 +5,14 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 navbar();
 ?>
 <h1 style="color: white;"><center>NOS PARTENAIRES</center></h1>
+<div id="btn-grad">
+    <a href="./partenaires/Dossier partenaires CJF Pentathlon Moderne.pdf" target="_blank">
+        <button class="btn-grad">
+            <span>Etre partenaire?</span>
+        </button>
+    </a>
+</div>
 
-<!--
-<div class="card" style="text-align: left; margin-left: 10px">
-    <a href="https://www.google.fr"><img src="image/swisslife.png" style="width: 30vw;"></a>
-    <div class="card-description">
-        <h2 style="color: white;">Swiss Life</h2>
-        <p style="color: white;">Description du partenaire</p>
-    </div>
-</div>-->
 <?php
 $dossierImage = './partenaires/partenaires_images/';
 $dossierJson = './partenaires/partenaires_json/partenaires.json';
@@ -127,6 +126,26 @@ echo"</div>";
         color: white;
         transform: rotateY(180deg);
         }
+                 
+                 
+        .btn-grad {
+            background-image: linear-gradient(to right, #4b6cb7 0%, #182848  51%, #4b6cb7  100%);
+            margin: 10px;
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            border-radius: 10px;
+            display: block;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+          }
+         
+         
 
 </style>
 
