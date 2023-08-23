@@ -91,6 +91,7 @@ function navbar() {
       </div>
     </div>
     <a href='section.php' class='w3-bar-item w3-button'>SECTION</a>
+    <a href='calendrier.php' class='w3-bar-item w3-button'>CALENDRIER</a>
     <a href='inscription.php' class='w3-bar-item w3-button'>S'INSCRIRE</a>";
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'admin') {
@@ -839,5 +840,7 @@ function suppArticleSection() {
         }
     }
 }
+
+
 
 ?>
