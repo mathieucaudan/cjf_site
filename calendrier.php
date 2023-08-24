@@ -123,58 +123,65 @@ $numRows = ceil(($daysInMonth + $firstDayOfWeek - 1) / 7);
     window.onload = function () {
         updateCalendar();
     };
+    
 </script>
 
 <style>
-    .calendar-container {
-        width: 100%;
-        margin: 0 auto; /* Centrez le calendrier horizontalement */
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(32, 47, 74);
+            margin: 0;
+            padding: 0;
+        }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+        /* Style pour le calendrier */
+        .calendar-container {
+            max-width: 800px;
+            margin: 0 auto; /* Centrez le calendrier horizontalement */
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
 
-    th, td {
-        border: 1px solid black;
-        padding: 10px; /* Ajustez la taille des cases en modifiant la valeur de padding */
-        text-align: center;
-        cursor: pointer;
-    }
-    /* Style pour la div enveloppant le calendrier */
-.calendar-container {
-    width: 100%;
-    margin: 0 auto; /* Facultatif : centrez le calendrier horizontalement */
-}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
 
-    /* Style pour les cellules du calendrier */
-    .calendar-cell {
-        position: relative;
-    }
+        /* Style pour les boutons de navigation */
+        .calendar-navigation {
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
-    /* Style pour les informations sous les cellules */
-    .info-cell {
-        font-size: 14px; /* Ajustez la taille de la police des informations */
-        color: #666;
-        padding-top: 5px;
-    }
+        .calendar-navigation button {
+            font-size: 16px;
+            padding: 5px 10px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
 
-    /* Style pour les boutons de navigation */
-    .calendar-navigation {
-        margin-bottom: 10px;
-        text-align: center;
-    }
+        /* Style pour les informations sous les cellules */
+        .info-cell {
+            font-size: 14px;
+            color: #666;
+            padding-top: 5px;
+        }
 
-    .calendar-navigation button {
-        font-size: 16px; /* Ajustez la taille de la police des boutons */
-        padding: 5px 10px;
-        margin: 0 10px; /* Ajustez la marge entre les boutons */
-        cursor: pointer;
-    }
-</style>
-
+        /* Style pour la réactivité */
+        @media (max-width: 768px) {
+            .calendar-container {
+                max-width: 100%;
+                border-radius: 0;
+            }
+        }
+    </style>
 
 <?php
 footer();

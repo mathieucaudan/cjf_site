@@ -3,22 +3,8 @@ include 'fonction.php';
 entete();
 navbar();
 echo "<body style='background-color: rgb(32, 47, 74);'>";
-?>
 
-<div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
-<h1 style='color: white;'>Record</h1>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'changerecord')">Changer un record</button>
-</center></div>
-
-<div id="changerecord" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
-  <table>
-  <?php
-    changerecord();
-    ?>
-  </table>
-</div>
-
-<?php
+changerecord();
 footer();
 echo "</body>";
 ?>
