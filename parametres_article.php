@@ -11,7 +11,14 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'supparticle')">Supprimer un article</button>
 </body>  
 </center></div>
-
+<div id="message">
+    <?php 
+    if (isset($_SESSION['message'])) {
+        echo"<h1 style= 'color: green'><center>". $_SESSION['message']."</center></h1>";
+        unset($_SESSION['message']); // Effacez le message pour qu'il n'apparaisse qu'une fois
+    }
+    ?>
+</div>
 <div id="ajoutarticle" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php

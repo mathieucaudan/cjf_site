@@ -241,13 +241,9 @@ function supparticle() {
             echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Le fichier n'existe pas.</p>";
         }
     }
-
-    
-    
-
         echo "</div>";
     }
-
+    
     
     
     
@@ -508,9 +504,9 @@ function ajoutarticle(){
             $cheminImage = $dossierImage . $nouveauNomImage;
     
             if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
-                echo "<p class='w3-text-green'>Fichier partagé avec succès !</p>";
+                echo "<center><h1 class='w3-text-green'>Fichier partagé avec succès !</h1></center>";
             } else {
-                echo "<p class='w3-text-red'>Erreur lors du partage du fichier.</p>";
+                echo "<center><h1 class='w3-text-red'>Erreur lors du partage du fichier.</h1></center>";
             }
         $data = json_decode(file_get_contents($dossierJson), true);
         $titre = $_POST['titre'];
@@ -897,7 +893,7 @@ function ajoutEvenement() {
 
         <input type='submit' value='Ajouter l'événement' />
     </form>";
-}
+    }
 
 
 
