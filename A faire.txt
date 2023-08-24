@@ -3,3 +3,12 @@ a faire:
 	inscription
 	potentiel galerie photo
 	contenu page accueil
+modif style: 
+	couleur card partenaire et bouton
+	enlever le soulignage des articles 
+	record :
+		arriver sur la page laser run, colorier la table affiché et changer la couleur de la ligne blanche pareil pour créneaux et qui sommes nous
+	section :
+		flyer en html/css et artcile de droite comme les articles
+	calendrier:
+	full css
