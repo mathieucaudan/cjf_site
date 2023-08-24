@@ -95,7 +95,19 @@ function navbar() {
     <a href='inscription.php' class='w3-bar-item w3-button'>S'INSCRIRE</a>";
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'admin') {
-          echo "<a href='parametre.php' class='w3-bar-item w3-button'>PARAMETRES</a>";
+          echo "<div class='dropdown'>
+                <button class='dropbtn'>PARAMETRES 
+                    <i class='fa fa-caret-down'></i>
+                </button>
+                <div class='dropdown-content'>
+                    <a href='parametres_record.php'>RECORD</a>
+                    <a href='parametres_article.php'>ARTICLE</a>
+                    <a href='parametres_carousel.php'>CAROUSEL</a>
+                    <a href='parametres_partenaire.php'>PARTENAIRES</a>
+                    <a href='parametres_section.php'>SECTION</a>
+                    <a href='parametres_calendrier.php'>CALENDRIER</a>
+                </div>
+                </div>";
         }
     }
     echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px;'>";
@@ -839,7 +851,54 @@ function suppArticleSection() {
             echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>L'article n'existe pas.</p>";
         }
     }
+    }
+function ajoutEvenement() {
+    $dossierJson = './calendrier.json';
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les données du formulaire
+        $nouvelEvenement = $_POST['evenement'];
+        $date = $_POST['date']; // La date est au format AAAA-MM-JJ
+
+        // Extraire l'année, le mois et le jour
+        list($annee, $mois, $jour) = explode('-', $date);
+
+        // Charger le contenu actuel du fichier JSON
+        $data = [];
+        if (file_exists($dossierJson)) {
+            $jsonContent = file_get_contents($dossierJson);
+            $data = json_decode($jsonContent, true);
+        }
+
+        // Créer la clé de date au format AAAA-MM
+        $dateCle = "$annee-$mois";
+
+        // Vérifier si le mois existe, sinon le créer
+        if (!isset($data[$dateCle])) {
+            $data[$dateCle] = [];
+        }
+
+        $data[$dateCle][$jour] = $nouvelEvenement;
+
+        // Sauvegarder le tableau mis à jour dans le fichier JSON
+        $fileContent = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents($dossierJson, $fileContent);
+
+        echo "Événement ajouté avec succès.";
+    }
+
+    echo "
+    <form method='POST' enctype='multipart/form-data'>
+        <label for='date'>Date de l'événement:</label>
+        <input class='w3-input w3-padding-16 w3-border' type='date' required name='date' value='2023-01-01'><br>
+
+        <label for='evenement'>Événement:</label>
+        <input type='text' name='evenement' required /><br>
+
+        <input type='submit' value='Ajouter l'événement' />
+    </form>";
 }
+
 
 
 

@@ -1,6 +1,5 @@
 a faire:
 	image de qualité(organigramme)
-	info partenaires
 	inscription
 	potentiel galerie photo
 	contenu page accueil
