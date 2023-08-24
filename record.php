@@ -5,17 +5,17 @@ echo "<body>";
 navbar();
 ?>
 
-<div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
-<body onload="openTab(event, 'laser run')">
-<h1 style='color: white;'>Record</h1>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laser run')">Laser Run</button>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'triathlé')">Triathlé</button>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'tetrathlon')">Tetrathlon</button>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'pentathlon')">Pentathlon</button>
+<body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'laserrun')">
+<h1 style='color:white'><center>RECORD</center></h1>
+<center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
+  <button class="tablinks laserrun active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laserrun')">Laser Run</button>
+  <button class="tablinks triathlé" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'triathlé')">Triathlé</button>
+  <button class="tablinks tetrathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'tetrathlon')">Tetrathlon</button>
+  <button class="tablinks pentathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'pentathlon')">Pentathlon</button>
 </body>
 </center></div>
 
-<center><div id="laser run" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<center><div id="laserrun" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Laser Run</h3>
   <table>
   <?php
@@ -120,6 +120,10 @@ navbar();
     ?>
   </table>
 </div></center>
+<?php
+footer();
+echo "</body>";
+?>
 <style>
   table {
     margin: 1rem auto;
@@ -140,7 +144,8 @@ navbar();
   }
 
   tbody tr:nth-child(even) {
-    background-color: #ddd;
+    background-color: white;
+    color: rgb(32, 47, 74);
   }
 
   @media only screen and (max-width: 800px) {
@@ -209,24 +214,48 @@ navbar();
   table td:empty {
     border: none;
   }
+  .tab button.active.laserrun {
+  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+  color: white !important; /* Texte blanc lorsque l'onglet est actif */
+  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+}
+.tab button.active.triathlé {
+  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+  color: white !important; /* Texte blanc lorsque l'onglet est actif */
+  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+}
+.tab button.active.tetrathlon {
+  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+  color: white !important; /* Texte blanc lorsque l'onglet est actif */
+  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+}
+.tab button.active.pentathlon {
+  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+  color: white !important; /* Texte blanc lorsque l'onglet est actif */
+  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+}
 </style>
 
 <script>
-    function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    // Supprime la classe "active" de tous les boutons d'onglet
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    // Ajoute la classe "active" à l'onglet actuel
+    evt.currentTarget.className += " active";
+    document.getElementById(tabName).style.display = "block";
+    
+    // Ajoute la classe "active" spécifique au bouton "Bureau" s'il s'agit de l'onglet "Bureau"
+    if (tabName === 'laserrun') {
+        document.querySelector(".tablinks.laserrun").classList.add("active");
+    }
   }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+
 </script>
-<?php
-footer();
-echo "</body>";
-?>
