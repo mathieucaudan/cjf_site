@@ -6,8 +6,9 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 ?>
 
 <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
-<h1 style='color: white;'>Record</h1>
+<body onload="openTab(event, 'ajoutEvenement')">
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutEvenement')">Ajouter Un événement dans le calendrier</button>
+</body>
 </center></div>
 
 <div id="ajoutEvenement" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>

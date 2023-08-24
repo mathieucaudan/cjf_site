@@ -6,9 +6,10 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 ?>
 
 <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
-<h1 style='color: white;'>Record</h1>
+<body onload="openTab(event, 'ajoutArticleSection')">
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutArticleSection')">Ajouter un articles de section</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppArticleSection')">Supprimer les articles de section</button>
+</body>
 </center></div>
 
 <div id="ajoutArticleSection" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>

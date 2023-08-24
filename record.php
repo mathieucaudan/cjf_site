@@ -6,11 +6,13 @@ navbar();
 ?>
 
 <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
+<body onload="openTab(event, 'laser run')">
 <h1 style='color: white;'>Record</h1>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laser run')">Laser Run</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'triathlé')">Triathlé</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'tetrathlon')">Tetrathlon</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'pentathlon')">Pentathlon</button>
+</body>
 </center></div>
 
 <center><div id="laser run" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>

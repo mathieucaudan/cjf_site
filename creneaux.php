@@ -5,11 +5,13 @@ echo "<body style='background-color: rgb(32, 47, 74); color:white;'>";
 navbar();
 ?>
 <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
+<body onload="openTab(event, 'laser run')">
 <h1 style='color: white;'>CRENAUX</h1>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laser run')">Laser Run</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'natation')">Natation</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'escrime')">Escrime</button>
   <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'obstacle')">Obstacle</button>
+</body>
 </center></div>
 
 <div id="laser run" class="tabcontent" style="text-align:center;">

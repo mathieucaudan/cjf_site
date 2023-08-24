@@ -4,12 +4,14 @@ entete();
 navbar();
 ?>
 <body style='background-color: rgb(32, 47, 74); color:white; '>
+<body onload="openTab(event, 'bureau')">
 <h1 style='color:white'><center>Organigramme</center></h1>
 <center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
     <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'bureau')">Bureau</button>
     <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'coach')">Coach</button>
     <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'athletes')">Athlètes</button>
-</div></center>
+</body>
+  </div></center>
 
 <div id="bureau" class="tabcontent">
     <!-- Contenu de l'onglet Bureau -->
