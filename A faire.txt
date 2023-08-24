@@ -4,7 +4,6 @@ a faire:
 	potentiel galerie photo
 	contenu page accueil
 modif style: 
-	couleur card partenaire et bouton
 	enlever le soulignage des articles 
 	section :
 		flyer en html/css et artcile de droite comme les articles

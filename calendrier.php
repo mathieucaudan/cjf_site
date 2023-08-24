@@ -5,21 +5,35 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 navbar();
 ?>
 
-<h1 id="calendar-title">Calendrier</h1>
+<h1 id="calendar-title" class="centered">Calendrier</h1>
 <div class="calendar-navigation">
-    <button onclick="previousMonth()">&#8249; Mois précédent</button>
-    <button onclick="nextMonth()">Mois suivant &#8250;</button>
+    <button class="buttonMois" onclick="previousMonth()">
+       Mois précédent
+      <span class="first"></span>
+      <span class="second"></span>
+      <span class="third"></span>
+      <span class="fourth"></span>
+    </button>
+
+    <button class="buttonMois" onclick="nextMonth()">
+       Mois suivant
+      <span class="first"></span>
+      <span class="second"></span>
+      <span class="third"></span>
+      <span class="fourth"></span>
+    </button>
+    
 </div>
 <div class="calendar-container">
 <table>
     <tr>
-        <th>Lun</th>
-        <th>Mar</th>
-        <th>Mer</th>
-        <th>Jeu</th>
-        <th>Ven</th>
-        <th>Sam</th>
-        <th>Dim</th>
+        <th>Lundi</th>
+        <th>Mardi</th>
+        <th>Mercredi</th>
+        <th>Jeudi</th>
+        <th>Vendredi</th>
+        <th>Samedi</th>
+        <th>Dimanche</th>
     </tr>
     <?php
     // Obtenez la date actuelle en PHP
@@ -88,7 +102,7 @@ navbar();
         calendarTitle.innerText = monthNames[currentDate.getMonth()] + " " + currentDate.getFullYear();
 
         var table = document.querySelector("table");
-        table.innerHTML = "<tr><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th><th>Dim</th></tr>";
+        table.innerHTML = "<tr><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th><th>Samedi</th><th>Dimanche</th></tr>";
 
         var year = currentDate.getFullYear();
         var month = currentDate.getMonth();
@@ -137,15 +151,17 @@ navbar();
     }
 
     th, td {
-        border: 1px solid black;
+        border: 2px solid white; /* Bordures blanches et épaisses */
         width: 14.2857%; /* 100% / 7 = 14.2857% */
         text-align: center;
         cursor: pointer;
+        color: white; /* Texte blanc */
     }
     /* Style pour la div enveloppant le calendrier */
 .calendar-container {
     width: 100%;
     margin: 0 auto; /* Facultatif : centrez le calendrier horizontalement */
+    padding: 0 20px;
 }
 
 
@@ -157,7 +173,7 @@ navbar();
     /* Style pour les informations sous les cellules */
     .info-cell {
         font-size: 14px; /* Ajustez la taille de la police des informations */
-        color: #666;
+        color: white
         padding-top: 5px;
     }
 
@@ -173,6 +189,96 @@ navbar();
         margin: 0 10px; /* Ajustez la marge entre les boutons */
         cursor: pointer;
     }
+
+    /* Style pour centrer le titre du mois et de l'année */
+.centered {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px; /* Espacement sous le titre */
+}
+
+.buttonMois {
+        border: none;
+        padding: 20px 40px;
+        font-size: 44px;
+        position: relative;
+        background: transparent;
+        color: white;
+        text-transform: uppercase;
+        border: 3px solid white;
+        cursor: pointer;
+        transition: all 0.7s;
+        overflow: hidden;
+        border-radius: 100px;
+      }
+
+      .buttonMois:hover {
+        color: #000;
+      }
+      span {
+        transition: all 0.7s;
+        z-index: -1;
+      }
+
+      .buttonMois .first {
+        content: "";
+        position: absolute;
+        right: 100%;
+        top: 0;
+        width: 25%;
+        height: 100%;
+        background: white;
+      }
+
+      .buttonMois:hover .first {
+        top: 0;
+        right: 0;
+      }
+      .buttonMois .second {
+        content: "";
+        position: absolute;
+        left: 25%;
+        top: -100%;
+        height: 100%;
+        width: 25%;
+        background: white;
+      }
+
+      .buttonMois:hover .second {
+        top: 0;
+        left: 50%;
+      }
+
+      .buttonMois .third {
+        content: "";
+        position: absolute;
+        left: 50%;
+        height: 100%;
+        top: 100%;
+        width: 25%;
+        background: white;
+      }
+
+      .buttonMois:hover .third {
+        top: 0;
+        left: 25%;
+      }
+
+      .buttonMois .fourth {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 0;
+        height: 100%;
+        width: 25%;
+        background: white;
+      }
+
+      .buttonMois:hover .fourth {
+        top: 0;
+        left: 0;
+      }
+
 </style>
 
 

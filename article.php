@@ -124,6 +124,7 @@ a {
   line-height: 1.2em;
 }
 
+
 .card p {
   font-size: 0.75em;
   font-family: 'Open Sans';
