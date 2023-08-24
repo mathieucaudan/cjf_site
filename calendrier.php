@@ -44,7 +44,7 @@ navbar();
     $calendarData = json_decode($jsonData, true);
 
         // Déterminez le nombre de lignes nécessaires
-$numRows = ceil(($daysInMonth + $firstDayOfWeek - 1) / 7);
+    $numRows = ceil(($daysInMonth + $firstDayOfWeek - 1) / 7);
     // Boucle pour générer les cases du calendrier
     for ($i = 0; $i < $numRows; $i++) {
         echo "<tr>";
@@ -95,7 +95,7 @@ $numRows = ceil(($daysInMonth + $firstDayOfWeek - 1) / 7);
 
         var firstDayOfMonth = new Date(year, month, 1);
         var lastDayOfMonth = new Date(year, month + 1, 0);
-        var firstDayOfWeek = firstDayOfMonth.getDay(); // 0 pour Dimanche, 1 pour Lundi, etc.
+        var firstDayOfWeek = (firstDayOfMonth.getDay() + 6) % 7;
 
         var numRows = Math.ceil((lastDayOfMonth.getDate() + firstDayOfWeek) / 7);
 
@@ -123,65 +123,58 @@ $numRows = ceil(($daysInMonth + $firstDayOfWeek - 1) / 7);
     window.onload = function () {
         updateCalendar();
     };
-    
 </script>
 
 <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: rgb(32, 47, 74);
-            margin: 0;
-            padding: 0;
-        }
+    .calendar-container {
+        width: 100%;
+        margin: 0 auto; /* Centrez le calendrier horizontalement */
+    }
 
-        /* Style pour le calendrier */
-        .calendar-container {
-            max-width: 800px;
-            margin: 0 auto; /* Centrez le calendrier horizontalement */
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+    th, td {
+        border: 1px solid black;
+        width: 14.2857%; /* 100% / 7 = 14.2857% */
+        text-align: center;
+        cursor: pointer;
+    }
+    /* Style pour la div enveloppant le calendrier */
+.calendar-container {
+    width: 100%;
+    margin: 0 auto; /* Facultatif : centrez le calendrier horizontalement */
+}
 
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
-        }
 
-        /* Style pour les boutons de navigation */
-        .calendar-navigation {
-            margin-bottom: 10px;
-            text-align: center;
-        }
+    /* Style pour les cellules du calendrier */
+    .calendar-cell {
+        position: relative;
+    }
 
-        .calendar-navigation button {
-            font-size: 16px;
-            padding: 5px 10px;
-            margin: 0 10px;
-            cursor: pointer;
-        }
+    /* Style pour les informations sous les cellules */
+    .info-cell {
+        font-size: 14px; /* Ajustez la taille de la police des informations */
+        color: #666;
+        padding-top: 5px;
+    }
 
-        /* Style pour les informations sous les cellules */
-        .info-cell {
-            font-size: 14px;
-            color: #666;
-            padding-top: 5px;
-        }
+    /* Style pour les boutons de navigation */
+    .calendar-navigation {
+        margin-bottom: 10px;
+        text-align: center;
+    }
 
-        /* Style pour la réactivité */
-        @media (max-width: 768px) {
-            .calendar-container {
-                max-width: 100%;
-                border-radius: 0;
-            }
-        }
-    </style>
+    .calendar-navigation button {
+        font-size: 16px; /* Ajustez la taille de la police des boutons */
+        padding: 5px 10px;
+        margin: 0 10px; /* Ajustez la marge entre les boutons */
+        cursor: pointer;
+    }
+</style>
+
 
 <?php
 footer();
