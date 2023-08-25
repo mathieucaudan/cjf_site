@@ -21,7 +21,6 @@ $data = json_decode($jsonData, true);
 <main class="content">
   <div id="cardsWrapper">
     <section class="cards-wrapper"  >
-
       <?php
       foreach ($data as $article) {
         echo "<div class='card-grid-space'>
@@ -41,10 +40,8 @@ $data = json_decode($jsonData, true);
             </div>
         </a>
       </div>";
-
       }
       ?>
-
     </section>
   </div>
 </main>
@@ -73,6 +70,7 @@ body {
 
 a {
   color: inherit;
+  text-decoration : none;
 }
 
 .content {
@@ -266,6 +264,8 @@ a {
   <?php
   footer();
   ?>
+    </div>
+</div>
   
 
 

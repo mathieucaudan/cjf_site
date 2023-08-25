@@ -91,6 +91,7 @@ function navbar() {
       </div>
     </div>
     <a href='section.php' class='w3-bar-item w3-button'>SECTION</a>
+    <a href='galerie_photo.php' class='w3-bar-item w3-button'>GALERIE PHOTO</a>
     <a href='calendrier.php' class='w3-bar-item w3-button'>CALENDRIER</a>
     <a href='inscription.php' class='w3-bar-item w3-button'>S'INSCRIRE</a>";
     if (isset($_SESSION['role'])) {
@@ -936,7 +937,7 @@ function ajoutEvenement() {
         <div class='w3-content'>
         <form method='POST' enctype='multipart/form-data'>
         <label for='date'>Date de l'événement:</label>
-        <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='2023-01-01' required><br>
+        <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "' required><br>
 
         <label for='evenement'>Événement:</label>
         <input class='w3-input w3-padding-16 w3-border' type='text' name='evenement' required /><br>
@@ -944,6 +945,7 @@ function ajoutEvenement() {
         <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
     </form></div></div>";
     }
+
 
 
 
