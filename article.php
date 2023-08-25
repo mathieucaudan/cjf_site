@@ -51,6 +51,8 @@ $data = json_decode($jsonData, true);
 
 
 <style>
+
+
   @import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
 
 :root {

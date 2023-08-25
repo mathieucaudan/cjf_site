@@ -12,6 +12,7 @@ echo "<body>";
   <s id="s1"></s> 
   <s id="s2"></s>
   <s id="s3"></s>
+  <s id="s4"></s>
 
 
   <div class="slider">
@@ -81,6 +82,7 @@ body { margin: 0; font: 16px/1.3 sans-serif; }
 #s1:target ~ .slider {transform: translateX(0%); -webkit-transform: translateX(0%);}
 #s2:target ~ .slider {transform: translateX(-100%); -webkit-transform: translateX(-100%);}
 #s3:target ~ .slider {transform: translateX(-200%); -webkit-transform: translateX(-200%);}
+#s4:target ~ .slider {transform: translateX(-300%); -webkit-transform: translateX(-300%);}
 
 
 

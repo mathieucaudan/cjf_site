@@ -6,6 +6,6 @@ a faire:
 modif style: 
 	enlever le soulignage des articles 
 	section :
-		flyer en html/css et artcile de droite comme les articles
+		flyer en html/css et article de droite comme les articles
 	calendrier:
 	full css
