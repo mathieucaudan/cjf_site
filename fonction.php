@@ -199,6 +199,9 @@ function supparticle() {
 
     echo "</div>";
 
+    // Déclaration de la variable de message
+    $message = "";
+
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
         $nomFichierPDF = pathinfo($fichierAvecExtension, PATHINFO_FILENAME); // Obtient le nom de fichier pdf sans l'extension
@@ -227,28 +230,29 @@ function supparticle() {
         
                             file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
         
-                            echo "<p class='w3-text-green' style='background-color: rgb(32, 47, 74)'>Article et fichiers associés supprimés avec succès !</p>";
+                            $message = "Article et fichiers associés supprimés avec succès !";
                         } else {
-                            echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la lecture du fichier article.json.</p>";
+                            $message = "Erreur lors de la lecture du fichier article.json.";
                         }
                     } else {
-                        echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression des fichiers images.</p>";
+                        $message = "Erreur lors de la suppression des fichiers images.";
                     }
                 }
             } else {
-                echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression du fichier PDF.</p>";
+                $message = "Erreur lors de la suppression du fichier PDF.";
             }
         } else {
-            echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Le fichier n'existe pas.</p>";
+            $message = "Le fichier n'existe pas.";
         }
     }
-        echo "</div>";
+
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
     }
-    
-    
-    
-    
-    
+
+    echo "</div>";
+    }
 function suppimagecarousel() {
     $dossierPartage = './image/carousel/';
 
@@ -277,7 +281,7 @@ function suppimagecarousel() {
         }
         echo "</ul>";
     } else {
-        echo "<p class='w3-center'>Aucun fichier partagé.</p>";
+        $message = "Aucun fichier partagé";
     }
 
     echo "</div>";
@@ -289,19 +293,23 @@ function suppimagecarousel() {
 
         if (file_exists($cheminFichier)) {
             if (unlink($cheminFichier)) {
-                echo "<p class='w3-text-green' style='background-color: rgb(32, 47, 74)'>Fichier supprimé avec succès !</p>";
+                $message = "Fichier supprimé avec succès !";
             } else {
-                echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression du fichier.</p>";
+                $message = "Erreur lors de la suppression du fichier.";
             }
         } else {
-            echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Le fichier n'existe pas.</p>";
+            $message = "Le fichier n'existe pas.";
         }
+    }
+    
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
     }
     
     echo "</div>";
     }
     
-
 function changerecord() {
     $disciplineChosen = false;
     $formSubmitted = false; // Variable pour vérifier si le formulaire a été soumis
@@ -516,96 +524,104 @@ function changerecord() {
 
 
 
-function ajoutarticle(){
-
+function ajoutarticle() {
     $dossierPdf = './article/article_pdf/';
     $dossierImage = './article/article_image/';
     $dossierJson = './article/article_json/article.json';
-    
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['img'])) {
-            // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
-            $fichierTemporaire = $_FILES['fichier']['tmp_name'];
-            $nomFichierOriginal = $_FILES['fichier']['name'];
-            $nomFichierTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
+    $message = "";
 
-            
-            $imageTemporaire = $_FILES['img']['tmp_name'];
-            $nomImageOriginal = $_FILES['img']['name'];
-            $nomImageTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
-    
-            // Récupérer l'extension du fichier
-            $extension = pathinfo($nomFichierOriginal, PATHINFO_EXTENSION);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['img'])) {
+        // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
+        $fichierTemporaire = $_FILES['fichier']['tmp_name'];
+        $nomFichierOriginal = $_FILES['fichier']['name'];
+        $nomFichierTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
 
-            // Récupérer l'extension de l'image
-            $extensionImage = pathinfo($nomImageOriginal, PATHINFO_EXTENSION);
-    
-            // Générer un nouveau nom de fichier en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
-            $nouveauNomFichier = $nomFichierTelechargement ? $nomFichierTelechargement . '.' . $extension : $nomFichierOriginal;
-    
-            // Générer un nouveau nom d'image en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
-            $nouveauNomImage = $nomImageTelechargement ? $nomImageTelechargement . '.' . $extensionImage : $nomImageOriginal;
-    
-            // Déplacer le fichier vers le dossier de destination avec le nouveau nom
-            $cheminFichier = $dossierPdf . $nouveauNomFichier;
+        $imageTemporaire = $_FILES['img']['tmp_name'];
+        $nomImageOriginal = $_FILES['img']['name'];
+        $nomImageTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
 
-            // Déplacer l'image  vers le dossier de destination avec le nouveau nom
-            $cheminImage = $dossierImage . $nouveauNomImage;
-    
-            if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
-                echo "<center><h1 class='w3-text-green'>Fichier partagé avec succès !</h1></center>";
-            } else {
-                echo "<center><h1 class='w3-text-red'>Erreur lors du partage du fichier.</h1></center>";
-            }
-        $data = json_decode(file_get_contents($dossierJson), true);
-        $titre = $_POST['titre'];
-        $image = $_POST['nom_telechargement'];
-        $description = $_POST['description_telechargement'];
-        $date = $_POST['date_telechargement'];
-        // Sauvegardez le tableau mis à jour dans le fichier JSON
-        
-        $nouvelArticle = array(
-            "titre" => $titre,
-            "image" => $image . '.' . $extensionImage,
-            "description" => $description,
-            "date" => $date
-        );
+        // Récupérer l'extension du fichier
+        $extension = pathinfo($nomFichierOriginal, PATHINFO_EXTENSION);
 
-        $data[] = $nouvelArticle;
+        // Récupérer l'extension de l'image
+        $extensionImage = pathinfo($nomImageOriginal, PATHINFO_EXTENSION);
 
-        $fileContent = json_encode($data, JSON_PRETTY_PRINT);
-        file_put_contents($dossierJson, $fileContent);
+        // Générer un nouveau nom de fichier en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
+        $nouveauNomFichier = $nomFichierTelechargement ? $nomFichierTelechargement . '.' . $extension : $nomFichierOriginal;
 
+        // Générer un nouveau nom d'image en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
+        $nouveauNomImage = $nomImageTelechargement ? $nomImageTelechargement . '.' . $extensionImage : $nomImageOriginal;
+
+        // Déplacer le fichier vers le dossier de destination avec le nouveau nom
+        $cheminFichier = $dossierPdf . $nouveauNomFichier;
+        $cheminImage = $dossierImage . $nouveauNomImage;
+
+        if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
+            $message = "Fichier partagé avec succès !";
+        } else {
+            $message = "Erreur lors du partage du fichier.";
         }
-        
-        echo "
-        <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-            <div class='w3-content'>
-                <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
-                    <label class='w3-text-white'>Sélectionner un article :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='fichier' required>
-                    <br>
-                    <label class='w3-text-white'>Titre :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
-                    <br>
-                    <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+' required>
-                    <br>
-                    <label class='w3-text-white'>Description :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
-                    <br>
-                    <label class='w3-text-white'>Date :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date_telechargement' pattern='\d{2}/\d{2}/\d{2}' placeholder='jj/mm/aa' required>
-                    <br>
-                    <label class='w3-text-white'>Sélectionner une image :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' required>
-                    <br>
-                    <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
-                </form>";
-    
-        echo "</div></div>";
+
+        // Sauvegardez les informations dans le fichier JSON si le partage a réussi
+        if (!empty($message)) {
+            $data = json_decode(file_get_contents($dossierJson), true);
+            $titre = $_POST['titre'];
+            $image = $nouveauNomImage; // Utilisez le nouveau nom de l'image
+            $description = $_POST['description_telechargement'];
+            $date = $_POST['date_telechargement'];
+
+            // Sauvegardez le tableau mis à jour dans le fichier JSON
+            $nouvelArticle = array(
+                "titre" => $titre,
+                "image" => $image,
+                "description" => $description,
+                "date" => $date
+            );
+
+            $data[] = $nouvelArticle;
+
+            $fileContent = json_encode($data, JSON_PRETTY_PRINT);
+            file_put_contents($dossierJson, $fileContent);
+        }
     }
+
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
+    }
+
+    echo "
+    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+        <div class='w3-content'>
+            <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
+                <label class='w3-text-white'>Sélectionner un article :</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='fichier' required>
+                <br>
+                <label class='w3-text-white'>Titre :</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
+                <br>
+                <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+' required>
+                <br>
+                <label class='w3-text-white'>Description :</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
+                <br>
+                <label class='w3-text-white'>Date :</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date_telechargement' pattern='\d{2}/\d{2}/\d{2}' placeholder='jj/mm/aa' required>
+                <br>
+                <label class='w3-text-white'>Sélectionner une image :</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' required>
+                <br>
+                <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
+            </form>";
+
+    echo "</div></div>";
+    }
+
 function ajoutimagecarousel() {
     $dossierPartage = './image/carousel/';
+    $message = "";
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier'])) {
         $fichierTemporaire = $_FILES['fichier']['tmp_name'];
         $nomFichierOriginal = $_FILES['fichier']['name'];
@@ -620,12 +636,15 @@ function ajoutimagecarousel() {
         // Déplacer le fichier vers le dossier de destination avec le nouveau nom
         $cheminFichier = $dossierPartage . $nouveauNomFichier;
         if (move_uploaded_file($fichierTemporaire, $cheminFichier)) {
-            echo "<div style='background-color: rgb(32, 47, 74);'>
-                <center><p class='w3-text-green' style='font-size: 24px;'>Fichier partagé avec succès !</p></center>";
+            $message = "Fichier partagé avec succès !";
         } else {
-            echo "<center><p class='w3-text-red' style='font-size: 24px;'>Erreur lors du partage du fichier.</p></center>";
-
+            $message = "Erreur lors du partage du fichier.";
         }
+    }
+
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
     }
 
     echo "
@@ -642,75 +661,82 @@ function ajoutimagecarousel() {
             </form>";
 
     echo "</div></div>";
-    }   
+        }
+    
 
-
-function ajoutpartenaire(){
+function ajoutpartenaire() {
     $dossierImage = './partenaires/partenaires_images/';
     $dossierJson = './partenaires/partenaires_json/partenaires.json';
-    
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
-            // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
-            $imageTemporaire = $_FILES['image']['tmp_name'];
-            $nomImageOriginal = $_FILES['image']['name'];
-            $nomImageTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
+    $message = "";
 
-            // Récupérer l'extension de l'image
-            $extensionImage = pathinfo($nomImageOriginal, PATHINFO_EXTENSION);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
+        // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
+        $imageTemporaire = $_FILES['image']['tmp_name'];
+        $nomImageOriginal = $_FILES['image']['name'];
+        $nomImageTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
 
-            // Générer un nouveau nom d'image en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
-            $nouveauNomImage = $nomImageTelechargement ? $nomImageTelechargement . '.' . $extensionImage : $nomImageOriginal;
+        // Récupérer l'extension de l'image
+        $extensionImage = pathinfo($nomImageOriginal, PATHINFO_EXTENSION);
 
-            // Déplacer l'image  vers le dossier de destination avec le nouveau nom
-            $cheminImage = $dossierImage . $nouveauNomImage;
-            if (move_uploaded_file($imageTemporaire, $cheminImage)) {
-                echo "<p class='w3-text-green'>Fichier partagé avec succès !</p>";
-            } else {
-                echo "<p class='w3-text-red'>Erreur lors du partage du fichier : " . $_FILES['image']['error'] . "</p>";
-            }
-            
-        $data = json_decode(file_get_contents($dossierJson), true);
-        $titre = $_POST['titre'];
-        $image = $_POST['nom_telechargement'];
-        $description = $_POST['description_telechargement'];
-        // Sauvegardez le tableau mis à jour dans le fichier JSON
-        
-        $nouveauPartenaire = array(
-            "titre" => $titre,
-            "image" => $image . '.' . $extensionImage,
-            "description" => $description,
-        );
+        // Générer un nouveau nom d'image en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
+        $nouveauNomImage = $nomImageTelechargement ? $nomImageTelechargement . '.' . $extensionImage : $nomImageOriginal;
 
-        $data[] = $nouveauPartenaire;
-
-        $fileContent = json_encode($data, JSON_PRETTY_PRINT);
-        file_put_contents($dossierJson, $fileContent);
-
+        // Déplacer l'image  vers le dossier de destination avec le nouveau nom
+        $cheminImage = $dossierImage . $nouveauNomImage;
+        if (move_uploaded_file($imageTemporaire, $cheminImage)) {
+            $message = "Fichier partagé avec succès !";
+        } else {
+            $message = "Erreur lors du partage du fichier : " . $_FILES['image']['error'];
         }
-        
-    
-        echo "
-        <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-            <div class='w3-content'>
-                <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
-                    <label class='w3-text-white'>Titre :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
-                    <br>
-                    <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+' required>
-                    <br>
-                    <label class='w3-text-white'>Description :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
-                    <br>
-                    <label class='w3-text-white'>Sélectionner une image :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' required>
-                    <br>
-                    <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
-                </form>";
-    
-        echo "</div></div>";
+
+        // Sauvegardez les informations dans le fichier JSON si le partage a réussi
+        if (!empty($message)) {
+            $data = json_decode(file_get_contents($dossierJson), true);
+            $titre = $_POST['titre'];
+            $image = $nouveauNomImage; // Utilisez le nouveau nom de l'image
+            $description = $_POST['description_telechargement'];
+
+            // Sauvegardez le tableau mis à jour dans le fichier JSON
+            $nouveauPartenaire = array(
+                "titre" => $titre,
+                "image" => $image,
+                "description" => $description,
+            );
+
+            $data[] = $nouveauPartenaire;
+
+            $fileContent = json_encode($data, JSON_PRETTY_PRINT);
+            file_put_contents($dossierJson, $fileContent);
+        }
     }
 
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
+    }
+
+    echo "
+    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+        <div class='w3-content'>
+            <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
+                <label class='w3-text-white'>Titre :</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
+                <br>
+                <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+' required>
+                <br>
+                <label class='w3-text-white'>Description :</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
+                <br>
+                <label class='w3-text-white'>Sélectionner une image :</label>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' required>
+                <br>
+                <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
+            </form>";
+
+    echo "</div></div>";
+    }
+    
 function supppartenaire() {
     $dossierPartage = './partenaires/';
 
@@ -736,10 +762,13 @@ function supppartenaire() {
         }
         echo "</ul>";
     } else {
-        echo "<p class='w3-center'>Aucun fichier partagé.</p>";
+        $message = "Aucun fichier partagé.";
     }
 
     echo "</div>";
+
+    // Déclaration de la variable de message
+    $message = "";
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
@@ -750,34 +779,39 @@ function supppartenaire() {
         if (file_exists($cheminImages)) {
             // Suppression du fichier image associé
             if (unlink($cheminImages)) {
-                        // Charger et mettre à jour le fichier article.json
-                        $cheminArticleJSON = $dossierPartage . 'partenaires_json/partenaires.json';
-                        if (file_exists($cheminArticleJSON)) {
-                            $articlesJson = file_get_contents($cheminArticleJSON);
-                            $articles = json_decode($articlesJson, true);
-        
-                            foreach ($articles as $key => $article) {
-                                if ($article['image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
-                                    unset($articles[$key]);
-                                    break;
-                                }
-                            }
-        
-                            file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
-        
-                            echo "<p class='w3-text-green' style='background-color: rgb(32, 47, 74)'>Article et fichiers associés supprimés avec succès !</p>";
-                        } else {
-                            echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la lecture du fichier article.json.</p>";
+                // Charger et mettre à jour le fichier article.json
+                $cheminArticleJSON = $dossierPartage . 'partenaires_json/partenaires.json';
+                if (file_exists($cheminArticleJSON)) {
+                    $articlesJson = file_get_contents($cheminArticleJSON);
+                    $articles = json_decode($articlesJson, true);
+
+                    foreach ($articles as $key => $article) {
+                        if ($article['image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
+                            unset($articles[$key]);
+                            break;
                         }
+                    }
+
+                    file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
+
+                    $message = "Article et fichiers associés supprimés avec succès !";
+                } else {
+                    $message = "Erreur lors de la lecture du fichier article.json.";
+                }
             } else {
-                echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression du fichier PDF.</p>";
+                $message = "Erreur lors de la suppression du fichier PDF.";
             }
         } else {
-            echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Le fichier n'existe pas.</p>";
+            $message = "Le fichier n'existe pas.";
         }
     }
-    }
 
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
+    }
+    }
+    
 function ajoutArticleSection() {
     $dossierJson = './section/articles.json';
 
@@ -793,7 +827,7 @@ function ajoutArticleSection() {
             // Déplacer le fichier PDF vers le répertoire approprié
             if (move_uploaded_file($_FILES['pdf']['tmp_name'], $cheminFichierPDF)) {
                 $data = json_decode(file_get_contents('./section/articles.json'), true);
-                    $titre = $_POST['titre'];
+                $titre = $_POST['titre'];
 
                 // Sauvegardez le tableau mis à jour dans le fichier JSON
                 $nouvelArticle = array(
@@ -801,21 +835,26 @@ function ajoutArticleSection() {
                     "pdf" => $nomFichierPDF
                 );
 
-        $data[] = $nouvelArticle;
+                $data[] = $nouvelArticle;
 
-        $fileContent = json_encode($data, JSON_PRETTY_PRINT);
-        file_put_contents($dossierJson, $fileContent);
+                $fileContent = json_encode($data, JSON_PRETTY_PRINT);
+                file_put_contents($dossierJson, $fileContent);
 
-        }
-
-        echo "Article ajouté avec succès.";
+                $message = "Article ajouté avec succès.";
+            } else {
+                $message = "Erreur lors du téléchargement du fichier PDF.";
             }
+        } else {
+            $message = "Veuillez sélectionner un fichier PDF valide.";
         }
-    
-    
+    }
 
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
+    }
 
-    echo"
+    echo "
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
         <div class='w3-content'>
         <form method='POST' enctype='multipart/form-data'>
@@ -827,8 +866,8 @@ function ajoutArticleSection() {
             
             <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
         </form></div></div>";
-
     }
+    
 function suppArticleSection() {
     $dossierSection = './section/';
 
@@ -854,10 +893,13 @@ function suppArticleSection() {
         }
         echo "</ul>";
     } else {
-        echo "<p class='w3-center'>Aucun article dans la section.</p>";
+        $message = "Aucun article dans la section.";
     }
 
     echo "</div>";
+
+    // Déclaration de la variable de message
+    $message = "";
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
@@ -885,18 +927,24 @@ function suppArticleSection() {
 
                     file_put_contents($cheminArticlesJSON, json_encode($articles, JSON_PRETTY_PRINT));
 
-                    echo "<p class='w3-text-green' style='background-color: rgb(32, 47, 74)'>Article et fichiers associés supprimés avec succès !</p>";
+                    $message = "Article et fichiers associés supprimés avec succès !";
                 } else {
-                    echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la lecture du fichier articles.json.</p>";
+                    $message = "Erreur lors de la lecture du fichier articles.json.";
                 }
             } else {
-                echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>Erreur lors de la suppression de l'article.</p>";
+                $message = "Erreur lors de la suppression de l'article.";
             }
         } else {
-            echo "<p class='w3-text-red' style='background-color: rgb(32, 47, 74)'>L'article n'existe pas.</p>";
+            $message = "L'article n'existe pas.";
         }
     }
+
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
     }
+    }
+    
 function ajoutEvenement() {
     $dossierJson = './calendrier.json';
 

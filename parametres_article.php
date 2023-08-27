@@ -67,7 +67,7 @@ echo "</body>";
 }
 </style>
 <script>
-    function openTab(evt, tabName) {
+function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -79,5 +79,15 @@ echo "</body>";
   }
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
+
+  // Vérifiez si un message de session est défini
+  var messageDiv = document.getElementById("message");
+  var message = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : ''; ?>";
+  if (message !== "") {
+    messageDiv.innerHTML = "<h1 style='color: green'><center>" + message + "</center></h1>";
+    // Effacez le message pour qu'il n'apparaisse qu'une fois
+    <?php unset($_SESSION['message']); ?>
+  }
 }
 </script>
+
