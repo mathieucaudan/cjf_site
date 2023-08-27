@@ -3,49 +3,49 @@ include 'fonction.php';
 entete();
 echo "<body style='background-color: rgb(32, 47, 74);'>";
 navbar();
-// Répertoire où se trouvent les dossiers d'images
-$repertoirePhotos = './galerie/';
-
-// Liste des dossiers
-$dossiers = glob($repertoirePhotos . '*', GLOB_ONLYDIR);
 ?>
-<h1>Galerie Photo</h1>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<?php
+$dossierImage = './galerie/';
+$dossierJson = './galerie/galerie.json';
+        
+$jsonData = file_get_contents($dossierJson);
+$data = json_decode($jsonData, true);
+?>
+
 <main class="content">
   <div id="cardsWrapper">
-    <section class="cards-wrapper">
+    <section class="cards-wrapper"  >
       <?php
-
-      $dossiers = glob($repertoirePhotos . '*', GLOB_ONLYDIR);
-      foreach ($dossiers as $dossier) {
-          // Récupérez la première image du dossier (vous pouvez personnaliser ceci)
-          $images = glob($dossier . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
-      
-          if (!empty($images)) {
-              $premiereImage = $images[0]; // Prenez la première image du dossier
-              $nomDossier = basename($dossier); // Obtenez le nom du dossier
-      
-              echo "<div class='card-grid-space'>
-              <a class='card' href='afficher_dossier.php?dossier=" . urlencode($dossier) . "' style='--bg-img: url($premiereImage)'>
-                  <div>
-                      <h1>$nomDossier</h1>
-                  </div>
-              </a>
-            </div>";
-          }
+      foreach ($data as $dossier) {
+        echo "<div class='card-grid-space'>
+        <a class='card' href='$dossierPdf/" . pathinfo($dossier['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$dossier['image']})'>
+            <div>
+                <h1>{$dossier['titre']}</h1>
+                <p>{$dossier['description']}</p>
+                <div>{$dossier['date']}</div>
+                <div class='tags'>
+                    <div class='tag'>
+                        <form action='download.php' method='post' style='display:inline;'>
+                            <input type='hidden' name='pdf' value='" . rawurlencode(pathinfo($dossier['image'], PATHINFO_FILENAME) . ".pdf") . "'>
+                            <button type='submit' class='card-button' name='download'>Télécharger</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </a>
+      </div>";
       }
-
       ?>
     </section>
   </div>
 </main>
-<div class="footer">
-  <div style="clear: both">
-  <?php
-  footer();
-  ?>
-  </div>
-</div>
-</body>
+
+
 <style>
 
 
@@ -263,6 +263,8 @@ a {
   <?php
   footer();
   ?>
+    </div>
+</div>
   
 
 
@@ -302,3 +304,9 @@ a {
   document.addEventListener('DOMContentLoaded', adjustContentHeight);
   window.addEventListener('resize', adjustContentHeight);
 </script>
+
+
+
+
+
+
