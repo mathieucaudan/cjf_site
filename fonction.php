@@ -104,6 +104,7 @@ function navbar() {
                     <a href='parametres_record.php'>RECORD</a>
                     <a href='parametres_article.php'>ARTICLE</a>
                     <a href='parametres_carousel.php'>CAROUSEL</a>
+                    <a href='parametres_galerie.php'>GALERIE</a>
                     <a href='parametres_partenaire.php'>PARTENAIRES</a>
                     <a href='parametres_section.php'>SECTION</a>
                     <a href='parametres_calendrier.php'>CALENDRIER</a>
@@ -169,6 +170,122 @@ function connexion(){
         </div>
     </div>";
     }
+
+
+function ajoutGalerie() {
+    // Vérifie si le formulaire a été soumis
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Récupère les données du formulaire
+        $titre = $_POST["titre"];
+        $lien = $_POST["lien"];
+        $date = $_POST["date"];
+        // Récupère le nom de l'image et le nettoie
+        $nomImage = sanitizeFileName($_POST["nom_image"]);
+
+        echo '<script>
+        console.log("Error : ' . $_FILES["image"]["error"] . '");
+        </script>';
+
+        $imageTemp = $_FILES["image"]["tmp_name"];
+            
+        // Récupère l'extension de l'image
+        $extension = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+            
+        // Chemin où les images seront stockées avec nom et extension
+        $imagePath = "galerie/galerie_image/" . $nomImage . '.' . $extension;
+
+    
+        // Déplace l'image téléchargée vers le chemin de stockage
+        move_uploaded_file($imageTemp, $imagePath);
+    
+        // Chemin du fichier JSON
+        $jsonFile = "galerie/galerie_json/data.json";
+    
+        // Charge les données existantes du JSON
+        $donneesExistantes = [];
+        if (file_exists($jsonFile)) {
+            $donneesExistantes = json_decode(file_get_contents($jsonFile), true);
+        }
+    
+        // Crée un tableau avec les données du nouvel article
+        $nouvelArticle = array(
+            "titre" => $titre,
+            "lien" => $lien,
+            "date" => $date,
+            "path_image" => $imagePath
+        );
+    
+        // Ajoute le nouvel article aux données existantes
+        $donneesExistantes[] = $nouvelArticle;
+    
+        // Convertit les données en format JSON sans échapper les barres obliques
+        file_put_contents($jsonFile, json_encode($donneesExistantes, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+    
+        $message = "Les données ont bien été envoyées.";
+    }
+    
+    // Affiche le formulaire
+    echo '
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Ajouter un article</title>
+    </head>
+    <body>
+        <form method="post" enctype="multipart/form-data">
+            <label for="titre">Titre du dossier :</label>
+            <input type="text" name="titre" required><br>
+                
+            <label for="lien">Lien Google Drive :</label>
+            <input type="text" name="lien" required><br>
+                
+            <label for="date">Date de l\'album :</label>
+            <input type="date" name="date" required><br>
+                
+            <label for="nom_image">Nom de l\'image :</label>
+            <input type="text" name="nom_image" required><br>
+                
+            <label for="image">Sélectionnez une image :</label>
+            <input type="file" name="image" accept="image/*" required><br>
+                
+            <button type="submit">Envoyer</button>
+        </form>';
+        
+    if (isset($message)) {
+        echo "<p>$message</p>";
+    }
+        
+    echo '
+    </body>
+
+   
+
+    </html>';
+
+    
+}
+
+
+function sanitizeFileName($fileName) {
+    // Remplace les espaces par des tirets
+    $fileName = str_replace(' ', '-', $fileName);
+    // Convertit en minuscules
+    $fileName = strtolower($fileName);
+    // Supprime les caractères non autorisés
+    $fileName = preg_replace('/[^a-z0-9\-\.]/', '', $fileName);
+
+    echo '<script>
+        console.log("Nouveau file : ' . $fileName . '");
+        </script>';
+
+
+    return $fileName;
+}
+
+
+function suppGalerie() {
+    
+}
 function supparticle() {
     $dossierPartage = './article/';
 

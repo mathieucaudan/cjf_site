@@ -10,8 +10,7 @@ navbar();
 
 </head>
 <?php
-$dossierImage = './galerie/';
-$dossierJson = './galerie/galerie.json';
+$dossierJson = './galerie/galerie_json/data.json';
         
 $jsonData = file_get_contents($dossierJson);
 $data = json_decode($jsonData, true);
@@ -21,21 +20,15 @@ $data = json_decode($jsonData, true);
   <div id="cardsWrapper">
     <section class="cards-wrapper"  >
       <?php
-      foreach ($data as $dossier) {
+      foreach ($data as $galerie) {
+        echo "<script>
+        console.log('./{$galerie['path_image']}');
+        </script>";
         echo "<div class='card-grid-space'>
-        <a class='card' href='$dossierPdf/" . pathinfo($dossier['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$dossier['image']})'>
+        <a class='card' href='{$galerie['lien']}' target='_blank' style='background-image: url(./{$galerie['path_image']});'>
             <div>
-                <h1>{$dossier['titre']}</h1>
-                <p>{$dossier['description']}</p>
-                <div>{$dossier['date']}</div>
-                <div class='tags'>
-                    <div class='tag'>
-                        <form action='download.php' method='post' style='display:inline;'>
-                            <input type='hidden' name='pdf' value='" . rawurlencode(pathinfo($dossier['image'], PATHINFO_FILENAME) . ".pdf") . "'>
-                            <button type='submit' class='card-button' name='download'>Télécharger</button>
-                        </form>
-                    </div>
-                </div>
+                <h1>{$galerie['titre']}</h1>
+                <div>{$galerie['date']}</div>    
             </div>
         </a>
       </div>";
