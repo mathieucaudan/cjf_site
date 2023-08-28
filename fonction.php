@@ -107,6 +107,7 @@ function navbar() {
                     <a href='parametres_partenaire.php'>PARTENAIRES</a>
                     <a href='parametres_section.php'>SECTION</a>
                     <a href='parametres_calendrier.php'>CALENDRIER</a>
+                    <a href='parametres_resultat.php'>INFO/RESULTAT</a>
                 </div>
                 </div>";
         }
@@ -175,7 +176,7 @@ function supparticle() {
     echo "
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
         <div class='w3-content'>
-            <h2 class='w3-center'>Liste des fichiers partagés :</h2>";
+            <h2 class='w3-center'>Liste des articles partagés :</h2>";
 
     $fichiers = glob($dossierPartage . 'article_image/*');
 
@@ -194,7 +195,7 @@ function supparticle() {
         }
         echo "</ul>";
     } else {
-        echo "<p class='w3-center'>Aucun fichier partagé.</p>";
+        echo "<p class='w3-center'>Aucun artcile partagé.</p>";
     }
 
     echo "</div>";
@@ -242,7 +243,7 @@ function supparticle() {
                 $message = "Erreur lors de la suppression du fichier PDF.";
             }
         } else {
-            $message = "Le fichier n'existe pas.";
+            $message = "L'article n'existe pas.";
         }
     }
 
@@ -281,7 +282,7 @@ function suppimagecarousel() {
         }
         echo "</ul>";
     } else {
-        $message = "Aucun fichier partagé";
+        $message = "Aucune image partagée";
     }
 
     echo "</div>";
@@ -293,12 +294,12 @@ function suppimagecarousel() {
 
         if (file_exists($cheminFichier)) {
             if (unlink($cheminFichier)) {
-                $message = "Fichier supprimé avec succès !";
+                $message = "Image supprimée avec succès !";
             } else {
-                $message = "Erreur lors de la suppression du fichier.";
+                $message = "Erreur lors de la suppression de l'image.";
             }
         } else {
-            $message = "Le fichier n'existe pas.";
+            $message = "L'image n'existe pas.";
         }
     }
     
@@ -557,9 +558,9 @@ function ajoutarticle() {
         $cheminImage = $dossierImage . $nouveauNomImage;
 
         if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
-            $message = "Fichier partagé avec succès !";
+            $message = "Article partagé avec succès !";
         } else {
-            $message = "Erreur lors du partage du fichier.";
+            $message = "Erreur lors du partage de l'article.";
         }
 
         // Sauvegardez les informations dans le fichier JSON si le partage a réussi
@@ -636,9 +637,9 @@ function ajoutimagecarousel() {
         // Déplacer le fichier vers le dossier de destination avec le nouveau nom
         $cheminFichier = $dossierPartage . $nouveauNomFichier;
         if (move_uploaded_file($fichierTemporaire, $cheminFichier)) {
-            $message = "Fichier partagé avec succès !";
+            $message = "Image partagé avec succès !";
         } else {
-            $message = "Erreur lors du partage du fichier.";
+            $message = "Erreur lors du partage de l'image.";
         }
     }
 
@@ -684,7 +685,7 @@ function ajoutpartenaire() {
         // Déplacer l'image  vers le dossier de destination avec le nouveau nom
         $cheminImage = $dossierImage . $nouveauNomImage;
         if (move_uploaded_file($imageTemporaire, $cheminImage)) {
-            $message = "Fichier partagé avec succès !";
+            $message = "Partenaire partagé avec succès !";
         } else {
             $message = "Erreur lors du partage du fichier : " . $_FILES['image']['error'];
         }
@@ -794,12 +795,12 @@ function supppartenaire() {
 
                     file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
 
-                    $message = "Article et fichiers associés supprimés avec succès !";
+                    $message = "Partenaire supprimé avec succès !";
                 } else {
-                    $message = "Erreur lors de la lecture du fichier article.json.";
+                    $message = "Erreur lors de la lecture du fichier partenaires.json.";
                 }
             } else {
-                $message = "Erreur lors de la suppression du fichier PDF.";
+                $message = "Erreur lors de la suppression du fichier image.";
             }
         } else {
             $message = "Le fichier n'existe pas.";
@@ -871,6 +872,9 @@ function ajoutArticleSection() {
 function suppArticleSection() {
     $dossierSection = './section/';
 
+    // Déclaration de la variable de message
+    $message = "";
+
     echo "
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
         <div class='w3-content'>
@@ -898,9 +902,6 @@ function suppArticleSection() {
 
     echo "</div>";
 
-    // Déclaration de la variable de message
-    $message = "";
-
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
         $cheminArticles = $dossierSection . 'articles/' . $fichierAvecExtension;
@@ -927,7 +928,7 @@ function suppArticleSection() {
 
                     file_put_contents($cheminArticlesJSON, json_encode($articles, JSON_PRETTY_PRINT));
 
-                    $message = "Article et fichiers associés supprimés avec succès !";
+                    $message = "Article supprimé avec succès !";
                 } else {
                     $message = "Erreur lors de la lecture du fichier articles.json.";
                 }
@@ -947,6 +948,7 @@ function suppArticleSection() {
     
 function ajoutEvenement() {
     $dossierJson = './calendrier.json';
+    $message = "";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Récupérer les données du formulaire
@@ -975,27 +977,119 @@ function ajoutEvenement() {
 
         // Sauvegarder le tableau mis à jour dans le fichier JSON
         $fileContent = json_encode($data, JSON_PRETTY_PRINT);
-        file_put_contents($dossierJson, $fileContent);
+        if (file_put_contents($dossierJson, $fileContent)) {
+            $message = "Événement ajouté avec succès.";
+        } else {
+            $message = "Erreur lors de l'ajout de l'événement.";
+        }
+    }
 
-        echo "Événement ajouté avec succès.";
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
     }
 
     echo "
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
         <div class='w3-content'>
-        <form method='POST' enctype='multipart/form-data'>
-        <label for='date'>Date de l'événement:</label>
-        <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "' required><br>
+            <form method='POST' enctype='multipart/form-data'>
+            <label for='date'>Date de l'événement:</label>
+            <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "' required><br>
 
-        <label for='evenement'>Événement:</label>
-        <input class='w3-input w3-padding-16 w3-border' type='text' name='evenement' required /><br>
+            <label for='evenement'>Événement:</label>
+            <input class='w3-input w3-padding-16 w3-border' type='text' name='evenement' required /><br>
 
-        <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
-    </form></div></div>";
+            <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
+        </form></div></div>";
+    }
+function ajoutResultat() {
+    $dossierJson = './resultat.json';
+    $message = "";
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les données du formulaire
+        $titre = $_POST['titre'];
+        $date = $_POST['date']; // La date est au format AAAA-MM-JJ
+        $description = $_POST['description'];
+
+
+        // Charger le contenu actuel du fichier JSON
+        $data = [];
+        if (file_exists($dossierJson)) {
+            $jsonContent = file_get_contents($dossierJson);
+            $data = json_decode($jsonContent, true);
+        }
+
+        
+
+        // Sauvegarder le tableau mis à jour dans le fichier JSON
+        $fileContent = json_encode($data, JSON_PRETTY_PRINT);
+        if (file_put_contents($dossierJson, $fileContent)) {
+            $message = "Résultat ajouté avec succès.";
+        } else {
+            $message = "Erreur lors de l'ajout du résultat.";
+        }
     }
 
+    if (!empty($message)) {
+        $data = json_decode(file_get_contents($dossierJson), true);
+        $titre = $_POST['titre'];
+        $description = $_POST['description'];
+        $date = $_POST['date'];
 
+        // Sauvegardez le tableau mis à jour dans le fichier JSON
+        $nouvelArticle = array(
+            "titre" => $titre,
+            "description" => $description,
+            "date" => $date
+        );
 
+        $data[] = $nouvelArticle;
+
+        $fileContent = json_encode($data, JSON_PRETTY_PRINT);
+        if (file_put_contents($dossierJson, $fileContent)) {
+            $message = "Résultat ajouté avec succès.";
+        } else {
+            $message = "Erreur lors de l'ajout du résultat.";
+        }
+    }
+
+    echo "
+    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+        <div class='w3-content'>
+            <form method='POST' enctype='multipart/form-data'>
+
+            <label for='titre'>Titre:</label>
+            <input class='w3-input w3-padding-16 w3-border' type='text' name='titre' required><br>
+
+            <label for='date'>Date de l'événement:</label>
+            <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "' required><br>
+
+            <label for='evenement'>Description:</label>
+            <input class='w3-input w3-padding-16 w3-border' type='text' name='description' required /><br>
+
+            <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
+        </form></div></div>";
+         // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
+    }
+    }
+function suppResultat(){
+    $dossierJson = './resultat.json';
+    $message = "";
+    // Charger le contenu actuel du fichier JSON
+    $data = [];
+    if (file_exists($dossierJson)) {
+        $jsonContent = file_get_contents($dossierJson);
+        $data = json_decode($jsonContent, true);
+        foreach ($data as $key => $article) {
+        echo $article['titre'];
+        echo "<button class='w3-button' style='background-color: rgb(32, 47, 74)' onclick=unset($article[$key]);>Supprimer</button></br>";
+        }
+        }
+    }
+    
 
 
 ?>

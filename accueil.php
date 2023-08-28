@@ -2,55 +2,11 @@
 include 'fonction.php';
 entete();
 navbar();
+$dossierJson = './resultat.json';
+$jsonData = file_get_contents($dossierJson);
+$data = json_decode($jsonData, true);
 ?>
-
-<body>
-    <style>
-      *{box-sizing: border-box; -webkit-box-sizing: border-box; }
-html, body { height: 100%; }
-body { margin: 0; font: 16px/1.3 sans-serif; }
-
-.slider-container {
-    position: relative;
-    overflow: hidden;
-    height: auto;
-    max-height: 80%;
-    display: flex; /* Ajout pour centrer verticalement et horizontalement */
-    align-items: center; /* Ajout pour centrer verticalement */
-    justify-content: center; /* Ajout pour centrer horizontalement */
-}
-
-
-        /* SLIDER */
-        .slider-container .slider {
-            height: auto;
-            white-space: nowrap;
-            font-size: 0;
-            transition: 2s;
-            width: 100%; /* Ajustez la largeur comme nécessaire */
-            display: flex;
-            /* Pas besoin d'animation CSS ici */
-        }
-
-        /* SLIDES */
-        .slider-container .slider > * {
-            font-size: 1rem;
-            display: inline-block;
-            white-space: normal;
-            vertical-align: top;
-            background: none 50% no-repeat;
-            background-size: cover;
-            flex: 0 0 100%; /* Chaque slide occupe 100% de la largeur du slider */
-            transition: transform 2s;
-        }
-
-        /* Ancien CSS pour ajuster la taille des images */
-        .custom-img {
-            width: 100%;
-            height: auto;
-        }
-        
-    </style>
+<body style='background-color: rgb(32, 47, 74); color:white'>
     <div class="slider-container">
         <div class="slider">
             <?php
@@ -63,7 +19,7 @@ body { margin: 0; font: 16px/1.3 sans-serif; }
             ?>
         </div>
     </div>
-    <div class="w3-row" style='background-color: rgb(32, 47, 74); color:white'>>
+    <div>
   <div class="w3-container w3-twothird w3-center">
     <h2>Qu'est ce que le</h2>
     <h2>Pentathlon Moderne?</h2>
@@ -75,12 +31,21 @@ body { margin: 0; font: 16px/1.3 sans-serif; }
 
     <p>La troisième discipline est l'équitation, plus précisément le saut d'obstacles. Chaque athlète se voit attribuer un cheval par tirage au sort et dispose d'un court laps de temps pour se familiariser avec le cheval. L'objectif est de parcourir un parcours d'obstacles sans commettre de faute dans un temps limité.</p>
 
-    <p>La quatrième épreuve, le "Laser Run," est une combinaison unique de tir au pistolet et de course à pied. Les athlètes utilisent des pistolets laser pour viser des cibles situées à 10 mètres de distance, alternant avec des courses, et les scores sont déterminés par la précision des tirs et le temps de course. Enfin, la cinquième discipline, également intégrée au "Laser Run," consiste en des séries de tirs au pistolet laser entrelacées avec des courses, cette séquence étant répétée plusieurs fois au cours de la compétition.</p>
+    <p>La quatrième épreuve, le Laser Run, est une combinaison unique de tir au pistolet et de course à pied. Les athlètes utilisent des pistolets laser pour viser des cibles situées à 10 mètres de distance, alternant avec des courses, et les scores sont déterminés par la précision des tirs et le temps de course. Enfin, la cinquième discipline, également intégrée au "Laser Run," consiste en des séries de tirs au pistolet laser entrelacées avec des courses, cette séquence étant répétée plusieurs fois au cours de la compétition.</p>
 
     <p>Le champion du pentathlon moderne est celui qui parvient à combiner habilement ses performances dans chacune de ces disciplines pour obtenir le score total le plus élevé. Ce sport, devenu une épreuve olympique en 1912, exige une polyvalence exceptionnelle et une grande capacité d'adaptation de la part des athlètes pour exceller dans l'ensemble de ces épreuves variées.</p>
   </div>
-  <div class="w3-container w3-third">
+  <div class="w3-container w3-third w3-center">
     <h2>Dernier résultat/info</h2>
+    <div>
+    <?php
+      foreach ($data as $article) {
+        echo "<h1>{$article['titre']}</h1>
+        <p>{$article['description']}</p>
+        <div>{$article['date']}</div>
+        <div>__________________________________________________________________</div>";
+    }
+    ?>
   </div>
 </div>
     <script>
@@ -148,6 +113,52 @@ body { margin: 0; font: 16px/1.3 sans-serif; }
         // Appeler la fonction pour démarrer le slider automatique
         startSlider();
     </script>
+        <style>
+      *{box-sizing: border-box; -webkit-box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; font: 16px/1.3 sans-serif; }
+
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    max-height: 80%;
+    display: flex; /* Ajout pour centrer verticalement et horizontalement */
+    align-items: center; /* Ajout pour centrer verticalement */
+    justify-content: center; /* Ajout pour centrer horizontalement */
+}
+
+
+        /* SLIDER */
+        .slider-container .slider {
+            height: auto;
+            white-space: nowrap;
+            font-size: 0;
+            transition: 2s;
+            width: 100%; /* Ajustez la largeur comme nécessaire */
+            display: flex;
+            /* Pas besoin d'animation CSS ici */
+        }
+
+        /* SLIDES */
+        .slider-container .slider > * {
+            font-size: 1rem;
+            display: inline-block;
+            white-space: normal;
+            vertical-align: top;
+            background: none 50% no-repeat;
+            background-size: cover;
+            flex: 0 0 100%; /* Chaque slide occupe 100% de la largeur du slider */
+            transition: transform 2s;
+        }
+
+        /* Ancien CSS pour ajuster la taille des images */
+        .custom-img {
+            width: 100%;
+            height: auto;
+        }
+        
+    </style>
 </body>
 
 <?php
