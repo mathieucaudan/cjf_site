@@ -1202,7 +1202,8 @@ function suppResultat(){
         $data = json_decode($jsonContent, true);
     }
     
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer') {
+        if(isset($_GET['fichier'])){
             if (file_exists($dossierJson)) {
                 $articlesJson = file_get_contents($dossierJson);
                 $articles = json_decode($articlesJson, true);
@@ -1213,7 +1214,6 @@ function suppResultat(){
                         break;
                     }
                 }
-
                 file_put_contents($dossierJson, json_encode(array_values($articles)));
 
                 $message = "Resultat supprimé avec succès !";
@@ -1222,7 +1222,12 @@ function suppResultat(){
             }
         } else {
             $message = "Le résultat n'existe pas.";
-        }
+        }}
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
+    }
+ 
     
     if (empty($data)) {
         echo "Aucun élément à afficher.";
@@ -1237,12 +1242,63 @@ function suppResultat(){
             echo "</form>";
             echo "</div>";
         }
+
+}    
+}
+
+function suppEvenement(){
+    $dossierJson = './resultat.json';
+    $message = "";
+    
+    // Charger le contenu actuel du fichier JSON
+    $data = [];
+    if (file_exists($dossierJson)) {
+        $jsonContent = file_get_contents($dossierJson);
+        $data = json_decode($jsonContent, true);
     }
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer') {
+        if(isset($_GET['fichier'])){
+            if (file_exists($dossierJson)) {
+                $articlesJson = file_get_contents($dossierJson);
+                $articles = json_decode($articlesJson, true);
+                $resultat = $_GET['fichier'];
+                foreach ($articles as $key => $article) {
+                    if ($article['titre'] == $resultat) { // Utilisez le nom de l'image avec extensions pour la comparaison
+                        unset($articles[$key]);
+                        break;
+                    }
+                }
+                file_put_contents($dossierJson, json_encode(array_values($articles)));
+
+                $message = "Resultat supprimé avec succès !";
+            } else {
+                $message = "Erreur lors de la lecture du fichier article.json.";
+            }
+        } else {
+            $message = "Le résultat n'existe pas.";
+        }}
     // Affichage du message
     if (!empty($message)) {
         $_SESSION['message'] = $message;
     }
+ 
     
+    if (empty($data)) {
+        echo "Aucun élément à afficher.";
+    } else {
+        foreach ($data as $key => $article) {
+            echo "<div>";
+            echo $article['titre'];
+            $resultat=$article['titre'];
+            echo "<form method='POST'>";
+            echo "<input type='hidden' name='index' value='$key'>"; // Champ caché pour l'index
+            echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$resultat'>Supprimer</a>";
+            echo "</form>";
+            echo "</div>";
+        }
+
+}    
 }
 ?>
     
