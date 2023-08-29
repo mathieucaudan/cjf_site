@@ -1,8 +1,6 @@
 a faire:
 	image de qualité(organigramme)
 	inscription
-	potentiel galerie photo
-	contenu page accueil
 modif style: 
 	enlever le soulignage des articles 
 	section :
