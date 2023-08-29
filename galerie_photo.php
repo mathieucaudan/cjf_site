@@ -25,7 +25,7 @@ $data = json_decode($jsonData, true);
         console.log('./{$galerie['path_image']}');
         </script>";
         echo "<div class='card-grid-space'>
-        <a class='card' href='{$galerie['lien']}' target='_blank' style='background-image: url(./{$galerie['path_image']});'>
+        <a class='card' href='{$galerie['lien']}' target='_blank' style='background-image: url(./galerie/galerie_image/{$galerie['path_image']});'>
             <div>
                 <h1>{$galerie['titre']}</h1>
                 <div>{$galerie['date']}</div>    

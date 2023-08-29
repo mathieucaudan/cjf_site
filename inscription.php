@@ -14,6 +14,7 @@ navbar();
 ?>
 <div>
   <div class="w3-container w3-quarter w3-center">
+    <p>idée a trouver</p>
   </div>
   <div class="w3-container w3-half w3-center">
     <h1>Dossiers d'inscription</h1> 

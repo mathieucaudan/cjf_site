@@ -180,8 +180,20 @@ function ajoutGalerie() {
         $titre = $_POST["titre"];
         $lien = $_POST["lien"];
         $date = $_POST["date"];
+
+        // Remplace les espaces par des tirets
+        $fileName = str_replace(' ', '-', $_POST["nom_image"]);
+        // Convertit en minuscules
+        $fileName = strtolower($fileName);
+        // Supprime les caractères non autorisés
+        $fileName = preg_replace('/[^a-z0-9\-\.]/', '', $fileName);
+
+        echo '<script>
+            console.log("Nouveau file : ' . $fileName . '");
+            </script>';
+
         // Récupère le nom de l'image et le nettoie
-        $nomImage = sanitizeFileName($_POST["nom_image"]);
+        $nomImage = $fileName;
 
         echo '<script>
         console.log("Error : ' . $_FILES["image"]["error"] . '");
@@ -193,11 +205,11 @@ function ajoutGalerie() {
         $extension = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
             
         // Chemin où les images seront stockées avec nom et extension
-        $imagePath = "galerie/galerie_image/" . $nomImage . '.' . $extension;
+        $imagePath =  $nomImage . '.' . $extension;
 
     
         // Déplace l'image téléchargée vers le chemin de stockage
-        move_uploaded_file($imageTemp, $imagePath);
+        move_uploaded_file($imageTemp, './galerie/galerie_image/'.$imagePath);
     
         // Chemin du fichier JSON
         $jsonFile = "galerie/galerie_json/data.json";
@@ -226,65 +238,110 @@ function ajoutGalerie() {
     }
     
     // Affiche le formulaire
-    echo '
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Ajouter un article</title>
-    </head>
-    <body>
-        <form method="post" enctype="multipart/form-data">
-            <label for="titre">Titre du dossier :</label>
-            <input type="text" name="titre" required><br>
+    echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+    <div class='w3-content'>
+        <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
+            <label class='w3-text-white' for='titre'>Titre du dossier :</label>
+            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required><br>
                 
-            <label for="lien">Lien Google Drive :</label>
-            <input type="text" name="lien" required><br>
+            <label class='w3-text-white' for='lien'>Lien Google Drive :</label>
+            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='lien' required><br>
                 
-            <label for="date">Date de l\'album :</label>
-            <input type="date" name="date" required><br>
+            <label class='w3-text-white' for='date'>Date de l\'album :</label>
+            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='date' name='date' required><br>
                 
-            <label for="nom_image">Nom de l\'image :</label>
-            <input type="text" name="nom_image" required><br>
+            <label class='w3-text-white' for='nom_image'>Nom de l\'image :</label>
+            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_image' required><br>
                 
-            <label for="image">Sélectionnez une image :</label>
-            <input type="file" name="image" accept="image/*" required><br>
+            <label class='w3-text-white' for='image'>Sélectionnez une image :</label>
+            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/*' required><br>
                 
-            <button type="submit">Envoyer</button>
-        </form>';
+            <button type='submit'>Envoyer</button>
+        </form>";
         
-    if (isset($message)) {
-        echo "<p>$message</p>";
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
     }
-        
-    echo '
-    </body>
-
-   
-
-    </html>';
-
-    
-    }
-
-
-function sanitizeFileName($fileName) {
-    // Remplace les espaces par des tirets
-    $fileName = str_replace(' ', '-', $fileName);
-    // Convertit en minuscules
-    $fileName = strtolower($fileName);
-    // Supprime les caractères non autorisés
-    $fileName = preg_replace('/[^a-z0-9\-\.]/', '', $fileName);
-
-    echo '<script>
-        console.log("Nouveau file : ' . $fileName . '");
-        </script>';
-
-
-    return $fileName;
     }
 
 
 function suppGalerie() {
+    $dossierPartage = './galerie/';
+
+    echo "
+    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+        <div class='w3-content'>
+            <h2 class='w3-center'>Liste des galeries partagés :</h2>";
+
+    $fichiers = glob($dossierPartage . 'galerie_image/*');
+
+    if (count($fichiers) > 0) {
+        echo "<ul class='w3-ul'>";
+        foreach ($fichiers as $fichier) {
+            $nomFichier = basename($fichier);
+            echo "<li class='w3-padding'><span class='w3-large'>$nomFichier</span>";
+
+            // Afficher le bouton de suppression pour les administrateurs
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+                echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$nomFichier'>Supprimer</a>";
+            }
+
+            echo "</li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "<p class='w3-center'>Aucun article partagé.</p>";
+    }
+
+    echo "</div>";
+
+    // Déclaration de la variable de message
+    $message = "";
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
+        $fichierAvecExtension = $_GET['fichier'];
+        $cheminImages = 'galerie/galerie_image/' . $fichierAvecExtension ;
+        
+        // Vérifier si les fichiers existent
+        if (file_exists($cheminImages)) {
+            // Suppression du fichier image associé
+            if (unlink($cheminImages)) {
+                        $cheminArticleJSON = $dossierPartage . 'galerie_json/data.json';
+                        if (file_exists($cheminArticleJSON)) {
+                            $articlesJson = file_get_contents($cheminArticleJSON);
+                            $articles = json_decode($articlesJson, true);
+        
+                            foreach ($articles as $key => $article) {
+                                if ($article['path_image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
+                                    unset($articles[$key]);
+                                    break;
+                                }
+                            }
+        
+                            file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
+        
+                            $message = "Article et fichiers associés supprimés avec succès !";
+                        } else {
+                            $message = "Erreur lors de la lecture du fichier article.json.";
+                        
+                    }
+                    } else {
+                        $message = "Erreur lors de la suppression des fichiers images.";
+                    }
+                
+        } else {
+            $message = "L'article n'existe pas.";
+        }
+    }
+
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
+    }
+
+    echo "</div>";
+    
     }
 function supparticle() {
     $dossierPartage = './article/';
@@ -727,7 +784,7 @@ function ajoutarticle() {
                 <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date_telechargement' pattern='\d{2}/\d{2}/\d{2}' placeholder='jj/mm/aa' required>
                 <br>
                 <label class='w3-text-white'>Sélectionner une image :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' required>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' accept='image/*' required>
                 <br>
                 <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
             </form>";
@@ -769,7 +826,7 @@ function ajoutimagecarousel() {
         <div class='w3-content'>
             <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
                 <label class='w3-text-white'>Sélectionner une image :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='fichier' required>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='fichier' accept='image/*' required>
                 <br>
                 <label class='w3-text-white'>Nom du fichier lors du téléchargement (facultatif) :</label>
                 <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+'>
@@ -846,7 +903,7 @@ function ajoutpartenaire() {
                 <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
                 <br>
                 <label class='w3-text-white'>Sélectionner une image :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' required>
+                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/*' required>
                 <br>
                 <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
             </form>";
@@ -1242,9 +1299,8 @@ function suppResultat(){
             echo "</form>";
             echo "</div>";
         }
-
-}    
-}
+    }    
+    }
 
 function suppEvenement(){
     $dossierJson = './resultat.json';
@@ -1298,8 +1354,8 @@ function suppEvenement(){
             echo "</div>";
         }
 
-}    
-}
+    }    
+    }
 ?>
     
     
