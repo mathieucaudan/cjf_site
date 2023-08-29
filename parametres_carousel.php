@@ -6,9 +6,9 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 ?>
 
 <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
-<body onload="openTab(event, 'ajoutimagecarousel')">
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutimagecarousel')">Ajouter une image</button>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppimagecarousel')">Supprimer une image</button>
+<body onload="openTab(event, 'ajoutImageCarousel')">
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutImageCarousel')">Ajouter une image</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppImageCarousel')">Supprimer une image</button>
 </body>
 </center></div>
 <div id="message">
@@ -19,18 +19,18 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
     }
     ?>
 </div>
-<div id="ajoutimagecarousel" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="ajoutImageCarousel" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
-    ajoutimagecarousel();
+    ajoutImageCarousel();
     ?>
   </table>
 </div>
 
-<div id="suppimagecarousel" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="suppImageCarousel" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
-    suppimagecarousel();
+    suppImageCarousel();
     ?>
   </table>
 </div>

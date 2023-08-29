@@ -234,9 +234,12 @@ function ajoutGalerie() {
         // Convertit les données en format JSON sans échapper les barres obliques
         file_put_contents($jsonFile, json_encode($donneesExistantes, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
     
-        $message = "Les données ont bien été envoyées.";
+        $message = "Galerie ajoutée!";
     }
-    
+    // Affichage du message
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
+    }
     // Affiche le formulaire
     echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
     <div class='w3-content'>
@@ -258,11 +261,6 @@ function ajoutGalerie() {
                 
             <button type='submit'>Envoyer</button>
         </form>";
-        
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
-    }
     }
 
 
@@ -343,7 +341,7 @@ function suppGalerie() {
     echo "</div>";
     
     }
-function supparticle() {
+function suppArticle() {
     $dossierPartage = './article/';
 
     echo "
@@ -427,7 +425,7 @@ function supparticle() {
 
     echo "</div>";
     }
-function suppimagecarousel() {
+function suppImageCarousel() {
     $dossierPartage = './image/carousel/';
 
     echo "
@@ -484,7 +482,7 @@ function suppimagecarousel() {
     echo "</div>";
     }
     
-function changerecord() {
+function changeRecord() {
     $disciplineChosen = false;
     $formSubmitted = false; // Variable pour vérifier si le formulaire a été soumis
 
@@ -534,7 +532,7 @@ function changerecord() {
             echo "<h1 style='color:green'><center>Changement enregistré avec succès </center></h1>";
         } else {
             echo "
-            <div class='w3-center w3-padding-48 w3-large' style='background-color: rgb(32, 47, 74); color: white;'>
+            <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
                 <div class='w3-content'>
                     <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
                         Nom: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom' pattern='[A-Za-z\s]+' required><br>
@@ -698,7 +696,7 @@ function changerecord() {
 
 
 
-function ajoutarticle() {
+function ajoutArticle() {
     $dossierPdf = './article/article_pdf/';
     $dossierImage = './article/article_image/';
     $dossierJson = './article/article_json/article.json';
@@ -792,7 +790,7 @@ function ajoutarticle() {
     echo "</div></div>";
     }
 
-function ajoutimagecarousel() {
+function ajoutImageCarousel() {
     $dossierPartage = './image/carousel/';
     $message = "";
 
@@ -838,7 +836,7 @@ function ajoutimagecarousel() {
         }
     
 
-function ajoutpartenaire() {
+function ajoutPartenaire() {
     $dossierImage = './partenaires/partenaires_images/';
     $dossierJson = './partenaires/partenaires_json/partenaires.json';
     $message = "";
@@ -911,7 +909,7 @@ function ajoutpartenaire() {
     echo "</div></div>";
     }
     
-function supppartenaire() {
+function suppPartenaire() {
     $dossierPartage = './partenaires/';
 
     echo "

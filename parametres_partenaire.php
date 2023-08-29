@@ -6,9 +6,9 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 ?>
 
 <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
-<body onload="openTab(event, 'ajoutpartenaires')">
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutpartenaires')">Ajouter un partenaire</button>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'supppartenaires')">Supprimer un partenaire</button>
+<body onload="openTab(event, 'ajoutPartenaire')">
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutPartenaire')">Ajouter un partenaire</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppPartenaire')">Supprimer un partenaire</button>
 </body>
 </center></div>
 <div id="message">
@@ -19,18 +19,18 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
     }
     ?>
 </div>
-<div id="ajoutpartenaires" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="ajoutPartenaire" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
-    ajoutpartenaire(); 
+    ajoutPartenaire(); 
     ?>
   </table>
 </div>
 
-<div id="supppartenaires" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="suppPartenaire" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
-    supppartenaire();
+    suppPartenaire();
     ?>
   </table>
 </div>

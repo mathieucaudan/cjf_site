@@ -4,7 +4,7 @@ entete();
 navbar();
 echo "<body style='background-color: rgb(32, 47, 74);'>";
 
-changerecord();
+changeRecord();
 footer();
 echo "</body>";
 ?>

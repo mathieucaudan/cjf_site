@@ -5,5 +5,3 @@ modif style:
 	enlever le soulignage des articles 
 	section :
 		flyer en html/css et article de droite comme les articles
-	calendrier:
-	full css
