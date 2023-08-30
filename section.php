@@ -28,10 +28,21 @@ navbar();
             ?>
         </div>
     </div>
+</body>
+
+
+
+
+      
 <?php
-footer();
+
 echo "</body>";
 ?>
+
+
+<div class="footer">
+    <?php footer(); ?>
+</div>
 <style>
         /* Styles pour diviser la page en deux colonnes */
         .container {
@@ -68,4 +79,19 @@ echo "</body>";
                 min-width: 100%; /* Largeur minimale de 100% sur les petits écrans */
             }
         }
+
+
+        /* Styles pour le footer */
+        .footer {
+            padding: 10px;
+            background-color: rgb(32, 47, 74);
+            color: white;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
+
+
+

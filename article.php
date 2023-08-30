@@ -259,6 +259,7 @@ a {
 
 </style>
 
+
 <div class="footer">
   <div style="clear: both">
   <?php

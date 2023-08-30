@@ -98,16 +98,29 @@ navbar();
         2022</p>
         <p>Champion de FRANCE 2022 de LASER RUN</p>
       </div>
+    </div>
+</div>  
+
+
+
+<div class="footer">
+    <?php footer(); ?>
 </div>
-
-
-<?php
-footer();
-echo "</body>";
-?>
 <style>
     .tab {
   overflow: hidden;
+}
+
+
+/* Styles pour le footer */
+.footer {
+      padding: 10px;
+      background-color: rgb(32, 47, 74);
+      color: white;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
 }
 
 .tab button {

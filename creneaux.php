@@ -31,12 +31,29 @@ navbar();
 <div id="obstacle" class="tabcontent" style="text-align:center;">
     <h3>A voir</h3>
 </div>
+
+
+<div class="footer">
+    <?php footer(); ?>
+</div>
 <?php
-footer();
+
 echo "</body>";
 ?>
 <style>
-    .tab {
+
+/* Styles pour le footer */
+.footer {
+      padding: 10px;
+      background-color: rgb(32, 47, 74);
+      color: white;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+}
+
+.tab {
   overflow: hidden;
 }
 
