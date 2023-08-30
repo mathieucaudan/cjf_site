@@ -85,8 +85,8 @@ function navbar() {
         <i class='fa fa-caret-down'></i>
       </button>
       <div class='dropdown-content'>
-        <a href='record.Php'>RECORD</a>
-        <a href='creneaux.php'>CRENAUX</a>
+        <a href='record.Php'>RECORDS</a>
+        <a href='creneaux.php'>CRENEAUX</a>
         <a href='nous.Php'>QUI SOMMES NOUS?</a>
       </div>
     </div>
@@ -101,8 +101,8 @@ function navbar() {
                     <i class='fa fa-caret-down'></i>
                 </button>
                 <div class='dropdown-content'>
-                    <a href='parametres_record.php'>RECORD</a>
-                    <a href='parametres_article.php'>ARTICLE</a>
+                    <a href='parametres_record.php'>RECORDS</a>
+                    <a href='parametres_article.php'>ARTICLES</a>
                     <a href='parametres_carousel.php'>CAROUSEL</a>
                     <a href='parametres_galerie.php'>GALERIE</a>
                     <a href='parametres_partenaire.php'>PARTENAIRES</a>
