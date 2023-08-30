@@ -26,7 +26,7 @@ navbar();
             </div>
             <div style='display:flex'>
                 <img style='margin-left:3%; margin-right:3%' src="./section/section_image/course.png"  height='280px'>
-                <div class='text; w3-center' style='line-height : 20px;'>
+                <div class='text; w3-center' style='line-height : 12px;'>
                     <h2>COLLEGE LE BOCAGE</h2></br>
                     <h3>SECTION UNIQUE EN FRANCE</h3></br>
                     <h3>5 SPORTS PRATIQUES</h3></br>
@@ -34,7 +34,7 @@ navbar();
                     <h3>COMPETITIONS SCOLAIRES ET FEDERALES</h3></br>
                 </div>
             </div></br>
-            <p style="text-align: center;">La journ&eacute;e de d&eacute;couverte du Laser Run t&apos;a plu ?</p>
+            <h2 style="text-align: center;"><strong>La journ&eacute;e de d&eacute;couverte du Laser Run t&apos;a plu ?</strong></h2>
             <p style="text-align: center;"><strong>REJOINDRE LA SEULE SECTION SPORTIVE&nbsp;</strong></p>
             <p style="text-align: center;"><strong>DE PENTATHLON MODERNE DE FRANCE, C&apos;EST POSSIBLE !!!</strong></p>
             <p><br></p>
@@ -85,14 +85,9 @@ navbar();
 
       
 <?php
-
-echo "</body>";
+footer(); 
 ?>
 
-
-<div class="footer">
-    <?php footer(); ?>
-</div>
 <style>
         /* Styles pour diviser la page en deux colonnes */
         .container {
@@ -131,16 +126,7 @@ echo "</body>";
         }
 
 
-        /* Styles pour le footer */
-        .footer {
-            padding: 10px;
-            background-color: rgb(32, 47, 74);
-            color: white;
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-        }
+        
     </style>
 
 
