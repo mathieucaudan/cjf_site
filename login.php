@@ -6,11 +6,10 @@ $jsonData = file_get_contents('athletes.json');
 $users = json_decode($jsonData, true)['athletes'];
 if (!empty($_POST['identifiant']) and !empty($_POST['password'])) {
   $identifiant = $_POST['identifiant'];
-  $password = $_POST['password'];
-
+  $password =$_POST['password'];
   // Vérification des identifiants de connexion
   foreach ($users as $user) {
-    if ($user['identifiant'] === $identifiant && $user['password'] === $password) {
+    if ($user['identifiant'] === $identifiant && password_verify($password, $user['password'])) {
       $_SESSION['role'] = $user['role'];
       $_SESSION['identifiant'] = $user['identifiant'];
       header('Location: accueil.php');

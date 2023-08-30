@@ -1,18 +1,9 @@
 {
     "athletes": [
         {
-            "nom": "caudan",
-            "prenom": "Mathieu",
             "identifiant": "mathieu",
-            "password": "password",
+            "password": "$2y$10$h0qkTkt82KQguVmaHvFdEeTd4bSBb6QrK2mN35AbRGeRdsZleUoFy",
             "role": "admin"
-        },
-        {
-            "nom": "forgeoux",
-            "prenom": "etienne",
-            "identifiant": "etienne",
-            "password": "123",
-            "role": "user"
         }
     ]
 }
