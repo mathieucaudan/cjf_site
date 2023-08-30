@@ -85,8 +85,14 @@ navbar();
 
       
 <?php
-footer(); 
+<<<<<<< HE
+=======
+footer();
+echo "</body>";
 ?>
+
+
+>>>>>>> c4ab36466f082ec7063eaa4f6456072787bc0123
 
 <style>
         /* Styles pour diviser la page en deux colonnes */
@@ -125,8 +131,11 @@ footer();
             }
         }
 
+<<<<<<< HEAD
 
         
+=======
+>>>>>>> c4ab36466f082ec7063eaa4f6456072787bc0123
     </style>
 
 
