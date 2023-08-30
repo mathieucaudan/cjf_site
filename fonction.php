@@ -10,8 +10,6 @@ function entete(){
         <link rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css'>
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Amatic+SC'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-        <link rel='stylesheet' href='style/fonctionCss.css'> <!-- Ajout de la référence au fichier CSS -->
-        <link rel='stylesheet' href='style/footer.css'> <!-- Ajout de la référence au fichier CSS -->
         <link rel='stylesheet' href='style/fonction.css'> <!-- Ajout de la référence au fichier CSS -->
 
         <link rel='shortcut icon' href='image/favicon.png'>
