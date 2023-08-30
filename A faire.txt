@@ -3,5 +3,3 @@ a faire:
 	inscription
 modif style: 
 	enlever le soulignage des articles 
-	section :
-		flyer en html/css
