@@ -5,27 +5,27 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 navbar();
 ?>
 
-<h1 id="calendar-title" class="centered">Calendrier</h1>
-<div class="calendar-navigation">
-    <button class="buttonMois" onclick="previousMonth()">
+<h1 id="calcalendar-title" class="calcentered">Calendrier</h1>
+<div class="calcalendar-navigation">
+    <button class="calbuttonMois" onclick="previousMonth()">
        Mois précédent
-      <span class="first"></span>
-      <span class="second"></span>
-      <span class="third"></span>
-      <span class="fourth"></span>
+      <span class="calfirst"></span>
+      <span class="calsecond"></span>
+      <span class="calthird"></span>
+      <span class="calfourth"></span>
     </button>
 
-    <button class="buttonMois" onclick="nextMonth()">
+    <button class="calbuttonMois" onclick="nextMonth()">
        Mois suivant
-      <span class="first"></span>
-      <span class="second"></span>
-      <span class="third"></span>
-      <span class="fourth"></span>
+      <span class="calfirst"></span>
+      <span class="calsecond"></span>
+      <span class="calthird"></span>
+      <span class="calfourth"></span>
     </button>
     
 </div>
-<div class="calendar-container">
-<table>
+<div class="calcalendar-container">
+<table class= "caltab">
     <tr>
         <th>Lundi</th>
         <th>Mardi</th>
@@ -70,7 +70,7 @@ navbar();
                 // Jours du mois actuel avec informations sous le numéro de jour
                 $yearMonthKey = $currentYear . '-' . str_pad($currentMonth + 1, 2, '0', STR_PAD_LEFT); // Notez l'ajout de 1 ici
                 $dayInfo = isset($calendarData[$yearMonthKey][$day]) ? $calendarData[$yearMonthKey][$day] : '';
-                echo "<td class='calendar-cell'>$day<div class='info-cell'>$dayInfo</div></td>";
+                echo "<td class='calcalendar-cell'>$day<div class='calinfo-cell'>$dayInfo</div></td>";
             }
             $day++;
         }
@@ -97,7 +97,7 @@ navbar();
     }
 
     function updateCalendar() {
-        var calendarTitle = document.getElementById("calendar-title");
+        var calendarTitle = document.getElementById("calcalendar-title");
         var monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
         calendarTitle.innerText = monthNames[currentDate.getMonth()] + " " + currentDate.getFullYear();
 
@@ -119,7 +119,7 @@ navbar();
             var row = table.insertRow();
             for (var j = 0; j < 7; j++) {
                 var cell = row.insertCell();
-                cell.classList.add("bigger-cell"); // Ajoutez la classe pour agrandir les cellules
+                cell.classList.add("calbigger-cell"); // Ajoutez la classe pour agrandir les cellules
 
             if (day <= 0 || day > lastDayOfMonth.getDate()) {
                 // Jours du mois précédent ou suivant
@@ -128,7 +128,7 @@ navbar();
                 // Jours du mois actuel avec informations sous le numéro de jour
                 var yearMonthKey = year + '-' + (month + 1).toString().padStart(2, '0');
                 var dayInfo = calendarData[yearMonthKey] && calendarData[yearMonthKey][day] ? calendarData[yearMonthKey][day] : '';
-                cell.innerHTML = day + "<div class='info-cell'>" + dayInfo + "</div>";
+                cell.innerHTML = day + "<div class='calinfo-cell'>" + dayInfo + "</div>";
             }
             day++;
         }
@@ -144,7 +144,7 @@ navbar();
 
 <style>
 
-    .calendar-container {
+    .calcalendar-container {
         width: 100%;
         margin: 0 auto; /* Centrez le calendrier horizontalement */
     }
@@ -164,7 +164,7 @@ navbar();
         color: white; /* Texte blanc */
     }
     /* Style pour la div enveloppant le calendrier */
-.calendar-container {
+.calcalendar-container {
     width: 100%;
     margin: 0 auto; /* Facultatif : centrez le calendrier horizontalement */
     padding: 0 20px;
@@ -172,24 +172,24 @@ navbar();
 
 
     /* Style pour les cellules du calendrier */
-    .calendar-cell {
+    .calcalendar-cell {
         position: relative;
     }
 
     /* Style pour les informations sous les cellules */
-    .info-cell {
+    .calinfo-cell {
         font-size: 1.5vw; /* Ajustez la taille de la police des informations */
         color: white
         padding-top: 5px;
     }
 
     /* Style pour les boutons de navigation */
-    .calendar-navigation {
+    .calcalendar-navigation {
         margin-bottom: 10px;
         text-align: center;
     }
 
-    .calendar-navigation button {
+    .calcalendar-navigation button {
         font-size: 16px; /* Ajustez la taille de la police des boutons */
         padding: 5px 10px;
         margin: 0 10px; /* Ajustez la marge entre les boutons */
@@ -197,14 +197,14 @@ navbar();
     }
 
     /* Style pour centrer le titre du mois et de l'année */
-.centered {
+.calcentered {
     text-align: center;
     color: white;
     font-size: 3vw !important;
     margin-bottom: 20px; /* Espacement sous le titre */
 }
 
-.buttonMois {
+.calbuttonMois {
         border: none;
         padding: 20px 40px;
         font-size: 1.5vw !important;
@@ -219,7 +219,7 @@ navbar();
         border-radius: 100px;
       }
 
-      .buttonMois:hover {
+      .calbuttonMois:hover {
         color: #000;
       }
       span {
@@ -227,7 +227,7 @@ navbar();
         z-index: -1;
       }
 
-      .buttonMois .first {
+      .calbuttonMois .calfirst {
         content: "";
         position: absolute;
         right: 100%;
@@ -237,11 +237,11 @@ navbar();
         background: white;
       }
 
-      .buttonMois:hover .first {
+      .calbuttonMois:hover .calfirst {
         top: 0;
         right: 0;
       }
-      .buttonMois .second {
+      .calbuttonMois .calsecond {
         content: "";
         position: absolute;
         left: 25%;
@@ -251,12 +251,12 @@ navbar();
         background: white;
       }
 
-      .buttonMois:hover .second {
+      .calbuttonMois:hover .calsecond {
         top: 0;
         left: 50%;
       }
 
-      .buttonMois .third {
+      .calbuttonMois .calthird {
         content: "";
         position: absolute;
         left: 50%;
@@ -266,12 +266,12 @@ navbar();
         background: white;
       }
 
-      .buttonMois:hover .third {
+      .calbuttonMois:hover .calthird {
         top: 0;
         left: 25%;
       }
 
-      .buttonMois .fourth {
+      .calbuttonMois .calfourth {
         content: "";
         position: absolute;
         left: 100%;
@@ -281,7 +281,7 @@ navbar();
         background: white;
       }
 
-      .buttonMois:hover .fourth {
+      .calbuttonMois:hover .calfourth {
         top: 0;
         left: 0;
       }

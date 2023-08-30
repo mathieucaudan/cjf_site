@@ -5,10 +5,10 @@ navbar();
 echo "<body style='background-color: rgb(32, 47, 74);'>";
 ?>
 
-<div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
+<div class="pargaltab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
   <body onload="openTab(event, 'ajoutGalerie')">
-    <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutGalerie')">Ajouter une galerie</button>
-    <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppGalerie')">Supprimer une galerie</button>
+    <button class="pargaltablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutGalerie')">Ajouter une galerie</button>
+    <button class="pargaltablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppGalerie')">Supprimer une galerie</button>
   </body>  
   </center>
 </div>
@@ -20,7 +20,7 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
     }
     ?>
 </div>
-<div id="ajoutGalerie" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="ajoutGalerie" class="pargaltabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
     ajoutGalerie(); 
@@ -28,7 +28,7 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
   </table>
 </div>
 
-<div id="suppGalerie" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="suppGalerie" class="pargaltabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
     suppGalerie();
@@ -40,41 +40,14 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 footer();
 echo "</body>";
 ?>
-<style>
-    .tab {
-  overflow: hidden;
-}
-
-.tab button {
-  background-color: #ccc;
-  border: none;
-  color: black;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.tab button:hover {
-  background-color: #ddd;
-}
-
-.tab button.active {
-  background-color: #fff;
-}
-
-.tabcontent {
-  display: none;
-  padding: 20px;
-  border: 1px solid #ccc;
-}
-</style>
 <script>
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
+  tabcontent = document.getElementsByClassName("pargaltabcontent");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
-  tablinks = document.getElementsByClassName("tablinks");
+  tablinks = document.getElementsByClassName("pargaltablinks");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }

@@ -7,15 +7,15 @@ navbar();
 
 <body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'laserrun')">
 <h1 style='color:white'><center>RECORD</center></h1>
-<center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
-  <button class="tablinks laserrun active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laserrun')">Laser Run</button>
-  <button class="tablinks triathlé" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'triathlé')">Triathlé</button>
-  <button class="tablinks tetrathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'tetrathlon')">Tetrathlon</button>
-  <button class="tablinks pentathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'pentathlon')">Pentathlon</button>
+<center><div class="rectab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
+  <button class="rectablinks laserrun active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laserrun')">Laser Run</button>
+  <button class="rectablinks triathlé" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'triathlé')">Triathlé</button>
+  <button class="rectablinks tetrathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'tetrathlon')">Tetrathlon</button>
+  <button class="rectablinks pentathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'pentathlon')">Pentathlon</button>
 </body>
 </center></div>
 
-<center><div id="laserrun" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<center><div id="laserrun" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Laser Run</h3>
   <table>
   <?php
@@ -41,7 +41,7 @@ navbar();
   </table>
 </div>
 
-<div id="triathlé" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<div id="triathlé" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Triathlé</h3>
   <table>
   <?php
@@ -68,7 +68,7 @@ navbar();
   </table>
 </div>
 
-<div id="tetrathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="tetrathlon" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <h3>Tetrathlon</h3>
   <table>
   <?php
@@ -95,7 +95,7 @@ navbar();
   </table>
 </div>
 
-<div id="pentathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<div id="pentathlon" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Pentathlon</h3>
   <table>
   <?php
@@ -184,11 +184,11 @@ echo "</body>";
     }
   }
 
-  .tab {
+  .rectab {
     overflow: hidden;
   }
 
-  .tab button {
+  .rectab button {
     background-color: #ccc;
     border: none;
     color: black;
@@ -196,15 +196,15 @@ echo "</body>";
     cursor: pointer;
   }
 
-  .tab button:hover {
+  .rectab button:hover {
     background-color: #ddd;
   }
 
-  .tab button.active {
+  .rectab button.active {
     background-color: #fff;
   }
 
-  .tabcontent {
+  .rectabcontent {
     display: none;
     padding: 20px;
     border: 1px solid #ccc;
@@ -214,22 +214,22 @@ echo "</body>";
   table td:empty {
     border: none;
   }
-  .tab button.active.laserrun {
+  .rectab button.active.laserrun {
   background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
   color: white !important; /* Texte blanc lorsque l'onglet est actif */
   cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
 }
-.tab button.active.triathlé {
+.rectab button.active.triathlé {
   background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
   color: white !important; /* Texte blanc lorsque l'onglet est actif */
   cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
 }
-.tab button.active.tetrathlon {
+.rectab button.active.tetrathlon {
   background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
   color: white !important; /* Texte blanc lorsque l'onglet est actif */
   cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
 }
-.tab button.active.pentathlon {
+.rectab button.active.pentathlon {
   background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
   color: white !important; /* Texte blanc lorsque l'onglet est actif */
   cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
@@ -239,12 +239,12 @@ echo "</body>";
 <script>
   function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
+    tabcontent = document.getElementsByClassName("rectabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
     // Supprime la classe "active" de tous les boutons d'onglet
-    tablinks = document.getElementsByClassName("tablinks");
+    tablinks = document.getElementsByClassName("rectablinks");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
@@ -254,7 +254,7 @@ echo "</body>";
     
     // Ajoute la classe "active" spécifique au bouton "Bureau" s'il s'agit de l'onglet "Bureau"
     if (tabName === 'laserrun') {
-        document.querySelector(".tablinks.laserrun").classList.add("active");
+        document.querySelector(".rectablinks.laserrun").classList.add("active");
     }
   }
 

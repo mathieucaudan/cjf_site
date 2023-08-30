@@ -5,14 +5,14 @@ navbar();
 ?>
 <body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'bureau')">
 <h1 style='color:white'><center>Organigramme</center></h1>
-<center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
-  <button class="tablinks bureau active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'bureau')">Bureau</button>
-  <button class="tablinks coach" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'coach')">Coach</button>
-  <button class="tablinks athletes" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'athletes')">Athlètes</button>
+<center><div class="noutab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
+  <button class="noutablinks bureau active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'bureau')">Bureau</button>
+  <button class="noutablinks coach" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'coach')">Coach</button>
+  <button class="noutablinks athletes" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'athletes')">Athlètes</button>
 </body>
   </div></center>
 
-<div id="bureau" class="tabcontent">
+<div id="bureau" class="noutabcontent">
     <!-- Contenu de l'onglet Bureau -->
     <h1 style="color:white; text-align:center;">NOTRE BUREAU</h1>
     <div class="w3-row">
@@ -36,7 +36,7 @@ navbar();
 </div>
 
 
-<div id="coach" class="tabcontent">
+<div id="coach" class="noutabcontent">
     <!-- Contenu de l'onglet Coach -->
     <h1 style="color:white; text-align:center;">Qui sont les coachs?</h1>
     <div class="w3-row">
@@ -70,7 +70,7 @@ navbar();
 </div>
 
 
-<div id="athletes" class="tabcontent">
+<div id="athletes" class="noutabcontent">
     <!-- Contenu de l'onglet Athlètes -->
     <h1 style="color:white; text-align:center;">Quelques athletes</h1>
     <div class="w3-row">
@@ -103,74 +103,18 @@ navbar();
 
 
 
-<div class="footer">
-    <?php footer(); ?>
-</div>
-<style>
-    .tab {
-  overflow: hidden;
-}
-
-
-/* Styles pour le footer */
-.footer {
-      padding: 10px;
-      background-color: rgb(32, 47, 74);
-      color: white;
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-}
-
-.tab button {
-  background-color: #ccc;
-  border: none;
-  color: black;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.tab button:hover {
-  background-color: #ddd;
-}
-
-.tab button.active {
-  background-color: #fff;
-}
-
-.tabcontent {
-  display: none;
-  padding: 20px;
-  border: 1px solid #ccc;
-}
-.tab button.active.bureau {
-  background-color: gray !important;
-  color: white !important;
-  cursor: default !important;
-}
-
-.tab button.active.coach {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.athletes {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-
-</style>
+<?php 
+footer(); 
+?>
 <script>
   function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
+    tabcontent = document.getElementsByClassName("noutabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
     // Supprime la classe "active" de tous les boutons d'onglet
-    tablinks = document.getElementsByClassName("tablinks");
+    tablinks = document.getElementsByClassName("noutablinks");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
@@ -180,7 +124,7 @@ navbar();
     
     // Ajoute la classe "active" spécifique au bouton "Bureau" s'il s'agit de l'onglet "Bureau"
     if (tabName === 'bureau') {
-        document.querySelector(".tablinks.bureau").classList.add("active");
+        document.querySelector(".noutablinks.bureau").classList.add("active");
     }
 }
 

@@ -7,14 +7,14 @@ $jsonData = file_get_contents($dossierJson);
 $data = json_decode($jsonData, true);
 ?>
 <body style='background-color: rgb(32, 47, 74); color:white'>
-    <div class="slider-container">
-        <div class="slider">
+    <div class="accslider-container">
+        <div class="accslider">
             <?php
             $imageFolder = "image/carousel/";
             $images = glob($imageFolder . "*.{jpg,png,gif,JPG,Jpg}", GLOB_BRACE);
 
             foreach ($images as $image) {
-                echo "<img src='$image' alt='Image' class='custom-img'>";
+                echo "<img src='$image' alt='Image' class='acccustom-img'>";
             }
             ?>
         </div>
@@ -47,12 +47,12 @@ $data = json_decode($jsonData, true);
     }
     ?>
   </div>
-</div>
+    </div>
     <script>
         // Fonction pour ajuster la taille des images en fonction de la plus grande image
         // Fonction pour ajuster la taille des images en fonction de la plus petite image
         function adjustImageSizes() {
-            const images = document.querySelectorAll('.custom-img');
+            const images = document.querySelectorAll('.acccustom-img');
             const windowWidth = window.innerWidth;
 
             // Trouver la hauteur minimale à partir des dimensions de la plus petite image
@@ -100,65 +100,19 @@ $data = json_decode($jsonData, true);
         // Fonction pour faire défiler automatiquement les images
         function startSlider() {
             let currentIndex = 0;
-            const images = document.querySelectorAll('.custom-img');
+            const images = document.querySelectorAll('.acccustom-img');
             const numImages = images.length;
 
             setInterval(() => {
                 currentIndex = (currentIndex + 1) % numImages;
                 const translateValue = `translateX(-${currentIndex * 100}%)`;
-                document.querySelector('.slider').style.transform = translateValue;
+                document.querySelector('.accslider').style.transform = translateValue;
             }, 3000); // Change l'image toutes les 3 secondes
         }
 
         // Appeler la fonction pour démarrer le slider automatique
         startSlider();
     </script>
-        <style>
-      *{box-sizing: border-box; -webkit-box-sizing: border-box; }
-html, body { height: 100%; }
-body { margin: 0; font: 16px/1.3 sans-serif; }
-
-.slider-container {
-    position: relative;
-    overflow: hidden;
-    height: auto;
-    max-height: 80%;
-    display: flex; /* Ajout pour centrer verticalement et horizontalement */
-    align-items: center; /* Ajout pour centrer verticalement */
-    justify-content: center; /* Ajout pour centrer horizontalement */
-}
-
-
-        /* SLIDER */
-        .slider-container .slider {
-            height: auto;
-            white-space: nowrap;
-            font-size: 0;
-            transition: 2s;
-            width: 100%; /* Ajustez la largeur comme nécessaire */
-            display: flex;
-            /* Pas besoin d'animation CSS ici */
-        }
-
-        /* SLIDES */
-        .slider-container .slider > * {
-            font-size: 1rem;
-            display: inline-block;
-            white-space: normal;
-            vertical-align: top;
-            background: none 50% no-repeat;
-            background-size: cover;
-            flex: 0 0 100%; /* Chaque slide occupe 100% de la largeur du slider */
-            transition: transform 2s;
-        }
-
-        /* Ancien CSS pour ajuster la taille des images */
-        .custom-img {
-            width: 100%;
-            height: auto;
-        }
-        
-    </style>
 </body>
 
 <?php

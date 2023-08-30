@@ -1,0 +1,1213 @@
+/*-----------------------------------------------------------accueil.php-----------------------------------------------------------*/
+
+.accslider-container {
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    max-height: 80%;
+    display: flex; /* Ajout pour centrer verticalement et horizontalement */
+    align-items: center; /* Ajout pour centrer verticalement */
+    justify-content: center; /* Ajout pour centrer horizontalement */
+}
+
+
+        /* SLIDER */
+        .accslider-container .accslider {
+            height: auto;
+            white-space: nowrap;
+            font-size: 0;
+            transition: 2s;
+            width: 100%; /* Ajustez la largeur comme nécessaire */
+            display: flex;
+            /* Pas besoin d'animation CSS ici */
+        }
+
+        /* SLIDES */
+        .accslider-container .accslider > * {
+            font-size: 1rem;
+            display: inline-block;
+            white-space: normal;
+            vertical-align: top;
+            background: none 50% no-repeat;
+            background-size: cover;
+            flex: 0 0 100%; /* Chaque slide occupe 100% de la largeur du slider */
+            transition: transform 2s;
+        }
+
+        /* Ancien CSS pour ajuster la taille des images */
+        .acccustom-img {
+            width: 100%;
+            height: auto;
+        }
+
+/*-----------------------------------------------------------article.php-----------------------------------------------------------*/
+  @import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
+
+:root {
+  --color: #3c3163;
+  --transition-time: 0.5s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Open Sans';
+  background: #fafafa;
+}
+
+a {
+  color: inherit;
+  text-decoration : none;
+}
+
+.artcontent {
+        min-height: calc(300vh); /* Adjust the value as needed */
+}
+
+
+.artcards-wrapper {
+    display: grid;
+    justify-content: center;
+    align-items: stretch;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 4rem;
+    padding: 4rem;
+    margin: 0 auto;
+    width: 100%; /* Remplacez max-content par 100% */
+    max-width: 1800px; /* Ajoutez une largeur maximale pour les cartes */
+}
+
+
+.artcard {
+    font-family: 'Heebo';
+    --bg-filter-opacity: 0.5;
+    background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);
+    width: 100%;
+    font-size: 1em;
+    height: 100%;
+    color: white;
+    border-radius: 2em;
+    padding: 1em;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 5em -1em black;
+    transition: all, var(--transition-time);
+    position: relative;
+    overflow: hidden;
+    border: 10px solid #ccc;
+    text-decoration: none;
+}
+
+
+.artcard:hover {
+  transform: rotate(0);
+}
+
+.artcard h1 {
+  margin: 50px;
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+
+
+.artcard p {
+  font-size: 0.75em;
+  font-family: 'Open Sans';
+  margin-top: 0.5em;
+  line-height: 2em;
+}
+
+.artcard .arttags {
+  display: flex;
+}
+
+.artcard .arttags .arttag {
+  font-size: 0.75em;
+  background: rgba(255,255,255,0.5);
+  border-radius: 0.3rem;
+  padding: 0 0.5em;
+  margin-right: 0.5em;
+  line-height: 1.5em;
+  transition: all, var(--transition-time);
+}
+
+.artcard:hover .arttags .arttag {
+  background: var(--color);
+  color: white;
+}
+
+.artcard .artdate {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.75em;
+  padding: 1em;
+  line-height: 1em;
+  opacity: .8;
+}
+
+.artcard:before, .artcard:after {
+  content: '';
+  transform: scale(0);
+  transform-origin: top left;
+  border-radius: 50%;
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  z-index: -5;
+  transition: all, var(--transition-time);
+  transition-timing-function: ease-in-out;
+}
+
+.artcard:before {
+  background: #ddd;
+  width: 250%;
+  height: 250%;
+}
+
+.artcard:after {
+  background: white;
+  width: 200%;
+  height: 200%;
+}
+
+.artcard:hover {
+  color: var(--color);
+}
+
+.artcard:hover:before, .artcard:hover:after {
+  transform: scale(1);
+}
+/* MEDIA QUERIES */
+@media screen and (max-width: 1285px) {
+  .artcards-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+  .artcard {
+    max-width: calc(100vw - 4rem);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .cartards-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .artinfo {
+    justify-content: center;
+  }
+  .artcard-grid-space .num {
+    /margin-left: 0;
+    /text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .artcards-wrapper {
+    padding: 4rem 2rem;
+  }
+  .artcard {
+    max-width: calc(100vw - 4rem);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .artinfo {
+    display: block;
+    text-align: center;
+  }
+  .artinfo h1 {
+    margin: 0;
+  }
+}
+
+.artcard-button {
+  font-family: 'Open Sans';
+  font-size: 0.75em;
+  background: transparent; /* Modifier la couleur de fond en transparent */
+  border-radius: 0.3rem;
+  padding: 0.3em 0.5em;
+  margin-right: 0.5em;
+  line-height: 1.5em;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all, var(--transition-time);
+}
+
+
+/*-----------------------------------------------------------calendrier.php-----------------------------------------------------------*/
+.calcalendar-container {
+    width: 100%;
+    margin: 0 auto; /* Centrez le calendrier horizontalement */
+}
+
+.caltable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.caltable-style {
+    border: 2px solid white; /* Bordures blanches et épaisses */
+    width: 14.2857%; /* 100% / 7 = 14.2857% */
+    height: 5vh;
+    text-align: center;
+    font-size: 1.5vw;
+    cursor: pointer;
+    color: white; /* Texte blanc */
+}
+/* Style pour la div enveloppant le calendrier */
+.calcalendar-container {
+width: 100%;
+margin: 0 auto; /* Facultatif : centrez le calendrier horizontalement */
+padding: 0 20px;
+}
+
+
+/* Style pour les cellules du calendrier */
+.calcalendar-cell {
+    position: relative;
+}
+
+/* Style pour les informations sous les cellules */
+.calinfo-cell {
+    font-size: 1.5vw; /* Ajustez la taille de la police des informations */
+    color: white
+    padding-top: 5px;
+}
+
+/* Style pour les boutons de navigation */
+.calcalendar-navigation {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.calcalendar-navigation button {
+    font-size: 16px; /* Ajustez la taille de la police des boutons */
+    padding: 5px 10px;
+    margin: 0 10px; /* Ajustez la marge entre les boutons */
+    cursor: pointer;
+}
+
+/* Style pour centrer le titre du mois et de l'année */
+.calcentered {
+text-align: center;
+color: white;
+font-size: 3vw !important;
+margin-bottom: 20px; /* Espacement sous le titre */
+}
+
+.calbuttonMois {
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.5vw !important;
+    position: relative;
+    background: transparent;
+    color: white;
+    text-transform: uppercase;
+    border: 3px solid white;
+    cursor: pointer;
+    transition: all 0.7s;
+    overflow: hidden;
+    border-radius: 100px;
+  }
+
+  .calbuttonMois:hover {
+    color: #000;
+  }
+  span {
+    transition: all 0.7s;
+    z-index: -1;
+  }
+
+  .calbuttonMois .calfirst {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    background: white;
+  }
+
+  .calbuttonMois:hover .calfirst {
+    top: 0;
+    right: 0;
+  }
+  .calbuttonMois .calsecond {
+    content: "";
+    position: absolute;
+    left: 25%;
+    top: -100%;
+    height: 100%;
+    width: 25%;
+    background: white;
+  }
+
+  .calbuttonMois:hover .calsecond {
+    top: 0;
+    left: 50%;
+  }
+
+  .calbuttonMois .calthird {
+    content: "";
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    top: 100%;
+    width: 25%;
+    background: white;
+  }
+
+  .calbuttonMois:hover .calthird {
+    top: 0;
+    left: 25%;
+  }
+
+  .calbuttonMois .calfourth {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 0;
+    height: 100%;
+    width: 25%;
+    background: white;
+  }
+
+  .calbuttonMois:hover .calfourth {
+    top: 0;
+    left: 0;
+  }
+  
+/*-----------------------------------------------------------creaneaux.php-----------------------------------------------------------*/
+.cretab {
+    overflow: hidden;
+  }
+  
+  .cretab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .cretab button:hover {
+    background-color: #ddd;
+  }
+  
+  .cretab button.active {
+    background-color: #fff;
+  }
+  
+  .cretabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  .cretab button.active.laserrun {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .cretab button.active.natation {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .cretab button.active.escrime {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .cretab button.active.obstacle {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+
+
+/*-----------------------------------------------------------galerie_photo.php-----------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
+
+:root {
+  --color: #3c3163;
+  --transition-time: 0.5s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Open Sans';
+  background: #fafafa;
+}
+
+a {
+  color: inherit;
+  text-decoration : none;
+}
+
+.galcontent {
+        min-height: calc(300vh); /* Adjust the value as needed */
+}
+
+
+.galcards-wrapper {
+    display: grid;
+    justify-content: center;
+    align-items: stretch;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 4rem;
+    padding: 4rem;
+    margin: 0 auto;
+    width: 100%; /* Remplacez max-content par 100% */
+    max-width: 1800px; /* Ajoutez une largeur maximale pour les cartes */
+}
+
+
+.galcard {
+    font-family: 'Heebo';
+    --bg-filter-opacity: 0.5;
+    background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);
+    width: 100%;
+    font-size: 1em;
+    height: 100%;
+    color: white;
+    border-radius: 2em;
+    padding: 1em;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 5em -1em black;
+    transition: all, var(--transition-time);
+    position: relative;
+    overflow: hidden;
+    border: 10px solid #ccc;
+    text-decoration: none;
+}
+
+
+.galcard:hover {
+  transform: rotate(0);
+}
+
+.galcard h1 {
+  margin: 50px;
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+
+
+.galcard p {
+  font-size: 0.75em;
+  font-family: 'Open Sans';
+  margin-top: 0.5em;
+  line-height: 2em;
+}
+
+.galcard .galtags {
+  display: flex;
+}
+
+.galcard .galtags .galtag {
+  font-size: 0.75em;
+  background: rgba(255,255,255,0.5);
+  border-radius: 0.3rem;
+  padding: 0 0.5em;
+  margin-right: 0.5em;
+  line-height: 1.5em;
+  transition: all, var(--transition-time);
+}
+
+.galcard:hover .galtags .galtag {
+  background: var(--color);
+  color: white;
+}
+
+.galcard .galdate {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.75em;
+  padding: 1em;
+  line-height: 1em;
+  opacity: .8;
+}
+
+.galcard:before, .galcard:after {
+  content: '';
+  transform: scale(0);
+  transform-origin: top left;
+  border-radius: 50%;
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  z-index: -5;
+  transition: all, var(--transition-time);
+  transition-timing-function: ease-in-out;
+}
+
+.galcard:before {
+  background: #ddd;
+  width: 250%;
+  height: 250%;
+}
+
+.galcard:after {
+  background: white;
+  width: 200%;
+  height: 200%;
+}
+
+.galcard:hover {
+  color: var(--color);
+}
+
+.galcard:hover:before, .galcard:hover:after {
+  transform: scale(1);
+}
+
+
+
+
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1285px) {
+  .galcards-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+  .galcard {
+    max-width: calc(100vw - 4rem);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .galcards-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .galinfo {
+    justify-content: center;
+  }
+  .galcard-grid-space .galnum {
+    /margin-left: 0;
+    /text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .galcards-wrapper {
+    padding: 4rem 2rem;
+  }
+  .galcard {
+    max-width: calc(100vw - 4rem);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .galinfo {
+    display: block;
+    text-align: center;
+  }
+  .galinfo h1 {
+    margin: 0;
+  }
+}
+
+.galcard-button {
+  font-family: 'Open Sans';
+  font-size: 0.75em;
+  background: transparent; /* Modifier la couleur de fond en transparent */
+  border-radius: 0.3rem;
+  padding: 0.3em 0.5em;
+  margin-right: 0.5em;
+  line-height: 1.5em;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all, var(--transition-time);
+}
+.galfooter {
+    position : bottom;
+}
+
+/*-----------------------------------------------------------nous.php-----------------------------------------------------------*/
+.noutab {
+    overflow: hidden;
+  }
+  
+  
+  .noutab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .noutab button:hover {
+    background-color: #ddd;
+  }
+  
+  .noutab button.active {
+    background-color: #fff;
+  }
+  
+  .noutabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  .noutab button.active.bureau {
+    background-color: gray !important;
+    color: white !important;
+    cursor: default !important;
+  }
+  
+  .noutab button.active.coach {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .noutab button.active.athletes {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+
+/*-----------------------------------------------------------parametres_article.php-----------------------------------------------------------*/
+.pararttab {
+    overflow: hidden;
+  }
+  
+  .pararttab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .pararttab button:hover {
+    background-color: #ddd;
+  }
+  
+  .pararttab button.active {
+    background-color: #fff;
+  }
+  
+  .pararttabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+  
+/*-----------------------------------------------------------parametres_calendrier.php-----------------------------------------------------------*/
+.parcaltab {
+    overflow: hidden;
+  }
+  
+  .parcaltab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .parcaltab button:hover {
+    background-color: #ddd;
+  }
+  
+  .parcaltab button.active {
+    background-color: #fff;
+  }
+  
+  .parcaltabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+/*-----------------------------------------------------------parametres_carousel.php-----------------------------------------------------------*/
+.parcartab {
+    overflow: hidden;
+  }
+  
+  .parcartab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .parcartab button:hover {
+    background-color: #ddd;
+  }
+  
+  .parcartab button.active {
+    background-color: #fff;
+  }
+  
+  .parcartabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+/*-----------------------------------------------------------parametres_galerie.php-----------------------------------------------------------*/
+.pargaltab {
+    overflow: hidden;
+  }
+  
+  .pargaltab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .pargaltab button:hover {
+    background-color: #ddd;
+  }
+  
+  .pargaltab button.active {
+    background-color: #fff;
+  }
+  
+  .pargaltabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+/*-----------------------------------------------------------parametres_partenaire.php-----------------------------------------------------------*/
+.parpartab {
+    overflow: hidden;
+  }
+  
+  .parpartab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .parpartab button:hover {
+    background-color: #ddd;
+  }
+  
+  .parpartab button.active {
+    background-color: #fff;
+  }
+  
+  .parpartabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+/*-----------------------------------------------------------parametres_reseultat.php-----------------------------------------------------------*/
+.parrestab {
+    overflow: hidden;
+  }
+  
+  .parrestab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .parrestab button:hover {
+    background-color: #ddd;
+  }
+  
+  .parrestab button.active {
+    background-color: #fff;
+  }
+  
+  .parrestabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+/*-----------------------------------------------------------parametres_section.php-----------------------------------------------------------*/
+.parsectab {
+    overflow: hidden;
+  }
+  
+  .parsectab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .parsectab button:hover {
+    background-color: #ddd;
+  }
+  
+  .parsectab button.active {
+    background-color: #fff;
+  }
+  
+  .parsectabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+/*-----------------------------------------------------------partenaire.php-----------------------------------------------------------*/
+.parcontent-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.parcenter-button {
+    margin-top: 20px;
+}
+.parcontainerResponsive {
+    display: grid;
+    gap: 10px;
+    justify-items: center;
+}
+
+.paritem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+}
+
+.paritem img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Utilisation des Media Queries pour ajuster le nombre d'images par ligne */
+@media screen and (max-width: 1100px) {
+    .parcontainerResponsive {
+        grid-template-columns: repeat(1,1fr);
+    }
+
+    .parflip-card {
+        width: 50vw;
+        height: 50vw;
+        perspective: 1000px;
+    }
+}
+
+
+@media screen and (min-width: 1100px) {
+    .parcontainerResponsive {
+        grid-template-columns: repeat(auto-fit, minmax(30vw, 1fr));
+    }
+
+    .parflip-card {
+    /*background-color: transparent;*/
+    width: 30vw;
+    height: 30vw;
+    perspective: 1000px;
+    }
+}
+.parflip-card-inner {
+position: relative;
+width: 100%;
+height: 100%;
+text-align: center;
+transition: transform 0.6s;
+transform-style: preserve-3d;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.parflip-card-front img {
+width: 100%;
+height: 100%;
+object-fit: cover; /* Ajuste l'image pour remplir l'espace */
+}
+
+.parflip-card:hover .parflip-card-inner {
+transform: rotateY(180deg);
+}
+
+.parflip-card-front, .parflip-card-back {
+position: absolute;
+width: 100%;
+height: 100%;
+-webkit-backface-visibility: hidden;
+backface-visibility: hidden;
+}
+
+.parflip-card-front {
+background-color: #bbb;
+color: black;
+}
+
+.parflip-card-back {
+background-color: rgb(32, 47, 74);
+color: white;
+transform: rotateY(180deg);
+}
+
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+:root {
+--glow-color: white;
+}
+         
+         
+.parglowing-btn {
+    position: relative;
+    color: var(--glow-color);
+    cursor: pointer;
+    padding: 0.35em 1em;
+    border: 0.15em solid var(--glow-color);
+    border-radius: 0.45em;
+    background: none;
+    perspective: 2em;
+    font-family: "Raleway", sans-serif;
+    font-size: 2em;
+    font-weight: 900;
+    letter-spacing: 1em;
+
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+    animation: border-flicker 2s linear infinite;
+}
+
+.parglowing-txt {
+float: left;
+margin-right: -0.8em;
+-webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+-moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+animation: text-flicker 3s linear infinite;
+}
+
+.parfaulty-letter {
+opacity: 0.5;
+animation: faulty-flicker 2s linear infinite;
+}
+
+.parglowing-btn::before {
+content: "";
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+opacity: 0.7;
+filter: blur(1em);
+transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+background: var(--glow-color);
+pointer-events: none;
+}
+
+.parglowing-btn::after {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+opacity: 0;
+z-index: -1;
+background-color: var(--glow-color);
+box-shadow: 0 0 2em 0.2em var(--glow-color);
+transition: opacity 100ms linear;
+}
+
+.parglowing-btn:hover {
+color: rgb(32, 47, 74);
+text-shadow: none;
+animation: none;
+}
+
+.parglowing-btn:hover .parglowing-txt {
+animation: none;
+}
+
+.parglowing-btn:hover .parfaulty-letter {
+animation: none;
+text-shadow: none;
+opacity: 1;
+}
+
+.parglowing-btn:hover:before {
+filter: blur(1.5em);
+opacity: 1;
+}
+
+.parglowing-btn:hover:after {
+opacity: 1;
+}
+
+@keyframes faulty-flicker {
+0% {
+    opacity: 0.1;
+}
+2% {
+    opacity: 0.1;
+}
+4% {
+    opacity: 0.5;
+}
+19% {
+    opacity: 0.5;
+}
+21% {
+    opacity: 0.1;
+}
+23% {
+    opacity: 1;
+}
+80% {
+    opacity: 0.5;
+}
+83% {
+    opacity: 0.4;
+}
+
+87% {
+    opacity: 1;
+}
+}
+
+@keyframes text-flicker {
+0% {
+    opacity: 0.1;
+}
+
+2% {
+    opacity: 1;
+}
+
+8% {
+    opacity: 0.1;
+}
+
+9% {
+    opacity: 1;
+}
+
+12% {
+    opacity: 0.1;
+}
+20% {
+    opacity: 1;
+}
+25% {
+    opacity: 0.3;
+}
+30% {
+    opacity: 1;
+}
+
+70% {
+    opacity: 0.7;
+}
+72% {
+    opacity: 0.2;
+}
+
+77% {
+    opacity: 0.9;
+}
+100% {
+    opacity: 0.9;
+}
+}
+
+@keyframes border-flicker {
+0% {
+    opacity: 0.1;
+}
+2% {
+    opacity: 1;
+}
+4% {
+    opacity: 0.1;
+}
+
+8% {
+    opacity: 1;
+}
+70% {
+    opacity: 0.7;
+}
+100% {
+    opacity: 1;
+}
+}
+
+@media only screen and (max-width: 1000px) {
+.parglowing-btn{
+    font-size: 1em;
+}
+}
+
+/*-----------------------------------------------------------record.php-----------------------------------------------------------*/
+
+
+/*-----------------------------------------------------------section.php-----------------------------------------------------------*/
+/* Styles pour diviser la page en deux colonnes */
+.seccontainer {
+    display: flex;
+    flex-wrap: wrap; /* Permet à la disposition de passer en une seule colonne sur les petits écrans */
+}
+
+/* Style pour la colonne du PDF principal */
+.secpdf-column {
+    flex: 1;
+    min-width: 300px; /* Largeur minimale de la colonne du PDF principal */
+}
+
+/* Style pour la colonne des articles */
+.secarticles-column {
+    flex: 1;
+    min-width: 300px; /* Largeur minimale de la colonne des articles */
+}
+
+/* Style pour les articles PDF */
+.secarticle {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+/* Media query pour ajuster le style en fonction de la résolution de l'écran */
+@media screen and (max-width: 768px) {
+    .seccontainer {
+        flex-direction: column; /* Passe à une seule colonne sur les petits écrans */
+    }
+    .secpdf-column, .secarticles-column {
+        min-width: 100%; /* Largeur minimale de 100% sur les petits écrans */
+    }
+}      

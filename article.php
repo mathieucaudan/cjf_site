@@ -18,22 +18,22 @@ $jsonData = file_get_contents($dossierJson);
 $data = json_decode($jsonData, true);
 ?>
 
-<main class="content">
+<main class="artcontent">
   <div id="cardsWrapper">
-    <section class="cards-wrapper"  >
+    <section class="artcards-wrapper"  >
       <?php
       foreach ($data as $article) {
-        echo "<div class='card-grid-space'>
-        <a class='card' href='$dossierPdf/" . pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']})'>
+        echo "<div class='artcard-grid-space'>
+        <a class='artcard' href='$dossierPdf/" . pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']})'>
             <div>
                 <h1>{$article['titre']}</h1>
                 <p>{$article['description']}</p>
                 <div>{$article['date']}</div>
-                <div class='tags'>
-                    <div class='tag'>
+                <div class='arttags'>
+                    <div class='arttag'>
                         <form action='download.php' method='post' style='display:inline;'>
                             <input type='hidden' name='pdf' value='" . rawurlencode(pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf") . "'>
-                            <button type='submit' class='card-button' name='download'>Télécharger</button>
+                            <button type='submit' class='artcard-button' name='download'>Télécharger</button>
                         </form>
                     </div>
                 </div>
@@ -73,12 +73,12 @@ a {
   text-decoration : none;
 }
 
-.content {
+.artcontent {
         min-height: calc(300vh); /* Adjust the value as needed */
 }
 
 
-.cards-wrapper {
+.artcards-wrapper {
     display: grid;
     justify-content: center;
     align-items: stretch;
@@ -91,7 +91,7 @@ a {
 }
 
 
-.card {
+.artcard {
     font-family: 'Heebo';
     --bg-filter-opacity: 0.5;
     background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);
@@ -114,29 +114,29 @@ a {
 }
 
 
-.card:hover {
+.artcard:hover {
   transform: rotate(0);
 }
 
-.card h1 {
+.artcard h1 {
   margin: 50px;
   font-size: 1.2em;
   line-height: 1.2em;
 }
 
 
-.card p {
+.artcard p {
   font-size: 0.75em;
   font-family: 'Open Sans';
   margin-top: 0.5em;
   line-height: 2em;
 }
 
-.card .tags {
+.artcard .arttags {
   display: flex;
 }
 
-.card .tags .tag {
+.artcard .arttags .arttag {
   font-size: 0.75em;
   background: rgba(255,255,255,0.5);
   border-radius: 0.3rem;
@@ -146,12 +146,12 @@ a {
   transition: all, var(--transition-time);
 }
 
-.card:hover .tags .tag {
+.artcard:hover .arttags .arttag {
   background: var(--color);
   color: white;
 }
 
-.card .date {
+.artcard .artdate {
   position: absolute;
   top: 0;
   right: 0;
@@ -161,7 +161,7 @@ a {
   opacity: .8;
 }
 
-.card:before, .card:after {
+.artcard:before, .artcard:after {
   content: '';
   transform: scale(0);
   transform-origin: top left;
@@ -174,23 +174,23 @@ a {
   transition-timing-function: ease-in-out;
 }
 
-.card:before {
+.artcard:before {
   background: #ddd;
   width: 250%;
   height: 250%;
 }
 
-.card:after {
+.artcard:after {
   background: white;
   width: 200%;
   height: 200%;
 }
 
-.card:hover {
+.artcard:hover {
   color: var(--color);
 }
 
-.card:hover:before, .card:hover:after {
+.artcard:hover:before, .artcard:hover:after {
   transform: scale(1);
 }
 
@@ -200,47 +200,47 @@ a {
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 1285px) {
-  .cards-wrapper {
+  .artcards-wrapper {
     grid-template-columns: 1fr 1fr;
   }
-  .card {
+  .artcard {
     max-width: calc(100vw - 4rem);
   }
 }
 
 @media screen and (max-width: 900px) {
-  .cards-wrapper {
+  .cartards-wrapper {
     grid-template-columns: 1fr;
   }
-  .info {
+  .artinfo {
     justify-content: center;
   }
-  .card-grid-space .num {
+  .artcard-grid-space .num {
     /margin-left: 0;
     /text-align: center;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .cards-wrapper {
+  .artcards-wrapper {
     padding: 4rem 2rem;
   }
-  .card {
+  .artcard {
     max-width: calc(100vw - 4rem);
   }
 }
 
 @media screen and (max-width: 450px) {
-  .info {
+  .artinfo {
     display: block;
     text-align: center;
   }
-  .info h1 {
+  .artinfo h1 {
     margin: 0;
   }
 }
 
-.card-button {
+.artcard-button {
   font-family: 'Open Sans';
   font-size: 0.75em;
   background: transparent; /* Modifier la couleur de fond en transparent */
@@ -260,7 +260,7 @@ a {
 </style>
 
 
-<div class="footer">
+<div class="artfooter">
   <div style="clear: both">
   <?php
   footer();
@@ -271,7 +271,7 @@ a {
 
 
 <style>
-    .footer {
+    .artfooter {
         position : bottom;
     }
 </style>
@@ -279,9 +279,9 @@ a {
 
 <script>
   function adjustContentHeight() {
-    const cardsWrapper = document.getElementById('cardsWrapper');
-    const content = document.querySelector('.content');
-    const cards = cardsWrapper.querySelectorAll('.card');
+    const cardsWrapper = document.getElementById('artcardsWrapper');
+    const content = document.querySelector('.artcontent');
+    const cards = cardsWrapper.querySelectorAll('.artcard');
 
     let totalHeight = 0;
     cards.forEach(card => {
@@ -300,7 +300,7 @@ a {
     const minHeight = Math.ceil(cards.length / articlesPerRow) * totalHeight / articlesPerRow;
     content.style.minHeight = minHeight + 'px';
 
-    console.log('Nouvelle hauteur de .content:', minHeight + 'px');
+    console.log('Nouvelle hauteur de .artcontent:', minHeight + 'px');
   }
 
   document.addEventListener('DOMContentLoaded', adjustContentHeight);

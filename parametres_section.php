@@ -5,10 +5,10 @@ navbar();
 echo "<body style='background-color: rgb(32, 47, 74);'>";
 ?>
 
-<div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
+<div class="parsectab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
 <body onload="openTab(event, 'ajoutArticleSection')">
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutArticleSection')">Ajouter un articles de section</button>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppArticleSection')">Supprimer les articles de section</button>
+  <button class="parsectablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutArticleSection')">Ajouter un articles de section</button>
+  <button class="parsectablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppArticleSection')">Supprimer les articles de section</button>
 </body>
 </center></div>
 <div id="message">
@@ -19,14 +19,14 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
     }
     ?>
 </div>
-<div id="ajoutArticleSection" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="ajoutArticleSection" class="parsectabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
     ajoutArticleSection(); 
     ?>
   </table>
 </div>
-<div id="suppArticleSection" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="suppArticleSection" class="parsectabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
     suppArticleSection(); 
@@ -38,41 +38,14 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 footer();
 echo "</body>";
 ?>
-<style>
-    .tab {
-  overflow: hidden;
-}
-
-.tab button {
-  background-color: #ccc;
-  border: none;
-  color: black;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.tab button:hover {
-  background-color: #ddd;
-}
-
-.tab button.active {
-  background-color: #fff;
-}
-
-.tabcontent {
-  display: none;
-  padding: 20px;
-  border: 1px solid #ccc;
-}
-</style>
 <script>
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
+  tabcontent = document.getElementsByClassName("parsectabcontent");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
-  tablinks = document.getElementsByClassName("tablinks");
+  tablinks = document.getElementsByClassName("parsectablinks");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }

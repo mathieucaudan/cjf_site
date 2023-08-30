@@ -6,7 +6,7 @@ navbar();
 
 <body style='background-color: rgb(32, 47, 74); color:white;'>
     <center><h1>SECTION SPORTIVE COLLEGE LE BOCAGE</h1></center>
-    <div class="container">
+    <div class="seccontainer">
         <div class="pdf-column">
             <center><h2>Présentation de la section</h2></center>
             <div style='margin-left:3%; margin-right:3%'>
@@ -61,7 +61,7 @@ navbar();
             <p style="text-align: center;">Une liste compl&eacute;mentaire sera communiqu&eacute;e</p>
             <p><br></p>
         </div>
-        <div class="articles-column">
+        <div class="secarticles-column">
             <?php
             // Lire le fichier JSON
             $articles = json_decode(file_get_contents('./section/articles.json'), true);
@@ -71,7 +71,7 @@ navbar();
                 $titre = $article['titre'];
                 $pdf = $article['pdf'];
                 echo "<center><h2>$titre</h2></center>";
-                echo "<div class='article'>";
+                echo "<div class='secarticle'>";
                 echo "<object data='./section/articles/$pdf' type='application/pdf' width='100%' height='100%'></object>";
                 echo "</div>";
             }
@@ -89,51 +89,6 @@ footer();
 echo "</body>";
 ?>
 
-
-
-<style>
-        /* Styles pour diviser la page en deux colonnes */
-        .container {
-            display: flex;
-            flex-wrap: wrap; /* Permet à la disposition de passer en une seule colonne sur les petits écrans */
-        }
-
-        /* Style pour la colonne du PDF principal */
-        .pdf-column {
-            flex: 1;
-            min-width: 300px; /* Largeur minimale de la colonne du PDF principal */
-        }
-
-        /* Style pour la colonne des articles */
-        .articles-column {
-            flex: 1;
-            min-width: 300px; /* Largeur minimale de la colonne des articles */
-        }
-
-        /* Style pour les articles PDF */
-        .article {
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-        }
-
-        /* Media query pour ajuster le style en fonction de la résolution de l'écran */
-        @media screen and (max-width: 768px) {
-            .container {
-                flex-direction: column; /* Passe à une seule colonne sur les petits écrans */
-            }
-            .pdf-column, .articles-column {
-                min-width: 100%; /* Largeur minimale de 100% sur les petits écrans */
-            }
-        }
-
-<<<<<<< HEAD
-
-        
-=======
->>>>>>> c4ab36466f082ec7063eaa4f6456072787bc0123
-    </style>
 
 
 
