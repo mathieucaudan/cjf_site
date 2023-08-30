@@ -20,12 +20,19 @@ navbar();
             <div style='display:flex' >
                 <img src="./section/section_image/label.png"  width='280px' height='280px'>
                 <div class='text; w3-center'>
-                    <h2><strong>SECTION SPORTIVE</strong></h2></br>
-                    <h2><strong>PENTATHLON MODERNE</strong></h2>
+                    <h1><strong>SECTION SPORTIVE</strong></h1></br>
+                    <h1><strong>PENTATHLON MODERNE</strong></h1>
                 </div>
             </div>
-            <div style='margin-left:3%'  style='display:flex'>
-                <img src="./section/section_image/course.png">
+            <div style='display:flex'>
+                <img style='margin-left:3%; margin-right:3%' src="./section/section_image/course.png"  height='280px'>
+                <div class='text; w3-center' style='line-height : 20px;'>
+                    <h2>COLLEGE LE BOCAGE</h2></br>
+                    <h3>SECTION UNIQUE EN FRANCE</h3></br>
+                    <h3>5 SPORTS PRATIQUES</h3></br>
+                    <p>2 séances d'entrainement pas semaine intégrées a l'emploi du temps</p></br>
+                    <h3>COMPETITIONS SCOLAIRES ET FEDERALES</h3></br>
+                </div>
             </div></br>
             <p style="text-align: center;">La journ&eacute;e de d&eacute;couverte du Laser Run t&apos;a plu ?</p>
             <p style="text-align: center;"><strong>REJOINDRE LA SEULE SECTION SPORTIVE&nbsp;</strong></p>
