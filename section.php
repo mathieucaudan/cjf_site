@@ -26,7 +26,7 @@ navbar();
             </div>
             <div style='display:flex'>
                 <img style='margin-left:3%; margin-right:3%' src="./section/section_image/course.png"  height='280px'>
-                <div class='text; w3-center' style='line-height : 20px;'>
+                <div class='text; w3-center' style='line-height : 12px;'>
                     <h2>COLLEGE LE BOCAGE</h2></br>
                     <h3>SECTION UNIQUE EN FRANCE</h3></br>
                     <h3>5 SPORTS PRATIQUES</h3></br>
@@ -85,11 +85,14 @@ navbar();
 
       
 <?php
+<<<<<<< HE
+=======
 footer();
 echo "</body>";
 ?>
 
 
+>>>>>>> c4ab36466f082ec7063eaa4f6456072787bc0123
 
 <style>
         /* Styles pour diviser la page en deux colonnes */

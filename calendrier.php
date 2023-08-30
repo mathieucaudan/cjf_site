@@ -119,18 +119,21 @@ navbar();
             var row = table.insertRow();
             for (var j = 0; j < 7; j++) {
                 var cell = row.insertCell();
-                if (day <= 0 || day > lastDayOfMonth.getDate()) {
-                    // Jours du mois précédent ou suivant
-                    cell.innerHTML = "";
-                } else {
-                    // Jours du mois actuel avec informations sous le numéro de jour
-                    var yearMonthKey = year + '-' + (month + 1).toString().padStart(2, '0');
-                    var dayInfo = calendarData[yearMonthKey] && calendarData[yearMonthKey][day] ? calendarData[yearMonthKey][day] : '';
-                    cell.innerHTML = day + "<div class='info-cell'>" + dayInfo + "</div>";
-                }
-                day++;
+                cell.classList.add("bigger-cell"); // Ajoutez la classe pour agrandir les cellules
+
+            if (day <= 0 || day > lastDayOfMonth.getDate()) {
+                // Jours du mois précédent ou suivant
+                cell.innerHTML = "";
+            } else {
+                // Jours du mois actuel avec informations sous le numéro de jour
+                var yearMonthKey = year + '-' + (month + 1).toString().padStart(2, '0');
+                var dayInfo = calendarData[yearMonthKey] && calendarData[yearMonthKey][day] ? calendarData[yearMonthKey][day] : '';
+                cell.innerHTML = day + "<div class='info-cell'>" + dayInfo + "</div>";
             }
+            day++;
         }
+    }
+
     }
 
     // Appelez la fonction de mise à jour du calendrier au chargement de la page
@@ -140,6 +143,7 @@ navbar();
 </script>
 
 <style>
+
     .calendar-container {
         width: 100%;
         margin: 0 auto; /* Centrez le calendrier horizontalement */
@@ -153,7 +157,9 @@ navbar();
     th, td {
         border: 2px solid white; /* Bordures blanches et épaisses */
         width: 14.2857%; /* 100% / 7 = 14.2857% */
+        height: 5vh;
         text-align: center;
+        font-size: 1.5vw;
         cursor: pointer;
         color: white; /* Texte blanc */
     }
@@ -172,7 +178,7 @@ navbar();
 
     /* Style pour les informations sous les cellules */
     .info-cell {
-        font-size: 14px; /* Ajustez la taille de la police des informations */
+        font-size: 1.5vw; /* Ajustez la taille de la police des informations */
         color: white
         padding-top: 5px;
     }
@@ -194,13 +200,14 @@ navbar();
 .centered {
     text-align: center;
     color: white;
+    font-size: 3vw !important;
     margin-bottom: 20px; /* Espacement sous le titre */
 }
 
 .buttonMois {
         border: none;
         padding: 20px 40px;
-        font-size: 44px;
+        font-size: 1.5vw !important;
         position: relative;
         background: transparent;
         color: white;
