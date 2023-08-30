@@ -17,13 +17,13 @@ navbar();
 
 <center><div id="laserrun" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Laser Run</h3>
-  <table>
+  <table class='rectable'>
   <?php
         $jsonData = file_get_contents('record.json');
 
         $data = json_decode($jsonData, true);
 
-        echo '<table border="1">';
+        echo '<table class="rectable" border="1">';
         echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Temps</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Laser Run'] as $participant) {
@@ -43,13 +43,13 @@ navbar();
 
 <div id="triathlé" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Triathlé</h3>
-  <table>
+  <table class='rectable'>
   <?php
         $jsonData = file_get_contents('record.json');
 
         $data = json_decode($jsonData, true);
 
-        echo '<table border="1">';
+        echo '<table class="rectable" border="1">';
         echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Triathlé'] as $participant) {
@@ -70,13 +70,13 @@ navbar();
 
 <div id="tetrathlon" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <h3>Tetrathlon</h3>
-  <table>
+  <table class='rectable'>
   <?php
         $jsonData = file_get_contents('record.json');
 
         $data = json_decode($jsonData, true);
 
-        echo '<table border="1">';
+        echo '<table class="rectable" border="1">';
         echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Tetrathlon'] as $participant) {
@@ -97,13 +97,13 @@ navbar();
 
 <div id="pentathlon" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Pentathlon</h3>
-  <table>
+  <table class='rectable'>
   <?php
         $jsonData = file_get_contents('record.json');
 
         $data = json_decode($jsonData, true);
 
-        echo '<table border="1">';
+        echo '<table class="rectable" border="1">';
         echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Pentathlon'] as $participant) {
@@ -124,117 +124,6 @@ navbar();
 footer();
 echo "</body>";
 ?>
-<style>
-  table {
-    margin: 1rem auto;
-    text-align: center;
-    width: 100%;
-    max-width: 100%;
-    border-collapse: collapse;
-    border: 1px solid;
-  }
-
-  table th, table td {
-    padding: 8px 0;
-  }
-
-  thead {
-    background-color: rgb(32, 47, 74);
-    color: white;
-  }
-
-  tbody tr:nth-child(even) {
-    background-color: white;
-    color: rgb(32, 47, 74);
-  }
-
-  @media only screen and (max-width: 800px) {
-    table,
-    thead,
-    tbody,
-    th,
-    td,
-    tr {
-      display: block;
-    }
-
-    thead tr {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-    }
-
-    td {
-      position: relative;
-      padding-left: 50%;
-      white-space: normal;
-      text-align: left;
-    }
-
-    td:before {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      width: 45%;
-      padding-right: 10px;
-      font-weight: bold;
-      white-space: nowrap;
-      text-align: left;
-      content: attr(data-title);
-    }
-  }
-
-  .rectab {
-    overflow: hidden;
-  }
-
-  .rectab button {
-    background-color: #ccc;
-    border: none;
-    color: black;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-
-  .rectab button:hover {
-    background-color: #ddd;
-  }
-
-  .rectab button.active {
-    background-color: #fff;
-  }
-
-  .rectabcontent {
-    display: none;
-    padding: 20px;
-    border: 1px solid #ccc;
-  }
-
-  /* Cacher les bordures pour les cellules vides */
-  table td:empty {
-    border: none;
-  }
-  .rectab button.active.laserrun {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.rectab button.active.triathlé {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.rectab button.active.tetrathlon {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.rectab button.active.pentathlon {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-</style>
 
 <script>
   function openTab(evt, tabName) {

@@ -31,7 +31,7 @@ navbar();
     </div>
     <div class="w3-container w3-quarter w3-center">
     <h1>Catégories d'âge pour la saison <?php echo($saison); ?></h1> 
-    <table>
+    <table class='cattable'>
       <tr>
         <th>Catégorie d'âge</th>
         <th>Âge requis</th>
