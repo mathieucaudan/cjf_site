@@ -1,5 +1,3 @@
 a faire:
 	image de qualité(organigramme)
 	inscription
-modif style: 
-	enlever le soulignage des articles 
