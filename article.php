@@ -3,13 +3,7 @@ include 'fonction.php';
 entete();
 echo "<body style='background-color: rgb(32, 47, 74);'>";
 navbar();
-?>
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<?php
 $dossierPdf = './article/article_pdf';
 $dossierImage = './article/article_image';
 $dossierJson = './article/article_json/article.json';
@@ -48,9 +42,7 @@ $data = json_decode($jsonData, true);
 
 
 <style>
-
-
-  @import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
+ @import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
 
 :root {
   --color: #3c3163;
@@ -77,7 +69,6 @@ a {
         min-height: calc(300vh); /* Adjust the value as needed */
 }
 
-
 .artcards-wrapper {
     display: grid;
     justify-content: center;
@@ -89,7 +80,6 @@ a {
     width: 100%; /* Remplacez max-content par 100% */
     max-width: 1800px; /* Ajoutez une largeur maximale pour les cartes */
 }
-
 
 .artcard {
     font-family: 'Heebo';
@@ -113,7 +103,6 @@ a {
     text-decoration: none;
 }
 
-
 .artcard:hover {
   transform: rotate(0);
 }
@@ -123,7 +112,6 @@ a {
   font-size: 1.2em;
   line-height: 1.2em;
 }
-
 
 .artcard p {
   font-size: 0.75em;
@@ -194,10 +182,6 @@ a {
   transform: scale(1);
 }
 
-
-
-
-
 /* MEDIA QUERIES */
 @media screen and (max-width: 1285px) {
   .artcards-wrapper {
@@ -254,9 +238,9 @@ a {
   transition: all, var(--transition-time);
 }
 
-
-
-
+.artfooter {
+        position : bottom;
+    }
 </style>
 
 
@@ -267,45 +251,6 @@ a {
   ?>
     </div>
 </div>
-  
-
-
-<style>
-    .artfooter {
-        position : bottom;
-    }
-</style>
-
-
-<script>
-  function adjustContentHeight() {
-    const cardsWrapper = document.getElementById('artcardsWrapper');
-    const content = document.querySelector('.artcontent');
-    const cards = cardsWrapper.querySelectorAll('.artcard');
-
-    let totalHeight = 0;
-    cards.forEach(card => {
-      totalHeight += card.clientHeight;
-    });
-
-    // Déterminez le nombre d'articles par ligne en fonction de la largeur de l'écran
-    let articlesPerRow = 3; // Par défaut, 3 articles par ligne
-    if (window.innerWidth <= 1285 && window.innerWidth > 900) {
-      articlesPerRow = 2; // 2 articles par ligne entre 900px et 1285px
-    } else if (window.innerWidth <= 900) {
-      articlesPerRow = 1; // 1 article par ligne en dessous de 900px
-    }
-
-    // Calculez la hauteur minimale de la section de contenu en fonction du nombre d'articles par ligne
-    const minHeight = Math.ceil(cards.length / articlesPerRow) * totalHeight / articlesPerRow;
-    content.style.minHeight = minHeight + 'px';
-
-    console.log('Nouvelle hauteur de .artcontent:', minHeight + 'px');
-  }
-
-  document.addEventListener('DOMContentLoaded', adjustContentHeight);
-  window.addEventListener('resize', adjustContentHeight);
-</script>
 
 
 
