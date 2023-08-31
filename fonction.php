@@ -213,12 +213,7 @@ function ajoutGalerie() {
     
         // Convertit les données en format JSON sans échapper les barres obliques
         file_put_contents($jsonFile, json_encode($donneesExistantes, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
-    
-        $message = "Galerie ajoutée!";
-    }
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
+
     }
     // Affiche le formulaire
     echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
@@ -274,8 +269,6 @@ function suppGalerie() {
 
     echo "</div>";
 
-    // Déclaration de la variable de message
-    $message = "";
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
@@ -285,41 +278,25 @@ function suppGalerie() {
         if (file_exists($cheminImages)) {
             // Suppression du fichier image associé
             if (unlink($cheminImages)) {
-                        $cheminArticleJSON = $dossierPartage . 'galerie_json/data.json';
-                        if (file_exists($cheminArticleJSON)) {
-                            $articlesJson = file_get_contents($cheminArticleJSON);
-                            $articles = json_decode($articlesJson, true);
-        
-                            foreach ($articles as $key => $article) {
-                                if ($article['path_image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
-                                    unset($articles[$key]);
-                                    break;
-                                }
-                            }
-        
-                            file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
-        
-                            $message = "Article et fichiers associés supprimés avec succès !";
-                        } else {
-                            $message = "Erreur lors de la lecture du fichier article.json.";
-                        
-                    }
-                    } else {
-                        $message = "Erreur lors de la suppression des fichiers images.";
-                    }
-                
-        } else {
-            $message = "L'article n'existe pas.";
-        }
-    }
+                $cheminArticleJSON = $dossierPartage . 'galerie_json/data.json';
+                if (file_exists($cheminArticleJSON)) {
+                    $articlesJson = file_get_contents($cheminArticleJSON);
+                    $articles = json_decode($articlesJson, true);
 
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
-    }
+                    foreach ($articles as $key => $article) {
+                        if ($article['path_image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
+                            unset($articles[$key]);
+                            break;
+                        }
+                    }
 
+                    file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
+
+                } 
+            }                
+        } 
+    }
     echo "</div>";
-    
     }
 function suppArticle() {
     $dossierPartage = './article/';
@@ -345,15 +322,8 @@ function suppArticle() {
             echo "</li>";
         }
         echo "</ul>";
-    } else {
-        echo "<p class='w3-center'>Aucun artcile partagé.</p>";
     }
-
     echo "</div>";
-
-    // Déclaration de la variable de message
-    $message = "";
-
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
         $nomFichierPDF = pathinfo($fichierAvecExtension, PATHINFO_FILENAME); // Obtient le nom de fichier pdf sans l'extension
@@ -381,28 +351,13 @@ function suppArticle() {
                             }
         
                             file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
-        
-                            $message = "Article et fichiers associés supprimés avec succès !";
-                        } else {
-                            $message = "Erreur lors de la lecture du fichier article.json.";
-                        }
-                    } else {
-                        $message = "Erreur lors de la suppression des fichiers images.";
+
+                        } 
                     }
                 }
-            } else {
-                $message = "Erreur lors de la suppression du fichier PDF.";
-            }
-        } else {
-            $message = "L'article n'existe pas.";
+            } 
         }
     }
-
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
-    }
-
     echo "</div>";
     }
 function suppImageCarousel() {
@@ -432,12 +387,8 @@ function suppImageCarousel() {
             echo "</li>";
         }
         echo "</ul>";
-    } else {
-        $message = "Aucune image partagée";
     }
-
     echo "</div>";
-
     // Supprimer le fichier si l'action 'supprimer' est spécifiée
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichier = $_GET['fichier'];
@@ -445,23 +396,11 @@ function suppImageCarousel() {
 
         if (file_exists($cheminFichier)) {
             if (unlink($cheminFichier)) {
-                $message = "Image supprimée avec succès !";
-            } else {
-                $message = "Erreur lors de la suppression de l'image.";
             }
-        } else {
-            $message = "L'image n'existe pas.";
         }
     }
-    
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
-    }
-    
     echo "</div>";
     }
-    
 function changeRecord() {
     $disciplineChosen = false;
     $formSubmitted = false; // Variable pour vérifier si le formulaire a été soumis
@@ -680,7 +619,6 @@ function ajoutArticle() {
     $dossierPdf = './article/article_pdf/';
     $dossierImage = './article/article_image/';
     $dossierJson = './article/article_json/article.json';
-    $message = "";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['img'])) {
         // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
@@ -708,14 +646,7 @@ function ajoutArticle() {
         $cheminFichier = $dossierPdf . $nouveauNomFichier;
         $cheminImage = $dossierImage . $nouveauNomImage;
 
-        if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
-            $message = "Article partagé avec succès !";
-        } else {
-            $message = "Erreur lors du partage de l'article.";
-        }
-
-        // Sauvegardez les informations dans le fichier JSON si le partage a réussi
-        if (!empty($message)) {
+        if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)){
             $data = json_decode(file_get_contents($dossierJson), true);
             $titre = $_POST['titre'];
             $image = $nouveauNomImage; // Utilisez le nouveau nom de l'image
@@ -732,15 +663,10 @@ function ajoutArticle() {
 
             $data[] = $nouvelArticle;
 
-            $fileContent = json_encode($data, JSON_PRETTY_PRINT);
-            file_put_contents($dossierJson, $fileContent);
+            file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
         }
     }
 
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
-    }
 
     echo "
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
@@ -772,7 +698,6 @@ function ajoutArticle() {
 
 function ajoutImageCarousel() {
     $dossierPartage = './image/carousel/';
-    $message = "";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier'])) {
         $fichierTemporaire = $_FILES['fichier']['tmp_name'];
@@ -787,16 +712,7 @@ function ajoutImageCarousel() {
 
         // Déplacer le fichier vers le dossier de destination avec le nouveau nom
         $cheminFichier = $dossierPartage . $nouveauNomFichier;
-        if (move_uploaded_file($fichierTemporaire, $cheminFichier)) {
-            $message = "Image partagé avec succès !";
-        } else {
-            $message = "Erreur lors du partage de l'image.";
-        }
-    }
-
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
+        move_uploaded_file($fichierTemporaire, $cheminFichier);
     }
 
     echo "
@@ -819,7 +735,6 @@ function ajoutImageCarousel() {
 function ajoutPartenaire() {
     $dossierImage = './partenaires/partenaires_images/';
     $dossierJson = './partenaires/partenaires_json/partenaires.json';
-    $message = "";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
         // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
@@ -836,13 +751,6 @@ function ajoutPartenaire() {
         // Déplacer l'image  vers le dossier de destination avec le nouveau nom
         $cheminImage = $dossierImage . $nouveauNomImage;
         if (move_uploaded_file($imageTemporaire, $cheminImage)) {
-            $message = "Partenaire partagé avec succès !";
-        } else {
-            $message = "Erreur lors du partage du fichier : " . $_FILES['image']['error'];
-        }
-
-        // Sauvegardez les informations dans le fichier JSON si le partage a réussi
-        if (!empty($message)) {
             $data = json_decode(file_get_contents($dossierJson), true);
             $titre = $_POST['titre'];
             $image = $nouveauNomImage; // Utilisez le nouveau nom de l'image
@@ -856,17 +764,9 @@ function ajoutPartenaire() {
             );
 
             $data[] = $nouveauPartenaire;
-
-            $fileContent = json_encode($data, JSON_PRETTY_PRINT);
-            file_put_contents($dossierJson, $fileContent);
+            file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
         }
     }
-
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
-    }
-
     echo "
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
         <div class='w3-content'>
@@ -913,14 +813,12 @@ function suppPartenaire() {
             echo "</li>";
         }
         echo "</ul>";
-    } else {
-        $message = "Aucun fichier partagé.";
-    }
+    } 
 
     echo "</div>";
 
     // Déclaration de la variable de message
-    $message = "";
+
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
@@ -936,7 +834,6 @@ function suppPartenaire() {
                 if (file_exists($cheminArticleJSON)) {
                     $articlesJson = file_get_contents($cheminArticleJSON);
                     $articles = json_decode($articlesJson, true);
-
                     foreach ($articles as $key => $article) {
                         if ($article['image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
                             unset($articles[$key]);
@@ -946,21 +843,10 @@ function suppPartenaire() {
 
                     file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
 
-                    $message = "Partenaire supprimé avec succès !";
-                } else {
-                    $message = "Erreur lors de la lecture du fichier partenaires.json.";
-                }
-            } else {
-                $message = "Erreur lors de la suppression du fichier image.";
-            }
-        } else {
-            $message = "Le fichier n'existe pas.";
-        }
-    }
-
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
+                   
+                } 
+            } 
+        } 
     }
     }
     
@@ -988,24 +874,10 @@ function ajoutArticleSection() {
                 );
 
                 $data[] = $nouvelArticle;
-
-                $fileContent = json_encode($data, JSON_PRETTY_PRINT);
-                file_put_contents($dossierJson, $fileContent);
-
-                $message = "Article ajouté avec succès.";
-            } else {
-                $message = "Erreur lors du téléchargement du fichier PDF.";
+                file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
             }
-        } else {
-            $message = "Veuillez sélectionner un fichier PDF valide.";
         }
     }
-
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
-    }
-
     echo "
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
         <div class='w3-content'>
@@ -1022,9 +894,6 @@ function ajoutArticleSection() {
     
 function suppArticleSection() {
     $dossierSection = './section/';
-
-    // Déclaration de la variable de message
-    $message = "";
 
     echo "
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
@@ -1047,10 +916,7 @@ function suppArticleSection() {
             echo "</li>";
         }
         echo "</ul>";
-    } else {
-        $message = "Aucun article dans la section.";
     }
-
     echo "</div>";
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
@@ -1078,28 +944,14 @@ function suppArticleSection() {
                     $articles = array_values($articles);
 
                     file_put_contents($cheminArticlesJSON, json_encode($articles, JSON_PRETTY_PRINT));
-
-                    $message = "Article supprimé avec succès !";
-                } else {
-                    $message = "Erreur lors de la lecture du fichier articles.json.";
                 }
-            } else {
-                $message = "Erreur lors de la suppression de l'article.";
             }
-        } else {
-            $message = "L'article n'existe pas.";
         }
-    }
-
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
     }
     }
     
 function ajoutEvenement() {
     $dossierJson = './calendrier.json';
-    $message = "";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Récupérer les données du formulaire
@@ -1125,20 +977,11 @@ function ajoutEvenement() {
         }
 
         $data[$dateCle][$jour] = $nouvelEvenement;
-
-        // Sauvegarder le tableau mis à jour dans le fichier JSON
-        $fileContent = json_encode($data, JSON_PRETTY_PRINT);
-        if (file_put_contents($dossierJson, $fileContent)) {
-            $message = "Événement ajouté avec succès.";
-        } else {
-            $message = "Erreur lors de l'ajout de l'événement.";
-        }
+        file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
+          
+       
     }
 
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
-    }
 
     echo "
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
@@ -1155,7 +998,7 @@ function ajoutEvenement() {
     }
 function ajoutResultat() {
     $dossierJson = './resultat.json';
-    $message = "";
+
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['description'])) {
         // Récupérer les données du formulaire
@@ -1174,15 +1017,7 @@ function ajoutResultat() {
         
 
         // Sauvegarder le tableau mis à jour dans le fichier JSON
-        $fileContent = json_encode($data, JSON_PRETTY_PRINT);
-        if (file_put_contents($dossierJson, $fileContent)) {
-            $message = "Résultat ajouté avec succès.";
-        } else {
-            $message = "Erreur lors de l'ajout du résultat.";
-        }
-    }
-
-    if (!empty($message)) {
+        if (file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT))) {
         $data = json_decode(file_get_contents($dossierJson), true);
         $titre = $_POST['titre'];
         $description = $_POST['description'];
@@ -1196,15 +1031,8 @@ function ajoutResultat() {
         );
 
         $data[] = $nouvelArticle;
-
-        $fileContent = json_encode($data, JSON_PRETTY_PRINT);
-        if (file_put_contents($dossierJson, $fileContent)) {
-            $message = "Résultat ajouté avec succès.";
-        } else {
-            $message = "Erreur lors de l'ajout du résultat.";
-        }
     }
-
+    }
     echo "
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
         <div class='w3-content'>
@@ -1221,14 +1049,9 @@ function ajoutResultat() {
 
             <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
         </form></div></div>";
-         // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
-    }
     }
 function suppResultat(){
     $dossierJson = './resultat.json';
-    $message = "";
     
     // Charger le contenu actuel du fichier JSON
     $data = [];
@@ -1250,18 +1073,8 @@ function suppResultat(){
                     }
                 }
                 file_put_contents($dossierJson, json_encode(array_values($articles)));
-
-                $message = "Resultat supprimé avec succès !";
-            } else {
-                $message = "Erreur lors de la lecture du fichier article.json.";
             }
-        } else {
-            $message = "Le résultat n'existe pas.";
         }}
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
-    }
  
     
     if (empty($data)) {
@@ -1282,7 +1095,6 @@ function suppResultat(){
 
 function suppEvenement(){
     $dossierJson = './resultat.json';
-    $message = "";
     
     // Charger le contenu actuel du fichier JSON
     $data = [];
@@ -1304,18 +1116,8 @@ function suppEvenement(){
                     }
                 }
                 file_put_contents($dossierJson, json_encode(array_values($articles)));
-
-                $message = "Resultat supprimé avec succès !";
-            } else {
-                $message = "Erreur lors de la lecture du fichier article.json.";
             }
-        } else {
-            $message = "Le résultat n'existe pas.";
         }}
-    // Affichage du message
-    if (!empty($message)) {
-        $_SESSION['message'] = $message;
-    }
  
     
     if (empty($data)) {
