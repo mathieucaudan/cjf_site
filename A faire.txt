@@ -1,4 +1,4 @@
 a faire:
 	image de qualité(organigramme)
 	inscription
-	regler les pb css de class pour les tableau sur record, calendrier et inscription
+	regler les pb: article pdf

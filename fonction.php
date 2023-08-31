@@ -1031,6 +1031,7 @@ function ajoutResultat() {
         );
 
         $data[] = $nouvelArticle;
+        file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
     }
     }
     echo "
@@ -1050,6 +1051,7 @@ function ajoutResultat() {
             <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
         </form></div></div>";
     }
+
 function suppResultat(){
     $dossierJson = './resultat.json';
     
@@ -1076,21 +1078,24 @@ function suppResultat(){
             }
         }}
  
-    
+    echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+            <div class='w3-content'>";
     if (empty($data)) {
-        echo "Aucun élément à afficher.";
+        echo "<h2 class='w3-center'>AUCUN RESULTAT ENREGISTRE</h2>";
     } else {
+        echo "<h2 class='w3-center'>Liste des articles partagés :</h2>";
+        echo "<ul class='w3-ul'>";
         foreach ($data as $key => $article) {
-            echo "<div>";
-            echo $article['titre'];
+            echo "<li class='w3-padding'><span class='w3-large'>".$article['titre']."</span>";
             $resultat=$article['titre'];
-            echo "<form method='POST'>";
             echo "<input type='hidden' name='index' value='$key'>"; // Champ caché pour l'index
             echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$resultat'>Supprimer</a>";
-            echo "</form>";
-            echo "</div>";
+            echo "</li>";
         }
-    }    
+        echo "</ul>";
+    } 
+    echo"</div>
+    </div>";   
     }
 
 function suppEvenement(){
