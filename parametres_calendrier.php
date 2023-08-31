@@ -1,5 +1,5 @@
 <link rel='stylesheet' href='style/parametres.css'> <!-- Ajout de la référence au fichier CSS -->
-
+<script src='script/parametres.js'></script> <!-- Ajout de la référence au fichier JS -->
 
 <?php
 include 'fonction.php';
@@ -8,9 +8,9 @@ navbar();
 echo "<body style='background-color: rgb(32, 47, 74);'>";
 ?>
 
-<div class="parcaltab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
+<div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
 <body onload="openTab(event, 'ajoutEvenement')">
-  <button class="parcaltablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutEvenement')">Ajouter Un événement dans le calendrier</button>
+  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutEvenement')">Ajouter un événement dans le calendrier</button>
 </body>
 </center></div>
 <div id="message">
@@ -21,7 +21,7 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
     }
     ?>
 </div>
-<div id="ajoutEvenement" class="parcaltabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="ajoutEvenement" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <table>
   <?php
     ajoutEvenement(); 
@@ -29,31 +29,8 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
   </table>
 </div>
 
+
 <?php
 footer();
 echo "</body>";
 ?>
-<script>
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("parcaltabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("parcaltablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-
-  // Vérifiez si un message de session est défini
-  var messageDiv = document.getElementById("message");
-  var message = "<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : ''; ?>";
-  if (message !== "") {
-    messageDiv.innerHTML = "<h1 style='color: green'><center>" + message + "</center></h1>";
-    // Effacez le message pour qu'il n'apparaisse qu'une fois
-    <?php unset($_SESSION['message']); ?>
-  }
-}
-</script>

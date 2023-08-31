@@ -17,8 +17,6 @@ if (!empty($_POST['identifiant']) and !empty($_POST['password'])) {
     }
   }
   header('Location: connexion.php');
-  echo '<script>alert("Identifiants invalides.");</script>';
-
 }
 ?>
 

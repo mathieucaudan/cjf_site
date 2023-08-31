@@ -43,13 +43,7 @@ navbar();
             <span class='parglowing-txt'>NOUS <span class='parfaulty-letter'>REJOIN</span>DRE</span>
         </button>
     </a>
-</div>
-
-
-
-
-
- 
+</div> 
 </div>
 
 

@@ -1,4 +1,5 @@
 <link rel='stylesheet' href='style/article.css'> <!-- Ajout de la référence au fichier CSS -->
+<script src='script/article.js'></script> <!-- Ajout de la référence au fichier JS -->
 <?php
 include 'fonction.php';
 entete();

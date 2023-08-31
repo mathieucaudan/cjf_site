@@ -1,5 +1,5 @@
 <link rel='stylesheet' href='style/record.css'> <!-- Ajout de la référence au fichier CSS -->
-
+<script src='script/record.js'></script> <!-- Ajout de la référence au fichier JS -->
 
 <?php
 include 'fonction.php';
@@ -128,26 +128,3 @@ footer();
 echo "</body>";
 ?>
 
-<script>
-  function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("rectabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    // Supprime la classe "active" de tous les boutons d'onglet
-    tablinks = document.getElementsByClassName("rectablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    // Ajoute la classe "active" à l'onglet actuel
-    evt.currentTarget.className += " active";
-    document.getElementById(tabName).style.display = "block";
-    
-    // Ajoute la classe "active" spécifique au bouton "Bureau" s'il s'agit de l'onglet "Bureau"
-    if (tabName === 'laserrun') {
-        document.querySelector(".rectablinks.laserrun").classList.add("active");
-    }
-  }
-
-</script>
