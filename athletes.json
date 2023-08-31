@@ -4,6 +4,16 @@
             "identifiant": "mathieu",
             "password": "$2y$10$h0qkTkt82KQguVmaHvFdEeTd4bSBb6QrK2mN35AbRGeRdsZleUoFy",
             "role": "admin"
+        },
+	{
+            "identifiant": "arnaud",
+            "password": "$2y$10$h0qkTkt82KQguVmaHvFdEeTd4bSBb6QrK2mN35AbRGeRdsZleUoFy",
+            "role": "admin"
+        },
+	{
+            "identifiant": "guillaume",
+            "password": "$2y$10$h0qkTkt82KQguVmaHvFdEeTd4bSBb6QrK2mN35AbRGeRdsZleUoFy",
+            "role": "admin"
         }
     ]
 }
