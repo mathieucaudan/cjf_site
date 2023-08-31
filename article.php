@@ -19,7 +19,7 @@ $data = json_decode($jsonData, true);
       <?php
       foreach ($data as $article) {
         echo "<div class='artcard-grid-space'>
-        <a class='artcard' href='$dossierPdf/" . pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']})'>
+        <a class='artcard' href='$dossierPdf/" . pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']}); background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);'>
             <div>
                 <h1>{$article['titre']}</h1>
                 <p>{$article['description']}</p>
@@ -40,15 +40,6 @@ $data = json_decode($jsonData, true);
     </section>
   </div>
 </main>
-
-
-<style>
-/*c'est celui ci qui fait beug le fichier css var --bg -img */
-.artcard {
-  background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);
-}
-</style>
-
 
 <div class="artfooter">
   <div style="clear: both">
