@@ -1,0 +1,26 @@
+/*-----------------------------------------------------------parametres-----------------------------------------------------------*/
+.parcaltab {
+    overflow: hidden;
+  }
+  
+  .parcaltab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .parcaltab button:hover {
+    background-color: #ddd;
+  }
+  
+  .parcaltab button.active {
+    background-color: #fff;
+  }
+  
+  .parcaltabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }

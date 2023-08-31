@@ -1,3 +1,6 @@
+<link rel='stylesheet' href='style/calendrier.css'> <!-- Ajout de la référence au fichier CSS -->
+
+
 <?php
 include 'fonction.php';
 entete();

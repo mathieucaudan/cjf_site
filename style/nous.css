@@ -1,0 +1,43 @@
+/*-----------------------------------------------------------nous.php-----------------------------------------------------------*/
+.noutab {
+    overflow: hidden;
+  }
+  
+  
+  .noutab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .noutab button:hover {
+    background-color: #ddd;
+  }
+  
+  .noutab button.active {
+    background-color: #fff;
+  }
+  
+  .noutabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  .noutab button.active.bureau {
+    background-color: gray !important;
+    color: white !important;
+    cursor: default !important;
+  }
+  
+  .noutab button.active.coach {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .noutab button.active.athletes {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }

@@ -1,0 +1,46 @@
+/*-----------------------------------------------------------creneaux.php-----------------------------------------------------------*/
+.cretab {
+    overflow: hidden;
+  }
+  
+  .cretab button {
+    background-color: #ccc;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .cretab button:hover {
+    background-color: #ddd;
+  }
+  
+  .cretab button.active {
+    background-color: #fff;
+  }
+  
+  .cretabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  .cretab button.active.laserrun {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .cretab button.active.natation {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .cretab button.active.escrime {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .cretab button.active.obstacle {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }

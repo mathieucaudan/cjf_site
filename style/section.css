@@ -1,0 +1,36 @@
+/*-----------------------------------------------------------section.php-----------------------------------------------------------*/
+/* Styles pour diviser la page en deux colonnes */
+.seccontainer {
+    display: flex;
+    flex-wrap: wrap; /* Permet à la disposition de passer en une seule colonne sur les petits écrans */
+}
+
+/* Style pour la colonne du PDF principal */
+.secpdf-column {
+    flex: 1;
+    min-width: 300px; /* Largeur minimale de la colonne du PDF principal */
+}
+
+/* Style pour la colonne des articles */
+.secarticles-column {
+    flex: 1;
+    min-width: 300px; /* Largeur minimale de la colonne des articles */
+}
+
+/* Style pour les articles PDF */
+.secarticle {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+/* Media query pour ajuster le style en fonction de la résolution de l'écran */
+@media screen and (max-width: 768px) {
+    .seccontainer {
+        flex-direction: column; /* Passe à une seule colonne sur les petits écrans */
+    }
+    .secpdf-column, .secarticles-column {
+        min-width: 100%; /* Largeur minimale de 100% sur les petits écrans */
+    }
+}

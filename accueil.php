@@ -1,3 +1,4 @@
+<link rel='stylesheet' href='style/accueil.css'> <!-- Ajout de la référence au fichier CSS -->
 <?php
 include 'fonction.php';
 entete();
