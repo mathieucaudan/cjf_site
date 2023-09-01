@@ -22,6 +22,8 @@ $data = json_decode($jsonData, true);
         </div>
     </div>
     <div>
+  <center><h1>Accueil</h1></center>
+
   <div class="w3-container w3-twothird w3-center">
     <h2>Qu'est ce que le</h2>
     <h2>Pentathlon Moderne?</h2>

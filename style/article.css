@@ -12,7 +12,6 @@
 .article-page body {
  margin: 0;
  min-height: 100vh;
- font-family: 'Open Sans';
  background: #fafafa;
 }
 
@@ -39,7 +38,6 @@
 
 /*c'est celui ci qui fait beug le fichier css var --bg -img */
 .artcard {
-   font-family: 'Heebo';
    --bg-filter-opacity: 0.5;
    width: 100%;
    font-size: 1em;
@@ -71,7 +69,6 @@
 
 .artcard p {
  font-size: 0.75em;
- font-family: 'Open Sans';
  margin-top: 0.5em;
  line-height: 2em;
 }
@@ -156,8 +153,8 @@
    justify-content: center;
  }
  .artcard-grid-space .num {
-   /margin-left: 0;
-   /text-align: center;
+   margin-left: 0;
+   text-align: center;
  }
 }
 
@@ -181,7 +178,6 @@
 }
 
 .artcard-button {
- font-family: 'Open Sans';
  font-size: 0.75em;
  background: transparent; /* Modifier la couleur de fond en transparent */
  border-radius: 0.3rem;

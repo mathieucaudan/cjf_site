@@ -1,0 +1,23 @@
+/* global.css */
+* {
+    font-family: "Verdana", sans-serif; /* Utilisation de la police Verdana */
+}
+
+p {
+    font-size: 28px !important; /* Taille du texte pour les paragraphes */
+}
+
+a {
+    font-size: 16px !important; /* Taille du texte pour les liens */
+}
+
+h1 {
+    font-size: 70px !important; /* Taille du texte pour les titres de niveau 1 */
+    font-weight: bold; /* Mettre en gras le texte des titres de niveau 1 */
+}
+
+h2 {
+    font-size: 40px !important; /* Taille du texte pour les titres de niveau 2 */
+    font-weight: bold; /* Mettre en gras le texte des titres de niveau 1 */
+
+}

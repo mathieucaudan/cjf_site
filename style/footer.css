@@ -3,8 +3,11 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
 
 * {
-  font-family: Open Sans;
+    font-family: "Verdana", sans-serif; /* Utilisation de la police Verdana */
+	font-size: 22px !important; /* Taille du texte pour les titres de niveau 2 */
 }
+
+
 
 section {
   width: 100%;
@@ -12,7 +15,6 @@ section {
   background:  rgb(32, 47, 74);
   height: 50vh;
   text-align: center;
-  font-size: 22px;
   font-weight: 700;
 }
 
@@ -22,7 +24,6 @@ section {
 	box-sizing: border-box;
 	width: 100%;
 	text-align: left;
-	font: bold 16px sans-serif;
     bottom: 0; /* Fixez-le en bas de la fenêtre */
 	padding: 55px 50px;
 }
@@ -46,7 +47,6 @@ section {
 
 .footer-distributed h3{
 	color:  #ffffff;
-	font: normal 36px 'Open Sans', cursive;
 	margin: 0;
 }
 
@@ -65,14 +65,12 @@ section {
 .footer-distributed .footer-links a{
 	display:inline-block;
 	line-height: 1.8;
-  font-weight:400;
 	text-decoration: none;
 	color:  inherit;
 }
 
 .footer-distributed .footer-company-name{
 	color:  rgb(32, 47, 74);
-	font-size: 14px;
 	font-weight: normal;
 	margin: 0;
 }
@@ -86,18 +84,17 @@ section {
 .footer-distributed .footer-center i{
 	background-color:  rgb(32, 47, 74);
 	color: #ffffff;
-	font-size: 25px;
+	font-size: 35px;
 	width: 38px;
 	height: 38px;
 	border-radius: 50%;
 	text-align: center;
 	line-height: 42px;
-	margin: 10px 15px;
+	margin: 20px 15px;
 	vertical-align: middle;
 }
 
 .footer-distributed .footer-center i.fa-envelope{
-	font-size: 17px;
 	line-height: 38px;
 }
 
@@ -112,7 +109,7 @@ section {
 .footer-distributed .footer-center p span{
 	display:block;
 	font-weight: normal;
-	font-size:14px;
+	font-size:22px;
 	line-height:2;
 }
 
@@ -144,7 +141,6 @@ section {
 .footer-distributed .footer-company-about{
 	line-height: 20px;
 	color:  rgb(255, 255, 255);
-	font-size: 13px;
 	font-weight: normal;
 	margin: 0;
 }
@@ -152,7 +148,7 @@ section {
 .footer-distributed .footer-company-about span{
 	display: block;
 	color:  #ffffff;
-	font-size: 14px;
+	font-size: 22px;
 	font-weight: bold;
 	margin-bottom: 20px;
 }
