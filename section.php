@@ -1,4 +1,5 @@
 <link rel='stylesheet' href='style/section.css'> <!-- Ajout de la référence au fichier CSS -->
+<link rel='stylesheet' href='style/global_tab.css'> <!-- Ajout de la référence au fichier CSS -->
 <script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
 
 <?php
@@ -7,9 +8,9 @@ entete();
 navbar();
 ?>
 
-<body style='background-color: rgb(32, 47, 74); color:white;'>
+<body style='background-color: rgb(32, 47, 74); color:white;' onload="openTab(event, 'presentation')">
     <center><h1>Section sportive college le bocage</h1></center>
-    <center><div class="noutab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
+    <center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
   <button class="tablinks presentation active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'presentation')">Présentation</button>
   <button class="tablinks article" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'article')">article</button>
 </body>

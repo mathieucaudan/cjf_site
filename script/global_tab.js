@@ -20,4 +20,7 @@ function openTab(evt, tabName) {
     if (tabName === 'laserrun') {
         document.querySelector(".tablinks.laserrun").classList.add("active");
     }
+    if (tabName === 'presentation') {
+        document.querySelector(".tablinks.presentation").classList.add("active");
+    }
 }
