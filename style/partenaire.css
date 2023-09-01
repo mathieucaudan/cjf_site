@@ -91,6 +91,7 @@ color: black;
 background-color: rgb(32, 47, 74);
 color: white;
 transform: rotateY(180deg);
+overflow: hidden; /* Ajoutez cette ligne pour contrôler le débordement du texte */
 }
 
 @import url("https://fonts.googleapis.com/css?family=Raleway");
@@ -294,3 +295,4 @@ opacity: 1;
     font-size: 1em;
 }
 }
+

@@ -2,10 +2,6 @@
 /*-----------------------------------------------------------footer-----------------------------------------------------------*/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
 
-* {
-    font-family: "Verdana", sans-serif; /* Utilisation de la police Verdana */
-	font-size: 22px !important; /* Taille du texte pour les titres de niveau 2 */
-}
 
 
 
@@ -106,12 +102,6 @@ section {
 	margin:0;
 }
 
-.footer-distributed .footer-center p span{
-	display:block;
-	font-weight: normal;
-	font-size:22px;
-	line-height:2;
-}
 
 .footer-distributed .footer-center p a{
 	color:  lightseagreen;
@@ -121,7 +111,7 @@ section {
 .footer-distributed .footer-links a:before {
   content: "|";
   font-weight:300;
-  font-size: 20px;
+  font-size: 30px;
   left: 0;
   color: #fff;
   display: inline-block;
@@ -194,6 +184,41 @@ section {
 	.footer-distributed .footer-center i{
 		margin-left: 0;
 	}
+
+
+
+
+
+
+	/* Taille de texte pour les écrans larges (par exemple, ordinateurs de bureau) */
+@media screen and (min-width: 1200px) {
+    .footer-distributed .footer-center p span{
+		display:block;
+		font-weight: normal;
+		font-size:20px;
+		line-height:2;
+	}
+}
+
+/* Taille de texte pour les écrans de taille moyenne (par exemple, tablettes) */
+@media screen and (max-width: 1199px) {
+    .footer-distributed .footer-center p span{
+		display:block;
+		font-weight: normal;
+		font-size:15px;
+		line-height:2;
+	}
+}
+
+/* Taille de texte pour les écrans mobiles */
+@media screen and (max-width: 767px) {
+    .footer-distributed .footer-center p span{
+		display:block;
+		font-weight: normal;
+		font-size:10px;
+		line-height:2;
+	}
+}
 
 }
 

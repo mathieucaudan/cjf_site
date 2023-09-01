@@ -78,8 +78,8 @@ function footer() {
 function navbar() {
     echo "<div class='topnav' id='myTopnav'>
     <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
-        <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRE</a>
-        <a href='article.php' class='w3-bar-item w3-button'>ARTICLE</a>
+        <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRES</a>
+        <a href='article.php' class='w3-bar-item w3-button'>ARTICLES</a>
     <div class='dropdown'>
       <button class='dropbtn'>LE CLUB 
         <i class='fa fa-caret-down'></i>
