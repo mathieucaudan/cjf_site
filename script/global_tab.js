@@ -23,4 +23,7 @@ function openTab(evt, tabName) {
     if (tabName === 'presentation') {
         document.querySelector(".tablinks.presentation").classList.add("active");
     }
+    if (tabName === 'partenaire') {
+        document.querySelector(".tablinks.partenaire").classList.add("active");
+    }
 }

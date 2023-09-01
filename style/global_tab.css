@@ -84,6 +84,16 @@
     color: white !important; /* Texte blanc lorsque l'onglet est actif */
     cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
   }
+  .tab button.active.evenement {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .tab button.active.partenaire {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
   .table {
     margin: 1rem auto;
     text-align: center;

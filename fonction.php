@@ -36,8 +36,6 @@ function footer() {
                 <a href='section.php'>Section</a>
                 <a href='inscription.php'>S'inscrire</a>
             </p>
-
-            <p class='footer-company-name'>Company Name © 2015</p>
         </div>
 
         <div class='footer-center'>
@@ -78,7 +76,7 @@ function footer() {
 function navbar() {
     echo "<div class='topnav' id='myTopnav'>
     <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
-        <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRES</a>
+        <a href='partenaire.php' class='w3-bar-item w3-button'>ENTREPRISES</a>
         <a href='article.php' class='w3-bar-item w3-button'>ARTICLES</a>
     <div class='dropdown'>
       <button class='dropbtn'>LE CLUB 

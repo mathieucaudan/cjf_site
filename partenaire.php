@@ -1,5 +1,6 @@
 <link rel='stylesheet' href='style/partenaire.css'> <!-- Ajout de la référence au fichier CSS -->
-
+<link rel='stylesheet' href='style/global_tab.css'> <!-- Ajout de la référence au fichier CSS -->
+<script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
 
 <?php
 include 'fonction.php';
@@ -7,8 +8,16 @@ entete();
 echo "<body style='background-color: rgb(32, 47, 74);'>";
 navbar();
 ?>
-<div class="parcontent-container">
-    <h1 style="color: white;"><center>Nos partenaires</center></h1>
+<body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'partenaire')">
+<h1 style='color:white'><center>Entreprises</center></h1>
+<center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
+  <button class="tablinks partenaire active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'partenaire')">Nos Partenaires</button>
+  <button class="tablinks evenement" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'evenement')">Evenements</button>
+</body>
+</center></div>
+<center><div id="partenaire" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+  <h3>Nos partenaires</h3>
+  <table class='table'>
 
 
     <?php
@@ -43,7 +52,7 @@ navbar();
             <span class='parglowing-txt'>NOUS <span class='parfaulty-letter'>REJOIN</span>DRE</span>
         </button>
     </a>
-</div> 
+    </table> 
 </div>
 
 
