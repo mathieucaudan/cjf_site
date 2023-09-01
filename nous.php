@@ -1,21 +1,22 @@
-<link rel='stylesheet' href='style/nous.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/nous.js'></script> <!-- Ajout de la référence au fichier JS -->
+<link rel='stylesheet' href='style/global_tab.css'> <!-- Ajout de la référence au fichier CSS -->
+<script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
 
 <?php
 include 'fonction.php';
 entete();
+echo "<body style='background-color: rgb(32, 47, 74); color:white;'>";
 navbar();
 ?>
 <body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'bureau')">
 <h1 style='color:white'><center>Organigramme</center></h1>
-<center><div class="noutab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
-  <button class="noutablinks bureau active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'bureau')">Bureau</button>
-  <button class="noutablinks coach" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'coach')">Coach</button>
-  <button class="noutablinks athletes" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'athletes')">Athlètes</button>
+<center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
+  <button class="tablinks bureau active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'bureau')">Bureau</button>
+  <button class="tablinks coach" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'coach')">Coach</button>
+  <button class="tablinks athletes" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'athletes')">Athlètes</button>
 </body>
   </div></center>
 
-<div id="bureau" class="noutabcontent">
+<div id="bureau" class="tabcontent">
     <!-- Contenu de l'onglet Bureau -->
     <h2 style="color:white; text-align:center;">Notre bureau</h2>
     <div class="w3-row">
@@ -39,7 +40,7 @@ navbar();
 </div>
 
 
-<div id="coach" class="noutabcontent">
+<div id="coach" class="tabcontent">
     <!-- Contenu de l'onglet Coach -->
     <h2 style="color:white; text-align:center;">Qui sont les coachs?</h2>
     <div class="w3-row">
@@ -73,7 +74,7 @@ navbar();
 </div>
 
 
-<div id="athletes" class="noutabcontent">
+<div id="athletes" class="tabcontent">
     <!-- Contenu de l'onglet Athlètes -->
     <h2 style="color:white; text-align:center;">Quelques athletes</h2>
     <div class="w3-row">

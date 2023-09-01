@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------record.php-----------------------------------------------------------*/
-.rectable {
+.table {
     margin: 1rem auto;
     text-align: center;
     width: 100%;
@@ -8,44 +8,44 @@
     border: 1px solid;
   }
 
-   .rectable th,  .rectable td {
+   .table th,  .table td {
     padding: 8px 0;
   }
 
-  .rectable thead {
+  .table thead {
     background-color: rgb(32, 47, 74);
     color: white;
   }
 
-  .rectable tbody tr:nth-child(even) {
+  .table tbody tr:nth-child(even) {
     background-color: white;
     color: rgb(32, 47, 74);
   }
 
   @media only screen and (max-width: 800px) {
-    .rectable table,
-    .rectable thead,
-    .rectable tbody,
-    .rectable th,
-    .rectable td,
-    .rectable tr {
+    .table table,
+    .table thead,
+    .table tbody,
+    .table th,
+    .table td,
+    .table tr {
       display: block;
     }
 
-    .rectable thead tr {
+    .table thead tr {
       position: absolute;
       top: -9999px;
       left: -9999px;
     }
 
-    .rectable td {
+    .table td {
       position: relative;
       padding-left: 50%;
       white-space: normal;
       text-align: left;
     }
 
-    .rectable td:before {
+    .table td:before {
       position: absolute;
       top: 6px;
       left: 6px;
@@ -58,11 +58,11 @@
     }
   }
 
-  .rectab {
+  .tab {
     overflow: hidden;
   }
 
-  .rectab button {
+  .tab button {
     background-color: #ccc;
     border: none;
     color: black;
@@ -70,40 +70,40 @@
     cursor: pointer;
   }
 
-  .rectab button:hover {
+  .tab button:hover {
     background-color: #ddd;
   }
 
-  .rectab button.active {
+  .tab button.active {
     background-color: #fff;
   }
 
-  .rectabcontent {
+  .tabcontent {
     display: none;
     padding: 20px;
     border: 1px solid #ccc;
   }
 
   /* Cacher les bordures pour les cellules vides */
-  .rectable table td:empty {
+  .table table td:empty {
     border: none;
   }
-  .rectab button.active.laserrun {
+  .tab button.active.laserrun {
   background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
   color: white !important; /* Texte blanc lorsque l'onglet est actif */
   cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
 }
-.rectab button.active.triathlé {
+.tab button.active.triathlé {
   background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
   color: white !important; /* Texte blanc lorsque l'onglet est actif */
   cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
 }
-.rectab button.active.tetrathlon {
+.tab button.active.tetrathlon {
   background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
   color: white !important; /* Texte blanc lorsque l'onglet est actif */
   cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
 }
-.rectab button.active.pentathlon {
+.tab button.active.pentathlon {
   background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
   color: white !important; /* Texte blanc lorsque l'onglet est actif */
   cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */

@@ -1,5 +1,5 @@
-<link rel='stylesheet' href='style/record.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/record.js'></script> <!-- Ajout de la référence au fichier JS -->
+<link rel='stylesheet' href='style/global_tab.css'> <!-- Ajout de la référence au fichier CSS -->
+<script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
 
 <?php
 include 'fonction.php';
@@ -10,23 +10,23 @@ navbar();
 
 <body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'laserrun')">
 <h1 style='color:white'><center>Les records</center></h1>
-<center><div class="rectab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
-  <button class="rectablinks laserrun active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laserrun')">Laser Run</button>
-  <button class="rectablinks triathlé" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'triathlé')">Triathlé</button>
-  <button class="rectablinks tetrathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'tetrathlon')">Tetrathlon</button>
-  <button class="rectablinks pentathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'pentathlon')">Pentathlon</button>
+<center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
+  <button class="tablinks laserrun active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laserrun')">Laser Run</button>
+  <button class="tablinks triathlé" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'triathlé')">Triathlé</button>
+  <button class="tablinks tetrathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'tetrathlon')">Tetrathlon</button>
+  <button class="tablinks pentathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'pentathlon')">Pentathlon</button>
 </body>
 </center></div>
 
-<center><div id="laserrun" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<center><div id="laserrun" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Laser Run</h3>
-  <table class='rectable'>
+  <table class='table'>
   <?php
         $jsonData = file_get_contents('record.json');
 
         $data = json_decode($jsonData, true);
 
-        echo '<table class="rectable" border="1">';
+        echo '<table class="table" border="1">';
         echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Temps</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Laser Run'] as $participant) {
@@ -44,15 +44,15 @@ navbar();
   </table>
 </div>
 
-<div id="triathlé" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<div id="triathlé" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Triathlé</h3>
-  <table class='rectable'>
+  <table class='table'>
   <?php
         $jsonData = file_get_contents('record.json');
 
         $data = json_decode($jsonData, true);
 
-        echo '<table class="rectable" border="1">';
+        echo '<table class="table" border="1">';
         echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Triathlé'] as $participant) {
@@ -71,15 +71,15 @@ navbar();
   </table>
 </div>
 
-<div id="tetrathlon" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="tetrathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
   <h3>Tetrathlon</h3>
-  <table class='rectable'>
+  <table class='table'>
   <?php
         $jsonData = file_get_contents('record.json');
 
         $data = json_decode($jsonData, true);
 
-        echo '<table class="rectable" border="1">';
+        echo '<table class="table" border="1">';
         echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Tetrathlon'] as $participant) {
@@ -98,15 +98,15 @@ navbar();
   </table>
 </div>
 
-<div id="pentathlon" class="rectabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<div id="pentathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
   <h3>Pentathlon</h3>
-  <table class='rectable'>
+  <table class='table'>
   <?php
         $jsonData = file_get_contents('record.json');
 
         $data = json_decode($jsonData, true);
 
-        echo '<table class="rectable" border="1">';
+        echo '<table class="table" border="1">';
         echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
 
         foreach ($data['Pentathlon'] as $participant) {
@@ -127,4 +127,3 @@ navbar();
 footer();
 echo "</body>";
 ?>
-

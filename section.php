@@ -1,5 +1,5 @@
 <link rel='stylesheet' href='style/section.css'> <!-- Ajout de la référence au fichier CSS -->
-
+<script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
 
 <?php
 include 'fonction.php';
@@ -9,9 +9,14 @@ navbar();
 
 <body style='background-color: rgb(32, 47, 74); color:white;'>
     <center><h1>Section sportive college le bocage</h1></center>
-    <div class="seccontainer">
-        <div class="pdf-column">
-            <center><h2>Présentation de la section</h2></center>
+    <center><div class="noutab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
+  <button class="tablinks presentation active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'presentation')">Présentation</button>
+  <button class="tablinks article" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'article')">article</button>
+</body>
+  </div></center>
+
+  <div id="presentation" class="tabcontent">
+  <center><h2>Présentation de la section</h2></center>
             <div style='margin-left:3%; margin-right:3%'>
                 <img  style='margin-right:4%' src="./section/section_image/LR.png" width=30% height='280px'>
                 <img src="./section/section_image/PO.png" width=60% height='280px'>
@@ -63,35 +68,27 @@ navbar();
             <p style="text-align: center;">d&rsquo;engagement)</p>
             <p style="text-align: center;">Une liste compl&eacute;mentaire sera communiqu&eacute;e</p>
             <p><br></p>
-        </div>
-        <div class="secarticles-column">
-            <?php
-            // Lire le fichier JSON
-            $articles = json_decode(file_get_contents('./section/articles.json'), true);
+</div>
+<div id="article" class="tabcontent">
+    <?php
+    // Lire le fichier JSON
+    $articles = json_decode(file_get_contents('./section/articles.json'), true);
 
-            // Affiche chaque article avec son titre et le lien vers le PDF
-            foreach ($articles as $article) {
-                $titre = $article['titre'];
-                $pdf = $article['pdf'];
-                echo "<center><h2>$titre</h2></center>";
-                echo "<div class='secarticle'>";
-                echo "<object data='./section/articles/$pdf' type='application/pdf' width='100%' height='100%'></object>";
-                echo "</div>";
-            }
-            ?>
-        </div>
-    </div>
-</body>
+    // Affiche chaque article avec son titre et le lien vers le PDF
+    foreach ($articles as $article) {
+        $titre = $article['titre'];
+        $pdf = $article['pdf'];
+        echo "<center><h2>$titre</h2></center>";
+        echo "<div class='secarticle'>";
+        echo "<object data='./section/articles/$pdf' type='application/pdf' width='100%' height='100%'></object>";
+        echo "</div>";
+    }
+    ?>
+</div>
 
-
-
-
-      
 <?php
 footer();
 echo "</body>";
 ?>
-
-
 
 

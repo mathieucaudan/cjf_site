@@ -1,9 +1,9 @@
 /*-----------------------------------------------------------creneaux.php-----------------------------------------------------------*/
-.cretab {
+.tab {
     overflow: hidden;
   }
   
-  .cretab button {
+  .tab button {
     background-color: #ccc;
     border: none;
     color: black;
@@ -11,35 +11,65 @@
     cursor: pointer;
   }
   
-  .cretab button:hover {
+  .tab button:hover {
     background-color: #ddd;
   }
   
-  .cretab button.active {
+  .tab button.active {
     background-color: #fff;
   }
   
-  .cretabcontent {
+  .tabcontent {
     display: none;
     padding: 20px;
     border: 1px solid #ccc;
   }
-  .cretab button.active.laserrun {
+  .tab button.active.laserrun {
     background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
     color: white !important; /* Texte blanc lorsque l'onglet est actif */
     cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
   }
-  .cretab button.active.natation {
+  .tab button.active.natation {
     background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
     color: white !important; /* Texte blanc lorsque l'onglet est actif */
     cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
   }
-  .cretab button.active.escrime {
+  .tab button.active.escrime {
     background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
     color: white !important; /* Texte blanc lorsque l'onglet est actif */
     cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
   }
-  .cretab button.active.obstacle {
+  .tab button.active.obstacle {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .tab button.active.bureau {
+    background-color: gray !important;
+    color: white !important;
+    cursor: default !important;
+  }
+  .tab button.active.coach {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .tab button.active.athletes {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .tab button.active.triathlé {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .tab button.active.tetrathlon {
+    background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
+    color: white !important; /* Texte blanc lorsque l'onglet est actif */
+    cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
+  }
+  .tab button.active.pentathlon {
     background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
     color: white !important; /* Texte blanc lorsque l'onglet est actif */
     cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
