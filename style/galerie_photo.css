@@ -144,6 +144,12 @@ a {
   transform: scale(1);
 }
 
+/* Ajoutez cette règle pour changer la couleur du titre en noir au survol */
+.galcard:hover h1 {
+  color: black;
+}
+
+
 
 
 

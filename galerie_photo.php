@@ -43,7 +43,7 @@ $data = json_decode($jsonData, true);
   </div>
 </main>
 
-<div class="galfooter">
+<div class="artfooter">
   <div style="clear: both">
   <?php
   footer();

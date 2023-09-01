@@ -1,3 +1,6 @@
+<link rel='stylesheet' href='style/inscription.css'> <!-- Ajout de la référence au fichier CSS -->
+
+
 <?php
 include 'fonction.php';
 entete();
@@ -21,12 +24,12 @@ navbar();
     <h2>Adultes</h2>
     <p>Téléchargez le dossier d'inscription pour les adultes :</p>
     <a href="./inscription/majeur.pdf" download>
-        <button>Télécharger le dossier pour adultes</button>
+        <button class = "button-79">Télécharger le dossier pour adultes</button>
     </a>
     <h2>Mineurs</h2>
     <p>Téléchargez le dossier d'inscription pour les mineurs :</p>
     <a href="./inscription/mineur.pdf" download>
-        <button>Télécharger le dossier pour mineurs</button>
+        <button class = "button-79">Télécharger le dossier pour mineurs</button>
     </a>
     </div>
     <div class="w3-container w3-quarter w3-center">
