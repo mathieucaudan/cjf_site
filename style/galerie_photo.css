@@ -6,6 +6,10 @@
   --transition-time: 0.5s;
 }
 
+h1 {
+  color: white;
+}
+
 * {
   box-sizing: border-box;
 }

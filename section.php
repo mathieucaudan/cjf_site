@@ -8,7 +8,7 @@ navbar();
 ?>
 
 <body style='background-color: rgb(32, 47, 74); color:white;'>
-    <center><h1>SECTION SPORTIVE COLLEGE LE BOCAGE</h1></center>
+    <center><h1>Section sportive college le bocage</h1></center>
     <div class="seccontainer">
         <div class="pdf-column">
             <center><h2>Présentation de la section</h2></center>

@@ -19,6 +19,8 @@ $jsonData = file_get_contents($dossierJson);
 $data = json_decode($jsonData, true);
 ?>
 
+<center><h1>Galerie photo</h1></center>
+
 <main class="galcontent">
   <div id="cardsWrapper">
     <section class="galcards-wrapper"  >
