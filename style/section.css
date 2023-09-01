@@ -34,3 +34,62 @@
         min-width: 100%; /* Largeur minimale de 100% sur les petits écrans */
     }
 }
+
+/* Style pour les images responsives */
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Pour les grands écrans (maximum de 4 images par ligne) */
+@media screen and (min-width: 1200px) {
+    .image-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .image-container img {
+        height: auto;
+        margin-bottom: 20px;
+        margin-left: 100px;
+    }
+}
+
+/* Pour les écrans moyens (maximum de 4 images par ligne) */
+@media screen and (max-width: 1199px) and (min-width: 768px) {
+    .image-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .image-container img {
+        height: auto;
+        margin-bottom: 20px;
+    }
+}
+
+/* Pour les petits écrans (maximum de 4 images par ligne) */
+@media screen and (max-width: 767px) {
+    .image-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .image-container img {
+        height: auto;
+        margin-bottom: 20px;
+    }
+}
+
+/* Ajoutez cette classe CSS pour centrer le texte */
+.centered-text {
+    text-align: center;
+    margin: 20px 0; /* Ajoutez une marge uniquement au-dessus et en dessous du texte */
+    padding: 10px; /* Ajoutez du padding (espace intérieur) autour du texte */
+}
+
+
+
+
+
