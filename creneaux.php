@@ -8,7 +8,7 @@ echo "<body style='background-color: rgb(32, 47, 74); color:white;'>";
 navbar();
 ?>
 <body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'laserrun')">
-<h1 style='color:white'><center>CRENEAUX</center></h1>
+<h1 style='color:white'><center>Les créneaux</center></h1>
 <center><div class="cretab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
   <button class="cretablinks laserrun active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laserrun')">Laser Run</button>
   <button class="cretablinks natation" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'natation')">Natation</button>

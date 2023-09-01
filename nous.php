@@ -17,17 +17,17 @@ navbar();
 
 <div id="bureau" class="noutabcontent">
     <!-- Contenu de l'onglet Bureau -->
-    <h1 style="color:white; text-align:center;">NOTRE BUREAU</h1>
+    <h2 style="color:white; text-align:center;">Notre bureau</h2>
     <div class="w3-row">
       <div class="w3-half w3-container" style="text-align:center;">
-        <h2>JEAN-LOUIS HELEU</h2>
+        <h3>JEAN-LOUIS HELEU</h3>
         <img src="image/" style="display:block; margin:auto;">
         <h3>Président</h3>
         <p>Relation Partenaires</p>
         <p>Responsable Organisation</p>
       </div>
       <div class="w3-half w3-container" style="text-align:center;">
-        <h2>ARNAUD EVEILLARD</h2>
+        <h3>ARNAUD EVEILLARD</h3>
         <img src="image/" style="display:block; margin:auto;">
         <h3>Directeur sportif</h3>
         <p>Coordination sportive et suivi des athlètes</p>
@@ -41,10 +41,10 @@ navbar();
 
 <div id="coach" class="noutabcontent">
     <!-- Contenu de l'onglet Coach -->
-    <h1 style="color:white; text-align:center;">Qui sont les coachs?</h1>
+    <h2 style="color:white; text-align:center;">Qui sont les coachs?</h2>
     <div class="w3-row">
       <div class="w3-quarter w3-container" style="text-align:center;">
-        <h2>Laser Run</h2>
+        <h3>Laser Run</h3>
         <img src="image/" style="display:block; margin:auto;">
         <p>ARNAUD EVEILLARD (BF1)</p>
         <img src="image/" style="display:block; margin:auto;">
@@ -53,19 +53,19 @@ navbar();
         <p>DANIEL BOURQUIN (partenariat avec le CJF Athlétisme)</p>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
-        <h2>Natation</h2>
+        <h3>Natation</h3>
         <img src="image/" style="display:block; margin:auto;">
         <p>ARNAUD EVEILLARD (BF1)</p>
         <img src="image/" style="display:block; margin:auto;">
         <p>FRED GARCIA (partenariat avec le Triathlon Côte d’Emeraude)</p>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
-        <h2>Escrime</h2>
+        <h3>Escrime</h3>
         <img src="image/" style="display:block; margin:auto;">
         <p>LUDMILLA POZDEEVA (MAITRE D’ARME)</p>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
-        <h2>Obstacle</h2>
+        <h3>Obstacle</h3>
         <img src="image/" style="display:block; margin:auto;">
         <p>ARNAUD EVEILLARD (BF1)</p>
       </div>
@@ -75,17 +75,17 @@ navbar();
 
 <div id="athletes" class="noutabcontent">
     <!-- Contenu de l'onglet Athlètes -->
-    <h1 style="color:white; text-align:center;">Quelques athletes</h1>
+    <h2 style="color:white; text-align:center;">Quelques athletes</h2>
     <div class="w3-row">
       <div class="w3-third w3-container" style="text-align:center;">
-        <h2>ARNAUD EVEILLARD</h2>
+        <h3>ARNAUD EVEILLARD</h3>
         <img src="image/" style="display:block; margin:auto;">
         <h3>Palmares</h3>
         <p>3ème Championnat de France de triathlé</p>
         <p>3ème Circuit National Master</p>
       </div>
       <div class="w3-third w3-container" style="text-align:center;">
-        <h2>AZILIZ NAOUR</h2>
+        <h3>AZILIZ NAOUR</h3>
         <img src="image/" style="display:block; margin:auto;">
         <p>3ème Championnat de France U22 de tétrathlon</p>
         <p>Championne de France 2023 de Triathlé U22 individuel et relai mixte</p>
@@ -93,7 +93,7 @@ navbar();
         <p>Championne de FRANCE 2021 de Triathlé U22 individuel et relai mixte</p>
       </div>
       <div class="w3-third w3-container" style="text-align:center;">
-        <h2>MATHIEU CAUDAN</h2>
+        <h3>MATHIEU CAUDAN</h3>
         <img src="image/" style="display:block; margin:auto;">
         <h3>Palmares</h3>
         <p>Champion de France de Triathlé U22 relai mixte</p>

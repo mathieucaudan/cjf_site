@@ -9,7 +9,7 @@ navbar();
 ?>
 
 <body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'laserrun')">
-<h1 style='color:white'><center>RECORD</center></h1>
+<h1 style='color:white'><center>Les records</center></h1>
 <center><div class="rectab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
   <button class="rectablinks laserrun active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laserrun')">Laser Run</button>
   <button class="rectablinks triathlé" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'triathlé')">Triathlé</button>

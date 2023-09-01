@@ -9,16 +9,19 @@
 
 
 h1,
-h2 {
+h2,
+h3 {
     font-weight: bold; /* Mettre en gras le texte des titres de niveau 1 et niveau 2 */
 }
+
 
 /* Taille de texte pour les écrans larges (par exemple, ordinateurs de bureau) */
 @media screen and (min-width: 1200px) {
     p,
     a,
     h1,
-    h2 {
+    h2,
+    h3 {
         font-family: var(--police); /* Utilisation de la variable de police */
     }
 
@@ -37,6 +40,10 @@ h2 {
     h2 {
         font-size: 2vw !important;
     }
+
+    h3 {
+        font-size: 1.5vw !important;
+    }
 }
 
 /* Taille de texte pour les écrans de taille moyenne (par exemple, tablettes) */
@@ -44,7 +51,8 @@ h2 {
     p,
     a,
     h1,
-    h2 {
+    h2,
+    h3 {
         font-family: var(--police); /* Utilisation de la variable de police */
     }
 
@@ -63,6 +71,9 @@ h2 {
     h2 {
         font-size: 4vw !important;
     }
+    h3 {
+        font-size: 3vw !important;
+    }
 }
 
 /* Taille de texte pour les écrans mobiles */
@@ -70,7 +81,8 @@ h2 {
     p,
     a,
     h1,
-    h2 {
+    h2,
+    h3 {
         font-family: var(--police); /* Utilisation de la variable de police */
     }
 
@@ -89,4 +101,9 @@ h2 {
     h2 {
         font-size: 6vw !important;
     }
+
+    h3 {
+        font-size: 5vw !important;
+    }
+
 }
