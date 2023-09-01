@@ -14,6 +14,9 @@ $jsonData = file_get_contents($dossierJson);
 $data = json_decode($jsonData, true);
 ?>
 
+<h1 style="color: white;"><center>Les articles</center></h1>
+
+
 <main class="artcontent">
   <div id="cardsWrapper">
     <section class="artcards-wrapper"  >
@@ -22,7 +25,7 @@ $data = json_decode($jsonData, true);
         echo "<div class='artcard-grid-space'>
         <a class='artcard' href='$dossierPdf/" . pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']}); background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);'>
             <div>
-                <h1>{$article['titre']}</h1>
+                <h2>{$article['titre']}</h2>
                 <p>{$article['description']}</p>
                 <div>{$article['date']}</div>
                 <div class='arttags'>

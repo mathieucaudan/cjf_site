@@ -8,7 +8,7 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 navbar();
 ?>
 <div class="parcontent-container">
-    <h1 style="color: white;"><center>NOS PARTENAIRES</center></h1>
+    <h1 style="color: white;"><center>Nos partenaires</center></h1>
 
 
     <?php
