@@ -51,7 +51,7 @@ function footer() {
 
             <div>
                 <i class='fa fa-envelope'></i>
-                <p><a href='mailto:cjf.saintmalo.pentathlonmoderne@gmail.com'>cjf.saintmalo.pentathlonmoderne@gmail.com</a></p>
+                <p><a href='mailto:cjf.saintmalo.pentathlonmoderne@gmail.com' style='color: white;'>cjf.saintmalo.pentathlonmoderne@gmail.com</a></p>
             </div>
         </div>
 
