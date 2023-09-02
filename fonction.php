@@ -881,7 +881,7 @@ function ajoutArticleSection() {
     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
         <div class='w3-content'>
         <form method='POST' enctype='multipart/form-data'>
-            <label for='titre'>Titre de l'article:</label>
+            <label for='titre'>Titre de l'article :</label>
             <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
             
             <label for='pdf'>Sélectionnez un PDF:</label>
