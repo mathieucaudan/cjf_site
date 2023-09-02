@@ -974,6 +974,8 @@ function ajoutEvenement() {
         if (!isset($data[$dateCle])) {
             $data[$dateCle] = [];
         }
+        // Formater le jour avec un seul chiffre si nécessaire
+        $jour = ltrim($jour, '0');
 
         $data[$dateCle][$jour] = $nouvelEvenement;
         file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
