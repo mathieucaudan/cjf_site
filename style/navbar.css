@@ -53,12 +53,12 @@ text-align: left;
 }
 
 .topnav a:hover, .dropdown:hover .dropbtn {
-background-color:  rgb(169,169,169);
+background-color:  #cccccc;
 color: black;
 }
 
 .dropdown-content a:hover {
-background-color: rgb(169,169,169);
+background-color: #cccccc;
 color: black;
 }
 
