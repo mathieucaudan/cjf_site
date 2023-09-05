@@ -1,5 +1,5 @@
 var currentDate = new Date();
-    var calendarData = <?php echo json_encode($calendarData); ?>;
+    var calendarData = json_encode($calendarData);
 
     // Fonction pour passer au mois précédent
     function previousMonth() {
