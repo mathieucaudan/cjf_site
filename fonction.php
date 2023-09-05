@@ -114,7 +114,11 @@ function navbar() {
                 </div>";
         }
     }
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] != 'admin') {
     echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px;'>";
+        }
+    }
     if (isset($_SESSION['role'])) {
         echo "<a href='deconnexion.php' class='buttonContainer w3-right '><button class='myButton'  style='float: right' type='button'>Déconnexion</button></a>";
     } else {

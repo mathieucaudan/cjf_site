@@ -8,7 +8,7 @@ background-color: rgb(32, 47, 74);
 .topnav a {
 float: left;
 display: block;
-color: #f2f2f2;
+color: #f9f9f9;
 text-align: center;
 padding: 12px 16px;
 text-decoration: none;
@@ -29,7 +29,7 @@ border: none;
 font-size: 20px !important;
 outline: none;
 color: white;
-padding: 14px 16px;
+padding: 12px 16px;
 background-color: inherit;
 margin: 0;
 }
@@ -77,7 +77,7 @@ display: block;
 }
 
 .myButton {
-    font-size: 28px !important;
+    font-size: 20px !important;
 
     background-color: rgb(32, 47, 74); /* Couleur de fond */
     color: white; /* Couleur du texte */
