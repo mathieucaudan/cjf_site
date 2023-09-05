@@ -28,13 +28,16 @@ function footer() {
 
             <p class='footer-links'>
                 <a href='accueil.php' class='link-1'>Accueil</a>
-                <a href='partenaire.php'>Partenaires</a>
+                <a href='partenaire.php'>Entreprises</a>
                 <a href='article.php'>Articles</a>
                 <a href='record.php'>Records</a>
                 <a href='creneaux.php'>Créneaux</a>
                 <a href='nous.php'>Qui sommes nous ?</a>
                 <a href='section.php'>Section</a>
+                <a href='galerie_photo.php'>Galerie photo</a>
+                <a href='calendrier.php'>Calendrier</a>
                 <a href='inscription.php'>S'inscrire</a>
+                <a href='laser_shot.php' style='color: rgb(30, 60, 80)'>Laser Shot</a>
             </p>
         </div>
 
@@ -46,7 +49,7 @@ function footer() {
 
             <div>
                 <i class='fa fa-phone'></i>
-                <p><span>06 08 10 56 44</p>
+                <p><span><a href='tel:0608105644'>06 08 10 56 44</a></p>
             </div>
 
             <div>

@@ -4,7 +4,7 @@ entete();
 echo"<body>";
 navbar();
 ?>
-<div style='background-color: rgb(32, 47, 74); color: white; display: flex; justify-content: center; align-items: center; height: 100vh;>
+<div style='background-color: rgb(32, 47, 74); color: white; display: flex; justify-content: center; align-items: center; height: 100vh;'>
         <div>
             <center><h1 class='titre' style='font-size: 32px;'>Connexion</h1></center>
             <form action='/login.php' method='post'>
