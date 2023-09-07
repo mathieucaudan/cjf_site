@@ -8,8 +8,29 @@ navbar();
 <center><h1>Laser Shot</h1></center>
 <div>
 <h2>Règlement du jeu</h2>
+<h2>Préparation du jeu</h2>
 <ul>
-
+  <il>
+  Cible a 10m</br>
+  Alcool principal : Marquisette et alcool fort, biere si aucun alcool cité précédemment n'est présent</br>
+  Un pistolet minimum</br>
+  </il>
+</ul>
+<h2>Déroulement du jeu</h2>
+<ul>
+  <il>
+  Un tir pour allumer la cible</br>
+  Prendre son shot(alcool ou cul sec de biere)</br>
+  Finir la cible</br>
+  Si la cible n'est pas fini, un shot supplémentaire sinon joueur suivant</br>
+  Interdiction de touchert le joueur lorsqu'il tir, interdiction de toucher la cible et se mettre entre la cible et le tireur</br>
+  </il>
+</ul>
+<h2>Variante possible</h2>
+<ul>
+  <il>
+  Match, 1v1 le perdant prend un shot supplémentaire, pour définir le perdant c'est celui qui met le plus de temps a finir la cible ou celui qui a mis moins de lumière verte</br>
+  </il>
 </ul>
 </div>
 

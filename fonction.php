@@ -44,7 +44,7 @@ function footer() {
         <div class='footer-center'>
         <div>
         <i class='fa fa-map-marker'></i>
-        <a href='https://maps.google.com/?q=22+avenue+de+Marvile' target='_blank' style='text-decoration: none;'>22 avenue de Marvile</a>
+        <a href='https://maps.google.com/?q=22+avenue+de+Marvile' target='_blank' style='text-decoration: none;color: white'>22 avenue de Marvile</a>
     </div>
 
             <div>
