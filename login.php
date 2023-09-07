@@ -14,6 +14,8 @@ if (!empty($_POST['identifiant']) and !empty($_POST['password'])) {
       $_SESSION['identifiant'] = $user['identifiant'];
       header('Location: accueil.php');
       exit;
+    }else{
+      sleep(1);
     }
   }
   header('Location: connexion.php');
