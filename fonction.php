@@ -223,27 +223,31 @@ function ajoutGalerie() {
         file_put_contents($jsonFile, json_encode($donneesExistantes, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 
     }
-    // Affiche le formulaire
-    echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-    <div class='w3-content'>
-        <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
-            <label class='w3-text-white' for='titre'>Titre du dossier :</label>
-            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required><br>
-                
-            <label class='w3-text-white' for='lien'>Lien Google Drive :</label>
-            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='lien' required><br>
-                
-            <label class='w3-text-white' for='date'>Date de l\'album :</label>
-            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='date' name='date' required><br>
-                
-            <label class='w3-text-white' for='nom_image'>Nom de l\'image :</label>
-            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_image' required><br>
-                
-            <label class='w3-text-white' for='image'>Sélectionnez une image :</label>
-            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/*' required><br>
-                
-            <button type='submit'>Envoyer</button>
-        </form>";
+    // Affiche le formulaire si tu est admin
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'admin') {
+            echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+            <div class='w3-content'>
+                <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
+                    <label class='w3-text-white' for='titre'>Titre du dossier :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required><br>
+                        
+                    <label class='w3-text-white' for='lien'>Lien Google Drive :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='lien' required><br>
+                        
+                    <label class='w3-text-white' for='date'>Date de l\'album :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='date' name='date' required><br>
+                        
+                    <label class='w3-text-white' for='nom_image'>Nom de l\'image :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_image' required><br>
+                        
+                    <label class='w3-text-white' for='image'>Sélectionnez une image :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/*' required><br>
+                        
+                    <button type='submit'>Envoyer</button>
+                </form>";
+            }
+        }
     }
 
 
@@ -410,217 +414,220 @@ function suppImageCarousel() {
     echo "</div>";
     }
 function changeRecord() {
-    $disciplineChosen = false;
-    $formSubmitted = false; // Variable pour vérifier si le formulaire a été soumis
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'admin') {
+            $disciplineChosen = false;
+            $formSubmitted = false; // Variable pour vérifier si le formulaire a été soumis
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $discipline = $_POST['discipline'];
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $discipline = $_POST['discipline'];
 
-        // JavaScript pour masquer le formulaire de choix
-        echo "<script>
-            document.getElementById('discipline-form').style.display = 'none';
-        </script>";
+                // JavaScript pour masquer le formulaire de choix
+                echo "<script>
+                    document.getElementById('discipline-form').style.display = 'none';
+                </script>";
 
-        // Vérifiez si une discipline a été choisie
-        if (!empty($discipline)) {
-            $disciplineChosen = true;
-        }
+                // Vérifiez si une discipline a été choisie
+                if (!empty($discipline)) {
+                    $disciplineChosen = true;
+                }
 
-        // Vérifiez si le formulaire a été soumis avec succès (vous devrez ajouter votre propre logique de validation ici)
-        if (isset($_POST['categorie'])) {
-            $formSubmitted = true;
-        }
-    }
-    // Affichez le bouton de retour uniquement lorsque la discipline a été choisie
-    if ($disciplineChosen && !$formSubmitted) {
-        echo "<div class='w3-large'>
-                <a href='javascript:history.back()' class='w3-button' style='background-color: rgb(32, 47, 74); color:white; text-decoration: none;'>Retour</a>
-            </div>";
-    }
-    
-
-    // Affichez le formulaire de choix de discipline (seulement si une discipline n'a pas encore été choisie et si le formulaire n'a pas été soumis)
-    if (!$disciplineChosen && !$formSubmitted) {
-        echo "
-        <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-            <form method='POST' name='formulaire' id='discipline-form'>
-                Discipline<br>
-                <input type='radio' name='discipline' value='Laser Run'> Laser Run<br>
-                <input type='radio' name='discipline' value='Triathlé'> Triathlé<br>
-                <input type='radio' name='discipline' value='Tetrathlon'> Tetrathlon<br>
-                <input type='radio' name='discipline' value='Pentathlon'> Pentathlon<br>
-                <input type='submit' value='Choisir'>
-            </form>
-        </div>";
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if ($formSubmitted) {
-            echo "<h1 style='color:green'><center>Changement enregistré avec succès </center></h1>";
-        } else {
-            echo "
-            <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-                <div class='w3-content'>
-                    <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
-                        Nom: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom' pattern='[A-Za-z\s]+' required><br>
-                        Prénom: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='prenom' pattern='[A-Za-z\s]+' required><br>
-                        Date: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date' pattern='\d{2}/\d{2}/\d{4}' placeholder='jj/mm/aaaa' required><br>
-                        Lieu: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='lieu' pattern='[A-Za-z\s,\\-]+' required><br>";
-                        
-                        if ($discipline == 'Laser Run') {
-                            echo "Temps : <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='temps' pattern='[0-9]{2}&#039;[0-9]{2}'' placeholder='mm&#039;ss' required><br>";
-                        } else {
-                            echo "Points: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='points' pattern='[0-9]+' required><br>";
-                        }
-        
-        if ($discipline == 'Laser Run') {
-            echo "Catégorie:
-            <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
-            <option value=0>U9 F</option>
-            <option value=1>U9 H</option>
-            <option value=2>U11 F</option>
-            <option value=3>U11 H</option>
-            <option value=4>U13 F</option>
-            <option value=5>U13 H</option>
-            <option value=6>U15 F</option>
-            <option value=7>U15 H</option>
-            <option value=8>U17 F</option>
-            <option value=9>U17 H</option>
-            <option value=10>U19 F</option>
-            <option value=11>U19 H</option>
-            <option value=12>U22 F</option>
-            <option value=13>U22 H</option>
-            <option value=14>Senior F</option>
-            <option value=15>Senior H</option>
-            <option value=16>M40 F</option>
-            <option value=17>M40 H</option>
-            <option value=18>M50 F</option>
-            <option value=19>M50 H</option>
-            <option value=20>M60 F</option>
-            <option value=21>M60 H</option>
-            <option value=22>M70 F</option>
-            <option value=23>M70 H</option>
-            <option value=24>Longue Distance F</option>
-            <option value=25>Longue Distance H</option>
-            </select><br>";
-        } elseif ($discipline == 'Triathlé') {
-            echo "Catégorie:
-            <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
-                <option value=0>U9 F</option>
-                <option value=1>U9 H</option>
-                <option value=2>U11 F</option>
-                <option value=3>U11 H</option>
-                <option value=4>U13 F</option>
-                <option value=5>U13 H</option>
-                <option value=6>U15 F</option>
-                <option value=7>U15 H</option>
-                <option value=8>U17 F</option>
-                <option value=9>U17 H</option>
-                <option value=10>U19 F</option>
-                <option value=11>U19 H</option>
-                <option value=12>U22 F</option>
-                <option value=13>U22 H</option>
-                <option value=14>Senior F</option>
-                <option value=15>Senior H</option>
-                <option value=16>M40 F</option>
-                <option value=17>M40 H</option>
-                <option value=18>M50 F</option>
-                <option value=19>M50 H</option>
-                <option value=20>M60 F</option>
-                <option value=21>M60 H</option>
-                <option value=22>M70 F</option>
-                <option value=23>M70 H</option>
-            </select><br>";
-        } elseif ($discipline == 'Tetrathlon') {
-            echo "Catégorie:
-            <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
-                <option value=0>U17 F</option>
-                <option value=1>U17 H</option>
-                <option value=2>U19 F</option>
-                <option value=3>U19 H</option>
-                <option value=4>U22 F</option>
-                <option value=5>U22 H</option>
-                <option value=6>Senior F</option>
-                <option value=7>Senior H</option>
-                <option value=8>M30 F</option>
-                <option value=9>M30 H</option>
-                <option value=10>M40 F</option>
-                <option value=11>M40 H</option>
-                <option value=12>M50 F</option>
-                <option value=13>M50 H</option>
-                <option value=14>M60 F</option>
-                <option value=15>M60 H</option>
-                <option value=16>M70 F</option>
-                <option value=17>M70 H</option>
-            </select><br>";
-        } elseif ($discipline == 'Pentathlon') {
-            echo "Catégorie:
-            <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
-                <option value=0>U17 F</option>
-                <option value=1>U17 H</option>
-                <option value=2>U19 F</option>
-                <option value=3>U19 H</option>
-                <option value=4>U22 F</option>
-                <option value=5>U22 H</option>
-                <option value=6>Senior F</option>
-                <option value=7>Senior H</option>
-                <option value=8>M30 F</option>
-                <option value=9>M30 H</option>
-                <option value=10>M40 F</option>
-                <option value=11>M40 H</option>
-                <option value=12>M50 F</option>
-                <option value=13>M50 H</option>
-                <option value=14>M60 F</option>
-                <option value=15>M60 H</option>
-                <option value=16>M70 F</option>
-                <option value=17>M70 H</option>
-            </select><br>";
-        }
-
-        echo "<input type='hidden' name='discipline' value='$discipline'>
-                <input class='w3-button' style='background-color: rgb(32, 47, 74); color:white' type='submit' value='Enregistrer'>
-            </form></div></div>";
-        }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['categorie'])) {
-            $data = json_decode(file_get_contents('record.json'), true);
-            $discipline = $_POST['discipline'];
-            $cat = $_POST['categorie'];
-            $newnom = $_POST['nom'];
-            $newprenom = $_POST['prenom'];
-            $newdate = $_POST['date'];
-            $newlieu = $_POST['lieu'];
-        
-            if ($discipline == 'Laser Run') {
-                $newtemps = $_POST['temps'];
-                $data[$discipline][$cat]['temps'] = $newtemps;
-            } else {
-                $newpoints = $_POST['points'];
-                $data[$discipline][$cat]['points'] = $newpoints;
+                // Vérifiez si le formulaire a été soumis avec succès (vous devrez ajouter votre propre logique de validation ici)
+                if (isset($_POST['categorie'])) {
+                    $formSubmitted = true;
+                }
             }
-        
-            $data[$discipline][$cat]['nom'] = $newnom;
-            $data[$discipline][$cat]['prenom'] = $newprenom;
-            $data[$discipline][$cat]['date'] = $newdate;
-            $data[$discipline][$cat]['lieux'] = $newlieu;
-        
-            // Sauvegardez le tableau mis à jour dans le fichier JSON
-            file_put_contents('record.json', json_encode($data, JSON_PRETTY_PRINT));
+            // Affichez le bouton de retour uniquement lorsque la discipline a été choisie
+            if ($disciplineChosen && !$formSubmitted) {
+                echo "<div class='w3-large'>
+                        <a href='javascript:history.back()' class='w3-button' style='background-color: rgb(32, 47, 74); color:white; text-decoration: none;'>Retour</a>
+                    </div>";
+            }
+            
+
+            // Affichez le formulaire de choix de discipline (seulement si une discipline n'a pas encore été choisie et si le formulaire n'a pas été soumis)
+            if (!$disciplineChosen && !$formSubmitted) {
+                echo "
+                <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+                    <form method='POST' name='formulaire' id='discipline-form'>
+                        Discipline<br>
+                        <input type='radio' name='discipline' value='Laser Run'> Laser Run<br>
+                        <input type='radio' name='discipline' value='Triathlé'> Triathlé<br>
+                        <input type='radio' name='discipline' value='Tetrathlon'> Tetrathlon<br>
+                        <input type='radio' name='discipline' value='Pentathlon'> Pentathlon<br>
+                        <input type='submit' value='Choisir'>
+                    </form>
+                </div>";
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if ($formSubmitted) {
+                    echo "<h1 style='color:green'><center>Changement enregistré avec succès </center></h1>";
+                } else {
+                    echo "
+                    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+                        <div class='w3-content'>
+                            <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
+                                Nom: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom' pattern='[A-Za-z\s]+' required><br>
+                                Prénom: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='prenom' pattern='[A-Za-z\s]+' required><br>
+                                Date: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date' pattern='\d{2}/\d{2}/\d{4}' placeholder='jj/mm/aaaa' required><br>
+                                Lieu: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='lieu' pattern='[A-Za-z\s,\\-]+' required><br>";
+                                
+                                if ($discipline == 'Laser Run') {
+                                    echo "Temps : <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='temps' pattern='[0-9]{2}&#039;[0-9]{2}'' placeholder='mm&#039;ss' required><br>";
+                                } else {
+                                    echo "Points: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='points' pattern='[0-9]+' required><br>";
+                                }
+                
+                if ($discipline == 'Laser Run') {
+                    echo "Catégorie:
+                    <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
+                    <option value=0>U9 F</option>
+                    <option value=1>U9 H</option>
+                    <option value=2>U11 F</option>
+                    <option value=3>U11 H</option>
+                    <option value=4>U13 F</option>
+                    <option value=5>U13 H</option>
+                    <option value=6>U15 F</option>
+                    <option value=7>U15 H</option>
+                    <option value=8>U17 F</option>
+                    <option value=9>U17 H</option>
+                    <option value=10>U19 F</option>
+                    <option value=11>U19 H</option>
+                    <option value=12>U22 F</option>
+                    <option value=13>U22 H</option>
+                    <option value=14>Senior F</option>
+                    <option value=15>Senior H</option>
+                    <option value=16>M40 F</option>
+                    <option value=17>M40 H</option>
+                    <option value=18>M50 F</option>
+                    <option value=19>M50 H</option>
+                    <option value=20>M60 F</option>
+                    <option value=21>M60 H</option>
+                    <option value=22>M70 F</option>
+                    <option value=23>M70 H</option>
+                    <option value=24>Longue Distance F</option>
+                    <option value=25>Longue Distance H</option>
+                    </select><br>";
+                } elseif ($discipline == 'Triathlé') {
+                    echo "Catégorie:
+                    <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
+                        <option value=0>U9 F</option>
+                        <option value=1>U9 H</option>
+                        <option value=2>U11 F</option>
+                        <option value=3>U11 H</option>
+                        <option value=4>U13 F</option>
+                        <option value=5>U13 H</option>
+                        <option value=6>U15 F</option>
+                        <option value=7>U15 H</option>
+                        <option value=8>U17 F</option>
+                        <option value=9>U17 H</option>
+                        <option value=10>U19 F</option>
+                        <option value=11>U19 H</option>
+                        <option value=12>U22 F</option>
+                        <option value=13>U22 H</option>
+                        <option value=14>Senior F</option>
+                        <option value=15>Senior H</option>
+                        <option value=16>M40 F</option>
+                        <option value=17>M40 H</option>
+                        <option value=18>M50 F</option>
+                        <option value=19>M50 H</option>
+                        <option value=20>M60 F</option>
+                        <option value=21>M60 H</option>
+                        <option value=22>M70 F</option>
+                        <option value=23>M70 H</option>
+                    </select><br>";
+                } elseif ($discipline == 'Tetrathlon') {
+                    echo "Catégorie:
+                    <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
+                        <option value=0>U17 F</option>
+                        <option value=1>U17 H</option>
+                        <option value=2>U19 F</option>
+                        <option value=3>U19 H</option>
+                        <option value=4>U22 F</option>
+                        <option value=5>U22 H</option>
+                        <option value=6>Senior F</option>
+                        <option value=7>Senior H</option>
+                        <option value=8>M30 F</option>
+                        <option value=9>M30 H</option>
+                        <option value=10>M40 F</option>
+                        <option value=11>M40 H</option>
+                        <option value=12>M50 F</option>
+                        <option value=13>M50 H</option>
+                        <option value=14>M60 F</option>
+                        <option value=15>M60 H</option>
+                        <option value=16>M70 F</option>
+                        <option value=17>M70 H</option>
+                    </select><br>";
+                } elseif ($discipline == 'Pentathlon') {
+                    echo "Catégorie:
+                    <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
+                        <option value=0>U17 F</option>
+                        <option value=1>U17 H</option>
+                        <option value=2>U19 F</option>
+                        <option value=3>U19 H</option>
+                        <option value=4>U22 F</option>
+                        <option value=5>U22 H</option>
+                        <option value=6>Senior F</option>
+                        <option value=7>Senior H</option>
+                        <option value=8>M30 F</option>
+                        <option value=9>M30 H</option>
+                        <option value=10>M40 F</option>
+                        <option value=11>M40 H</option>
+                        <option value=12>M50 F</option>
+                        <option value=13>M50 H</option>
+                        <option value=14>M60 F</option>
+                        <option value=15>M60 H</option>
+                        <option value=16>M70 F</option>
+                        <option value=17>M70 H</option>
+                    </select><br>";
+                }
+
+                echo "<input type='hidden' name='discipline' value='$discipline'>
+                        <input class='w3-button' style='background-color: rgb(32, 47, 74); color:white' type='submit' value='Enregistrer'>
+                    </form></div></div>";
+                }
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['categorie'])) {
+                    $data = json_decode(file_get_contents('record.json'), true);
+                    $discipline = $_POST['discipline'];
+                    $cat = $_POST['categorie'];
+                    $newnom = $_POST['nom'];
+                    $newprenom = $_POST['prenom'];
+                    $newdate = $_POST['date'];
+                    $newlieu = $_POST['lieu'];
+                
+                    if ($discipline == 'Laser Run') {
+                        $newtemps = $_POST['temps'];
+                        $data[$discipline][$cat]['temps'] = $newtemps;
+                    } else {
+                        $newpoints = $_POST['points'];
+                        $data[$discipline][$cat]['points'] = $newpoints;
+                    }
+                
+                    $data[$discipline][$cat]['nom'] = $newnom;
+                    $data[$discipline][$cat]['prenom'] = $newprenom;
+                    $data[$discipline][$cat]['date'] = $newdate;
+                    $data[$discipline][$cat]['lieux'] = $newlieu;
+                
+                    // Sauvegardez le tableau mis à jour dans le fichier JSON
+                    file_put_contents('record.json', json_encode($data, JSON_PRETTY_PRINT));
+                }
+            }
+            // Affichez le bouton pour un nouveau record uniquement après que le formulaire a été soumis avec succès
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && $formSubmitted) {
+                echo "<div class='w3-center w3-padding-48 w3-xxlarge'>
+                        <button class='w3-button' style='background-color: rgb(32, 47, 74); color:white' onclick='redirectToPage()'>Ajouter un nouveau record</button>
+                    </div>";
+                // JavaScript pour rediriger l'utilisateur vers parametres_record.php
+                echo "<script>
+                    function redirectToPage() {
+                        window.location.href = 'parametres_record.php';
+                    }
+                </script>";
+            }
+            }
         }
     }
-    // Affichez le bouton pour un nouveau record uniquement après que le formulaire a été soumis avec succès
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $formSubmitted) {
-        echo "<div class='w3-center w3-padding-48 w3-xxlarge'>
-                  <button class='w3-button' style='background-color: rgb(32, 47, 74); color:white' onclick='redirectToPage()'>Ajouter un nouveau record</button>
-              </div>";
-        // JavaScript pour rediriger l'utilisateur vers parametres_record.php
-        echo "<script>
-            function redirectToPage() {
-                window.location.href = 'parametres_record.php';
-            }
-        </script>";
-    }
-    }
-
 
 
 function ajoutArticle() {
@@ -675,33 +682,36 @@ function ajoutArticle() {
         }
     }
 
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'admin') {
+            echo "
+            <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+                <div class='w3-content'>
+                    <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
+                        <label class='w3-text-white'>Sélectionner un article :</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='fichier' required>
+                        <br>
+                        <label class='w3-text-white'>Titre :</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
+                        <br>
+                        <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+' required>
+                        <br>
+                        <label class='w3-text-white'>Description :</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
+                        <br>
+                        <label class='w3-text-white'>Date :</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date_telechargement' pattern='\d{2}/\d{2}/\d{2}' placeholder='jj/mm/aa' required>
+                        <br>
+                        <label class='w3-text-white'>Sélectionner une image :</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' accept='image/*' required>
+                        <br>
+                        <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
+                    </form>";
 
-    echo "
-    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-        <div class='w3-content'>
-            <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
-                <label class='w3-text-white'>Sélectionner un article :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='fichier' required>
-                <br>
-                <label class='w3-text-white'>Titre :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
-                <br>
-                <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+' required>
-                <br>
-                <label class='w3-text-white'>Description :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
-                <br>
-                <label class='w3-text-white'>Date :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date_telechargement' pattern='\d{2}/\d{2}/\d{2}' placeholder='jj/mm/aa' required>
-                <br>
-                <label class='w3-text-white'>Sélectionner une image :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' accept='image/*' required>
-                <br>
-                <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
-            </form>";
-
-    echo "</div></div>";
+            echo "</div></div>";
+            }
+        }
     }
 
 function ajoutImageCarousel() {
@@ -722,22 +732,25 @@ function ajoutImageCarousel() {
         $cheminFichier = $dossierPartage . $nouveauNomFichier;
         move_uploaded_file($fichierTemporaire, $cheminFichier);
     }
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'admin') {
+            echo "
+            <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+                <div class='w3-content'>
+                    <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
+                        <label class='w3-text-white'>Sélectionner une image :</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='fichier' accept='image/*' required>
+                        <br>
+                        <label class='w3-text-white'>Nom du fichier lors du téléchargement (facultatif) :</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+'>
+                        <br>
+                        <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager'>
+                    </form>";
 
-    echo "
-    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-        <div class='w3-content'>
-            <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
-                <label class='w3-text-white'>Sélectionner une image :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='fichier' accept='image/*' required>
-                <br>
-                <label class='w3-text-white'>Nom du fichier lors du téléchargement (facultatif) :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+'>
-                <br>
-                <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager'>
-            </form>";
-
-    echo "</div></div>";
+            echo "</div></div>";
+                }
         }
+    }
     
 
 function ajoutPartenaire() {
@@ -775,26 +788,30 @@ function ajoutPartenaire() {
             file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
         }
     }
-    echo "
-    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-        <div class='w3-content'>
-            <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
-                <label class='w3-text-white'>Titre :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
-                <br>
-                <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+' required>
-                <br>
-                <label class='w3-text-white'>Description :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
-                <br>
-                <label class='w3-text-white'>Sélectionner une image :</label>
-                <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/*' required>
-                <br>
-                <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
-            </form>";
-
-    echo "</div></div>";
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'admin') {
+            echo "
+            <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+                <div class='w3-content'>
+                    <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
+                        <label class='w3-text-white'>Titre :</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
+                        <br>
+                        <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+' required>
+                        <br>
+                        <label class='w3-text-white'>Description :</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
+                        <br>
+                        <label class='w3-text-white'>Sélectionner une image :</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/*' required>
+                        <br>
+                        <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
+                    </form>
+                </div>
+            </div>";
+            }
+        }
     }
     
 function suppPartenaire() {
@@ -885,19 +902,22 @@ function ajoutArticleSection() {
                 file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
             }
         }
-    }
-    echo "
-    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-        <div class='w3-content'>
-        <form method='POST' enctype='multipart/form-data'>
-            <label for='titre'>Titre de l'article :</label>
-            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
-            
-            <label for='pdf'>Sélectionnez un PDF:</label>
-            <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='pdf' accept='.pdf' required /><br>
-            
-            <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
-        </form></div></div>";
+    }if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'admin') {
+            echo "
+            <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+                <div class='w3-content'>
+                <form method='POST' enctype='multipart/form-data'>
+                    <label for='titre'>Titre de l'article :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
+                    
+                    <label for='pdf'>Sélectionnez un PDF:</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='pdf' accept='.pdf' required /><br>
+                    
+                    <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
+                </form></div></div>";
+            }
+        }
     }
     
 function suppArticleSection() {
@@ -992,19 +1012,24 @@ function ajoutEvenement() {
        
     }
 
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'admin') {
+            echo "
+            <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+                <div class='w3-content'>
+                    <form method='POST' enctype='multipart/form-data'>
+                    <label for='date'>Date de l'événement:</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "' required><br>
 
-    echo "
-    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-        <div class='w3-content'>
-            <form method='POST' enctype='multipart/form-data'>
-            <label for='date'>Date de l'événement:</label>
-            <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "' required><br>
+                    <label for='evenement'>Événement:</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='text' name='evenement' required /><br>
 
-            <label for='evenement'>Événement:</label>
-            <input class='w3-input w3-padding-16 w3-border' type='text' name='evenement' required /><br>
-
-            <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
-        </form></div></div>";
+                    <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
+                    </form>
+                </div>
+            </div>";
+            }
+        }
     }
 function ajoutResultat() {
     $dossierJson = './resultat.json';
@@ -1044,22 +1069,28 @@ function ajoutResultat() {
         file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
     }
     }
-    echo "
-    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-        <div class='w3-content'>
-            <form method='POST' enctype='multipart/form-data'>
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'admin') {
+            echo "
+            <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+                <div class='w3-content'>
+                    <form method='POST' enctype='multipart/form-data'>
 
-            <label for='titre'>Titre:</label>
-            <input class='w3-input w3-padding-16 w3-border' type='text' name='titre' required><br>
+                    <label for='titre'>Titre:</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='text' name='titre' required><br>
 
-            <label for='date'>Date de l'événement:</label>
-            <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "' required><br>
+                    <label for='date'>Date de l'événement:</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "' required><br>
 
-            <label for='evenement'>Description:</label>
-            <input class='w3-input w3-padding-16 w3-border' type='text' name='description' required /><br>
+                    <label for='evenement'>Description:</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='text' name='description' required /><br>
 
-            <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
-        </form></div></div>";
+                    <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
+                    </form>
+                </div>
+            </div>";
+            }
+        }
     }
 
 function suppResultat(){
