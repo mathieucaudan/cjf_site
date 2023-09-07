@@ -62,7 +62,7 @@ navbar();
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
         <h3>Escrime</h3>
-        <img src="image/" style="display:block; margin:auto;">
+        <img src="image/coach/ludmila.jpg" style="display:block; margin:auto; height:50%;">
         <p>LUDMILLA POZDEEVA (MAITRE D’ARME)</p>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">

@@ -5,8 +5,6 @@ include 'fonction.php';
 entete();
 navbar();
 echo "<body style='background-color: rgb(32, 47, 74);'>";
-if (isset($_SESSION['role'])) {
-  if ($_SESSION['role'] == 'admin') {
 ?>
 
 <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
@@ -33,12 +31,6 @@ if (isset($_SESSION['role'])) {
 </div>
 
 <?php
-}
-}else{
-  echo"<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-  <h2 class='w3-center'>Autorisation non accordée</h2>
-  </div>";
-}
 footer();
 echo "</body>";
 ?>
