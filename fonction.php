@@ -42,10 +42,10 @@ function footer() {
         </div>
 
         <div class='footer-center'>
-        <div>
-        <i class='fa fa-map-marker'></i>
-        <a href='https://maps.google.com/?q=22+avenue+de+Marvile' target='_blank' style='text-decoration: none;color: white'>22 avenue de Marvile</a>
-    </div>
+            <div>
+                <i class='fa fa-map-marker'></i>
+                <a href='https://maps.google.com/?q=22+avenue+de+Marvile' target='_blank' style='text-decoration: none;color: white'>22 avenue de Marvile</a>
+            </div>
 
             <div>
                 <i class='fa fa-phone'></i>
@@ -69,7 +69,12 @@ function footer() {
             </div>
 
         </div>
-
+        <div style='color:white'><center>
+            <a>© Copyright  2023 |</a>
+            <a> CJF Saint-Malo Pentathlon Moderne</a></br>
+            <a>Tous droits réservés |</a>
+            <a> Réalisé par les craks du cjf</a>
+        </center></div>
     </footer>";
 
     }
@@ -116,15 +121,23 @@ function navbar() {
     }
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] != 'admin') {
-    echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px;'>";
+            echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px;'>";
         }
     }else {
         echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px;'>";
     }
     if (isset($_SESSION['role'])) {
-        echo "<a href='deconnexion.php' class='buttonContainer w3-right '><button class='myButton'  style='float: right' type='button'>Déconnexion</button></a>";
+        echo "<div class='loginButton'><a href='deconnexion.php'class='buttonContainer w3-right noHover'><button class='logButton'> Déconnexion
+        <div class='logicon'>
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' width='22' height='22'><path fill='none' d='M0 0h24v24H0z'></path><path fill='currentColor' d='M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z'></path></svg>
+        </div>
+      </button></a></div>";
     } else {
-        echo "<a href='connexion.php' class='buttonContainer w3-right'><button class='myButton' style='float: right' type='button'>Connexion</button></a>";
+        echo "<div class='loginButton'><a href='connexion.php'class='buttonContainer w3-right noHover'><button class='logButton'> Connexion
+        <div class='logicon'>
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' width='22' height='22'><path fill='none' d='M0 0h24v24H0z'></path><path fill='currentColor' d='M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z'></path></svg>
+        </div>
+      </button></a></div>";
     }
     echo "
     <script>

@@ -103,7 +103,7 @@ section {
 	text-decoration: none;
 }
 
-.footer-distributed .footer-links a:before {
+.footer-distributed .footer-copyright .footer-links a:before {
   content: "|";
   font-weight:300;
   font-size: 30px;

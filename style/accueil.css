@@ -1,11 +1,4 @@
 /*-----------------------------------------------------------accueil.php-----------------------------------------------------------*/
-
-
-p {
-    text-align: justify; /* Taille du texte pour les paragraphes */
-}
-
-
 .accslider-container {
     position: relative;
     overflow: hidden;

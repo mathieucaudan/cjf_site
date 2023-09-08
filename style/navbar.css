@@ -76,31 +76,67 @@ display: block;
     }
 }
 
-.myButton {
-    font-size: 20px !important;
+.logButton {
+    background: #d4635d;
+    color: white;
+    font-family: inherit;
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 1.6em -0.6em #d4635d;
+    overflow: hidden;
+    position: relative;
+    height: 2.8em;
+    padding-right: 3.3em;
+    margin-top: 0.4em;
+  }
+  
+  .logButton .logicon {
+    background: white;
+    margin-left: 1em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 0.7em;
+    box-shadow: 0.1em 0.1em 0.6em 0.2em #d4635d;
+    right: 0.3em;
+    transition: all 0.3s;
+  }
+  
+  .logButton:hover .logicon {
+    width: calc(100% - 0.6em);
+  }
+  
+  .logButton .logicon svg {
+    width: 1.1em;
+    transition: transform 0.3s;
+    color: #d4635d;
+  }
+  
+  .logButton:hover .logicon svg {
+    transform: translateX(0.1em);
+  }
+  
+  .logButton:active .logicon {
+    transform: scale(0.95);
+  }
+  .logButton.noHover:hover {
+    background-color: transparent;
+    color: white;
+  }
+  .loginButton a:hover {
+    background-color:  rgb(32, 47, 74);
+    }
 
-    background-color: rgb(32, 47, 74); /* Couleur de fond */
-    color: white; /* Couleur du texte */
-    border: none; /* Supprime la bordure */
-}
-
-.myButton:hover {
-    background-color: rgb(169,169,169); /* Couleur de fond lors de la survol */
-    color: white; /* Couleur du texte lors de la survol */
-    border: none; /* Supprime la bordure lors de la survol */
-    outline: none; /* Supprime l'effet de survol par défaut */
-}
-
-.buttonContainer:hover {
-    background-color: inherit !important; /* Couleur de fond lors de la survol */
-    color: inherit !important; /* Couleur du texte lors de la survol */
-    border: inherit !important; /* Bordure lors de la survol */
-    text-decoration: none !important; /* Supprime le soulignement lors de la survol */
-}
-
-#logo {
-    width: 10vw;
-}
     
 @media screen and (max-width: 1200px) {
     .topnav.responsive {position: relative;}
