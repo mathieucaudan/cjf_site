@@ -121,10 +121,10 @@ function navbar() {
     }
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] != 'admin') {
-            echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px;'>";
+            echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px; width : 10vw'>";
         }
     }else {
-        echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px;'>";
+        echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px; width : 10vw'>";
     }
     if (isset($_SESSION['role'])) {
         echo "<div class='loginButton'><a href='deconnexion.php'class='buttonContainer w3-right noHover'><button class='logButton'> Déconnexion
