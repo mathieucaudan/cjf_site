@@ -37,7 +37,6 @@ function footer() {
                 <a href='galerie_photo.php'>Galerie photo</a>
                 <a href='calendrier.php'>Calendrier</a>
                 <a href='inscription.php'>S'inscrire</a>
-                <a href='laser_shot.php' style='color: rgb(30, 60, 80)'>Laser Shot</a>
             </p>
         </div>
 
