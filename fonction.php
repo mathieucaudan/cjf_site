@@ -27,6 +27,7 @@ function footer() {
             <h3>En espérant vous voir <span>à l'entraînement</span></h3>
 
             <p class='footer-links'>
+<<<<<<< HEAD
                 <a href='accueil.php' class='link-1'>Accueil</a>
                 <a href='partenaire.php'>Entreprises</a>
                 <a href='article.php'>Articles</a>
@@ -37,6 +38,20 @@ function footer() {
                 <a href='galerie_photo.php'>Galerie photo</a>
                 <a href='calendrier.php'>Calendrier</a>
                 <a href='inscription.php'>S'inscrire</a>
+=======
+                <a href='accueil.php' class='link-1'>Accueil</a> |
+                <a href='partenaire.php'>Partenaires</a> |
+                <a href='article.php'>Articles</a> |
+                <a href='record.php'>Records</a> |
+                <a href='creneaux.php'>Créneaux</a> |
+                <a href='nous.php'>Qui sommes nous ?</a> |
+                <a href='section.php'>Section</a> |
+                <a href='galerie_photo.php'>Galerie photo</a> |
+                <a href='calendrier.php'>Calendrier</a> |
+                <a href='inscription.php'>S'inscrire</a> |
+                <a href='laser_shot.php' style='color: rgb(30, 60, 80)'>Laser Shot</a>
+            
+>>>>>>> 71af21d6bbb4423a044787fc0d5920e526c11498
             </p>
         </div>
 
@@ -72,7 +87,7 @@ function footer() {
             <a>© Copyright  2023 |</a>
             <a> CJF Saint-Malo Pentathlon Moderne</a></br>
             <a>Tous droits réservés |</a>
-            <a> Réalisé par les craks du cjf</a>
+            <a> Réalisé par les cracks du cjf</a>
         </center></div>
     </footer>";
 
@@ -83,7 +98,7 @@ function footer() {
 function navbar() {
     echo "<div class='topnav' id='myTopnav'>
     <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
-        <a href='partenaire.php' class='w3-bar-item w3-button'>ENTREPRISES</a>
+        <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRES</a>
         <a href='article.php' class='w3-bar-item w3-button'>ARTICLES</a>
     <div class='dropdown'>
       <button class='dropbtn'>LE CLUB 
