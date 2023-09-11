@@ -47,28 +47,29 @@ navbar();
       <div class="w3-quarter w3-container" style="text-align:center;">
         <h3>Laser Run</h3>
         <img src="image/coach/avatar.png" style="display:block; margin:auto;">
-        <p>ARNAUD EVEILLARD (BF1)</p>
+        <h4>ARNAUD EVEILLARD (BF1)</h4>
         <img src="image/coach/avatar.png" style="display:block; margin:auto;">
-        <p>JULIEN TERTRAIN (BF1)</p>
+        <h4>JULIEN TERTRAIN (BF1)</h4>
         <img src="image/coach/avatar.png" style="display:block; margin:auto;">
-        <p>DANIEL BOURQUIN (partenariat avec le CJF Athlétisme)</p>
+        <h4>DANIEL BOURQUIN<h4> <p>(partenariat avec le CJF Athlétisme)</p>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
         <h3>Natation</h3>
+        <img src="image/coach/fred.JPG" style="display:block; margin:auto; height:50%;">
+        <h4>FRED GARCIA</h4> <p>(partenariat avec le Triathlon Côte d’Emeraude)</p>
+        <p>(BF3 de triathlon,BF4 de Natation, BPJEPS AAN, Moniteur sportif de natation)</p>
         <img src="image/coach/avatar.png" style="display:block; margin:auto;">
-        <p>ARNAUD EVEILLARD (BF1)</p>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
-        <p>FRED GARCIA (partenariat avec le Triathlon Côte d’Emeraude)</p>
+        <h4>ARNAUD EVEILLARD</h4><p>(BF1)</p>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
         <h3>Escrime</h3>
         <img src="image/coach/ludmila.jpg" style="display:block; margin:auto; height:50%;">
-        <p>LUDMILLA POZDEEVA (MAITRE D’ARME)</p>
+        <h4>LUDMILLA POZDEEVA (MAITRE D’ARME)</h4>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
         <h3>Obstacle</h3>
         <img src="image/coach/avatar.png" style="display:block; margin:auto;">
-        <p>ARNAUD EVEILLARD (BF1)</p>
+        <h4>ARNAUD EVEILLARD (BF1)</h4>
       </div>
     </div>
 </div>
