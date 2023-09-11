@@ -9,7 +9,7 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 navbar();
 ?>
 <body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'partenaire')">
-<h1 style='color:white'><center>Entreprises</center></h1>
+<h1 style='color:white'><center>Partenaires</center></h1>
 <center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
   <button class="tablinks partenaire active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'partenaire')">Nos Partenaires</button>
   <button class="tablinks evenement" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'evenement')">Evenements</button>
