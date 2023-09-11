@@ -21,7 +21,9 @@ $data = json_decode($jsonData, true);
   <div id="cardsWrapper">
     <section class="artcards-wrapper"  >
       <?php
-      foreach ($data as $article) {
+      $reversedData = array_reverse($data);
+
+      foreach ($reversedData as $article) {
         echo "<div class='artcard-grid-space'>
         <a class='artcard' href='$dossierPdf/" . pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']}); background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);'>
             <div>

@@ -27,18 +27,6 @@ function footer() {
             <h3>En espérant vous voir <span>à l'entraînement</span></h3>
 
             <p class='footer-links'>
-<<<<<<< HEAD
-                <a href='accueil.php' class='link-1'>Accueil</a>
-                <a href='partenaire.php'>Entreprises</a>
-                <a href='article.php'>Articles</a>
-                <a href='record.php'>Records</a>
-                <a href='creneaux.php'>Créneaux</a>
-                <a href='nous.php'>Qui sommes nous ?</a>
-                <a href='section.php'>Section</a>
-                <a href='galerie_photo.php'>Galerie photo</a>
-                <a href='calendrier.php'>Calendrier</a>
-                <a href='inscription.php'>S'inscrire</a>
-=======
                 <a href='accueil.php' class='link-1'>Accueil</a> |
                 <a href='partenaire.php'>Partenaires</a> |
                 <a href='article.php'>Articles</a> |
@@ -50,8 +38,6 @@ function footer() {
                 <a href='calendrier.php'>Calendrier</a> |
                 <a href='inscription.php'>S'inscrire</a> |
                 <a href='laser_shot.php' style='color: rgb(30, 60, 80)'>Laser Shot</a>
-            
->>>>>>> 71af21d6bbb4423a044787fc0d5920e526c11498
             </p>
         </div>
 
@@ -135,10 +121,10 @@ function navbar() {
     }
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] != 'admin') {
-            echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px; width : 10vw'>";
+            echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px; width : 0vw'>";
         }
     }else {
-        echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px; width : 10vw'>";
+        echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px; width : 0vw'>";
     }
     if (isset($_SESSION['role'])) {
         echo "<div class='loginButton'><a href='deconnexion.php'class='buttonContainer w3-right noHover'><button class='logButton'> Déconnexion

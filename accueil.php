@@ -43,7 +43,9 @@ $data = json_decode($jsonData, true);
     <h2>Dernier résultat/info</h2>
     <div>
     <?php
-      foreach ($data as $article) {
+    $reversedData = array_reverse($data);
+
+    foreach ($reversedData as $article) {
         echo "<h1>{$article['titre']}</h1>
         <p>{$article['description']}</p>
         <div>{$article['date']}</div>
