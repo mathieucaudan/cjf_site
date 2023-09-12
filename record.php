@@ -4,11 +4,10 @@
 <?php
 include 'fonction.php';
 entete();
-echo "<body>";
+echo"<body style='background-color: rgb(32, 47, 74); color:white;'>";
 navbar();
 ?>
 
-<body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'laserrun')">
 <h1 style='color:white'><center>Les records</center></h1>
 <center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
   <button class="tablinks laserrun active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laserrun')">Laser Run</button>
@@ -18,7 +17,7 @@ navbar();
 </body>
 </center></div>
 
-<center><div id="laserrun" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<div id="laserrun" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
   <h3>Laser Run</h3>
   <table class='table'>
   <?php
@@ -44,7 +43,7 @@ navbar();
   </table>
 </div>
 
-<div id="triathlé" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<div id="triathlé" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto; text-align:center;'>
   <h3>Triathlé</h3>
   <table class='table'>
   <?php
@@ -71,7 +70,7 @@ navbar();
   </table>
 </div>
 
-<div id="tetrathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
+<div id="tetrathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto; text-align:center;'>
   <h3>Tetrathlon</h3>
   <table class='table'>
   <?php
@@ -98,7 +97,7 @@ navbar();
   </table>
 </div>
 
-<div id="pentathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white'>
+<div id="pentathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; text-align:center;'>
   <h3>Pentathlon</h3>
   <table class='table'>
   <?php
@@ -122,7 +121,7 @@ navbar();
         echo '</tbody></table>';
     ?>
   </table>
-</div></center>
+</div>
 <?php
 footer();
 echo "</body>";

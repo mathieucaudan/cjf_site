@@ -1,6 +1,4 @@
 htacces apache, bloquer dossier sous dossier
-fichier log pour avoir accès au derniere connexion
 kali linux
-verif commentaire
 conforme html avec validator
 meta norobot

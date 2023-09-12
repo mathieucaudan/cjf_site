@@ -4,10 +4,10 @@
 <?php
 include 'fonction.php';
 entete();
-echo "<body style='background-color: rgb(32, 47, 74); color:white;'>";
+echo"<body style='background-color: rgb(32, 47, 74); color:white;'>";
 navbar();
 ?>
-<body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'bureau')">
+
 <h1 style='color:white'><center>Organigramme</center></h1>
 <center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
   <button class="tablinks bureau active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'bureau')">Bureau</button>
@@ -16,7 +16,7 @@ navbar();
 </body>
   </div></center>
 
-<div id="bureau" class="tabcontent">
+<div id="bureau" class="tabcontent" style='display: block;'>
     <!-- Contenu de l'onglet Bureau -->
     <h2 style="color:white; text-align:center;">Notre bureau</h2>
     <div class="w3-row">

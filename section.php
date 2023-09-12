@@ -5,10 +5,10 @@
 <?php
 include 'fonction.php';
 entete();
+echo"<body style='background-color: rgb(32, 47, 74); color:white;'>";
 navbar();
 ?>
 
-<body style='background-color: rgb(32, 47, 74); color:white;' onload="openTab(event, 'presentation')">
     <center><h1>Section sportive college le bocage</h1></center>
     <center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
   <button class="tablinks presentation active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'presentation')">Présentation</button>
@@ -16,7 +16,7 @@ navbar();
 </body>
   </div></center>
 
-  <div id="presentation" class="tabcontent">
+  <div id="presentation" class="tabcontent" style='display: block;'>
   <center><h2>Présentation de la section</h2></center>
         <div style='margin-left: 3%; margin-right: 3%; display: flex; justify-content: space-between; align-items: center;'>
             <div class="image-container">

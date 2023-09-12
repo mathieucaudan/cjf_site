@@ -4,10 +4,10 @@
 <?php
 include 'fonction.php';
 entete();
-echo "<body style='background-color: rgb(32, 47, 74); color:white;'>";
+echo"<body style='background-color: rgb(32, 47, 74); color:white;'>";
 navbar();
 ?>
-<body style='background-color: rgb(32, 47, 74); color:white; ' onload="openTab(event, 'laserrun')">
+
 <h1 style='color:white'><center>Les créneaux</center></h1>
 <center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
   <button class="tablinks laserrun active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laserrun')">Laser Run</button>
@@ -17,7 +17,7 @@ navbar();
 </body>
 </center></div>
 
-<div id="laserrun" class="tabcontent" style="text-align:center;">
+<div id="laserrun" class="tabcontent" style="text-align:center; display: block;">
     <h3>Mercredi 18h00-19h00</h3>
 </div>
 <div id="natation" class="tabcontent" style="text-align:center;">
