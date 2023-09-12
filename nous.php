@@ -21,20 +21,24 @@ navbar();
     <h2 style="color:white; text-align:center;">Notre bureau</h2>
     <div class="w3-row">
       <div class="w3-half w3-container" style="text-align:center;">
-        <h3>JEAN-LOUIS HELEU</h3>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
-        <h3>Président</h3>
-        <p>Relation Partenaires</p>
-        <p>Responsable Organisation</p>
+        <div class="card">
+          <h3>Président</h3>
+          <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+          <h3>JEAN-LOUIS HELEU</h3>
+          <p>Relation Partenaires</p>
+          <p>Responsable Organisation</p>
+        </div>
       </div>
       <div class="w3-half w3-container" style="text-align:center;">
-        <h3>ARNAUD EVEILLARD</h3>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+      <div class="card">
         <h3>Directeur sportif</h3>
+        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+        <h3>ARNAUD EVEILLARD</h3>
         <p>Coordination sportive et suivi des athlètes</p>
         <p>Responsable du développement</p>
         <p>Responsable de la Section Sportive Scolaire PENTATHLON MODERNE du collège LE BOCAGE
         de DINARD</p>
+      </div>
       </div>
     </div>
 </div>

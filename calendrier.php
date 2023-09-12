@@ -1,3 +1,5 @@
+<link rel='stylesheet' href='style/calendrier.css'> <!-- Ajout de la référence au fichier CSS -->
+<script src='script/calendrier.js'></script> <!-- Ajout de la référence au fichier JS -->
 <?php
 include 'fonction.php';
 entete();
@@ -131,165 +133,12 @@ navbar();
                 cell.innerHTML = day + "<div class='calinfo-cell'>" + dayInfo + "</div>";
             }
             day++;
+            }
         }
     }
-
-    }
-
     // Appelez la fonction de mise à jour du calendrier au chargement de la page
-    window.onload = function () {
         updateCalendar();
-    };
 </script>
-
-<style>
-
-    .calcalendar-container {
-        width: 100%;
-        margin: 0 auto; /* Centrez le calendrier horizontalement */
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        border: 2px solid white; /* Bordures blanches et épaisses */
-        width: 14.2857%; /* 100% / 7 = 14.2857% */
-        height: 5vh;
-        text-align: center;
-        font-size: 1.5vw;
-        cursor: pointer;
-        color: white; /* Texte blanc */
-    }
-    /* Style pour la div enveloppant le calendrier */
-.calcalendar-container {
-    width: 100%;
-    margin: 0 auto; /* Facultatif : centrez le calendrier horizontalement */
-    padding: 0 20px;
-}
-
-
-    /* Style pour les cellules du calendrier */
-    .calcalendar-cell {
-        position: relative;
-    }
-
-    /* Style pour les informations sous les cellules */
-    .calinfo-cell {
-        font-size: 1.5vw; /* Ajustez la taille de la police des informations */
-        color: white
-        padding-top: 5px;
-    }
-
-    /* Style pour les boutons de navigation */
-    .calcalendar-navigation {
-        margin-bottom: 10px;
-        text-align: center;
-    }
-
-    .calcalendar-navigation button {
-        font-size: 16px; /* Ajustez la taille de la police des boutons */
-        padding: 5px 10px;
-        margin: 0 10px; /* Ajustez la marge entre les boutons */
-        cursor: pointer;
-    }
-
-    /* Style pour centrer le titre du mois et de l'année */
-.calcentered {
-    text-align: center;
-    color: white;
-    font-size: 3vw !important;
-    margin-bottom: 20px; /* Espacement sous le titre */
-}
-
-.calbuttonMois {
-        border: none;
-        padding: 20px 40px;
-        font-size: 1.5vw !important;
-        position: relative;
-        background: transparent;
-        color: white;
-        text-transform: uppercase;
-        border: 3px solid white;
-        cursor: pointer;
-        transition: all 0.7s;
-        overflow: hidden;
-        border-radius: 100px;
-      }
-
-      .calbuttonMois:hover {
-        color: #000;
-      }
-      span {
-        transition: all 0.7s;
-        z-index: -1;
-      }
-
-      .calbuttonMois .calfirst {
-        content: "";
-        position: absolute;
-        right: 100%;
-        top: 0;
-        width: 25%;
-        height: 100%;
-        background: white;
-      }
-
-      .calbuttonMois:hover .calfirst {
-        top: 0;
-        right: 0;
-      }
-      .calbuttonMois .calsecond {
-        content: "";
-        position: absolute;
-        left: 25%;
-        top: -100%;
-        height: 100%;
-        width: 25%;
-        background: white;
-      }
-
-      .calbuttonMois:hover .calsecond {
-        top: 0;
-        left: 50%;
-      }
-
-      .calbuttonMois .calthird {
-        content: "";
-        position: absolute;
-        left: 50%;
-        height: 100%;
-        top: 100%;
-        width: 25%;
-        background: white;
-      }
-
-      .calbuttonMois:hover .calthird {
-        top: 0;
-        left: 25%;
-      }
-
-      .calbuttonMois .calfourth {
-        content: "";
-        position: absolute;
-        left: 100%;
-        top: 0;
-        height: 100%;
-        width: 25%;
-        background: white;
-      }
-
-      .calbuttonMois:hover .calfourth {
-        top: 0;
-        left: 0;
-      }
-      
-
-</style>
-
-
 <?php
 footer();
 echo "</body>";
