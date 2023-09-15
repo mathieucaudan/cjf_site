@@ -1,0 +1,6 @@
+/* Ajoutez ces règles CSS à votre fichier global_tab.css */
+.imageSize {
+    max-width: 100%; /* Pour assurer que les images ne dépassent pas la largeur de leur conteneur */
+    height: 500px; /* Pour conserver le ratio hauteur/largeur des images */
+    width: 500px; /* Définissez la largeur souhaitée pour toutes les images */
+}

@@ -1,4 +1,6 @@
 <link rel='stylesheet' href='style/global_tab.css'> <!-- Ajout de la référence au fichier CSS -->
+<link rel='stylesheet' href='style/nous.css'> <!-- Ajout de la référence au fichier CSS -->
+
 <script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
 
 <?php
@@ -50,30 +52,30 @@ navbar();
     <div class="w3-row">
       <div class="w3-quarter w3-container" style="text-align:center;">
         <h3>Laser Run</h3>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+        <img src="image/coach/avatar.png" class="imageSize" style="display:block; margin:auto;">
         <h4>ARNAUD EVEILLARD (BF1)</h4>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+        <img src="image/coach/avatar.png"  class="imageSize" style="display:block; margin:auto;">
         <h4>JULIEN TERTRAIN (BF1)</h4>
-        <img src="image/coach/daniel.JPG" style="display:block; margin:auto; height:50%;">
+        <img src="image/coach/daniel.JPG" class="imageSize" style="display:block; margin:auto; height:50%;">
         <h4>DANIEL BOURQUIN<h4> <p>(partenariat avec le CJF Athlétisme)</p>
         <p>(Professeur EPS, BEES 2e degrés, Entraineur course 3e degré expert)</p>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
         <h3>Natation</h3>
-        <img src="image/coach/fred.JPG" style="display:block; margin:auto; height:50%;">
+        <img src="image/coach/fred.JPG" class="imageSize" style="display:block; margin:auto; height:50%;">
         <h4>FRED GARCIA</h4> <p>(partenariat avec le Triathlon Côte d’Emeraude)</p>
         <p>(BF3 de triathlon,BF4 de Natation, BPJEPS AAN, Moniteur sportif de natation)</p>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+        <img src="image/coach/avatar.png" class="imageSize" style="display:block; margin:auto;">
         <h4>ARNAUD EVEILLARD</h4><p>(BF1)</p>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
         <h3>Escrime</h3>
-        <img src="image/coach/ludmila.jpg" style="display:block; margin:auto; height:50%;">
+        <img src="image/coach/ludmila.jpg" class="imageSize" style="display:block; margin:auto; height:50%;">
         <h4>LUDMILLA POZDEEVA (MAITRE D’ARME)</h4>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
         <h3>Obstacle</h3>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+        <img src="image/coach/avatar.png" class="imageSize" style="display:block; margin:auto;">
         <h4>ARNAUD EVEILLARD (BF1)</h4>
       </div>
     </div>
