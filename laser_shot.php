@@ -23,13 +23,15 @@ navbar();
   Prendre son shot(alcool ou cul sec de biere)</br>
   Finir la cible</br>
   Si la cible n'est pas fini, un shot supplémentaire sinon joueur suivant</br>
+  Si 5/5, un shot au joueur de ton choix</br>
   Interdiction de touchert le joueur lorsqu'il tir, interdiction de toucher la cible et se mettre entre la cible et le tireur</br>
   </il>
 </ul>
-<h2>Variante possible</h2>
+<h2>Variante possible a deux cibles</h2>
 <ul>
   <il>
-  Match, 1v1 le perdant prend un shot supplémentaire, pour définir le perdant c'est celui qui met le plus de temps a finir la cible ou celui qui a mis moins de lumière verte</br>
+  Tableau 1/4, 1/2 et final</br>
+  Match, pour définir le perdant c'est celui qui met le plus de temps a finir la cible ou celui qui a mis moins de lumière verte, 1v1 le perdant prend un shot supplémentaire</br>
   </il>
 </ul>
 </div>

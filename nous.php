@@ -54,8 +54,9 @@ navbar();
         <h4>ARNAUD EVEILLARD (BF1)</h4>
         <img src="image/coach/avatar.png" style="display:block; margin:auto;">
         <h4>JULIEN TERTRAIN (BF1)</h4>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+        <img src="image/coach/daniel.JPG" style="display:block; margin:auto; height:50%;">
         <h4>DANIEL BOURQUIN<h4> <p>(partenariat avec le CJF Athlétisme)</p>
+        <p>(Professeur EPS, BEES 2e degrés, Entraineur course 3e degré expert)</p>
       </div>
       <div class="w3-quarter w3-container" style="text-align:center;">
         <h3>Natation</h3>
