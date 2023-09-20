@@ -32,7 +32,8 @@ navbar();
                                 <img src='" .$dossierImage. $article['image'] . "'>
                                 </div>
                                 <div class='parflip-card-back'>
-                                    <h1>{$article['titre']}</h1> 
+                                    <h1>{$article['nom']}</h1>
+                                    <h1>{$article['nom_bis']}</h1>  
                                     <p>{$article['description']}</p> 
                                 </div>
                         </div>

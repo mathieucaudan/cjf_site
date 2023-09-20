@@ -2,3 +2,7 @@ htacces apache, bloquer dossier sous dossier
 kali linux
 conforme html avec validator
 meta norobot
+Code site:
+	--> evenement partenaire
+	--> article section
+	--> faire galerie photo

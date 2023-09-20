@@ -65,7 +65,7 @@ function footer() {
 
             <div>
                 <a href='https://www.instagram.com/cjf_pentathlonmoderne/' target='_blank'><img src='image/logo_insta.png' alt='Instagram' style='width: 50px; height: 50px;'></a>
-                <a href='https://www.facebook.com/profile.php?id=100085812112831'><img src='image/logo_facebook.png' alt='Facebook' style='width: 50px; height: 50px;'></a>
+                <a href='https://www.facebook.com/profile.php?id=100085812112831' target='_blank'><img src='image/logo_facebook.png' alt='Facebook' style='width: 50px; height: 50px;'></a>
             </div>
 
         </div>
@@ -787,12 +787,14 @@ function ajoutPartenaire() {
         if (move_uploaded_file($imageTemporaire, $cheminImage)) {
             $data = json_decode(file_get_contents($dossierJson), true);
             $titre = $_POST['titre'];
+            $titrebis = $_POST['titrebis'];
             $image = $nouveauNomImage; // Utilisez le nouveau nom de l'image
             $description = $_POST['description_telechargement'];
 
             // Sauvegardez le tableau mis à jour dans le fichier JSON
             $nouveauPartenaire = array(
-                "titre" => $titre,
+                "nom" => $titre,
+                "nom_bis" => $titrebis,
                 "image" => $image,
                 "description" => $description,
             );
@@ -807,8 +809,11 @@ function ajoutPartenaire() {
             <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
                 <div class='w3-content'>
                     <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
-                        <label class='w3-text-white'>Titre :</label>
+                        <label class='w3-text-white'>Nom :</label>
                         <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
+                        <br>
+                        <label class='w3-text-white'>Deuxieme nom (falcultatif) :</label>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titrebis'>
                         <br>
                         <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
                         <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+' required>
