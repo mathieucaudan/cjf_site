@@ -14,7 +14,6 @@ $data = json_decode($jsonData, true);
             <?php
             $imageFolder = "image/carousel/";
             $images = glob($imageFolder . "*.{jpg,png,gif,JPG,Jpg}", GLOB_BRACE);
-
             foreach ($images as $image) {
                 echo "<img src='$image' alt='Image' class='acccustom-img'>";
             }

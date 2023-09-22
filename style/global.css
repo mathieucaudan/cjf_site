@@ -1,109 +1,106 @@
 /* global.css */
 :root {
-    --police: "Georgia", sans-serif; /* Définition de la variable de police */
+  --police: "Georgia", sans-serif; /* Définition de la variable de police */
 }
 
 * {
-    font-family: var(--police); /* Utilisation de la variable de police */
+  font-family: var(--police); /* Utilisation de la variable de police */
 }
-
 
 h1,
 h2,
 h3 {
-    font-weight: bold; /* Mettre en gras le texte des titres de niveau 1 et niveau 2 */
+  font-weight: bold; /* Mettre en gras le texte des titres de niveau 1 et niveau 2 */
 }
-
 
 /* Taille de texte pour les écrans larges (par exemple, ordinateurs de bureau) */
 @media screen and (min-width: 1200px) {
-    p,
-    a,
-    h1,
-    h2,
-    h3 {
-        font-family: var(--police); /* Utilisation de la variable de police */
-    }
+  p,
+  a,
+  h1,
+  h2,
+  h3 {
+    font-family: var(--police); /* Utilisation de la variable de police */
+  }
 
-    p {
-        font-size: 1vw !important;
-    }
+  p {
+    font-size: 1vw !important;
+  }
 
-    a {
-        font-size: 18px !important; /* Ajustez la taille du texte pour les liens sur les écrans larges */
-    }
+  a {
+    font-size: 18px !important; /* Ajustez la taille du texte pour les liens sur les écrans larges */
+  }
 
-    h1 {
-        font-size: 2.5vw !important;
-    }
+  h1 {
+    font-size: 2.5vw !important;
+  }
 
-    h2 {
-        font-size: 2vw !important;
-    }
+  h2 {
+    font-size: 2vw !important;
+  }
 
-    h3 {
-        font-size: 1.5vw !important;
-    }
+  h3 {
+    font-size: 1.5vw !important;
+  }
 }
 
 /* Taille de texte pour les écrans de taille moyenne (par exemple, tablettes) */
 @media screen and (max-width: 1199px) {
-    p,
-    a,
-    h1,
-    h2,
-    h3 {
-        font-family: var(--police); /* Utilisation de la variable de police */
-    }
+  p,
+  a,
+  h1,
+  h2,
+  h3 {
+    font-family: var(--police); /* Utilisation de la variable de police */
+  }
 
-    p {
-        font-size: 2vw !important;
-    }
+  p {
+    font-size: 2vw !important;
+  }
 
-    a {
-        font-size: 16px !important; /* Conservez la taille du texte pour les liens sur les écrans de taille moyenne */
-    }
+  a {
+    font-size: 16px !important; /* Conservez la taille du texte pour les liens sur les écrans de taille moyenne */
+  }
 
-    h1 {
-        font-size: 5vw !important;
-    }
+  h1 {
+    font-size: 5vw !important;
+  }
 
-    h2 {
-        font-size: 4vw !important;
-    }
-    h3 {
-        font-size: 3vw !important;
-    }
+  h2 {
+    font-size: 4vw !important;
+  }
+  h3 {
+    font-size: 3vw !important;
+  }
 }
 
 /* Taille de texte pour les écrans mobiles */
 @media screen and (max-width: 767px) {
-    p,
-    a,
-    h1,
-    h2,
-    h3 {
-        font-family: var(--police); /* Utilisation de la variable de police */
-    }
+  p,
+  a,
+  h1,
+  h2,
+  h3 {
+    font-family: var(--police); /* Utilisation de la variable de police */
+  }
 
-    p {
-        font-size: 3vw !important;
-    }
+  p {
+    font-size: 3vw !important;
+  }
 
-    a {
-        font-size: 14px !important; /* Ajustez la taille du texte pour les liens sur les écrans mobiles */
-    }
+  a {
+    font-size: 14px !important; /* Ajustez la taille du texte pour les liens sur les écrans mobiles */
+  }
 
-    h1 {
-        font-size: 8vw !important;
-    }
+  h1 {
+    font-size: 8vw !important;
+  }
 
-    h2 {
-        font-size: 6vw !important;
-    }
+  h2 {
+    font-size: 6vw !important;
+  }
 
-    h3 {
-        font-size: 5vw !important;
-    }
-
+  h3 {
+    font-size: 5vw !important;
+  }
 }

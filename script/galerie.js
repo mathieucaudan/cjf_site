@@ -1,23 +1,23 @@
 function adjustContentHeight() {
-  const cardsWrapper = document.getElementById('cardsWrapper');
-  const content = document.querySelector('.galcontent');
-  const cards = cardsWrapper.querySelectorAll('.galcard');
+  const cardsWrapper = document.getElementById("cardsWrapper");
+  const content = document.querySelector(".galcontent");
+  const cards = cardsWrapper.querySelectorAll(".galcard");
 
   let maxHeightInRow = 0;
   let totalHeight = 0;
   let galleriesInCurrentRow = 0;
 
   let multiplier = 1.5;
-  
+
   // Déterminez le nombre de galeries par ligne en fonction de la largeur de l'écran
   let galleriesPerRow = 3; // Par défaut, 3 galeries par ligne
   if (window.innerWidth <= 1285) {
     multiplier = 1.8;
     galleriesPerRow = 1; // 1 galerie par ligne entre 900px et 1285px
-  } 
+  }
 
-  cards.forEach(gallery => {
-    const galleryContent = gallery.querySelector('div');
+  cards.forEach((gallery) => {
+    const galleryContent = gallery.querySelector("div");
     const galleryHeight = galleryContent.scrollHeight;
     const galleryStyles = getComputedStyle(gallery);
 
@@ -46,10 +46,10 @@ function adjustContentHeight() {
   const minHeight = totalHeight * multiplier;
 
   // Appliquez la hauteur minimale à la section de contenu
-  content.style.minHeight = minHeight + 'px';
+  content.style.minHeight = minHeight + "px";
 
-  console.log('Nouvelle hauteur de .galcontent:', minHeight + 'px');
+  console.log("Nouvelle hauteur de .galcontent:", minHeight + "px");
 }
 
-document.addEventListener('DOMContentLoaded', adjustContentHeight);
-window.addEventListener('resize', adjustContentHeight);
+document.addEventListener("DOMContentLoaded", adjustContentHeight);
+window.addEventListener("resize", adjustContentHeight);

@@ -2,25 +2,25 @@
 
 /* Style pour centrer le titre */
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
 /* Style pour centrer les titres de sections */
 h2 {
-    text-align: center;
+  text-align: center;
 }
 
 /* Style pour centrer le texte des listes */
 ul {
-    text-align: center;
+  text-align: center;
 }
 
 /* Style pour centrer le texte des éléments de liste */
 li {
-    text-align: left; /* Utilisez 'left' ou 'center' en fonction de vos besoins */
+  text-align: left; /* Utilisez 'left' ou 'center' en fonction de vos besoins */
 }
 
 /* Style pour le conteneur principal (votre div) */
 div {
-    text-align: center; /* Pour centrer le texte dans le div */
+  text-align: center; /* Pour centrer le texte dans le div */
 }

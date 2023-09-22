@@ -36,7 +36,6 @@ navbar();
 </div>
 
 <?php 
-footer(); 
-
+footer();
 echo "</body>";
 ?>

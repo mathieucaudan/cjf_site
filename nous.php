@@ -11,7 +11,9 @@ echo "<body style='background-color: rgb(32, 47, 74); color:white;'>";
 navbar();
 ?>
 
-<h1 style='color:white'><center>Organigramme</center></h1>
+<h1 style='color:white'>
+  <center>Organigramme</center>
+</h1>
 <center>
   <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
     <button class="tablinks bureau active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'bureau')">Bureau</button>
@@ -25,18 +27,18 @@ navbar();
   <h2 style="color:white; text-align:center;">Notre bureau</h2>
   <div class="w3-row">
     <div class="w3-half w3-container" style="text-align:center;">
-      <div class="card">
+      <div class="cardbu">
         <h3>Président</h3>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+        <img src="image/coach/jeanlouis.png" style="display:block; margin:auto;">
         <h4>JEAN-LOUIS HELEU</h4>
         <p>Relation Partenaires</p>
         <p>Responsable Organisation</p>
       </div>
     </div>
     <div class="w3-half w3-container" style="text-align:center;">
-      <div class="card">
+      <div class="cardbu">
         <h3>Directeur sportif</h3>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+        <img src="image/coach/arnaud.jpg" style="display:block; margin:auto;">
         <h4>ARNAUD EVEILLARD</h4>
         <p>Coordination sportive et suivi des athlètes</p>
         <p>Responsable du développement</p>
@@ -53,46 +55,46 @@ navbar();
   <div class="w3-row">
     <div class="w3-quarter w3-container" style="text-align:center;">
       <h3>Laser Run</h3>
-      <div class="card">
-        <img src="image/coach/avatar.png" class="imageSize" style="display:block; margin:auto;">
+      <div class="cardco">
+        <img src="image/coach/arnaud.jpg" class="imageSize" style="display:block; margin:auto;">
         <h4>ARNAUD EVEILLARD (BF1)</h4>
       </div>
-      <div class="card">
-        <img src="image/coach/avatar.png"  class="imageSize" style="display:block; margin:auto;">
+      <div class="cardco">
+        <img src="image/coach/julien.jpg" class="imageSize" style="display:block; margin:auto;">
         <h4>JULIEN TERTRAIN (BF1)</h4>
       </div>
-      <div class="card">
-        <img src="image/coach/daniel.jpg" class="imageSize" style="display:block; margin:auto; height:50%;">
+      <div class="cardco">
+        <img src="image/coach/daniel.jpg" class="imageSize" style="display:block; margin:auto;">
         <h4>DANIEL BOURQUIN<h4>
-        <p>(partenariat avec le CJF Athlétisme)</p>
-        <p>(Professeur EPS, BEES 2e degrés, Entraineur course 3e degré expert)</p>
+            <p>(partenariat avec le CJF Athlétisme)</p>
+            <p>(Professeur EPS, BEES 2e degrés, Entraineur course 3e degré expert)</p>
       </div>
     </div>
     <div class="w3-quarter w3-container" style="text-align:center;">
       <h3>Natation</h3>
-      <div class="card">
-        <img src="image/coach/fred.jpg" class="imageSize" style="display:block; margin:auto; height:50%;">
+      <div class="cardco">
+        <img src="image/coach/fred.jpg" class="imageSize" style="display:block; margin:auto;">
         <h4>FRED GARCIA</h4>
         <p>(partenariat avec le Triathlon Côte d’Emeraude)</p>
         <p>(BF3 de triathlon,BF4 de Natation, BPJEPS AAN, Moniteur sportif de natation)</p>
       </div>
-      <div class="card">
-        <img src="image/coach/avatar.png" class="imageSize" style="display:block; margin:auto;">
+      <div class="cardco">
+        <img src="image/coach/arnaud.jpg" class="imageSize" style="display:block; margin:auto;">
         <h4>ARNAUD EVEILLARD</h4>
         <p>(BF1)</p>
       </div>
     </div>
     <div class="w3-quarter w3-container" style="text-align:center;">
       <h3>Escrime</h3>
-      <div class="card">
-        <img src="image/coach/ludmila.jpg" class="imageSize" style="display:block; margin:auto; height:50%;">
+      <div class="cardco">
+        <img src="image/coach/ludmila.jpg" class="imageSize" style="display:block; margin:auto;">
         <h4>LUDMILLA POZDEEVA (MAITRE D’ARME)</h4>
       </div>
     </div>
     <div class="w3-quarter w3-container" style="text-align:center;">
       <h3>Obstacle</h3>
-      <div class="card">
-        <img src="image/coach/avatar.png" class="imageSize" style="display:block; margin:auto;">
+      <div class="cardco">
+        <img src="image/coach/arnaud.jpg" class="imageSize" style="display:block; margin:auto;">
         <h4>ARNAUD EVEILLARD (BF1)</h4>
       </div>
     </div>
@@ -105,18 +107,18 @@ navbar();
   <h2 style="color:white; text-align:center;">Quelques athletes</h2>
   <div class="w3-row">
     <div class="w3-third w3-container" style="text-align:center;">
-      <div class="card">
+      <div class="cardat">
         <h3>ARNAUD EVEILLARD</h3>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+        <img src="image/coach/arnaud.jpg" style="display:block; margin:auto;">
         <h3>Palmares</h3>
         <p>3ème Championnat de France de triathlé</p>
         <p>3ème Circuit National Master</p>
       </div>
     </div>
     <div class="w3-third w3-container" style="text-align:center;">
-      <div class="card">
+      <div class="cardat">
         <h3>AZILIZ NAOUR</h3>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+        <img src="image/coach/aziliz.jpg" style="display:block; margin:auto;">
         <p>3ème Championnat de France U22 de tétrathlon</p>
         <p>Championne de France 2023 de Triathlé U22 individuel et relai mixte</p>
         <p>1 sélection internationale</p>
@@ -124,7 +126,7 @@ navbar();
       </div>
     </div>
     <div class="w3-third w3-container" style="text-align:center;">
-      <div class="card">
+      <div class="cardat">
         <h3>MATHIEU CAUDAN</h3>
         <img src="image/coach/avatar.png" style="display:block; margin:auto;">
         <h3>Palmares</h3>
@@ -134,8 +136,8 @@ navbar();
       </div>
     </div>
   </div>
-</div>  
+</div>
 
-<?php 
-footer(); 
+<?php
+footer();
 ?>
