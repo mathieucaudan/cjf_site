@@ -91,9 +91,9 @@ function navbar() {
         <i class='fa fa-caret-down'></i>
       </button>
       <div class='dropdown-content'>
-        <a href='record.Php'>RECORDS</a>
+        <a href='record.php'>RECORDS</a>
         <a href='creneaux.php'>CRENEAUX</a>
-        <a href='nous.Php'>QUI SOMMES NOUS?</a>
+        <a href='nous.php'>QUI SOMMES NOUS?</a>
       </div>
     </div>
     <a href='section.php' class='w3-bar-item w3-button'>SECTION</a>
@@ -1200,6 +1200,3 @@ function suppEvenement(){
 
     }    
     }
-?>
-    
-    
