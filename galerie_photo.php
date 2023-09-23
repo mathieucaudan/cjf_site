@@ -9,21 +9,23 @@ navbar();
 ?>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 <?php
 $dossierJson = './galerie/galerie_json/data.json';
-        
+
 $jsonData = file_get_contents($dossierJson);
-$data = json_decode($jsonData, true);
+$data = array_reverse(json_decode($jsonData, true));
 ?>
 
-<center><h1>Galerie photo</h1></center>
+<center>
+  <h1>Galerie photo</h1>
+</center>
 
 <main class="galcontent">
   <div id="cardsWrapper">
-    <section class="galcards-wrapper"  >
+    <section class="galcards-wrapper">
       <?php
       foreach ($data as $galerie) {
         echo "<script>
@@ -45,15 +47,8 @@ $data = json_decode($jsonData, true);
 
 <div class="artfooter">
   <div style="clear: both">
-  <?php
-  footer();
-  ?>
-    </div>
+    <?php
+    footer();
+    ?>
+  </div>
 </div>
-
-
-
-
-
-
-

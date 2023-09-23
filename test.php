@@ -1,176 +1,444 @@
 <?php
 include 'fonction.php';
 entete();
-echo"<body style='background-color: rgb(32, 47, 74); color:white;'>";
+echo "<body style='background-color: rgb(32, 47, 74); color:white;'>";
 navbar();
 ?>
-<section class="articles">
-  <article>
-    <div class="article-wrapper">
-      <figure>
-        <img src="image/coach/ludmila.jpg" alt="" />
-      </figure>
-      <div class="article-body">
-        <h2>This is some title</h2>
-        <p style='color:black'>
-          Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.
-        </p>
-      </div>
-    </div>
-  </article>
-  
-</section>
-<?php 
-footer(); 
+<?php
+$currentDate = new DateTime();
+$currentYear = $currentDate->format('Y');
+$month = $currentDate->format('n');
+$days = range(1, 31);
+$dayOfWeek = array("mon", "tue", "wed", "thr", "fri", "sat", "sun");
+// Obtenez le premier jour du mois actuel
+$firstDayOfMonth = new DateTime("{$currentDate->format('Y-m')}-01");
+
+// Obtenez le nombre de jours dans le mois actuel
+$daysInMonth = $firstDayOfMonth->format('t');
+
+// Obtenez le jour de la semaine du premier jour du mois (1 pour lundi, 7 pour dimanche)
+$firstDayOfWeek = (int)$firstDayOfMonth->format('N');
+
+// Commencez à compter les jours
+$day = 1 - $firstDayOfWeek;
+
+echo '<div id="calendar">';
+echo '<header><i class="icons icon-arrow-left"></i>';
+echo '<p class="month">' . $month . '</p><i class="icons icon-arrow-right"></i>';
+echo '</header><div class="dayOfWeeks">';
+
+foreach ($dayOfWeek as $day) {
+  echo '<span class="' . $day . '">' . substr($day, 0, 3) . '</span>';
+}
+
+echo '</div><div class="weeks"><div class="week">';
+
+foreach ($dayOfWeek as $day) {
+  echo '<div class="week">'; // Ajouter cette ligne pour commencer une nouvelle semaine
+
+  foreach ($days as $day) {
+    echo '<div class="day" id="d' . $day . '">';
+    echo '<div class="date"><span class="day">' . $day . '</span><span class="dayOfWeek ' . $dayOfWeek[$day % 7] . '">' . substr($dayOfWeek[$day % 7], 0, 3) . '</span></div>';
+    echo '<div class="events">';
+    echo '<div class="event">';
+    echo '<div class="logo"><i class="icon-game-controller"></i></div>';
+    echo '<div class="title">';
+    echo '<p>Game Event Title</p>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+
+    if ($dayOfWeek[$day % 7] == "mon") {
+      echo '</div>'; // Fermer la classe "week" le dimanche
+    }
+  }
+
+  echo '</div>'; // Ajouter cette ligne pour fermer la semaine
+}
+
+echo '</div></div></div>';
+?>
+<?php
+footer();
+echo "</body>";
 ?>
 <style>
-  article {
-  --img-scale: 1.001;
-  --title-color: black;
-  --link-icon-translate: -20px;
-  --link-icon-opacity: 0;
-  position: relative;
-  border-radius: 16px;
-  box-shadow: none;
-  background: #fff;
-  transform-origin: center;
-  transition: all 0.4s ease-in-out;
-  overflow: hidden;
-}
-
-article a::after {
-  position: absolute;
-  inset-block: 0;
-  inset-inline: 0;
-  cursor: pointer;
-  content: "";
-}
-
-/* basic article elements styling */
-article h2 {
-  margin: 0 0 18px 0;
-  font-family: "Bebas Neue", cursive;
-  font-size: 1.9rem;
-  letter-spacing: 0.06em;
-  color: var(--title-color);
-  transition: color 0.3s ease-out;
-}
-
-figure {
-  margin: 0;
-  padding: 0;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-}
-
-article img {
-  max-width: 100%;
-  transform-origin: center;
-  transform: scale(var(--img-scale));
-  transition: transform 0.4s ease-in-out;
-}
-
-.article-body {
-  padding: 24px;
-}
-
-article a {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  color: #28666e;
-}
-
-article a:focus {
-  outline: 1px dotted #28666e;
-}
-
-article a .icon {
-  min-width: 24px;
-  width: 24px;
-  height: 24px;
-  margin-left: 5px;
-  transform: translateX(var(--link-icon-translate));
-  opacity: var(--link-icon-opacity);
-  transition: all 0.3s;
-}
-
-/* using the has() relational pseudo selector to update our custom properties */
-article:has(:hover, :focus) {
-  --img-scale: 1.1;
-  --title-color: #28666e;
-  --link-icon-translate: 0;
-  --link-icon-opacity: 1;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-}
-
-
-/************************ 
-Generic layout (demo looks)
-**************************/
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 48px 0;
-  font-family: "Figtree", sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.6rem;
-  background-image: linear-gradient(45deg, #7c9885, #b5b682);
-  min-height: 100vh;
-}
-
-.articles {
-  display: grid;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 24px;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-}
-
-@media screen and (max-width: 960px) {
-  article {
-    container: card/inline-size;
+  div,
+  p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-family: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
   }
-  .article-body p {
-    display: none;
-  }
-}
 
-@container card (min-width: 380px) {
-  .article-wrapper {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 16px;
+  body {
+    line-height: 1;
+    color: #000;
+    background: #fff;
   }
-  .article-body {
-    padding-left: 0;
+
+  ol,
+  ul {
+    list-style: none;
   }
-  figure {
+
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    vertical-align: middle;
+  }
+
+  caption,
+  th,
+  td {
+    text-align: left;
+    font-weight: normal;
+    vertical-align: middle;
+  }
+
+  a img {
+    border: none;
+  }
+
+  .sun {
+    color: #f78686;
+  }
+
+  .sat {
+    color: #86bbf7;
+  }
+
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  :root {
+    font-size: 16px;
+    font-family: 'Roboto';
+    font-weight: 300;
+  }
+
+  html {
+    display: block;
+    height: auto;
+    color: #575757;
+  }
+
+  .bg,
+  .border {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
   }
-  figure img {
-    height: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-  }
-}
 
-.sr-only:not(:focus):not(:active) {
-  clip: rect(0 0 0 0); 
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap; 
-  width: 1px;
-}
+  .bg {
+    background: -webkit-linear-gradient(bottom, #f78686, #bbfcfc);
+    background: -moz-linear-gradient(bottom, #f78686, #bbfcfc);
+    background: -o-linear-gradient(bottom, #f78686, #bbfcfc);
+    background: -ms-linear-gradient(bottom, #f78686, #bbfcfc);
+    background: linear-gradient(to top, #f78686, #bbfcfc);
+    z-index: -1;
+  }
+
+  .border {
+    border: 15px solid #fff;
+    z-index: 10;
+  }
+
+  .border {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  #calendar {
+    margin: 0 auto;
+    display: block;
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  header {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -o-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #f78686;
+  }
+
+  header p.month {
+    text-align: center;
+    font-size: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  header i.icons {
+    padding: 0.4rem;
+  }
+
+  #calendar .dayOfWeeks {
+    display: none;
+  }
+
+  #calendar .week {
+    display: block;
+  }
+
+  #calendar .week>.day {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 1rem 0.5rem;
+    min-height: 80px;
+  }
+
+  #calendar .week>.day#d12 {
+    border-bottom: 1px solid #f78686;
+  }
+
+  #calendar .week>.day .date {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -o-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 0 0 80px;
+    -ms-flex: 0 0 80px;
+    flex: 0 0 80px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -o-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-box-align: baseline;
+    -moz-box-align: baseline;
+    -o-box-align: baseline;
+    -ms-flex-align: baseline;
+    -webkit-align-items: baseline;
+    align-items: baseline;
+    padding: 0 2rem 0 0;
+    text-align: right;
+  }
+
+  #calendar .week>.day .date span.day {
+    font-size: 1.2rem;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -o-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 0 0 30px;
+    -ms-flex: 0 0 30px;
+    flex: 0 0 30px;
+  }
+
+  #calendar .week>.day .date span.dayOfWeek {
+    font-size: 0.8rem;
+    margin: 0 0 0 0.2em;
+    text-transform: uppercase;
+  }
+
+  #calendar .week>.day .events {
+    width: 100%;
+  }
+
+  #calendar .week>.day .events .event {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    margin: 0 0 0.5rem 0;
+  }
+
+  #calendar .week>.day .events .event:last-child {
+    margin: 0;
+  }
+
+  #calendar .week>.day .events .event .logo {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -o-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 0 0 20px;
+    -ms-flex: 0 0 20px;
+    flex: 0 0 20px;
+    margin: 0 0.5rem 0 0;
+    font-size: 1rem;
+  }
+
+  #calendar .week>.day .events .event .title {
+    font-size: 1rem;
+  }
+
+  @media only screen and (min-width: 700px) {
+    #calendar {
+      margin-top: 5vh;
+      max-width: 1000px;
+      padding: 5rem;
+    }
+
+    #calendar header {
+      margin-bottom: 4rem;
+      border: none;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #calendar .dayOfWeeks {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: box;
+      display: flex;
+      -webkit-box-pack: justify;
+      -moz-box-pack: justify;
+      -o-box-pack: justify;
+      -ms-flex-pack: justify;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      text-transform: uppercase;
+      margin: 0 0 2rem 0;
+    }
+
+    #calendar .dayOfWeeks span {
+      text-align: center;
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -o-box-flex: 1;
+      box-flex: 1;
+      -webkit-flex: 0 0 calc(100% / 7);
+      -ms-flex: 0 0 calc(100% / 7);
+      flex: 0 0 calc(100% / 7);
+    }
+
+    #calendar .week {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: box;
+      display: flex;
+    }
+
+    #calendar .week:first-child {
+      -webkit-box-pack: end;
+      -moz-box-pack: end;
+      -o-box-pack: end;
+      -ms-flex-pack: end;
+      -webkit-justify-content: flex-end;
+      justify-content: flex-end;
+    }
+
+    #calendar .week>.day {
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -o-box-flex: 1;
+      box-flex: 1;
+      -webkit-flex: 0 0 calc(100% / 7);
+      -ms-flex: 0 0 calc(100% / 7);
+      flex: 0 0 calc(100% / 7);
+      margin: 0;
+      padding: 0.5rem;
+      height: auto;
+      display: block;
+      height: 110px;
+      border: none;
+    }
+
+    #calendar .week>.day#d12 {
+      border: none;
+    }
+
+    #calendar .week>.day#d12 .date .day:after {
+      content: '';
+      position: absolute;
+      bottom: -0.2rem;
+      left: 0;
+      width: 100%;
+      border-bottom: 1px solid #f78686;
+    }
+
+    #calendar .week>.day .date {
+      -webkit-box-pack: center;
+      -moz-box-pack: center;
+      -o-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      text-align: center;
+      margin: 0 0 1.5rem 0;
+      padding: 0;
+    }
+
+    #calendar .week>.day .date .dayOfWeek {
+      display: none;
+    }
+
+    #calendar .week>.day .date .day {
+      position: relative;
+    }
+
+    #calendar .week>.day .events {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: box;
+      display: flex;
+      -webkit-box-pack: center;
+      -moz-box-pack: center;
+      -o-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+    }
+
+    #calendar .week>.day .events .event {
+      margin: 0 0.5rem 0 0;
+    }
+
+    #calendar .week>.day .events .event:last-child {
+      margin: 0;
+    }
+
+    #calendar .week>.day .events .event .logo {
+      margin: 0;
+    }
+
+    #calendar .week>.day .title {
+      margin: 0.5rem;
+      display: none;
+    }
+  }
 </style>

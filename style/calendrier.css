@@ -58,6 +58,11 @@
     font-size: 3vw !important;
     margin-bottom: 20px; /* Espacement sous le titre */
 }
+.mobile-events {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
 
 .calbuttonMois {
         border: none;
@@ -140,4 +145,5 @@
         top: 0;
         left: 0;
       }
+
       
