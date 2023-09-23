@@ -128,7 +128,7 @@ navbar();
     <div class="w3-third w3-container" style="text-align:center;">
       <div class="cardat">
         <h3>MATHIEU CAUDAN</h3>
-        <img src="image/coach/avatar.png" style="display:block; margin:auto;">
+        <img src="image/coach/mathieu.png" style="display:block; margin:auto;">
         <h3>Palmares</h3>
         <p>Champion de France de Triathlé U22 relai mixte</p>
         <p>3ème Championnat du monde de laser run en Relai Mixte (Avec Lizea SINTES) 2022</p>
