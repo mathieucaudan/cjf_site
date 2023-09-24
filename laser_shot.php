@@ -46,9 +46,6 @@ footer();
 echo "</body>";
 ?>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var audio = new Audio('musique.mp3');
-    audio.load();
-    audio.play();
-  });
+  var audio = new Audio('musique.mp3');
+  audio.play();
 </script>
