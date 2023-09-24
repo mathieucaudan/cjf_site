@@ -128,13 +128,13 @@ function navbar()
         echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px; width : 0vw'>";
     }
     if (isset($_SESSION['role'])) {
-        echo "<div class='loginButton'><a href='deconnexion.php'class='buttonContainer w3-right noHover'><button class='logButton'> Déconnexion
+        echo "<div class='loginButton'><a href='deconnexion.php' class='buttonContainer w3-right noHover'><button class='logButton'> Déconnexion
         <div class='logicon'>
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' width='22' height='22'><path fill='none' d='M0 0h24v24H0z'></path><path fill='currentColor' d='M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z'></path></svg>
         </div>
       </button></a></div>";
     } else {
-        echo "<div class='loginButton'><a href='connexion.php'class='buttonContainer w3-right noHover'><button class='logButton'> Connexion
+        echo "<div class='loginButton'><a href='connexion.php' class='buttonContainer w3-right noHover'><button class='logButton'> Connexion
         <div class='logicon'>
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' width='22' height='22'><path fill='none' d='M0 0h24v24H0z'></path><path fill='currentColor' d='M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z'></path></svg>
         </div>

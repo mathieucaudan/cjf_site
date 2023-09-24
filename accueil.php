@@ -1,8 +1,8 @@
-<link rel='stylesheet' href='style/accueil.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/accueil.js'></script> <!-- Ajout de la référence au fichier JS -->
 <?php
 include 'fonction.php';
 entete();
+echo "<link rel='stylesheet' href='style/accueil.css'> <!-- Ajout de la référence au fichier CSS -->
+<script src='script/accueil.js'></script> <!-- Ajout de la référence au fichier JS -->";
 navbar();
 $dossierJson = './resultat.json';
 $jsonData = file_get_contents($dossierJson);

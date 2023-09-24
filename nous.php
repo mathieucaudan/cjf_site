@@ -132,6 +132,7 @@ navbar();
         <h3>Palmares</h3>
         <p>Champion de France de Triathlé U22 relai mixte</p>
         <p>3ème Championnat du monde de laser run en Relai Mixte (Avec Lizea SINTES) 2022</p>
+        <p>Vice Champion du monde de laser run en Relai Mixte (Avec Louise DENOYES) 2023</p>
         <p>Champion de FRANCE 2022 de LASER RUN</p>
       </div>
     </div>
