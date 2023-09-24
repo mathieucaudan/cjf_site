@@ -48,7 +48,6 @@ echo "</body>";
 <script>
   // Créer un élément audio
   var audio = new Audio('musique.mp3');
-
   // Fonction pour démarrer la lecture de la musique lorsque la page est chargée
   window.onload = function() {
     audio.play();
