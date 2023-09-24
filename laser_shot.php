@@ -4,7 +4,7 @@
 include 'fonction.php';
 entete();
 echo "<body style='margin: 20px; background-color: rgb(32, 47, 74); color: white;'>";
-echo "<audio autoplay><source src='musique.mp3' type='audio/mpeg'></audio>";
+echo "<audio src='musique.mp3' type='audio/mpeg' autoplay></audio>";
 navbar();
 ?>
 
