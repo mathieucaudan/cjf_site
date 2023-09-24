@@ -4,7 +4,7 @@
 include 'fonction.php';
 entete();
 echo "<body style='margin: 20px; background-color: rgb(32, 47, 74); color: white;'>";
-echo "<audio src='musique.mp3' autoplay></audio>";
+echo "<audio src='musique.mp3' type='audio/mpeg' autoplay></audio>";
 navbar();
 ?>
 
@@ -45,12 +45,3 @@ navbar();
 footer();
 echo "</body>";
 ?>
-<script>
-  // Créer un élément audio
-  var audio = new Audio('musique.mp3');
-
-  // Fonction pour démarrer la lecture de la musique lorsque la page est chargée
-  window.onload = function() {
-    audio.play();
-  };
-</script>
