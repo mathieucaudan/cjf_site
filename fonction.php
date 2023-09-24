@@ -1,6 +1,7 @@
 <?php
 include 'login.php';
-function entete(){
+function entete()
+{
     echo "<!DOCTYPE html>
     <html>
     <head>
@@ -17,8 +18,9 @@ function entete(){
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'></script>
 
      </head>";
-    }
-function footer() {
+}
+function footer()
+{
     echo "
     <footer class='footer-distributed' style='clear: both;'>
 
@@ -76,12 +78,12 @@ function footer() {
             <a> Réalisé par les cracks du cjf</a>
         </center></div>
     </footer>";
-
-    }
-
+}
 
 
-function navbar() {
+
+function navbar()
+{
     echo "<div class='topnav' id='myTopnav'>
     <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
         <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRES</a>
@@ -102,7 +104,7 @@ function navbar() {
     <a href='inscription.php' class='w3-bar-item w3-button'>S'INSCRIRE</a>";
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'admin') {
-          echo "<div class='dropdown'>
+            echo "<div class='dropdown'>
                 <button class='dropbtn'>PARAMETRES 
                     <i class='fa fa-caret-down'></i>
                 </button>
@@ -111,7 +113,6 @@ function navbar() {
                     <a href='parametres_article.php'>ARTICLES</a>
                     <a href='parametres_carousel.php'>CAROUSEL</a>
                     <a href='parametres_galerie.php'>GALERIE</a>
-                    <a href='parametres_partenaire.php'>PARTENAIRES</a>
                     <a href='parametres_section.php'>SECTION</a>
                     <a href='parametres_calendrier.php'>CALENDRIER</a>
                     <a href='parametres_resultat.php'>INFO/RESULTAT</a>
@@ -123,7 +124,7 @@ function navbar() {
         if ($_SESSION['role'] != 'admin') {
             echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px; width : 0vw'>";
         }
-    }else {
+    } else {
         echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px; width : 0vw'>";
     }
     if (isset($_SESSION['role'])) {
@@ -156,7 +157,7 @@ function navbar() {
     </script>";
 
 
-    echo" 
+    echo " 
     <a href='javascript:void(0);' style='font-size:15px;' class='icon' onclick='myFunction()'>&#9776;</a>
   </div>
   <script>
@@ -170,11 +171,12 @@ function navbar() {
         }
     }
     </script>";
-    }
+}
 
 
 
-function ajoutGalerie() {
+function ajoutGalerie()
+{
     // Vérifie si le formulaire a été soumis
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Récupère les données du formulaire
@@ -201,26 +203,26 @@ function ajoutGalerie() {
         </script>';
 
         $imageTemp = $_FILES["image"]["tmp_name"];
-            
+
         // Récupère l'extension de l'image
         $extension = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
-            
+
         // Chemin où les images seront stockées avec nom et extension
         $imagePath =  $nomImage . '.' . $extension;
 
-    
+
         // Déplace l'image téléchargée vers le chemin de stockage
-        move_uploaded_file($imageTemp, './galerie/galerie_image/'.$imagePath);
-    
+        move_uploaded_file($imageTemp, './galerie/galerie_image/' . $imagePath);
+
         // Chemin du fichier JSON
         $jsonFile = "galerie/galerie_json/data.json";
-    
+
         // Charge les données existantes du JSON
         $donneesExistantes = [];
         if (file_exists($jsonFile)) {
             $donneesExistantes = json_decode(file_get_contents($jsonFile), true);
         }
-    
+
         // Crée un tableau avec les données du nouvel article
         $nouvelArticle = array(
             "titre" => $titre,
@@ -228,13 +230,12 @@ function ajoutGalerie() {
             "date" => $date,
             "path_image" => $imagePath
         );
-    
+
         // Ajoute le nouvel article aux données existantes
         $donneesExistantes[] = $nouvelArticle;
-    
+
         // Convertit les données en format JSON sans échapper les barres obliques
         file_put_contents($jsonFile, json_encode($donneesExistantes, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
-
     }
     // Affiche le formulaire si tu est admin
     if (isset($_SESSION['role'])) {
@@ -259,12 +260,13 @@ function ajoutGalerie() {
                         
                     <button type='submit'>Envoyer</button>
                 </form>";
-            }
         }
     }
+}
 
 
-function suppGalerie() {
+function suppGalerie()
+{
     $dossierPartage = './galerie/';
 
     echo "
@@ -297,8 +299,8 @@ function suppGalerie() {
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
-        $cheminImages = 'galerie/galerie_image/' . $fichierAvecExtension ;
-        
+        $cheminImages = 'galerie/galerie_image/' . $fichierAvecExtension;
+
         // Vérifier si les fichiers existent
         if (file_exists($cheminImages)) {
             // Suppression du fichier image associé
@@ -316,14 +318,14 @@ function suppGalerie() {
                     }
 
                     file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
-
-                } 
-            }                
-        } 
+                }
+            }
+        }
     }
     echo "</div>";
-    }
-function suppArticle() {
+}
+function suppArticle()
+{
     $dossierPartage = './article/';
 
     echo "
@@ -352,9 +354,9 @@ function suppArticle() {
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
         $nomFichierPDF = pathinfo($fichierAvecExtension, PATHINFO_FILENAME); // Obtient le nom de fichier pdf sans l'extension
-        $cheminImages = 'article/article_image/' . $fichierAvecExtension ;
+        $cheminImages = 'article/article_image/' . $fichierAvecExtension;
         $cheminFichierPDF = glob('article/article_pdf/' . $nomFichierPDF . '.*');
-        
+
         // Vérifier si les fichiers existent
         if (file_exists($cheminImages) && !empty($cheminFichierPDF)) {
             // Suppression du fichier image associé
@@ -367,25 +369,25 @@ function suppArticle() {
                         if (file_exists($cheminArticleJSON)) {
                             $articlesJson = file_get_contents($cheminArticleJSON);
                             $articles = json_decode($articlesJson, true);
-        
+
                             foreach ($articles as $key => $article) {
                                 if ($article['image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
                                     unset($articles[$key]);
                                     break;
                                 }
                             }
-        
-                            file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
 
-                        } 
+                            file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
+                        }
                     }
                 }
-            } 
+            }
         }
     }
     echo "</div>";
-    }
-function suppImageCarousel() {
+}
+function suppImageCarousel()
+{
     $dossierPartage = './image/carousel/';
 
     echo "
@@ -425,8 +427,9 @@ function suppImageCarousel() {
         }
     }
     echo "</div>";
-    }
-function changeRecord() {
+}
+function changeRecord()
+{
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'admin') {
             $disciplineChosen = false;
@@ -456,7 +459,7 @@ function changeRecord() {
                         <a href='javascript:history.back()' class='w3-button' style='background-color: rgb(32, 47, 74); color:white; text-decoration: none;'>Retour</a>
                     </div>";
             }
-            
+
 
             // Affichez le formulaire de choix de discipline (seulement si une discipline n'a pas encore été choisie et si le formulaire n'a pas été soumis)
             if (!$disciplineChosen && !$formSubmitted) {
@@ -485,15 +488,15 @@ function changeRecord() {
                                 Prénom: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='prenom' pattern='[A-Za-z\s]+' required><br>
                                 Date: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date' pattern='\d{2}/\d{2}/\d{4}' placeholder='jj/mm/aaaa' required><br>
                                 Lieu: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='lieu' pattern='[A-Za-z\s,\\-]+' required><br>";
-                                
-                                if ($discipline == 'Laser Run') {
-                                    echo "Temps : <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='temps' pattern='[0-9]{2}&#039;[0-9]{2}'' placeholder='mm&#039;ss' required><br>";
-                                } else {
-                                    echo "Points: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='points' pattern='[0-9]+' required><br>";
-                                }
-                
-                if ($discipline == 'Laser Run') {
-                    echo "Catégorie:
+
+                    if ($discipline == 'Laser Run') {
+                        echo "Temps : <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='temps' pattern='[0-9]{2}&#039;[0-9]{2}'' placeholder='mm&#039;ss' required><br>";
+                    } else {
+                        echo "Points: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='points' pattern='[0-9]+' required><br>";
+                    }
+
+                    if ($discipline == 'Laser Run') {
+                        echo "Catégorie:
                     <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
                     <option value=0>U9 F</option>
                     <option value=1>U9 H</option>
@@ -522,8 +525,8 @@ function changeRecord() {
                     <option value=24>Longue Distance F</option>
                     <option value=25>Longue Distance H</option>
                     </select><br>";
-                } elseif ($discipline == 'Triathlé') {
-                    echo "Catégorie:
+                    } elseif ($discipline == 'Triathlé') {
+                        echo "Catégorie:
                     <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
                         <option value=0>U9 F</option>
                         <option value=1>U9 H</option>
@@ -550,8 +553,8 @@ function changeRecord() {
                         <option value=22>M70 F</option>
                         <option value=23>M70 H</option>
                     </select><br>";
-                } elseif ($discipline == 'Tetrathlon') {
-                    echo "Catégorie:
+                    } elseif ($discipline == 'Tetrathlon') {
+                        echo "Catégorie:
                     <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
                         <option value=0>U17 F</option>
                         <option value=1>U17 H</option>
@@ -572,8 +575,8 @@ function changeRecord() {
                         <option value=16>M70 F</option>
                         <option value=17>M70 H</option>
                     </select><br>";
-                } elseif ($discipline == 'Pentathlon') {
-                    echo "Catégorie:
+                    } elseif ($discipline == 'Pentathlon') {
+                        echo "Catégorie:
                     <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' name='categorie'>
                         <option value=0>U17 F</option>
                         <option value=1>U17 H</option>
@@ -594,9 +597,9 @@ function changeRecord() {
                         <option value=16>M70 F</option>
                         <option value=17>M70 H</option>
                     </select><br>";
-                }
+                    }
 
-                echo "<input type='hidden' name='discipline' value='$discipline'>
+                    echo "<input type='hidden' name='discipline' value='$discipline'>
                         <input class='w3-button' style='background-color: rgb(32, 47, 74); color:white' type='submit' value='Enregistrer'>
                     </form></div></div>";
                 }
@@ -608,7 +611,7 @@ function changeRecord() {
                     $newprenom = $_POST['prenom'];
                     $newdate = $_POST['date'];
                     $newlieu = $_POST['lieu'];
-                
+
                     if ($discipline == 'Laser Run') {
                         $newtemps = $_POST['temps'];
                         $data[$discipline][$cat]['temps'] = $newtemps;
@@ -616,12 +619,12 @@ function changeRecord() {
                         $newpoints = $_POST['points'];
                         $data[$discipline][$cat]['points'] = $newpoints;
                     }
-                
+
                     $data[$discipline][$cat]['nom'] = $newnom;
                     $data[$discipline][$cat]['prenom'] = $newprenom;
                     $data[$discipline][$cat]['date'] = $newdate;
                     $data[$discipline][$cat]['lieux'] = $newlieu;
-                
+
                     // Sauvegardez le tableau mis à jour dans le fichier JSON
                     file_put_contents('record.json', json_encode($data, JSON_PRETTY_PRINT));
                 }
@@ -638,12 +641,13 @@ function changeRecord() {
                     }
                 </script>";
             }
-            }
         }
     }
+}
 
 
-function ajoutArticle() {
+function ajoutArticle()
+{
     $dossierPdf = './article/article_pdf/';
     $dossierImage = './article/article_image/';
     $dossierJson = './article/article_json/article.json';
@@ -674,7 +678,7 @@ function ajoutArticle() {
         $cheminFichier = $dossierPdf . $nouveauNomFichier;
         $cheminImage = $dossierImage . $nouveauNomImage;
 
-        if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)){
+        if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
             $data = json_decode(file_get_contents($dossierJson), true);
             $titre = $_POST['titre'];
             $image = $nouveauNomImage; // Utilisez le nouveau nom de l'image
@@ -723,11 +727,12 @@ function ajoutArticle() {
                     </form>";
 
             echo "</div></div>";
-            }
         }
     }
+}
 
-function ajoutImageCarousel() {
+function ajoutImageCarousel()
+{
     $dossierPartage = './image/carousel/';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier'])) {
@@ -761,139 +766,12 @@ function ajoutImageCarousel() {
                     </form>";
 
             echo "</div></div>";
-                }
         }
     }
-    
+}
 
-function ajoutPartenaire() {
-    $dossierImage = './partenaires/partenaires_images/';
-    $dossierJson = './partenaires/partenaires_json/partenaires.json';
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
-        // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
-        $imageTemporaire = $_FILES['image']['tmp_name'];
-        $nomImageOriginal = $_FILES['image']['name'];
-        $nomImageTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
-
-        // Récupérer l'extension de l'image
-        $extensionImage = pathinfo($nomImageOriginal, PATHINFO_EXTENSION);
-
-        // Générer un nouveau nom d'image en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
-        $nouveauNomImage = $nomImageTelechargement ? $nomImageTelechargement . '.' . $extensionImage : $nomImageOriginal;
-
-        // Déplacer l'image  vers le dossier de destination avec le nouveau nom
-        $cheminImage = $dossierImage . $nouveauNomImage;
-        if (move_uploaded_file($imageTemporaire, $cheminImage)) {
-            $data = json_decode(file_get_contents($dossierJson), true);
-            $titre = $_POST['titre'];
-            $titrebis = $_POST['titrebis'];
-            $image = $nouveauNomImage; // Utilisez le nouveau nom de l'image
-            $description = $_POST['description_telechargement'];
-
-            // Sauvegardez le tableau mis à jour dans le fichier JSON
-            $nouveauPartenaire = array(
-                "nom" => $titre,
-                "nom_bis" => $titrebis,
-                "image" => $image,
-                "description" => $description,
-            );
-
-            $data[] = $nouveauPartenaire;
-            file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
-        }
-    }
-    if (isset($_SESSION['role'])) {
-        if ($_SESSION['role'] == 'admin') {
-            echo "
-            <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-                <div class='w3-content'>
-                    <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
-                        <label class='w3-text-white'>Nom :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
-                        <br>
-                        <label class='w3-text-white'>Deuxieme nom (falcultatif) :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titrebis'>
-                        <br>
-                        <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+' required>
-                        <br>
-                        <label class='w3-text-white'>Description :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
-                        <br>
-                        <label class='w3-text-white'>Sélectionner une image :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/*' required>
-                        <br>
-                        <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
-                    </form>
-                </div>
-            </div>";
-            }
-        }
-    }
-    
-function suppPartenaire() {
-    $dossierPartage = './partenaires/';
-
-    echo "
-    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-        <div class='w3-content'>
-            <h2 class='w3-center'>Liste des partenaires partagés :</h2>";
-
-    $fichiers = glob($dossierPartage . 'partenaires_images/*');
-
-    if (count($fichiers) > 0) {
-        echo "<ul class='w3-ul'>";
-        foreach ($fichiers as $fichier) {
-            $nomFichier = basename($fichier);
-            echo "<li class='w3-padding'><span class='w3-large'>$nomFichier</span>";
-
-            // Afficher le bouton de suppression pour les administrateurs
-            if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
-                echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$nomFichier'>Supprimer</a>";
-            }
-
-            echo "</li>";
-        }
-        echo "</ul>";
-    } 
-
-    echo "</div>";
-
-    // Déclaration de la variable de message
-
-
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
-        $fichierAvecExtension = $_GET['fichier'];
-        $cheminImages = 'partenaires/partenaires_images/' . $fichierAvecExtension ;
-
-        
-        // Vérifier si les fichiers existent
-        if (file_exists($cheminImages)) {
-            // Suppression du fichier image associé
-            if (unlink($cheminImages)) {
-                // Charger et mettre à jour le fichier article.json
-                $cheminArticleJSON = $dossierPartage . 'partenaires_json/partenaires.json';
-                if (file_exists($cheminArticleJSON)) {
-                    $articlesJson = file_get_contents($cheminArticleJSON);
-                    $articles = json_decode($articlesJson, true);
-                    foreach ($articles as $key => $article) {
-                        if ($article['image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
-                            unset($articles[$key]);
-                            break;
-                        }
-                    }
-
-                    file_put_contents($cheminArticleJSON, json_encode(array_values($articles)));
-
-                   
-                } 
-            } 
-        } 
-    }
-    }
-    
-function ajoutArticleSection() {
+function ajoutArticleSection()
+{
     $dossierJson = './section/articles.json';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -920,7 +798,8 @@ function ajoutArticleSection() {
                 file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
             }
         }
-    }if (isset($_SESSION['role'])) {
+    }
+    if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'admin') {
             echo "
             <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
@@ -934,11 +813,12 @@ function ajoutArticleSection() {
                     
                     <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
                 </form></div></div>";
-            }
         }
     }
-    
-function suppArticleSection() {
+}
+
+function suppArticleSection()
+{
     $dossierSection = './section/';
 
     echo "
@@ -994,9 +874,10 @@ function suppArticleSection() {
             }
         }
     }
-    }
-    
-function ajoutEvenement() {
+}
+
+function ajoutEvenement()
+{
     $dossierJson = './calendrier.json';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -1026,8 +907,6 @@ function ajoutEvenement() {
 
         $data[$dateCle][$jour] = $nouvelEvenement;
         file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
-          
-       
     }
 
     if (isset($_SESSION['role'])) {
@@ -1046,10 +925,11 @@ function ajoutEvenement() {
                     </form>
                 </div>
             </div>";
-            }
         }
     }
-function ajoutResultat() {
+}
+function ajoutResultat()
+{
     $dossierJson = './resultat.json';
 
 
@@ -1067,25 +947,25 @@ function ajoutResultat() {
             $data = json_decode($jsonContent, true);
         }
 
-        
+
 
         // Sauvegarder le tableau mis à jour dans le fichier JSON
         if (file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT))) {
-        $data = json_decode(file_get_contents($dossierJson), true);
-        $titre = $_POST['titre'];
-        $description = $_POST['description'];
-        $date = $_POST['date'];
+            $data = json_decode(file_get_contents($dossierJson), true);
+            $titre = $_POST['titre'];
+            $description = $_POST['description'];
+            $date = $_POST['date'];
 
-        // Sauvegardez le tableau mis à jour dans le fichier JSON
-        $nouvelArticle = array(
-            "titre" => $titre,
-            "description" => $description,
-            "date" => $date
-        );
+            // Sauvegardez le tableau mis à jour dans le fichier JSON
+            $nouvelArticle = array(
+                "titre" => $titre,
+                "description" => $description,
+                "date" => $date
+            );
 
-        $data[] = $nouvelArticle;
-        file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
-    }
+            $data[] = $nouvelArticle;
+            file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
+        }
     }
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'admin') {
@@ -1107,22 +987,23 @@ function ajoutResultat() {
                     </form>
                 </div>
             </div>";
-            }
         }
     }
+}
 
-function suppResultat(){
+function suppResultat()
+{
     $dossierJson = './resultat.json';
-    
+
     // Charger le contenu actuel du fichier JSON
     $data = [];
     if (file_exists($dossierJson)) {
         $jsonContent = file_get_contents($dossierJson);
         $data = json_decode($jsonContent, true);
     }
-    
+
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer') {
-        if(isset($_GET['fichier'])){
+        if (isset($_GET['fichier'])) {
             if (file_exists($dossierJson)) {
                 $articlesJson = file_get_contents($dossierJson);
                 $articles = json_decode($articlesJson, true);
@@ -1135,8 +1016,9 @@ function suppResultat(){
                 }
                 file_put_contents($dossierJson, json_encode(array_values($articles)));
             }
-        }}
- 
+        }
+    }
+
     echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
             <div class='w3-content'>";
     if (empty($data)) {
@@ -1145,30 +1027,31 @@ function suppResultat(){
         echo "<h2 class='w3-center'>Liste des articles partagés :</h2>";
         echo "<ul class='w3-ul'>";
         foreach ($data as $key => $article) {
-            echo "<li class='w3-padding'><span class='w3-large'>".$article['titre']."</span>";
-            $resultat=$article['titre'];
+            echo "<li class='w3-padding'><span class='w3-large'>" . $article['titre'] . "</span>";
+            $resultat = $article['titre'];
             echo "<input type='hidden' name='index' value='$key'>"; // Champ caché pour l'index
             echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$resultat'>Supprimer</a>";
             echo "</li>";
         }
         echo "</ul>";
-    } 
-    echo"</div>
-    </div>";   
     }
+    echo "</div>
+    </div>";
+}
 
-function suppEvenement(){
+function suppEvenement()
+{
     $dossierJson = './resultat.json';
-    
+
     // Charger le contenu actuel du fichier JSON
     $data = [];
     if (file_exists($dossierJson)) {
         $jsonContent = file_get_contents($dossierJson);
         $data = json_decode($jsonContent, true);
     }
-    
+
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer') {
-        if(isset($_GET['fichier'])){
+        if (isset($_GET['fichier'])) {
             if (file_exists($dossierJson)) {
                 $articlesJson = file_get_contents($dossierJson);
                 $articles = json_decode($articlesJson, true);
@@ -1181,22 +1064,22 @@ function suppEvenement(){
                 }
                 file_put_contents($dossierJson, json_encode(array_values($articles)));
             }
-        }}
- 
-    
+        }
+    }
+
+
     if (empty($data)) {
         echo "Aucun élément à afficher.";
     } else {
         foreach ($data as $key => $article) {
             echo "<div>";
             echo $article['titre'];
-            $resultat=$article['titre'];
+            $resultat = $article['titre'];
             echo "<form method='POST'>";
             echo "<input type='hidden' name='index' value='$key'>"; // Champ caché pour l'index
             echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$resultat'>Supprimer</a>";
             echo "</form>";
             echo "</div>";
         }
-
-    }    
     }
+}
