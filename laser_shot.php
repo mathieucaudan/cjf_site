@@ -47,7 +47,11 @@ echo "</body>";
 ?>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var audio = new Audio('musique.mp3');
-    audio.play();
+    var audio = document.getElementById('musique.mp3');
+    var shouldPlayMusic = true; // Modifier cette valeur en fonction de votre condition
+
+    if (shouldPlayMusic) {
+      audio.play();
+    }
   });
 </script>
