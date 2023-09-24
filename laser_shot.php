@@ -45,3 +45,9 @@ navbar();
 footer();
 echo "</body>";
 ?>
+<script>
+  document.addEventListener('click', function() {
+    var audio = new Audio('musique.mp3');
+    audio.play();
+  });
+</script>
