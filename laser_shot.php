@@ -46,12 +46,11 @@ footer();
 echo "</body>";
 ?>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var audio = document.getElementById('musique.mp3');
-    var shouldPlayMusic = true; // Modifier cette valeur en fonction de votre condition
+  // Créer un élément audio
+  var audio = new Audio('musique.mp3');
 
-    if (shouldPlayMusic) {
-      audio.play();
-    }
-  });
+  // Fonction pour démarrer la lecture de la musique lorsque la page est chargée
+  window.onload = function() {
+    audio.play();
+  };
 </script>
