@@ -73,15 +73,14 @@ navbar();
     <div class="w3-quarter w3-container" style="text-align:center;">
       <h3>Natation</h3>
       <div class="cardco">
+        <img src="image/coach/arnaud.jpg" class="imageSize" style="display:block; margin:auto;">
+        <h4>ARNAUD EVEILLARD (BF1)</h4>
+      </div>
+      <div class="cardco">
         <img src="image/coach/fred.jpg" class="imageSize" style="display:block; margin:auto;">
         <h4>FRED GARCIA</h4>
         <p>(partenariat avec le Triathlon Côte d’Emeraude)</p>
         <p>(BF3 de triathlon,BF4 de Natation, BPJEPS AAN, Moniteur sportif de natation)</p>
-      </div>
-      <div class="cardco">
-        <img src="image/coach/arnaud.jpg" class="imageSize" style="display:block; margin:auto;">
-        <h4>ARNAUD EVEILLARD</h4>
-        <p>(BF1)</p>
       </div>
     </div>
     <div class="w3-quarter w3-container" style="text-align:center;">
@@ -119,6 +118,7 @@ navbar();
       <div class="cardat">
         <h3>AZILIZ NAOUR</h3>
         <img src="image/coach/aziliz.jpg" style="display:block; margin:auto;">
+        <h3>Palmares</h3>
         <p>3ème Championnat de France U22 de tétrathlon</p>
         <p>Championne de France 2023 de Triathlé U22 individuel et relai mixte</p>
         <p>1 sélection internationale</p>

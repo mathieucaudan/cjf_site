@@ -1,55 +1,113 @@
-<link rel='stylesheet' href='style/laser_shot.css'> <!-- Ajout de la référence au fichier CSS -->
+<!DOCTYPE html>
+<html>
 
-<?php
-include 'fonction.php';
-entete();
-echo "<body style='margin: 20px; background-color: rgb(32, 47, 74); color: white;'>";
-echo "<audio src='musique.mp3' type='audio/mpeg' autoplay></audio>";
-navbar();
-?>
+<head>
+  <meta charset="utf-8">
+  <title>Laser Shot</title>
+  <link rel='stylesheet' href='style/laser_shot.css'>
+  <style>
+    /* Style pour centrer le bouton */
+    #playButtonContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 50vh;
+    }
 
-<center>
-  <h1>Laser Shot</h1>
-</center>
-<div>
-  <h2>Règlement du jeu</h2>
-  <h2>Préparation du jeu</h2>
-  <ul>
-    <il>
-      Cible a 10m</br>
-      Alcool principal : Marquisette et alcool fort, bière si aucun alcool cité précédemment n'est présent !</br>
-      Un pistolet minimum.</br>
-    </il>
-  </ul>
-  <h2>Déroulement du jeu</h2>
-  <ul>
-    <il>
-      Un tir pour allumer la cible.</br>
-      Prendre son shot(alcool ou cul sec de biere).</br>
-      Finir la cible.</br>
-      Si la cible n'est pas fini, un shot supplémentaire sinon joueur suivant.</br>
-      Si 5/5, un shot au joueur de ton choix.</br>
-      Interdiction de toucher le joueur lorsqu'il tir, interdiction de toucher la cible et se mettre entre la cible et le tireur.</br>
-    </il>
-  </ul>
-  <h2>Variante possible à deux cibles.</h2>
-  <ul>
-    <il>
-      Tableau 1/4, 1/2 et final</br>
-      Match, pour définir le perdant, c'est celui qui met le plus de temps à finir la cible ou celui qui a mis moins de lumière verte, 1v1 le perdant prend un shot supplémentaire</br>
-    </il>
-  </ul>
-</div>
+    #playButton {
+      padding: 20px 40px;
+      font-size: 50px;
+      cursor: pointer;
+    }
+  </style>
+</head>
 
-<?php
-footer();
-echo "</body>";
-?>
-<script>
-  // Créer un élément audio
-  var audio = new Audio('musique.mp3');
-  // Fonction pour démarrer la lecture de la musique lorsque la page est chargée
-  window.onload = function() {
-    audio.play();
-  };
-</script>
+<body style='margin: 20px; background-color: rgb(32, 47, 74); color: white;'>
+
+  <?php
+  include 'fonction.php';
+  entete();
+  echo "<audio id='backgroundMusic' src='musique.mp3' type='audio/mpeg'></audio>";
+  navbar();
+  ?>
+
+  <center>
+    <h1>Laser Shot</h1>
+  </center>
+
+  <div id="playButtonContainer">
+
+    <button id="playButton" class="button-85" role="button">Afficher les règles</button>
+  </div>
+
+  <!-- Déplacer la balise <div id="rules"> ici -->
+  <div id="rules" style="display: none; text-align: center;">
+    <h2>Règlement du jeu</h2>
+    <h2>Préparation du jeu</h2>
+    <ul>
+
+      Cible à 10m<br>
+      Alcool principal : Marquisette et alcool fort, bière si aucun alcool cité précédemment n'est présent !<br>
+      Un pistolet minimum.<br>
+
+    </ul>
+    <h2>Déroulement du jeu</h2>
+    <ul>
+
+      Un tir pour allumer la cible.<br>
+      Prendre son shot (alcool ou cul sec de bière).<br>
+      Finir la cible.<br>
+      Si la cible n'est pas finie, un shot supplémentaire sinon joueur suivant.<br>
+      Si 5/5, un shot au joueur de ton choix.<br>
+      Interdiction de toucher le joueur lorsqu'il tire, interdiction de toucher la cible et de se mettre entre la cible et le tireur.<br>
+
+    </ul>
+    <h2>Variante possible à deux cibles.</h2>
+    <ul>
+
+      Tableau 1/4, 1/2 et final<br>
+      Match, pour définir le perdant, c'est celui qui met le plus de temps à finir la cible ou celui qui a mis moins de lumière verte, 1v1 le perdant prend un shot supplémentaire.<br>
+
+    </ul>
+  </div>
+
+
+  <script>
+    var audio = document.getElementById('backgroundMusic');
+    var rulesDiv = document.getElementById('rules');
+    var body = document.body;
+
+    // Fonction pour afficher les règles, lancer la musique et le changement de couleur lorsque le bouton est cliqué
+    document.getElementById('playButton').addEventListener('click', function() {
+      audio.play();
+      document.getElementById('playButtonContainer').style.display = 'none';
+      rulesDiv.style.display = 'block';
+
+      // Changement de couleur
+      var colors = [
+        'rgb(255, 0, 0)',
+        'rgb(0, 255, 0)',
+        'rgb(0, 0, 255)',
+        'rgb(255, 255, 0)',
+        'rgb(255, 0, 255)',
+        'rgb(0, 255, 255)',
+        'rgb(128, 128, 128)',
+        'rgb(255, 128, 0)',
+        'rgb(128, 0, 255)',
+        'rgb(0, 128, 0)'
+      ];
+
+
+
+      var currentIndex = 0;
+      setInterval(function() {
+        body.style.backgroundColor = colors[currentIndex];
+        currentIndex = (currentIndex + 1) % colors.length;
+      }, 375); // Change la couleur toutes les 200 millisecondes
+    });
+  </script>
+
+</body>
+
+</html>
