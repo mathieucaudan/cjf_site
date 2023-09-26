@@ -21,7 +21,7 @@ navbar();
     <h3>Mercredi 18h00-19h00</h3>
 </div>
 <div id="natation" class="tabcontent" style="text-align:center;">
-    <h3>le Lundi 6h30-7h30</h3>
+    <h3>Lundi 6h30-7h30</h3>
     <h3>Mercredi 6h30-7h30</h3>
     <h3>Jeudi 20h0-21h30</h3>
     <h3>Vendredi 6h30-7h30</h3>
