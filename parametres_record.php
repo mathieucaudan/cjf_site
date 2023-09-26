@@ -15,6 +15,7 @@ changeRecord();
   <h2 class='w3-center'>Autorisation non accordée</h2>
   </div>";
 }
+echo"aa";
 footer();
 echo "</body>";
 ?>
