@@ -16,7 +16,7 @@ navbar();
     <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
         <button class="tablinks presentation active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'presentation')">Présentation</button>
         <button class="tablinks article" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'article')">article</button>
-        <button class="tablinks avenir" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'avenir')">Génération Avenir</button>
+
     </div>
 </center>
 
