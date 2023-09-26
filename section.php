@@ -16,7 +16,7 @@ navbar();
     <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
         <button class="tablinks presentation active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'presentation')">Présentation</button>
         <button class="tablinks article" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'article')">article</button>
-        </body>
+        <button class="tablinks avenir" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'avenir')">Génération Avenir</button>
     </div>
 </center>
 
@@ -112,7 +112,178 @@ navbar();
     }
     ?>
 </div>
+<div id="avenir" class="tabcontent" style="text-align:center;">
+    <table style="width:100%;max-width:800px;margin:auto;">
+        <tr>
+            <th></th>
+            <th>Lundi</th>
+            <th>Mardi</th>
+            <th>Mercredi</th>
+            <th>Jeudi</th>
+            <th>Vendredi</th>
+            <th>Samedi</th>
+            <th>Dimanche</th>
+        </tr>
+        <tr>
+            <td>6h30-7h30</td>
+            <td>NATATION TCE
+                (Aquamalo)</td>
+            <td></td>
+            <td>NATATION TCE
+                (Aquamalo)</td>
+            <td></td>
+            <td>NATATION TCE
+                (Aquamalo)</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>7h30-8h00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>NATATION TCE
+                (Aquamalo)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>8h00-8h30</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>NATATION TCE
+                (Aquamalo)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>8h30-9h00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>NATATION TCE
+                (Aquamalo)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>9h00-9h30</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>NATATION TCE
+                (Aquamalo)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>9h30-10h00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>10h00-10h30</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>10h30-11h00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>11h00-11h30</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Laser Run (Biathlon avec Course + Tir au pistolet laser)<br>11h30/13h15</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>11h30-12h00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Laser Run (Biathlon avec Course + Tir au pistolet laser)<br>11h30/13h15</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>12h00-12h30</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>12h30-13h00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>13h00-13h30</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>13h30-14h00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>14h00-14h30</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
 
+</div>
 <?php
 footer();
 echo "</body>";

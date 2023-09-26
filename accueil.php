@@ -51,7 +51,7 @@ $data = json_decode($jsonData, true);
           echo "<h1>{$article['titre']}</h1>
         <p>{$article['description']}</p>
         <div>{$article['date']}</div>
-        <div>_____________________________</div>";
+        <hr>";
         }
         ?>
       </div>
