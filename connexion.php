@@ -5,6 +5,13 @@ echo "<body>";
 navbar();
 ?>
 <div style='background-color: rgb(32, 47, 74); color: white; display: flex; justify-content: center; align-items: center; height: 100vh;flex-direction: column;'>
+    <?php
+
+    if (isset($_SESSION['erreur'])) {
+        $erreur = $_SESSION['erreur'];
+        echo $erreur;
+        unset($_SESSION['erreur']); // Supprimer le message d'erreur de la session pour éviter de l'afficher à nouveau
+    }  ?>
     <div>
         <center>
             <h1 class='titre' style='font-size: 32px;'>Connexion</h1>
