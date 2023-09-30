@@ -75,7 +75,7 @@ $saison = ($moisActuel > 8 || ($moisActuel == 8 && $jourActuel >= 1)) ? $anneeAc
         array('U17', 15, ($anneeActuelle - 15 + $depasserSeptembre) . ' - ' . ($anneeActuelle - 16 + $depasserSeptembre)),
         array('U15', 13, ($anneeActuelle - 13 + $depasserSeptembre) . ' - ' . ($anneeActuelle - 14 + $depasserSeptembre)),
         array('U13', 11, ($anneeActuelle - 11 + $depasserSeptembre) . ' - ' . ($anneeActuelle - 12 + $depasserSeptembre)),
-        array('U11', 10, ($anneeActuelle - 9 + $depasserSeptembre) . ' - ' . ($anneeActuelle - 10 + $depasserSeptembre))
+        array('U11', 9, ($anneeActuelle - 9 + $depasserSeptembre) . ' - ' . ($anneeActuelle - 10 + $depasserSeptembre))
       );
 
       // Parcourir le tableau des catégories d'âge et afficher les informations
