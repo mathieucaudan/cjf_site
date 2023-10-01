@@ -37,7 +37,7 @@ $data = json_decode($jsonData, true);
 
       <p>La troisième discipline est l'équitation, plus précisément le saut d'obstacles. Chaque athlète se voit attribuer un cheval par tirage au sort et dispose d'un court laps de temps pour se familiariser avec le cheval. L'objectif est de parcourir un parcours d'obstacles sans commettre de faute dans un temps limité.</p>
 
-      <p>La dernière épreuv est un combiné appelé Laser Run, le Laser Run, est une combinaison unique de tir au pistolet et de course à pied. Les athlètes utilisent des pistolets laser pour viser des cibles situées à 10 mètres de distance, alternant avec des courses, et les scores sont déterminés par la précision des tirs et le temps de course.</p>
+      <p>La dernière épreuve est un combiné appelé Laser Run, le Laser Run, est une combinaison unique de tir au pistolet et de course à pied. Les athlètes utilisent des pistolets laser pour viser des cibles situées à 10 mètres de distance, alternant avec des courses, et les scores sont déterminés par la précision des tirs et le temps de course.</p>
 
       <p>Le champion du pentathlon moderne est celui qui parvient à combiner habilement ses performances dans chacune de ces disciplines pour obtenir le score total le plus élevé. Ce sport, devenu une épreuve olympique en 1912, exige une polyvalence exceptionnelle et une grande capacité d'adaptation de la part des athlètes pour exceller dans l'ensemble de ces épreuves variées.</p>
     </div>
