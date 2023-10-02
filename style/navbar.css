@@ -79,6 +79,14 @@ body {
     float: right;
     display: block;
   }
+
+  .dropdown-content {
+    background-color: white /* Votre couleur de fond pour le menu burger ici */;
+  }
+
+  .dropdown-content a {
+    color: black; /* Votre couleur de texte pour le menu burger ici */
+  }
 }
 
 .logButton {
@@ -181,5 +189,13 @@ body {
     padding: 12px 10px;
     text-decoration: none;
     font-size: 20px !important;
+  }
+
+  .dropdown-content {
+    background-color: white /* Votre couleur de fond pour le menu burger ici */;
+  }
+
+  .dropdown-content a {
+    color: black; /* Votre couleur de texte pour le menu burger ici */
   }
 }
