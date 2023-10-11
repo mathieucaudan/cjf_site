@@ -485,8 +485,8 @@ function changeRecord()
                     <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
                         <div class='w3-content'>
                             <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
-                                Nom: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom' pattern='[A-Za-z\s]+' required><br>
-                                Prénom: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='prenom' pattern='[A-Za-z\s]+' required><br>
+                                Nom: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom' pattern='[A-Za-z\s,\\-]+' required><br>
+                                Prénom: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='prenom' pattern='[A-Za-z\s,\\-]+' required><br>
                                 Date: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date' pattern='\d{2}/\d{2}/\d{4}' placeholder='jj/mm/aaaa' required><br>
                                 Lieu: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='lieu' pattern='[A-Za-z\s,\\-]+' required><br>";
 
