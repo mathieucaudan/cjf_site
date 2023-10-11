@@ -9,21 +9,27 @@ navbar();
 $dossierPdf = './article/article_pdf';
 $dossierImage = './article/article_image';
 $dossierJson = './article/article_json/article.json';
-        
+
 $jsonData = file_get_contents($dossierJson);
 $data = json_decode($jsonData, true);
 ?>
 
-<h1 style="color: white;"><center>Les articles</center></h1>
+<h1 style="color: white;">
+  <center>Les articles</center>
+</h1>
 
 
 <main class="artcontent">
   <div id="cardsWrapper">
-    <section class="artcards-wrapper"  >
+    <section class="artcards-wrapper">
       <?php
-      $reversedData = array_reverse($data);
+      usort($data, function ($a, $b) {
+        $dateA = DateTime::createFromFormat('d/m/Y', $a['date']);
+        $dateB = DateTime::createFromFormat('d/m/Y', $b['date']);
+        return $dateB <=> $dateA;
+      });
 
-      foreach ($reversedData as $article) {
+      foreach ($data as $article) {
         echo "<div class='artcard-grid-space'>
         <a class='artcard' href='$dossierPdf/" . pathinfo($article['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='--bg-img: url($dossierImage/{$article['image']}); background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);'>
             <div>
@@ -49,14 +55,8 @@ $data = json_decode($jsonData, true);
 
 <div class="artfooter">
   <div style="clear: both">
-  <?php
-  footer();
-  ?>
-    </div>
+    <?php
+    footer();
+    ?>
+  </div>
 </div>
-
-
-
-
-
-
