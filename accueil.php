@@ -34,7 +34,13 @@ $data = json_decode($jsonData, true);
         $dossierJson = './article/article_json/article.json';
 
         $jsonData = file_get_contents($dossierJson);
-        $article = array_reverse(json_decode($jsonData, true));
+        $article = json_decode($jsonData, true);
+        usort($article, function ($a, $b) {
+          $dateA = DateTime::createFromFormat('d/m/Y', $a['date']);
+          $dateB = DateTime::createFromFormat('d/m/Y', $b['date']);
+          return $dateB <=> $dateA;
+        });
+
 
         echo "<a class='artcard' href='$dossierPdf/" . pathinfo($article[0]['image'], PATHINFO_FILENAME) . ".pdf' target='_blank'>
         <div>
