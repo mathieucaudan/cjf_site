@@ -42,7 +42,7 @@ $data = json_decode($jsonData, true);
         });
 
 
-        echo "<a class='artcard' href='$dossierPdf/" . pathinfo($article[0]['image'], PATHINFO_FILENAME) . ".pdf' target='_blank'>
+        echo "<a class='artcard' href='$dossierPdf/" . pathinfo($article[0]['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='text-decoration: none;'>
         <div>
           <h2>{$article[0]['titre']}</h2>
           <p>{$article[0]['description']}</p>
