@@ -117,6 +117,7 @@ function navbar()
                     <a href='parametres_section.php'>SECTION</a>
                     <a href='parametres_calendrier.php'>CALENDRIER</a>
                     <a href='parametres_resultat.php'>INFO/RESULTAT</a>
+                    <a href='parametres_nb_article.php'>ARTICLE ACCUEIL</a>
                 </div>
                 </div>";
         }
@@ -1083,4 +1084,29 @@ function suppEvenement()
             echo "</div>";
         }
     }
+}
+function nombre_article()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $choix = $_POST['choix'];
+
+        // Écrire la valeur dans le fichier nb_art.txt
+        file_put_contents('nb_art.txt', $choix);
+    }
+
+    echo "
+    <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+        <div class='w3-content'>
+            <form method='POST' enctype='multipart/form-data'>
+
+                <label for='choix'>Nombre d'article sur la page d'accueil:</label><br>
+                    <select name='choix'>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                    </select><br>
+
+                <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
+            </form>
+        </div>
+    </div>";
 }
