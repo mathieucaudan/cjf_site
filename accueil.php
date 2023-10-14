@@ -63,14 +63,18 @@ $data = json_decode($jsonData, true);
 
 
         if ($nb_art == 1) {
-          echo "
+          echo "<div class='article-container'>
+          <div class='w3-container w3-quarter '>
+          </div>
+          <div class='w3-container w3-half w3-center'>
           <a class='artcard' href='$dossierPdf/" . pathinfo($article[0]['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='text-decoration: none;'>
                 <div>
                   <h2>{$article[0]['titre']}</h2>
                   <p>{$article[0]['description']}</p>
                   <div>{$article[0]['date']}</div>
                 </div>
-                <img src='$dossierImage/{$article[0]['image']}' class='titre-img'>";
+                <img src='$dossierImage/{$article[0]['image']}' class='titre-img'>
+          </div></div>";
         } elseif ($nb_art == 2) {
           echo "<div class='article-container'>";
           echo "<div class='w3-container w3-half w3-center'>";
