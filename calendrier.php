@@ -42,6 +42,7 @@ navbar();
         $currentDate = new DateTime();
         $currentYear = $currentDate->format('Y');
         $currentMonth = $currentDate->format('n');
+        $currentDay = $currentDate->format('j');
 
         // Obtenez le premier jour du mois actuel
         $firstDayOfMonth = new DateTime("{$currentDate->format('Y-m')}-01");

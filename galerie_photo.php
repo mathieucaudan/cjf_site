@@ -16,7 +16,12 @@ navbar();
 $dossierJson = './galerie/galerie_json/data.json';
 
 $jsonData = file_get_contents($dossierJson);
-$data = array_reverse(json_decode($jsonData, true));
+$article = json_decode($jsonData, true);
+usort($article, function ($a, $b) {
+  $dateA = DateTime::createFromFormat('d/m/Y', $a['date']);
+  $dateB = DateTime::createFromFormat('d/m/Y', $b['date']);
+  return $dateB <=> $dateA;
+});
 ?>
 
 <center>

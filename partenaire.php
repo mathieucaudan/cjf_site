@@ -27,7 +27,7 @@ navbar();
                         <div class='parflip-card-front'>
                             <img src='./partenaires/partenaires_images/swisslife.png'>
                         </div>
-                        <div class='parflip-card-back'>
+                        <div class='parflip-card-back' href="https://example.com" target="_blank">
                             <h3>Valentin Vivier</h3>
                             <h3>Swiss Life</h3>
                             <h4>Expertise en protection sociale et patrimoniale</h4>
