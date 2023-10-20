@@ -70,25 +70,6 @@ body {
   display: block;
 }
 
-@media screen and (max-width: 1450px) {
-  .topnav a:not(:first-child),
-  .dropdown .dropbtn {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-
-  .dropdown-content {
-    background-color: white /* Votre couleur de fond pour le menu burger ici */;
-  }
-
-  .dropdown-content a {
-    color: black; /* Votre couleur de texte pour le menu burger ici */
-  }
-}
-
 .logButton {
   background: #fe0000;
   color: white;
@@ -149,6 +130,44 @@ body {
 .loginButton a:hover {
   background-color: rgb(32, 47, 74);
 }
+#logoclub {
+  position: absolute;
+  left: 1%;
+  top: 1%;
+}
+#insta {
+  position: absolute;
+  left: 90%;
+  top: 1%;
+  width: 3%;
+  height: 8%;
+}
+#facebook {
+  position: absolute;
+  left: 95%;
+  top: 1%;
+  width: 3%;
+  height: 8%;
+}
+
+@media screen and (max-width: 1450px) {
+  .topnav a:not(:first-child),
+  .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .dropdown-content {
+    background-color: white /* Votre couleur de fond pour le menu burger ici */;
+  }
+
+  .dropdown-content a {
+    color: black; /* Votre couleur de texte pour le menu burger ici */
+  }
+}
 
 @media screen and (max-width: 1450px) {
   .topnav.responsive {
@@ -159,9 +178,31 @@ body {
     right: 0;
     top: 0;
   }
-  #logo {
-    width: 20vw;
+  h1 {
+    margin-top: 12%;
+    font-size: 6vw !important;
   }
+  #logoclub {
+    position: absolute;
+    left: 1%;
+    top: 1%;
+    width: 50%;
+  }
+  #insta {
+    position: absolute;
+    left: 90%;
+    top: 1%;
+    width: 4%;
+    height: 2%;
+  }
+  #facebook {
+    position: absolute;
+    left: 95%;
+    top: 1%;
+    width: 4%;
+    height: 2%;
+  }
+
   .topnav.responsive a {
     float: none;
     display: block;

@@ -85,7 +85,14 @@ function footer()
 
 function navbar()
 {
-    echo "<div class='topnav' id='myTopnav'>
+    echo "
+    <div class='navbarcontainer' style='background-color: rgb(32,47,74); color: white; text-align: center; padding: 10px;'>
+    <img id='logoclub' class= 'logoclub' src='image/logo_cjf.png'>    
+        <h1>CJF PENTATHLON MODERNE</h1>
+        <a href='https://www.instagram.com/cjf_pentathlonmoderne/' target='_blank'><img id='insta' class= 'insta' src='image/logo_insta.png' alt='Instagram'></a>
+        <a href='https://www.facebook.com/profile.php?id=100085812112831' target='_blank'><img id='facebook' class= 'facebook' src='image/logo_facebook.png' alt='Facebook'></a>
+    </div>
+    <div class='topnav' id='myTopnav'>
     <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
         <a href='partenaire.php' class='w3-bar-item w3-button'>PARTENAIRES</a>
         <a href='article.php' class='w3-bar-item w3-button'>ARTICLES</a>
@@ -121,13 +128,6 @@ function navbar()
                 </div>
                 </div>";
         }
-    }
-    if (isset($_SESSION['role'])) {
-        if ($_SESSION['role'] != 'admin') {
-            echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px; width : 0vw'>";
-        }
-    } else {
-        echo "<img id='logo' src='image/logo_cjf.png' style='float: right; margin-top: 10px; width : 0vw'>";
     }
     if (isset($_SESSION['role'])) {
         echo "<div class='loginButton'><a href='deconnexion.php' class='buttonContainer w3-right noHover'><button class='logButton'> Déconnexion
