@@ -140,14 +140,14 @@ body {
   left: 90%;
   top: 1%;
   width: 3%;
-  height: 8%;
+  height: auto;
 }
 #facebook {
   position: absolute;
   left: 95%;
   top: 1%;
   width: 3%;
-  height: 8%;
+  height: auto;
 }
 
 @media screen and (max-width: 1450px) {
@@ -193,14 +193,14 @@ body {
     left: 90%;
     top: 1%;
     width: 4%;
-    height: 2%;
+    height: auto;
   }
   #facebook {
     position: absolute;
     left: 95%;
     top: 1%;
     width: 4%;
-    height: 2%;
+    height: auto;
   }
 
   .topnav.responsive a {
