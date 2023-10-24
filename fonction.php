@@ -184,7 +184,8 @@ function ajoutGalerie()
         // Récupère les données du formulaire
         $titre = $_POST["titre"];
         $lien = $_POST["lien"];
-        $date = $_POST["date"];
+        $date_formattee = $_POST["date"];
+        $date = date("d/m/Y", strtotime($date_formattee));
 
         // Remplace les espaces par des tirets
         $fileName = str_replace(' ', '-', $_POST["nom_image"]);
