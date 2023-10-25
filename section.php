@@ -27,9 +27,9 @@ navbar();
     <div style='margin-left: 3%; margin-right: 3%; display: flex; justify-content: space-between; align-items: center;'>
         <div class="image-container">
             <img class='responsive-image' src="./section/section_image/LR.png">
-            <img class='responsive-image' src="./section/section_image/escrime2.JPG">
+            <img class='responsive-image' src="./section/section_image/escrime2.jpg">
             <img class='responsive-image' src="./section/section_image/nat.png">
-            <img class='responsive-image' src="./section/section_image/PO2.JPG">
+            <img class='responsive-image' src="./section/section_image/PO2.jpg">
         </div>
     </div>
 
