@@ -34,5 +34,11 @@
         "image": "Programme.png",
         "description": "Affiche + Programme",
         "date": "28\/10\/23"
+    },
+    {
+        "titre": "Pr\u00e9sentation d'Axelle de GOUSSENCOURT",
+        "image": "axelledegoussencourt.heic",
+        "description": "Une nouvelle pentathl\u00e8te au club",
+        "date": "27\/10\/23"
     }
 ]
