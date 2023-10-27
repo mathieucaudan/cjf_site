@@ -1,1 +1,44 @@
-[{"titre":"Championnat du monde de Laser Run 2022","image":"mondeLisbonne.jpeg","description":"Championnat du monde de Laser Run 2022 \u00e0 Lisbonne","date":"25\/09\/22"},{"titre":"Aziliz Naour","image":"Aziliznaour.jpg","description":"Aziliz Naour 3\u00e8me au championnat de france de Tetrathlon u22","date":"28\/04\/23"},{"titre":"Championnat de France de Triathl\u00e9","image":"Triathl\u00e9.JPG","description":"Championnat de France de Triathl\u00e9 2023 \u00e0 l'INSEP","date":"03\/06\/23"},{"titre":"Championnat de France Laser RUN","image":"FranceLR.JPG","description":"Championnat de France de Laser Run 2023 \u00e0 Salanque","date":"24\/06\/23"},{"titre":"Championnat du Monde de Laser RUN","image":"MondeBathLR.jpeg","description":"Championnat du monde de Laser Run 2023 \u00e0 Bath","date":"21\/08\/23"},{"titre":"Programme LASER RUN du 28 octobre","image":"Programme.png","description":"Affiche + Programme","date":"28\/10\/23"}]
+[
+    {
+        "titre": "Championnat du monde de Laser Run 2022",
+        "image": "mondeLisbonne.jpeg",
+        "description": "Championnat du monde de Laser Run 2022 \u00e0 Lisbonne",
+        "date": "25\/09\/22"
+    },
+    {
+        "titre": "Aziliz Naour",
+        "image": "Aziliznaour.jpg",
+        "description": "Aziliz Naour 3\u00e8me au championnat de france de Tetrathlon u22",
+        "date": "28\/04\/23"
+    },
+    {
+        "titre": "Championnat de France de Triathl\u00e9",
+        "image": "Triathl\u00e9.JPG",
+        "description": "Championnat de France de Triathl\u00e9 2023 \u00e0 l'INSEP",
+        "date": "03\/06\/23"
+    },
+    {
+        "titre": "Championnat de France Laser RUN",
+        "image": "FranceLR.JPG",
+        "description": "Championnat de France de Laser Run 2023 \u00e0 Salanque",
+        "date": "24\/06\/23"
+    },
+    {
+        "titre": "Championnat du Monde de Laser RUN",
+        "image": "MondeBathLR.jpeg",
+        "description": "Championnat du monde de Laser Run 2023 \u00e0 Bath",
+        "date": "21\/08\/23"
+    },
+    {
+        "titre": "Programme LASER RUN du 28 octobre",
+        "image": "Programme.png",
+        "description": "Affiche + Programme",
+        "date": "28\/10\/23"
+    },
+    {
+        "titre": "Pr\u00e9sentation d'Axelle de GOUSSENCOURT",
+        "image": "axelledegoussencourt.jpg",
+        "description": "Une nouvelle pentathl\u00e8te au club",
+        "date": "27\/10\/23"
+    }
+]
