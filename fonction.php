@@ -715,7 +715,7 @@ function ajoutArticle()
                         <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
                         <br>
                         <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+' required>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9_-]+' required>
                         <br>
                         <label class='w3-text-white'>Description :</label>
                         <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
