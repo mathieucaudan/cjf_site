@@ -47,8 +47,9 @@ navbar();
         </a>
     </table>
 </div>
-
-
+<div id="evenement" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
+    <img src='./partenaires/LR_Entreprise.jpg'>
+</div>
 <?php
 footer();
 echo "</body>";
