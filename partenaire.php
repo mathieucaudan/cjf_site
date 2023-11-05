@@ -27,7 +27,7 @@ navbar();
                         <div class='parflip-card-front'>
                             <img src='./partenaires/partenaires_images/swisslife.png'>
                         </div>
-                        <div class='parflip-card-back' href="https://example.com" target="_blank">
+                        <div class='parflip-card-back' onclick="window.open('https://agences.swisslife-direct.fr/assurance/agence-valentin-vivier-id0065363', '_blank');">
                             <h3>Valentin Vivier</h3>
                             <h3>Swiss Life</h3>
                             <h4>Expertise en protection sociale et patrimoniale</h4>
@@ -39,15 +39,28 @@ navbar();
                     </div>
                 </div>
             </div>
+            <div class='paritem'>
+                <div class='parflip-card'>
+                    <div class='parflip-card-inner'>
+                        <div class='parflip-card-front' style="display: flex; align-items: center; justify-content: center; background-color: white;">
+                            <img src='./partenaires/partenaires_images/logo_ans.jpg' style="height: 55%;">
+                        </div>
+                        <div class='parflip-card-back' onclick="window.open('https://www.agencedusport.fr/', '_blank');">
+                            <h3>ANS</h3>
+                            <h3>Agence National du Sport</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <a href=" ./partenaires/Dossier partenaires CJF Pentathlon Moderne.pdf" target="_blank" class="parcenter-button">
             <button class='parglowing-btn'>
-                <span class='parglowing-txt'>NOUS <span class='parfaulty-letter'>REJOIN</span>DRE</span>
+                <span class='parglowing-txt'>NOUS<span class='parfaulty-letter'>REJOIN</span>DRE</span>
             </button>
         </a>
     </table>
 </div>
-<div id="evenement" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
+<div id="evenement" class="tabcontent" style='text-align:center;'>
     <img src='./partenaires/LR_Entreprise.jpg'>
 </div>
 <?php

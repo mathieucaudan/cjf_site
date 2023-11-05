@@ -1,7 +1,5 @@
 <link rel='stylesheet' href='style/global_tab.css'> <!-- Ajout de la référence au fichier CSS -->
 <link rel='stylesheet' href='style/nous.css'> <!-- Ajout de la référence au fichier CSS -->
-
-
 <script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
 
 <?php
