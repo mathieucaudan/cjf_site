@@ -27,7 +27,7 @@ $data = json_decode($jsonData, true);
     </center>
     <div class="w3-container w3-twothird w3-center">
       <h1>Article a la une</h1>
-      <div class='art'>
+      <div>
         <?php
         // Chemin du fichier contenant la valeur de nb_art
         $nb_art_file = 'nb_art.txt';
@@ -93,6 +93,7 @@ $data = json_decode($jsonData, true);
                   <p>{$article[1]['description']}</p>
                   <div>{$article[1]['date']}</div>
                 </div>
+                </a>
                 <img src='$dossierImage/{$article[1]['image']}' class='titre-img'>";
           echo "</div>";
           echo "</div>";
@@ -106,10 +107,10 @@ $data = json_decode($jsonData, true);
         <?php
         $reversedData = array_reverse($data);
 
-        foreach ($reversedData as $article) {
-          echo "<h1>{$article['titre']}</h1>
-        <p>{$article['description']}</p>
-        <div>{$article['date']}</div>
+        foreach ($reversedData as $result) {
+          echo "<h1>{$result['titre']}</h1>
+        <p>{$result['description']}</p>
+        <div>{$result['date']}</div>
         <hr>";
         }
         ?>
