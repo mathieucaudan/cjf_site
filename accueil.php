@@ -74,6 +74,7 @@ $data = json_decode($jsonData, true);
                   <div>{$article[0]['date']}</div>
                 </div>
                 <img src='$dossierImage/{$article[0]['image']}' class='titre-img'>
+                </a>
           </div></div>";
         } elseif ($nb_art == 2) {
           echo "<div class='article-container'>";
@@ -84,7 +85,8 @@ $data = json_decode($jsonData, true);
                   <p>{$article[0]['description']}</p>
                   <div>{$article[0]['date']}</div>
                 </div>
-                <img src='$dossierImage/{$article[0]['image']}' class='titre-img'>";
+                <img src='$dossierImage/{$article[0]['image']}' class='titre-img'>
+                </a>";
           echo "</div>";
           echo "<div class='w3-container w3-half w3-center'>";
           echo "<a class='artcard' href='$dossierPdf/" . pathinfo($article[1]['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='text-decoration: none;'>
@@ -93,8 +95,8 @@ $data = json_decode($jsonData, true);
                   <p>{$article[1]['description']}</p>
                   <div>{$article[1]['date']}</div>
                 </div>
-                </a>
-                <img src='$dossierImage/{$article[1]['image']}' class='titre-img'>";
+                <img src='$dossierImage/{$article[1]['image']}' class='titre-img'>
+                </a>";
           echo "</div>";
           echo "</div>";
         }
