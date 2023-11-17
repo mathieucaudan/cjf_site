@@ -24,7 +24,17 @@
 </head>
 
 <body style='margin: 20px; background-color: rgb(32, 47, 74); color: white;'>
-
+  <?php
+  $file = 'compteur.txt';
+  if (!file_exists($file)) {
+    $handle = fopen($file, 'w');
+    fwrite($handle, '0');
+    fclose($handle);
+  }
+  $count = file_get_contents($file);
+  $count++;
+  file_put_contents($file, $count);
+  ?>
   <?php
   include 'fonction.php';
   entete();
