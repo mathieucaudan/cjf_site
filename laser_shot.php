@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html>
+<link rel='stylesheet' href='style/laser_shot.css'>
+<?php
+include 'fonction.php';
+entete();
+echo "<audio id='backgroundMusic' src='musique.mp3' type='audio/mpeg'></audio>";
+navbar();
+?>
+<style>
+  /* Style pour centrer le bouton */
+  #playButtonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+  }
 
-<head>
-  <meta charset="utf-8">
-  <title>Laser Shot</title>
-  <link rel='stylesheet' href='style/laser_shot.css'>
-  <style>
-    /* Style pour centrer le bouton */
-    #playButtonContainer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 50vh;
-    }
-
-    #playButton {
-      padding: 20px 40px;
-      font-size: 50px;
-      cursor: pointer;
-    }
-  </style>
-</head>
+  #button-85 {
+    padding: 20px 40px;
+    font-size: 50px;
+    cursor: pointer;
+  }
+</style>
 
 <body style='margin: 20px; background-color: rgb(32, 47, 74); color: white;'>
   <?php
@@ -35,20 +34,14 @@
   $count++;
   file_put_contents($file, $count);
   ?>
-  <?php
-  include 'fonction.php';
-  entete();
-  echo "<audio id='backgroundMusic' src='musique.mp3' type='audio/mpeg'></audio>";
-  navbar();
-  ?>
+
 
   <center>
     <h1>Laser Shot</h1>
   </center>
 
   <div id="playButtonContainer">
-
-    <button id="playButton" class="button-85" role="button">Afficher les règles</button>
+    <button id="button-85" class="button-85" role="button">Afficher les règles</button>
   </div>
 
   <!-- Déplacer la balise <div id="rules"> ici -->
