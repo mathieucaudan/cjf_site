@@ -26,16 +26,16 @@ navbar();
     </center>
     <div style='margin-left: 3%; margin-right: 3%; display: flex; justify-content: space-between; align-items: center;'>
         <div class="image-container">
-            <img class='responsive-image' src="./section/section_image/LR.png">
-            <img class='responsive-image' src="./section/section_image/escrime2.jpg">
-            <img class='responsive-image' src="./section/section_image/nat.png">
-            <img class='responsive-image' src="./section/section_image/PO2.jpg">
+            <img class='responsive-image' src="./image/section_image/LR.png">
+            <img class='responsive-image' src="./image/section_image/escrime2.jpg">
+            <img class='responsive-image' src="./image/section_image/nat.png">
+            <img class='responsive-image' src="./image/section_image/PO2.jpg">
         </div>
     </div>
 
 
     <div class='text centered-text'>
-        <img src="./section/section_image/label.png" width='280px' height='auto'>
+        <img src="./image/section_image/label.png" width='280px' height='auto'>
         <h1><strong>SECTION SPORTIVE</strong></h1><br>
         <h1><strong>PENTATHLON MODERNE</strong></h1>
     </div>

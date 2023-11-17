@@ -86,35 +86,12 @@
   <script>
     var audio = document.getElementById('backgroundMusic');
     var rulesDiv = document.getElementById('rules');
-    var body = document.body;
 
-    // Fonction pour afficher les règles, lancer la musique et le changement de couleur lorsque le bouton est cliqué
+    // Fonction pour afficher les règles, lancer la musique lorsque le bouton est cliqué
     document.getElementById('playButton').addEventListener('click', function() {
       audio.play();
       document.getElementById('playButtonContainer').style.display = 'none';
       rulesDiv.style.display = 'block';
-
-      // Changement de couleur
-      var colors = [
-        'rgb(255, 0, 0)',
-        'rgb(0, 255, 0)',
-        'rgb(0, 0, 255)',
-        'rgb(255, 255, 0)',
-        'rgb(255, 0, 255)',
-        'rgb(0, 255, 255)',
-        'rgb(128, 128, 128)',
-        'rgb(255, 128, 0)',
-        'rgb(128, 0, 255)',
-        'rgb(0, 128, 0)'
-      ];
-
-
-
-      var currentIndex = 0;
-      setInterval(function() {
-        body.style.backgroundColor = colors[currentIndex];
-        currentIndex = (currentIndex + 1) % colors.length;
-      }, 375); // Change la couleur toutes les 200 millisecondes
     });
   </script>
 

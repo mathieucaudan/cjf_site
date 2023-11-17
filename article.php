@@ -7,8 +7,8 @@ echo "<body style='background-color: rgb(32, 47, 74);'>";
 navbar();
 
 $dossierPdf = './article/article_pdf';
-$dossierImage = './article/article_image';
-$dossierJson = './article/article_json/article.json';
+$dossierImage = './image/article_image';
+$dossierJson = './article/article.json';
 
 $jsonData = file_get_contents($dossierJson);
 $data = json_decode($jsonData, true);

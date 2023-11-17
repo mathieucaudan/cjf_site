@@ -25,7 +25,7 @@ navbar();
                 <div class='parflip-card'>
                     <div class='parflip-card-inner'>
                         <div class='parflip-card-front'>
-                            <img src='./partenaires/partenaires_images/swisslife.png'>
+                            <img src='./image/partenaires_images/swisslife.png'>
                         </div>
                         <div class='parflip-card-back' onclick="window.open('https://agences.swisslife-direct.fr/assurance/agence-valentin-vivier-id0065363', '_blank');">
                             <h3>Valentin Vivier</h3>
@@ -43,7 +43,7 @@ navbar();
                 <div class='parflip-card'>
                     <div class='parflip-card-inner'>
                         <div class='parflip-card-front' style="display: flex; align-items: center; justify-content: center; background-color: white;">
-                            <img src='./partenaires/partenaires_images/logo_ans.jpg' style="height: 55%;">
+                            <img src='./image/partenaires_images/logo_ans.jpg' style="height: 55%;">
                         </div>
                         <div class='parflip-card-back' onclick="window.open('https://www.agencedusport.fr/', '_blank');">
                             <h3>ANS</h3>

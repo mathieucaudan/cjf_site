@@ -13,7 +13,7 @@ navbar();
 
 </head>
 <?php
-$dossierJson = './galerie/galerie_json/data.json';
+$dossierJson = './galerie/data.json';
 
 $jsonData = file_get_contents($dossierJson);
 $data = json_decode($jsonData, true);
@@ -37,7 +37,7 @@ usort($data, function ($a, $b) {
         console.log('./{$galerie['path_image']}');
         </script>";
         echo "<div class='galcard-grid-space'>
-        <a class='galcard' href='{$galerie['lien']}' target='_blank' style='background-image: url(./galerie/galerie_image/{$galerie['path_image']});'>
+        <a class='galcard' href='{$galerie['lien']}' target='_blank' style='background-image: url(./image/galerie_image/{$galerie['path_image']});'>
             <div>
                 <h1>{$galerie['titre']}</h1>
                 <div>{$galerie['date']}</div>    
