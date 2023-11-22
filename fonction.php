@@ -80,9 +80,6 @@ function footer()
         </center></div>
     </footer>";
 }
-
-
-
 function navbar()
 {
     echo "
@@ -174,9 +171,6 @@ function navbar()
     }
     </script>";
 }
-
-
-
 function ajoutGalerie()
 {
     // Vérifie si le formulaire a été soumis
@@ -266,8 +260,6 @@ function ajoutGalerie()
         }
     }
 }
-
-
 function suppGalerie()
 {
     $dossierPartage = './galerie/';
@@ -621,6 +613,103 @@ function changeRecord()
                     } else {
                         $newpoints = $_POST['points'];
                         $data[$discipline][$cat]['points'] = $newpoints;
+                        if ($discipline == 'Pentathlon') {
+                            if ($cat == 3 and ($newpoints > $data['Pentathlon'][5]['points'] or $data['Pentathlon'][5]['points'] == "-")) {
+                                if ($newpoints > $data['Pentathlon'][7]['points']) {
+                                    $data[$discipline][7]['nom'] = $newnom;
+                                    $data[$discipline][7]['prenom'] = $newprenom;
+                                    $data[$discipline][7]['date'] = $newdate;
+                                    $data[$discipline][7]['lieux'] = $newlieu;
+                                    $data[$discipline][7]['points'] = $newpoints;
+
+                                    $data[$discipline][5]['nom'] = $newnom;
+                                    $data[$discipline][5]['prenom'] = $newprenom;
+                                    $data[$discipline][5]['date'] = $newdate;
+                                    $data[$discipline][5]['lieux'] = $newlieu;
+                                    $data[$discipline][5]['points'] = $newpoints;
+                                } else {
+                                    $data[$discipline][5]['nom'] = $newnom;
+                                    $data[$discipline][5]['prenom'] = $newprenom;
+                                    $data[$discipline][5]['date'] = $newdate;
+                                    $data[$discipline][5]['lieux'] = $newlieu;
+                                    $data[$discipline][5]['points'] = $newpoints;
+                                }
+                            } else if ($cat == 5 and $newpoints > $data['Pentathlon'][7]['points']) {
+                                $data[$discipline][7]['nom'] = $newnom;
+                                $data[$discipline][7]['prenom'] = $newprenom;
+                                $data[$discipline][7]['date'] = $newdate;
+                                $data[$discipline][7]['lieux'] = $newlieu;
+                                $data[$discipline][7]['points'] = $newpoints;
+                            } else if ($cat == 2 and ($newpoints > $data['Pentathlon'][4]['points'] or $data['Pentathlon'][4]['points'] == "-")) {
+                                if ($newpoints > $data['Pentathlon'][6]['points']) {
+                                    $data[$discipline][6]['nom'] = $newnom;
+                                    $data[$discipline][6]['prenom'] = $newprenom;
+                                    $data[$discipline][6]['date'] = $newdate;
+                                    $data[$discipline][6]['lieux'] = $newlieu;
+                                    $data[$discipline][6]['points'] = $newpoints;
+
+                                    $data[$discipline][4]['nom'] = $newnom;
+                                    $data[$discipline][4]['prenom'] = $newprenom;
+                                    $data[$discipline][4]['date'] = $newdate;
+                                    $data[$discipline][4]['lieux'] = $newlieu;
+                                    $data[$discipline][4]['points'] = $newpoints;
+                                } else {
+                                    $data[$discipline][4]['nom'] = $newnom;
+                                    $data[$discipline][4]['prenom'] = $newprenom;
+                                    $data[$discipline][4]['date'] = $newdate;
+                                    $data[$discipline][4]['lieux'] = $newlieu;
+                                    $data[$discipline][4]['points'] = $newpoints;
+                                }
+                            }
+                        } else if ($discipline == 'Tetrathlon') {
+                            if ($cat == 3 and $newpoints > $data['Tetrathlon'][5]['points']) {
+                                if ($newpoints > $data['Pentathlon'][7]['points']) {
+                                    $data[$discipline][7]['nom'] = $newnom;
+                                    $data[$discipline][7]['prenom'] = $newprenom;
+                                    $data[$discipline][7]['date'] = $newdate;
+                                    $data[$discipline][7]['lieux'] = $newlieu;
+                                    $data[$discipline][7]['points'] = $newpoints;
+
+                                    $data[$discipline][5]['nom'] = $newnom;
+                                    $data[$discipline][5]['prenom'] = $newprenom;
+                                    $data[$discipline][5]['date'] = $newdate;
+                                    $data[$discipline][5]['lieux'] = $newlieu;
+                                    $data[$discipline][5]['points'] = $newpoints;
+                                } else {
+                                    $data[$discipline][5]['nom'] = $newnom;
+                                    $data[$discipline][5]['prenom'] = $newprenom;
+                                    $data[$discipline][5]['date'] = $newdate;
+                                    $data[$discipline][5]['lieux'] = $newlieu;
+                                    $data[$discipline][5]['points'] = $newpoints;
+                                }
+                            } else if ($cat == 5 and $newpoints > $data['Tetrathlon'][7]['points']) {
+                                $data[$discipline][7]['nom'] = $newnom;
+                                $data[$discipline][7]['prenom'] = $newprenom;
+                                $data[$discipline][7]['date'] = $newdate;
+                                $data[$discipline][7]['lieux'] = $newlieu;
+                                $data[$discipline][7]['points'] = $newpoints;
+                            } else if ($cat == 2 and $newpoints > $data['Tetrathlon'][4]['points']) {
+                                if ($newpoints > $data['Tetrathlon'][6]['points']) {
+                                    $data[$discipline][6]['nom'] = $newnom;
+                                    $data[$discipline][6]['prenom'] = $newprenom;
+                                    $data[$discipline][6]['date'] = $newdate;
+                                    $data[$discipline][6]['lieux'] = $newlieu;
+                                    $data[$discipline][6]['points'] = $newpoints;
+
+                                    $data[$discipline][4]['nom'] = $newnom;
+                                    $data[$discipline][4]['prenom'] = $newprenom;
+                                    $data[$discipline][4]['date'] = $newdate;
+                                    $data[$discipline][4]['lieux'] = $newlieu;
+                                    $data[$discipline][4]['points'] = $newpoints;
+                                } else {
+                                    $data[$discipline][4]['nom'] = $newnom;
+                                    $data[$discipline][4]['prenom'] = $newprenom;
+                                    $data[$discipline][4]['date'] = $newdate;
+                                    $data[$discipline][4]['lieux'] = $newlieu;
+                                    $data[$discipline][4]['points'] = $newpoints;
+                                }
+                            }
+                        }
                     }
 
                     $data[$discipline][$cat]['nom'] = $newnom;
