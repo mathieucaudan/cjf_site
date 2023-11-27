@@ -485,7 +485,7 @@ function changeRecord()
                                 Lieu: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='lieu' pattern='[A-Za-z\s,\\-]+' required><br>";
 
                     if ($discipline == 'Laser Run') {
-                        echo "Temps : <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='temps' pattern='[0-9]{2}&#039;[0-9]{2}'' placeholder='mm&#039;ss' required><br>";
+                        echo "Temps : <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='temps' pattern='(?:[0-9]{2}&#039;[0-9]{2}|[0-9]&#039;[0-9]{2})'' placeholder='mm&#039;ss' required><br>";
                     } else {
                         echo "Points: <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='points' pattern='[0-9]+' required><br>";
                     }
@@ -610,12 +610,115 @@ function changeRecord()
                     if ($discipline == 'Laser Run') {
                         $newtemps = $_POST['temps'];
                         $data[$discipline][$cat]['temps'] = $newtemps;
+                        list($minutes, $seconds) = explode("'", $newtemps);
+                        $totalSeconds = $minutes * 60 + $seconds;
+                        if ($data[$discipline][2]['temps'] != "-") {
+                            list($minutes2, $seconds2) = explode("'", $data[$discipline][2]['temps']);
+                            $totalSeconds2 = $minutes2 * 60 + $seconds2;
+                        } else {
+                            $totalSeconds2 = 3600;
+                        }
+                        if ($data[$discipline][3]['temps'] != "-") {
+                            list($minutes3, $seconds3) = explode("'", $data[$discipline][3]['temps']);
+                            $totalSeconds3 = $minutes3 * 60 + $seconds3;
+                        } else {
+                            $totalSeconds3 = 3600;
+                        }
+                        if ($data[$discipline][12]['temps'] != "-") {
+                            list($minutes12, $seconds12) = explode("'", $data[$discipline][12]['temps']);
+                            $totalSeconds12 = $minutes12 * 60 + $seconds12;
+                        } else {
+                            $totalSeconds12 = 3600;
+                        }
+                        if ($data[$discipline][13]['temps'] != "-") {
+                            list($minutes13, $seconds13) = explode("'", $data[$discipline][13]['temps']);
+                            $totalSeconds13 = $minutes13 * 60 + $seconds13;
+                        } else {
+                            $totalSeconds13 = 3600;
+                        }
+                        if ($data[$discipline][14]['temps'] != "-") {
+                            list($minutes14, $seconds14) = explode("'", $data[$discipline][14]['temps']);
+                            $totalSeconds14 = $minutes14 * 60 + $seconds14;
+                        } else {
+                            $totalSeconds14 = 3600;
+                        }
+                        if ($data[$discipline][15]['temps'] != "-") {
+                            list($minutes15, $seconds15) = explode("'", $data[$discipline][15]['temps']);
+                            $totalSeconds15 = $minutes15 * 60 + $seconds15;
+                        } else {
+                            $totalSeconds15 = 3600;
+                        }
+                        if ($cat == 10 and ($totalSeconds < $totalSeconds12)) {
+                            if ($cat == 10 and ($totalSeconds < $totalSeconds14)) {
+                                $data[$discipline][14]['nom'] = $newnom;
+                                $data[$discipline][14]['prenom'] = $newprenom;
+                                $data[$discipline][14]['date'] = $newdate;
+                                $data[$discipline][14]['lieux'] = $newlieu;
+                                $data[$discipline][14]['temps'] = $newtemps;
+
+                                $data[$discipline][12]['nom'] = $newnom;
+                                $data[$discipline][12]['prenom'] = $newprenom;
+                                $data[$discipline][12]['date'] = $newdate;
+                                $data[$discipline][12]['lieux'] = $newlieu;
+                                $data[$discipline][12]['temps'] = $newtemps;
+                            } else {
+                                $data[$discipline][12]['nom'] = $newnom;
+                                $data[$discipline][12]['prenom'] = $newprenom;
+                                $data[$discipline][12]['date'] = $newdate;
+                                $data[$discipline][12]['lieux'] = $newlieu;
+                                $data[$discipline][12]['temps'] = $newtemps;
+                            }
+                        } elseif ($cat == 12 and ($totalSeconds < $totalSeconds14)) {
+                            $data[$discipline][14]['nom'] = $newnom;
+                            $data[$discipline][14]['prenom'] = $newprenom;
+                            $data[$discipline][14]['date'] = $newdate;
+                            $data[$discipline][14]['lieux'] = $newlieu;
+                            $data[$discipline][14]['temps'] = $newtemps;
+                        } else if ($cat == 11 and ($totalSeconds < $totalSeconds13)) {
+                            if ($cat == 11 and ($totalSeconds < $totalSeconds15)) {
+                                $data[$discipline][15]['nom'] = $newnom;
+                                $data[$discipline][15]['prenom'] = $newprenom;
+                                $data[$discipline][15]['date'] = $newdate;
+                                $data[$discipline][15]['lieux'] = $newlieu;
+                                $data[$discipline][15]['temps'] = $newtemps;
+
+                                $data[$discipline][13]['nom'] = $newnom;
+                                $data[$discipline][13]['prenom'] = $newprenom;
+                                $data[$discipline][13]['date'] = $newdate;
+                                $data[$discipline][13]['lieux'] = $newlieu;
+                                $data[$discipline][13]['temps'] = $newtemps;
+                            } else {
+                                $data[$discipline][13]['nom'] = $newnom;
+                                $data[$discipline][13]['prenom'] = $newprenom;
+                                $data[$discipline][13]['date'] = $newdate;
+                                $data[$discipline][13]['lieux'] = $newlieu;
+                                $data[$discipline][13]['temps'] = $newtemps;
+                            }
+                        } else if ($cat == 13 and ($totalSeconds < $totalSeconds15)) {
+                            $data[$discipline][15]['nom'] = $newnom;
+                            $data[$discipline][15]['prenom'] = $newprenom;
+                            $data[$discipline][15]['date'] = $newdate;
+                            $data[$discipline][15]['lieux'] = $newlieu;
+                            $data[$discipline][15]['temps'] = $newtemps;
+                        } else if ($cat == 0 and ($totalSeconds < $totalSeconds2)) {
+                            $data[$discipline][2]['nom'] = $newnom;
+                            $data[$discipline][2]['prenom'] = $newprenom;
+                            $data[$discipline][2]['date'] = $newdate;
+                            $data[$discipline][2]['lieux'] = $newlieu;
+                            $data[$discipline][2]['temps'] = $newtemps;
+                        } else if ($cat == 1 and ($totalSeconds < $totalSeconds3)) {
+                            $data[$discipline][3]['nom'] = $newnom;
+                            $data[$discipline][3]['prenom'] = $newprenom;
+                            $data[$discipline][3]['date'] = $newdate;
+                            $data[$discipline][3]['lieux'] = $newlieu;
+                            $data[$discipline][3]['temps'] = $newtemps;
+                        }
                     } else {
                         $newpoints = $_POST['points'];
                         $data[$discipline][$cat]['points'] = $newpoints;
                         if ($discipline == 'Pentathlon') {
-                            if ($cat == 3 and ($newpoints > $data['Pentathlon'][5]['points'] or $data['Pentathlon'][5]['points'] == "-")) {
-                                if ($newpoints > $data['Pentathlon'][7]['points']) {
+                            if ($cat == 3 and ($newpoints > $data[$discipline][5]['points'] or $data[$discipline][5]['points'] == "-")) {
+                                if ($newpoints > $data[$discipline][7]['points'] or $data[$discipline][7]['points'] == "-") {
                                     $data[$discipline][7]['nom'] = $newnom;
                                     $data[$discipline][7]['prenom'] = $newprenom;
                                     $data[$discipline][7]['date'] = $newdate;
@@ -634,14 +737,14 @@ function changeRecord()
                                     $data[$discipline][5]['lieux'] = $newlieu;
                                     $data[$discipline][5]['points'] = $newpoints;
                                 }
-                            } else if ($cat == 5 and $newpoints > $data['Pentathlon'][7]['points']) {
+                            } else if ($cat == 5 and ($newpoints > $data[$discipline][7]['points']  or $data[$discipline][7]['points'] == "-")) {
                                 $data[$discipline][7]['nom'] = $newnom;
                                 $data[$discipline][7]['prenom'] = $newprenom;
                                 $data[$discipline][7]['date'] = $newdate;
                                 $data[$discipline][7]['lieux'] = $newlieu;
                                 $data[$discipline][7]['points'] = $newpoints;
-                            } else if ($cat == 2 and ($newpoints > $data['Pentathlon'][4]['points'] or $data['Pentathlon'][4]['points'] == "-")) {
-                                if ($newpoints > $data['Pentathlon'][6]['points']) {
+                            } else if ($cat == 2 and ($newpoints > $data[$discipline][4]['points'] or $data[$discipline][4]['points'] == "-")) {
+                                if ($newpoints > $data[$discipline][6]['points'] or $data[$discipline][6]['points'] == "-") {
                                     $data[$discipline][6]['nom'] = $newnom;
                                     $data[$discipline][6]['prenom'] = $newprenom;
                                     $data[$discipline][6]['date'] = $newdate;
@@ -662,8 +765,8 @@ function changeRecord()
                                 }
                             }
                         } else if ($discipline == 'Tetrathlon') {
-                            if ($cat == 3 and $newpoints > $data['Tetrathlon'][5]['points']) {
-                                if ($newpoints > $data['Pentathlon'][7]['points']) {
+                            if ($cat == 3 and ($newpoints > $data[$discipline][5]['points']  or $data[$discipline][5]['points'] == "-")) {
+                                if ($newpoints > $data[$discipline][7]['points'] or $data[$discipline][7]['points'] == "-") {
                                     $data[$discipline][7]['nom'] = $newnom;
                                     $data[$discipline][7]['prenom'] = $newprenom;
                                     $data[$discipline][7]['date'] = $newdate;
@@ -682,14 +785,14 @@ function changeRecord()
                                     $data[$discipline][5]['lieux'] = $newlieu;
                                     $data[$discipline][5]['points'] = $newpoints;
                                 }
-                            } else if ($cat == 5 and $newpoints > $data['Tetrathlon'][7]['points']) {
+                            } else if ($cat == 5 and ($newpoints > $data[$discipline][7]['points']  or $data[$discipline][7]['points'] == "-")) {
                                 $data[$discipline][7]['nom'] = $newnom;
                                 $data[$discipline][7]['prenom'] = $newprenom;
                                 $data[$discipline][7]['date'] = $newdate;
                                 $data[$discipline][7]['lieux'] = $newlieu;
                                 $data[$discipline][7]['points'] = $newpoints;
-                            } else if ($cat == 2 and $newpoints > $data['Tetrathlon'][4]['points']) {
-                                if ($newpoints > $data['Tetrathlon'][6]['points']) {
+                            } else if ($cat == 2 and ($newpoints > $data[$discipline][4]['points']  or $data[$discipline][4]['points'] == "-")) {
+                                if ($newpoints > $data[$discipline][6]['points'] or $data[$discipline][6]['points'] == "-") {
                                     $data[$discipline][6]['nom'] = $newnom;
                                     $data[$discipline][6]['prenom'] = $newprenom;
                                     $data[$discipline][6]['date'] = $newdate;
@@ -708,6 +811,66 @@ function changeRecord()
                                     $data[$discipline][4]['lieux'] = $newlieu;
                                     $data[$discipline][4]['points'] = $newpoints;
                                 }
+                            }
+                        } else if ($discipline == 'Triathlé') {
+                            if ($cat == 11 and ($newpoints > $data[$discipline][13]['points']  or $data[$discipline][13]['points'] == "-")) {
+                                if ($newpoints > $data[$discipline][15]['points'] or $data[$discipline][15]['points'] == "-") {
+                                    $data[$discipline][15]['nom'] = $newnom;
+                                    $data[$discipline][15]['prenom'] = $newprenom;
+                                    $data[$discipline][15]['date'] = $newdate;
+                                    $data[$discipline][15]['lieux'] = $newlieu;
+                                    $data[$discipline][15]['points'] = $newpoints;
+
+                                    $data[$discipline][13]['nom'] = $newnom;
+                                    $data[$discipline][13]['prenom'] = $newprenom;
+                                    $data[$discipline][13]['date'] = $newdate;
+                                    $data[$discipline][13]['lieux'] = $newlieu;
+                                    $data[$discipline][13]['points'] = $newpoints;
+                                } else {
+                                    $data[$discipline][13]['nom'] = $newnom;
+                                    $data[$discipline][13]['prenom'] = $newprenom;
+                                    $data[$discipline][13]['date'] = $newdate;
+                                    $data[$discipline][13]['lieux'] = $newlieu;
+                                    $data[$discipline][13]['points'] = $newpoints;
+                                }
+                            } else if ($cat == 13 and ($newpoints > $data[$discipline][15]['points']  or $data[$discipline][15]['points'] == "-")) {
+                                $data[$discipline][15]['nom'] = $newnom;
+                                $data[$discipline][15]['prenom'] = $newprenom;
+                                $data[$discipline][15]['date'] = $newdate;
+                                $data[$discipline][15]['lieux'] = $newlieu;
+                                $data[$discipline][15]['points'] = $newpoints;
+                            } else if ($cat == 10 and ($newpoints > $data[$discipline][12]['points']  or $data[$discipline][12]['points'] == "-")) {
+                                if ($newpoints > $data[$discipline][14]['points'] or $data[$discipline][14]['points'] == "-") {
+                                    $data[$discipline][14]['nom'] = $newnom;
+                                    $data[$discipline][14]['prenom'] = $newprenom;
+                                    $data[$discipline][14]['date'] = $newdate;
+                                    $data[$discipline][14]['lieux'] = $newlieu;
+                                    $data[$discipline][14]['points'] = $newpoints;
+
+                                    $data[$discipline][12]['nom'] = $newnom;
+                                    $data[$discipline][12]['prenom'] = $newprenom;
+                                    $data[$discipline][12]['date'] = $newdate;
+                                    $data[$discipline][12]['lieux'] = $newlieu;
+                                    $data[$discipline][12]['points'] = $newpoints;
+                                } else {
+                                    $data[$discipline][12]['nom'] = $newnom;
+                                    $data[$discipline][12]['prenom'] = $newprenom;
+                                    $data[$discipline][12]['date'] = $newdate;
+                                    $data[$discipline][12]['lieux'] = $newlieu;
+                                    $data[$discipline][12]['points'] = $newpoints;
+                                }
+                            } else if ($cat == 0 and ($newpoints > $data[$discipline][2]['points']  or $data[$discipline][2]['points'] == "-")) {
+                                $data[$discipline][2]['nom'] = $newnom;
+                                $data[$discipline][2]['prenom'] = $newprenom;
+                                $data[$discipline][2]['date'] = $newdate;
+                                $data[$discipline][2]['lieux'] = $newlieu;
+                                $data[$discipline][2]['points'] = $newpoints;
+                            } else if ($cat == 1 and ($newpoints > $data[$discipline][3]['points']  or $data[$discipline][3]['points'] == "-")) {
+                                $data[$discipline][3]['nom'] = $newnom;
+                                $data[$discipline][3]['prenom'] = $newprenom;
+                                $data[$discipline][3]['date'] = $newdate;
+                                $data[$discipline][3]['lieux'] = $newlieu;
+                                $data[$discipline][3]['points'] = $newpoints;
                             }
                         }
                     }
@@ -736,8 +899,6 @@ function changeRecord()
         }
     }
 }
-
-
 function ajoutArticle()
 {
     $dossierPdf = './article/article_pdf/';
@@ -822,7 +983,6 @@ function ajoutArticle()
         }
     }
 }
-
 function ajoutImageCarousel()
 {
     $dossierPartage = './image/carousel/';
@@ -861,7 +1021,6 @@ function ajoutImageCarousel()
         }
     }
 }
-
 function ajoutArticleSection()
 {
     $dossierJson = './section/articles.json';
@@ -908,7 +1067,6 @@ function ajoutArticleSection()
         }
     }
 }
-
 function suppArticleSection()
 {
     $dossierSection = './section/';
@@ -967,7 +1125,6 @@ function suppArticleSection()
         }
     }
 }
-
 function ajoutEvenement()
 {
     $dossierJson = './calendrier.json';
@@ -1082,7 +1239,6 @@ function ajoutResultat()
         }
     }
 }
-
 function suppResultat()
 {
     $dossierJson = './resultat.json';
@@ -1130,7 +1286,6 @@ function suppResultat()
     echo "</div>
     </div>";
 }
-
 function suppEvenement()
 {
     $dossierJson = './resultat.json';
