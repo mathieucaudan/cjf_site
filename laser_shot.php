@@ -1,26 +1,27 @@
-<link rel='stylesheet' href='style/laser_shot.css'>
-<?php
-include 'fonction.php';
-entete();
-echo "<audio id='backgroundMusic' src='musique.mp3' type='audio/mpeg'></audio>";
-navbar();
-?>
-<style>
-  /* Style pour centrer le bouton */
-  #playButtonContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
-  }
+<!DOCTYPE html>
+<html>
 
-  #button-85 {
-    padding: 20px 40px;
-    font-size: 50px;
-    cursor: pointer;
-  }
-</style>
+<head>
+  <meta charset="utf-8">
+  <title>Laser Shot</title>
+  <link rel='stylesheet' href='style/laser_shot.css'>
+  <style>
+    /* Style pour centrer le bouton */
+    #playButtonContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 50vh;
+    }
+
+    #playButton {
+      padding: 20px 40px;
+      font-size: 50px;
+      cursor: pointer;
+    }
+  </style>
+</head>
 
 <body style='margin: 20px; background-color: rgb(32, 47, 74); color: white;'>
   <?php
@@ -34,14 +35,20 @@ navbar();
   $count++;
   file_put_contents($file, $count);
   ?>
-
+  <?php
+  include 'fonction.php';
+  entete();
+  echo "<audio id='backgroundMusic' src='musique.mp3' type='audio/mpeg'></audio>";
+  navbar();
+  ?>
 
   <center>
     <h1>Laser Shot</h1>
   </center>
 
   <div id="playButtonContainer">
-    <button id="button-85" class="button-85" role="button">Afficher les règles</button>
+
+    <button id="playButton" class="button-85" role="button">Afficher les règles</button>
   </div>
 
   <!-- Déplacer la balise <div id="rules"> ici -->
@@ -79,12 +86,35 @@ navbar();
   <script>
     var audio = document.getElementById('backgroundMusic');
     var rulesDiv = document.getElementById('rules');
+    var body = document.body;
 
-    // Fonction pour afficher les règles, lancer la musique lorsque le bouton est cliqué
+    // Fonction pour afficher les règles, lancer la musique et le changement de couleur lorsque le bouton est cliqué
     document.getElementById('playButton').addEventListener('click', function() {
       audio.play();
       document.getElementById('playButtonContainer').style.display = 'none';
       rulesDiv.style.display = 'block';
+
+      // Changement de couleur
+      var colors = [
+        'rgb(255, 0, 0)',
+        'rgb(0, 255, 0)',
+        'rgb(0, 0, 255)',
+        'rgb(255, 255, 0)',
+        'rgb(255, 0, 255)',
+        'rgb(0, 255, 255)',
+        'rgb(128, 128, 128)',
+        'rgb(255, 128, 0)',
+        'rgb(128, 0, 255)',
+        'rgb(0, 128, 0)'
+      ];
+
+
+
+      var currentIndex = 0;
+      setInterval(function() {
+        body.style.backgroundColor = colors[currentIndex];
+        currentIndex = (currentIndex + 1) % colors.length;
+      }, 375); // Change la couleur toutes les 200 millisecondes
     });
   </script>
 

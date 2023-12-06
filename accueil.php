@@ -50,8 +50,8 @@ $data = json_decode($jsonData, true);
           file_put_contents($nb_art_file, $new_nb_art);
         }
         $dossierPdf = './article/article_pdf';
-        $dossierImage = './image/article_image';
-        $dossierJson = './article/article.json';
+        $dossierImage = './article/article_image';
+        $dossierJson = './article/article_json/article.json';
 
         $jsonData = file_get_contents($dossierJson);
         $article = json_decode($jsonData, true);
