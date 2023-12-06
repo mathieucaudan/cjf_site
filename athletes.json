@@ -1,0 +1,19 @@
+{
+    "athletes": [
+        {
+            "identifiant": "mathieu",
+            "password": "$2y$10$0WPe6AjU1FnLt2IiYpVS0.QvvCMa9bMuvvECrtewhDa33QrHTorNW",
+            "role": "admin"
+        },
+	{
+            "identifiant": "arnaud",
+            "password": "$2y$10$UD8WbuXd/I67B8VwzaUS1Oi/W1.PgLzq6HjsN7Sp0PjpADOrsqrW.",
+            "role": "admin"
+        },
+	{
+            "identifiant": "guillaume",
+            "password": "$2y$10$vamcjzB8ut6SN7BdezFxNu8ye/Wd.CcSJe8F5xzfhb3nnDQNxhSRe",
+            "role": "admin"
+        }
+    ]
+}
