@@ -1,0 +1,242 @@
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: rgb(32, 47, 74);
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f9f9f9;
+  text-align: center;
+  padding: 12px 14px;
+  text-decoration: none;
+  font-size: 20px !important;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  border: none;
+  font-size: 20px !important;
+  outline: none;
+  color: white;
+  padding: 12px 16px;
+  background-color: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(32, 47, 74);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: rgb(255, 255, 255);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.topnav a:hover,
+.dropdown:hover .dropbtn {
+  background-color: #cccccc;
+  color: black;
+}
+
+.dropdown-content a:hover {
+  background-color: #cccccc;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.logButton {
+  background: #fe0000;
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 10px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #fe0000;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  margin-top: 0.4em;
+}
+
+.logButton .logicon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #fe0000;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.logButton:hover .logicon {
+  width: calc(100% - 0.6em);
+}
+
+.logButton .logicon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #fe0000;
+}
+
+.logButton:hover .logicon svg {
+  transform: translateX(0.1em);
+}
+
+.logButton:active .logicon {
+  transform: scale(0.95);
+}
+.logButton.noHover:hover {
+  background-color: transparent;
+  color: white;
+}
+.loginButton a:hover {
+  background-color: rgb(32, 47, 74);
+}
+#logoclub {
+  position: absolute;
+  left: 1%;
+  top: 1%;
+}
+#insta {
+  position: absolute;
+  left: 90%;
+  top: 1%;
+  width: 3%;
+  height: auto;
+}
+#facebook {
+  position: absolute;
+  left: 95%;
+  top: 1%;
+  width: 3%;
+  height: auto;
+}
+
+@media screen and (max-width: 1450px) {
+  .topnav a:not(:first-child),
+  .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .dropdown-content {
+    background-color: white /* Votre couleur de fond pour le menu burger ici */;
+  }
+
+  .dropdown-content a {
+    color: black; /* Votre couleur de texte pour le menu burger ici */
+  }
+}
+
+@media screen and (max-width: 1450px) {
+  .topnav.responsive {
+    position: relative;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  h1 {
+    margin-top: 12%;
+    font-size: 6vw !important;
+  }
+  #logoclub {
+    position: absolute;
+    left: 1%;
+    top: 1%;
+    width: 50%;
+  }
+  #insta {
+    position: absolute;
+    left: 90%;
+    top: 1%;
+    width: 4%;
+    height: auto;
+  }
+  #facebook {
+    position: absolute;
+    left: 95%;
+    top: 1%;
+    width: 4%;
+    height: auto;
+  }
+
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {
+    float: none;
+  }
+  .topnav.responsive .dropdown-content {
+    position: relative;
+  }
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f9f9f9;
+    text-align: center;
+    padding: 12px 10px;
+    text-decoration: none;
+    font-size: 20px !important;
+  }
+
+  .dropdown-content {
+    background-color: white /* Votre couleur de fond pour le menu burger ici */;
+  }
+
+  .dropdown-content a {
+    color: black; /* Votre couleur de texte pour le menu burger ici */
+  }
+}
