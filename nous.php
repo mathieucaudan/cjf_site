@@ -75,7 +75,7 @@ navbar();
         <h4>ARNAUD EVEILLARD (BF1)</h4>
       </div>
       <div class="cardco">
-        <img src="image/coach/fred.jpg" class="imageSize" style="display:block; margin:auto;">
+        <img src="image/coach/fred.JPG" class="imageSize" style="display:block; margin:auto;">
         <h4>FRED GARCIA</h4>
         <p>(partenariat avec le Triathlon Côte d’Emeraude)</p>
         <p>(BF3 de triathlon,BF4 de Natation, BPJEPS AAN, Moniteur sportif de natation)</p>
