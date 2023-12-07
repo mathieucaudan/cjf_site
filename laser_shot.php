@@ -24,15 +24,25 @@ navbar();
 
 <body style='margin: 20px; background-color: rgb(32, 47, 74); color: white;'>
   <?php
-  $file = 'compteur.txt';
-  if (!file_exists($file)) {
-    $handle = fopen($file, 'w');
-    fwrite($handle, '0');
-    fclose($handle);
+
+  $filePath = 'compteur.json';
+
+  if (file_exists($filePath)) {
+    $data = file_get_contents($filePath);
+    $connexions = json_decode($data, true);
+  } else {
+    $connexions = [];
   }
-  $count = file_get_contents($file);
-  $count++;
-  file_put_contents($file, $count);
+
+  $weekNumber = date('W');
+
+  if (array_key_exists($weekNumber, $connexions)) {
+    $connexions[$weekNumber] = $connexions[$weekNumber] + 1;
+  } else {
+    $connexions[$weekNumber] = 1;
+  }
+
+  file_put_contents($filePath, json_encode($connexions));
   ?>
 
 
