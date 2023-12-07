@@ -8,6 +8,7 @@ function entete()
         <title>CJF Saint-Malo Pentathlon Moderne</title>
         <meta charset='UTF-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <meta property='og:title' content='CJF Saint-Malo Pentathlon Moderne'>
         <meta name='description' content='Section Pentathlon Moderne du Cercle Jules Ferry Saint-Malo, LaserRun / Natation / Escrime / Obstacle'>
         <link rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css'>
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Amatic+SC'>
