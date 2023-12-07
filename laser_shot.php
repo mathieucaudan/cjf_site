@@ -81,7 +81,7 @@ navbar();
     var rulesDiv = document.getElementById('rules');
 
     // Fonction pour afficher les règles, lancer la musique lorsque le bouton est cliqué
-    document.getElementById('playButton').addEventListener('click', function() {
+    document.getElementById('button-85').addEventListener('click', function() {
       audio.play();
       document.getElementById('playButtonContainer').style.display = 'none';
       rulesDiv.style.display = 'block';
