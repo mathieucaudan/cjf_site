@@ -123,6 +123,7 @@ function navbar()
                     <a href='parametres_calendrier.php'>CALENDRIER</a>
                     <a href='parametres_resultat.php'>INFO/RESULTAT</a>
                     <a href='parametres_nb_article.php'>ARTICLE ACCUEIL</a>
+                    <a href='connexion_LR.php'>CONNEXION LR</a>
                 </div>
                 </div>";
         }
