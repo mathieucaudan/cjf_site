@@ -211,10 +211,10 @@ function ajoutGalerie()
 
 
         // Déplace l'image téléchargée vers le chemin de stockage
-        move_uploaded_file($imageTemp, './galerie/galerie_image/' . $imagePath);
+        move_uploaded_file($imageTemp, './image/galerie_image/' . $imagePath);
 
         // Chemin du fichier JSON
-        $jsonFile = "galerie/galerie_json/data.json";
+        $jsonFile = "galerie/data.json";
 
         // Charge les données existantes du JSON
         $donneesExistantes = [];
@@ -351,7 +351,7 @@ function suppArticle()
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
         $nomFichierPDF = pathinfo($fichierAvecExtension, PATHINFO_FILENAME); // Obtient le nom de fichier pdf sans l'extension
-        $cheminImages = 'article/article_image/' . $fichierAvecExtension;
+        $cheminImages = 'image/article_image/' . $fichierAvecExtension;
         $cheminFichierPDF = glob('article/article_pdf/' . $nomFichierPDF . '.*');
 
         // Vérifier si les fichiers existent
@@ -904,8 +904,8 @@ function changeRecord()
 function ajoutArticle()
 {
     $dossierPdf = './article/article_pdf/';
-    $dossierImage = './article/article_image/';
-    $dossierJson = './article/article_json/article.json';
+    $dossierImage = './image/article_image/';
+    $dossierJson = './article/article.json';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['img'])) {
         // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
