@@ -248,10 +248,10 @@ function ajoutGalerie()
                     <label class='w3-text-white' for='lien'>Lien Google Drive :</label>
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='lien' required><br>
                         
-                    <label class='w3-text-white' for='date'>Date de l\'album :</label>
+                    <label class='w3-text-white' for='date'>Date de l'album :</label>
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='date' name='date' required><br>
                         
-                    <label class='w3-text-white' for='nom_image'>Nom de l\'image :</label>
+                    <label class='w3-text-white' for='nom_image'>Nom de l'image :</label>
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_image' required><br>
                         
                     <label class='w3-text-white' for='image'>Sélectionnez une image :</label>
@@ -271,7 +271,7 @@ function suppGalerie()
         <div class='w3-content'>
             <h2 class='w3-center'>Liste des galeries partagés :</h2>";
 
-    $fichiers = glob($dossierPartage . 'galerie_image/*');
+    $fichiers = glob('image/galerie_image/*');
 
     if (count($fichiers) > 0) {
         echo "<ul class='w3-ul'>";
@@ -296,19 +296,17 @@ function suppGalerie()
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
-        $cheminImages = 'galerie/galerie_image/' . $fichierAvecExtension;
+        $cheminImages = 'image/galerie_image/' . $fichierAvecExtension;
 
-        // Vérifier si les fichiers existent
         if (file_exists($cheminImages)) {
-            // Suppression du fichier image associé
             if (unlink($cheminImages)) {
-                $cheminArticleJSON = $dossierPartage . 'galerie_json/data.json';
+                $cheminArticleJSON = $dossierPartage . 'data.json';
                 if (file_exists($cheminArticleJSON)) {
                     $articlesJson = file_get_contents($cheminArticleJSON);
                     $articles = json_decode($articlesJson, true);
 
                     foreach ($articles as $key => $article) {
-                        if ($article['path_image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
+                        if ($article['path_image'] == $fichierAvecExtension) {
                             unset($articles[$key]);
                             break;
                         }
