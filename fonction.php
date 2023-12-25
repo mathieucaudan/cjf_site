@@ -350,25 +350,21 @@ function suppArticle()
     echo "</div>";
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer' && isset($_GET['fichier'])) {
         $fichierAvecExtension = $_GET['fichier'];
-        $nomFichierPDF = pathinfo($fichierAvecExtension, PATHINFO_FILENAME); // Obtient le nom de fichier pdf sans l'extension
+        $nomFichierPDF = pathinfo($fichierAvecExtension, PATHINFO_FILENAME);
         $cheminImages = 'image/article_image/' . $fichierAvecExtension;
         $cheminFichierPDF = glob('article/article_pdf/' . $nomFichierPDF . '.*');
 
-        // Vérifier si les fichiers existent
         if (file_exists($cheminImages) && !empty($cheminFichierPDF)) {
-            // Suppression du fichier image associé
             if (unlink($cheminImages)) {
-                // Suppression du fichier pdf associés
                 foreach ($cheminFichierPDF as $cheminFichierPDF) {
                     if (file_exists($cheminFichierPDF) && unlink($cheminFichierPDF)) {
-                        // Charger et mettre à jour le fichier article.json
-                        $cheminArticleJSON = $dossierPartage . 'article_json/article.json';
+                        $cheminArticleJSON = $dossierPartage . 'article.json';
                         if (file_exists($cheminArticleJSON)) {
                             $articlesJson = file_get_contents($cheminArticleJSON);
                             $articles = json_decode($articlesJson, true);
 
                             foreach ($articles as $key => $article) {
-                                if ($article['image'] == $fichierAvecExtension) { // Utilisez le nom de l'image avec extensions pour la comparaison
+                                if ($article['image'] == $fichierAvecExtension) {
                                     unset($articles[$key]);
                                     break;
                                 }
@@ -381,6 +377,7 @@ function suppArticle()
             }
         }
     }
+
     echo "</div>";
 }
 function suppImageCarousel()
