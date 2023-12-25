@@ -330,7 +330,7 @@ function suppArticle()
         <div class='w3-content'>
             <h2 class='w3-center'>Liste des articles partagés :</h2>";
 
-    $fichiers = glob($dossierPartage . 'article_image/*');
+    $fichiers = glob('image/article_image/*');
 
     if (count($fichiers) > 0) {
         echo "<ul class='w3-ul'>";
