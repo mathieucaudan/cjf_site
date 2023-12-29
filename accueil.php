@@ -14,7 +14,7 @@ $data = json_decode($jsonData, true);
     <div class="accslider">
       <?php
       $imageFolder = "image/carousel/";
-      $images = glob($imageFolder . "*.{jpg,png,gif,JPG,Jpg}", GLOB_BRACE);
+      $images = glob($imageFolder . "*.{jpg,png,gif,JPG,Jpg,jpeg,Jpeg}", GLOB_BRACE);
       foreach ($images as $image) {
         echo "<img src='$image' alt='Image' class='acccustom-img'>";
       }
