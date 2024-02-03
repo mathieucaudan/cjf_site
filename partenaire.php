@@ -1,4 +1,4 @@
-<link rel='stylesheet' href='style/partenaire.css'>
+<link rel='stylesheet' href='style/partenaire.css'> <!-- Ajout de la référence au fichier CSS -->
 <link rel='stylesheet' href='style/global_tab.css'> <!-- Ajout de la référence au fichier CSS -->
 <script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
 
@@ -17,8 +17,9 @@ navbar();
         <button class="tablinks prive active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'prive')">Partenaire Privés</button>
         <button class="tablinks public" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'public')">Partenaire Publics</button>
         <button class="tablinks evenement" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'evenement')">Evenement</button>
+    </div>
 </center>
-</div>
+
 
 <div id="prive" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
     <table class='table'>
@@ -50,7 +51,7 @@ navbar();
     </table>
 </div>
 
-<div id="public" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto; text-align:center;'>
+<div id="public" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
     <table class='table'>
         <div class='parcontainerResponsive'>
             <div class='paritem'>
@@ -75,8 +76,8 @@ navbar();
     </table>
 </div>
 
-<div id="evenement" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto; text-align:center;'>
-    <img src='./partenaires/LR_Entreprise.jpg' style='width: 100%;'>
+<div id="evenement" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
+    <img src='./partenaires/LR_Entreprise.jpg'>
 </div>
 <?php
 footer();
