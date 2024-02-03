@@ -76,9 +76,7 @@ navbar();
 </div>
 
 <div id="evenement" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto; text-align:center;'>
-    <table class='table'>
-        <img src='./partenaires/LR_Entreprise.jpg'>
-    </table>
+    <img src='./partenaires/LR_Entreprise.jpg' style='width: 100%;'>
 </div>
 <?php
 footer();

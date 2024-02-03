@@ -27,11 +27,6 @@
   max-width: 100%;
   height: auto;
 }
-.entreprise img {
-  max-width: 100%;
-  height: auto;
-}
-
 /* Utilisation des Media Queries pour ajuster le nombre d'images par ligne */
 @media screen and (max-width: 1100px) {
   .parcontainerResponsive {
@@ -66,7 +61,6 @@
   .parcontainerResponsive {
     grid-template-columns: repeat(auto-fit, minmax(30vw, 1fr));
   }
-
   .parflip-card {
     /*background-color: transparent;*/
     width: 30vw;
