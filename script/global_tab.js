@@ -23,7 +23,13 @@ function openTab(evt, tabName) {
   if (tabName === "presentation") {
     document.querySelector(".tablinks.presentation").classList.add("active");
   }
-  if (tabName === "partenaire") {
-    document.querySelector(".tablinks.partenaire").classList.add("active");
+  if (tabName === "evenement") {
+    document.querySelector(".tablinks.evenement").classList.add("active");
+  }
+  if (tabName === "prive") {
+    document.querySelector(".tablinks.prive").classList.add("active");
+  }
+  if (tabName === "public") {
+    document.querySelector(".tablinks.public").classList.add("active");
   }
 }

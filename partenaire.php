@@ -1,4 +1,4 @@
-<link rel='stylesheet' href='style/partenaire.css'> <!-- Ajout de la référence au fichier CSS -->
+<link rel='stylesheet' href='style/partenaire.css'>
 <link rel='stylesheet' href='style/global_tab.css'> <!-- Ajout de la référence au fichier CSS -->
 <script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
 
@@ -8,17 +8,19 @@ entete();
 echo "<body style='background-color: rgb(32, 47, 74); color:white;'>";
 navbar();
 ?>
+
 <h1 style='color:white'>
     <center>Partenaires</center>
 </h1>
 <center>
     <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
-        <button class="tablinks partenaire active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'partenaire')">Nos Partenaires</button>
-        <button class="tablinks evenement" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'evenement')">Evenements</button>
-    </div>
+        <button class="tablinks prive active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'prive')">Partenaire Privés</button>
+        <button class="tablinks public" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'public')">Partenaire Publics</button>
+        <button class="tablinks evenement" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'evenement')">Evenement</button>
 </center>
-<div id="partenaire" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
-    <h3>Nos partenaires</h3>
+</div>
+
+<div id="prive" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
     <table class='table'>
         <div class='parcontainerResponsive'>
             <div class='paritem'>
@@ -39,6 +41,18 @@ navbar();
                     </div>
                 </div>
             </div>
+        </div>
+        <a href=" ./partenaires/Dossier partenaires CJF Pentathlon Moderne.pdf" target="_blank" class="parcenter-button">
+            <button class='parglowing-btn'>
+                <span class='parglowing-txt'>NOUS<span class='parfaulty-letter'>REJOIN</span>DRE</span>
+            </button>
+        </a>
+    </table>
+</div>
+
+<div id="public" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto; text-align:center;'>
+    <table class='table'>
+        <div class='parcontainerResponsive'>
             <div class='paritem'>
                 <div class='parflip-card'>
                     <div class='parflip-card-inner'>
@@ -60,8 +74,11 @@ navbar();
         </a>
     </table>
 </div>
-<div id="evenement" class="entreprise" style='text-align:center;'>
-    <img src='./partenaires/LR_Entreprise.jpg'>
+
+<div id="evenement" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto; text-align:center;'>
+    <table class='table'>
+        <img src='./partenaires/LR_Entreprise.jpg'>
+    </table>
 </div>
 <?php
 footer();

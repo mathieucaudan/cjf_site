@@ -24,75 +24,24 @@
   padding: 20px;
   border: 1px solid #ccc;
 }
-.tab button.active.laserrun {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.natation {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.escrime {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.obstacle {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.bureau {
+.tab button.active.laserrun,
+.tab button.active.natation,
+.tab button.active.escrime,
+.tab button.active.obstacle,
+.tab button.active.bureau,
+.tab button.active.coach,
+.tab button.active.athletes,
+.tab button.active.triathlé,
+.tab button.active.tetrathlon,
+.tab button.active.pentathlon,
+.tab button.active.article,
+.tab button.active.presentation,
+.tab button.active.prive,
+.tab button.active.public,
+.tab button.active.evenement {
   background-color: gray !important;
   color: white !important;
   cursor: default !important;
-}
-.tab button.active.coach {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.athletes {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.triathlé {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.tetrathlon {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.pentathlon {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.article {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.presentation {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.evenement {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
-}
-.tab button.active.partenaire {
-  background-color: gray !important; /* Couleur de fond grise lorsque l'onglet est actif */
-  color: white !important; /* Texte blanc lorsque l'onglet est actif */
-  cursor: default !important; /* Désactive le curseur lorsque l'onglet est actif */
 }
 .table {
   margin: 1rem auto;
