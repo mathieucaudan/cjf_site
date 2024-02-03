@@ -60,7 +60,7 @@ navbar();
         </a>
     </table>
 </div>
-<div id="evenement" class="tabcontent" style='text-align:center;'>
+<div id="evenement" class="entreprise" style='text-align:center;'>
     <img src='./partenaires/LR_Entreprise.jpg'>
 </div>
 <?php
