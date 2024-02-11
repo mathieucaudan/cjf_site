@@ -99,18 +99,19 @@ navbar();
 <div id="article" class="tabcontent">
     <?php
     // Lire le fichier JSON
-    $articles = array_reverse(json_decode(file_get_contents('./section/articles.json'), true));
+    //$articles = array_reverse(json_decode(file_get_contents('./section/articles.json'), true));
 
     // Affiche chaque article avec son titre et le lien vers le PDF
-    foreach ($articles as $article) {
+    /*foreach ($articles as $article) {
         $titre = $article['titre'];
         $pdf = $article['pdf'];
         echo "<center><h2>$titre</h2></center>";
         echo "<div class='secarticle'>";
         echo "<object data='./section/articles/$pdf' type='application/pdf' width='100%' height='100%'></object>";
         echo "</div>";
-    }
+    }*/
     ?>
+    <img src="image/section_image/FranceUNSS.png" alt="planning" width="100%">
 </div>
 <div id="avenir" class="tabcontent" style="text-align:center;">
     <img src="image/planning.png" alt="planning" width="100%">
