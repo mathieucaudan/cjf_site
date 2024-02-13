@@ -42,6 +42,23 @@ navbar();
                     </div>
                 </div>
             </div>
+            <div class='paritem'>
+                <div class='parflip-card'>
+                    <div class='parflip-card-inner'>
+                        <div class='parflip-card-front'>
+                            <img src='./image/partenaires_images/axa.png'>
+                        </div>
+                        <div class='parflip-card-back' onclick="window.open('https://agence.axa.fr/bretagne/ille-et-vilaine/saint-malo/ludmila-pozdejeva', '_blank');">
+                            <h3>Ludmila Pozdejeva</h3>
+                            <h3>Axa</h3>
+                            <h4>Meilleur rapport protection/cotisation en MUTUELLE SANTÉ, PRÉVOYANCE, ASSURANCE DE PRÊT</h4>
+                            <h4>Optimisation fiscale d'ASSURANCE VIE, ÉPARGNE RETRAITE, PER, MADELIN</h4>
+                            <h4>Contrats Collectifs et Individuels en Prévoyance / Santé</h4>
+                            <p>Cette approche aboutit à des solutions sur mesure répondant de manière exhaustive à vos besoins en prévoyance, santé, retraite, gestion patrimoniale et épargne.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <a href=" ./partenaires/Dossier partenaires CJF Pentathlon Moderne.pdf" target="_blank" class="parcenter-button">
             <button class='parglowing-btn'>
