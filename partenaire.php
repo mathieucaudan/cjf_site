@@ -52,9 +52,9 @@ navbar();
                             <h3>Ludmila Pozdejeva</h3>
                             <h3>Axa</h3>
                             <h4>Meilleur rapport protection/cotisation en MUTUELLE SANTÉ, PRÉVOYANCE, ASSURANCE DE PRÊT</h4>
-                            <h4>Optimisation fiscale d'ASSURANCE VIE, ÉPARGNE RETRAITE, PER, MADELIN</h4>
+                            <h4>Optimisation fiscale d'ASSURANCE VIE, ÉPARGNE RETRAITE, PER</h4>
                             <h4>Contrats Collectifs et Individuels en Prévoyance / Santé</h4>
-                            <p>Cette approche aboutit à des solutions sur mesure répondant de manière exhaustive à vos besoins en prévoyance, santé, retraite, gestion patrimoniale et épargne.</p>
+                            <p>Expert en Protection Sociale & Gestion du Patrimoine - J'accompagne les clients Particuliers, les Professions Libérales et les Chefs d'Entreprises sur les volets de l'investissement, la retraite et de la prévoyance</p>
                         </div>
                     </div>
                 </div>
