@@ -28,7 +28,7 @@ navbar();
                 <div class='parflip-card'>
                     <div class='parflip-card-inner'>
                         <div class='parflip-card-front'>
-                            <img src='./image/partenaires_images/swisslife.png'>
+                            <img src='./image/partenaires_images/swisslife.webp'>
                         </div>
                         <div class='parflip-card-back' onclick="window.open('https://agences.swisslife-direct.fr/assurance/agence-valentin-vivier-id0065363', '_blank');">
                             <h3>Valentin Vivier</h3>
@@ -46,7 +46,7 @@ navbar();
                 <div class='parflip-card'>
                     <div class='parflip-card-inner'>
                         <div class='parflip-card-front'>
-                            <img src='./image/partenaires_images/axa.png'>
+                            <img src='./image/partenaires_images/axa.webp'>
                         </div>
                         <div class='parflip-card-back' onclick="window.open('https://agence.axa.fr/bretagne/ille-et-vilaine/saint-malo/ludmila-pozdejeva', '_blank');">
                             <h3>Ludmila Pozdejeva</h3>
@@ -75,7 +75,7 @@ navbar();
                 <div class='parflip-card'>
                     <div class='parflip-card-inner'>
                         <div class='parflip-card-front' style="display: flex; align-items: center; justify-content: center; background-color: white;">
-                            <img src='./image/partenaires_images/logo_ans.jpg' style="height: 55%;">
+                            <img src='./image/partenaires_images/logo_ans.webp' style="height: 55%;">
                         </div>
                         <div class='parflip-card-back' onclick="window.open('https://www.agencedusport.fr/', '_blank');">
                             <h3>ANS</h3>
