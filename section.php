@@ -114,7 +114,7 @@ navbar();
     <img src="image/section_image/FranceUNSS.png" alt="planning" width="100%">
 </div>
 <div id="avenir" class="tabcontent" style="text-align:center;">
-    <img src="image/planning.png" alt="planning" width="100%">
+    <img src="image/planning.webp" alt="planning" width="100%">
 
 </div>
 <?php

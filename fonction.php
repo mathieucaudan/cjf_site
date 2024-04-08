@@ -68,8 +68,8 @@ function footer()
             </p>
 
             <div>
-                <a href='https://www.instagram.com/cjf_pentathlonmoderne/' target='_blank'><img src='image/logo_insta.png' alt='Instagram' style='width: 50px; height: 50px;'></a>
-                <a href='https://www.facebook.com/profile.php?id=100085812112831' target='_blank'><img src='image/logo_facebook.png' alt='Facebook' style='width: 50px; height: 50px;'></a>
+                <a href='https://www.instagram.com/cjf_pentathlonmoderne/' target='_blank'><img src='image/logo_insta.webp' alt='Instagram' style='width: 50px; height: 50px;'></a>
+                <a href='https://www.facebook.com/profile.php?id=100085812112831' target='_blank'><img src='image/logo_facebook.webp' alt='Facebook' style='width: 50px; height: 50px;'></a>
             </div>
 
         </div>
@@ -87,8 +87,8 @@ function navbar()
     <div class='navbarcontainer' style='background-color: rgb(32,47,74); color: white; text-align: center; padding: 10px;'>
     <img id='logoclub' class= 'logoclub' src='image/logo_cjf.png'>    
         <h1>CJF PENTATHLON MODERNE</h1>
-        <a href='https://www.instagram.com/cjf_pentathlonmoderne/' target='_blank'><img id='insta' class= 'insta' src='image/logo_insta.png' alt='Instagram'></a>
-        <a href='https://www.facebook.com/profile.php?id=100085812112831' target='_blank'><img id='facebook' class= 'facebook' src='image/logo_facebook.png' alt='Facebook'></a>
+        <a href='https://www.instagram.com/cjf_pentathlonmoderne/' target='_blank'><img id='insta' class= 'insta' src='image/logo_insta.webp' alt='Instagram'></a>
+        <a href='https://www.facebook.com/profile.php?id=100085812112831' target='_blank'><img id='facebook' class= 'facebook' src='image/logo_facebook.webp' alt='Facebook'></a>
     </div>
     <div class='topnav' id='myTopnav'>
     <a href='accueil.php' class='w3-bar-item w3-button'>ACCUEIL</a>
