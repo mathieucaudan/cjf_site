@@ -74,7 +74,7 @@ function footer()
 
         </div>
         <div style='color:white'><center>
-            <a>© Copyright  2023 |</a>
+            <a>© Copyright  " . date("Y") . " |</a>
             <a> CJF Saint-Malo Pentathlon Moderne</a></br>
             <a>Tous droits réservés |</a>
             <a> Réalisé par les cracks du cjf</a>
