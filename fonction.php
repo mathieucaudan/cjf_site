@@ -124,6 +124,7 @@ function navbar()
                     <a href='parametres_resultat.php'>INFO/RESULTAT</a>
                     <a href='parametres_nb_article.php'>ARTICLE ACCUEIL</a>
                     <a href='connexion_LR.php'>CONNEXION LR</a>
+                    <a href='compet.php'>COMPET</a>
                 </div>
                 </div>";
         }
