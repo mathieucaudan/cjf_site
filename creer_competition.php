@@ -41,6 +41,7 @@ if (isset($_SESSION['role'])) {
                 <input type="text" id="nom_competition" name="nom_competition" required><br><br>
                 <button class='w3-button' type="submit">Créer la compétition</button>
             </form>
+            <a class='w3-button' href="compet.php">Retour à l'accueil</a>
         </center>
 <?php }
 } else {
