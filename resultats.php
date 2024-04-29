@@ -41,6 +41,7 @@ th {
                 // Vérifier si des données existent dans le fichier JSON
                 if (!empty($data)) {
                     foreach ($data as $categorie => $athletes) {
+                        echo '<center>';
                         echo '<h2>' . $categorie . '</h2>';
                         echo '<table style="width: 90%;">';
                         echo '<tr style="color: rgb(32, 47, 74)";>';
@@ -62,6 +63,7 @@ th {
                             echo '</tr>';
                         }
                         echo '</table>';
+                        echo '</center>';
                     }
                     echo "<center><a class='w3-button' href='download_lr.php?file=$fileName&title=$titre' target='_blank'>Télécharger en PDF</a>";
                     echo "<a class='w3-button' href='compet.php'>Retour à l'accueil</a></center>";
