@@ -42,7 +42,7 @@ th {
                 if (!empty($data)) {
                     foreach ($data as $categorie => $athletes) {
                         echo '<h2>' . $categorie . '</h2>';
-                        echo '<table>';
+                        echo '<table style="width: 90%;">';
                         echo '<tr style="color: rgb(32, 47, 74)";>';
                         echo '<th>Nom</th>';
                         echo '<th>Temps de Natation</th>';
