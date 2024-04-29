@@ -87,26 +87,22 @@ if (isset($_SESSION['role'])) {
             }
 
 
-            foreach ($athletes_data as $categorie => &$athletes) {
-                // Vérifier si des athlètes existent dans la catégorie
-                if (isset($athletes) && is_array($athletes) && count($athletes) > 0) {
-                    // Trier les athlètes par ordre de points total
-                    usort($athletes, function ($a, $b) {
-                        // Si total n'est pas défini pour l'un des athlètes, considérez-le comme ayant des points nuls
-                        $totalA = isset($a['total']) ? $a['total'] : 0;
-                        $totalB = isset($b['total']) ? $b['total'] : 0;
-                        return $totalB <=> $totalA;
-                    });
-                    unset($athlete); // Libérer la référence
-                }
+            // Trier les athlètes par ordre de points total
+            usort($athletes, function ($a, $b) {
+                // Si total n'est pas défini pour l'un des athlètes, considérez-le comme ayant des points nuls
+                $totalA = isset($a['total']) ? $a['total'] : 0;
+                $totalB = isset($b['total']) ? $b['total'] : 0;
+                return $totalB <=> $totalA;
+            });
 
-                // Enregistrer les données mises à jour dans le fichier JSON
-                file_put_contents($fileName, json_encode($athletes_data));
 
-                // Afficher un message de succès
-                echo "<p>Temps de laser run ajouté avec succès pour l'athlète {$nom_athlete}.</p>";
-            }
+            // Enregistrer les données mises à jour dans le fichier JSON
+            file_put_contents($fileName, json_encode($athletes_data));
+
+            // Afficher un message de succès
+            echo "<p>Temps de laser run ajouté avec succès pour l'athlète {$nom_athlete}.</p>";
         }
+        $athletes_data = json_decode(file_get_contents($fileName), true);
         ?>
         <center>
             <h2>Liste des athlètes par catégorie :</h2>
@@ -114,8 +110,8 @@ if (isset($_SESSION['role'])) {
         </center>
         <h3><?php echo $categorie; ?></h3>
         <center>
-            <?php $title = 'Résultat Triathlé ' . $nom_competition;
-                echo "<a class='w3-button' href='download_cat_nat.php?file=$fileName&title=$title&cat=$categorie' target='_blank'>Télécharger cette catégorie</a>"; ?>
+            <?php $title = 'test';
+                echo "<a class='w3-button' href='download_cat_lr.php?file=$fileName&title=$title&cat=$categorie' target='_blank'>Télécharger cette catégorie</a>"; ?>
             <table style='width: 90%;' border="1">
                 <tr>
                     <th>Nom</th>
@@ -138,7 +134,7 @@ if (isset($_SESSION['role'])) {
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?competition={$nom_competition}"; ?>">
                                 <input type="text" name="temps_laser_run" value="<?php echo isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : ''; ?>" pattern="[0-9]{1,2}'[0-5][0-9]" required>
                                 <input type="hidden" name="nom_athlete" value="<?php echo $athlete['nom']; ?>">
-                                <button class='w3-button' type="submit" value="">Ajouter/Modifier temps</button>
+                                <button type="submit" value="">Ajouter/Modifier temps</button>
                             </form>
                         </td>
                     </tr>
@@ -148,7 +144,7 @@ if (isset($_SESSION['role'])) {
 
 
         <?php
-        $title = 'Résultat Triathlé ' . $nom_competition;
+        $title = 'test';
 
         echo "<a class='w3-button' href='resultats.php?title=résultat&file=$fileName'>Résultats</a></br>";
         echo "<a class='w3-button' href='download_lr.php?file=$fileName&title=$title' target='_blank'>Télécharger en PDF</a></br>";
