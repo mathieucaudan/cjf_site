@@ -193,7 +193,7 @@ if (isset($_SESSION['role'])) {
         }
         $title = 'Résultat Natation ' . $nom_competition;
         echo "<a class='w3-button' href='download_nat.php?file=$fileName&title=$title' target='_blank'>Télécharger en PDF</a>";
-        echo "<a class='w3-button' href='resultats.php?title=résultat&file=$fileName'>Résultats</a></br>";
+        echo "<a class='w3-button' href='resultats.php?title=$title&file=$fileName'>Résultats</a></br>";
         echo "<a class='w3-button' href='ajouter_temps_lr.php?competition=" . $_GET["competition"] . "'>Ajouter le Temps de Laser Run</a></br>";
 
         ?>
