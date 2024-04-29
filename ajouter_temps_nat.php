@@ -67,14 +67,13 @@ if (isset($_SESSION['role'])) {
             $nom_athlete = $_POST["nom_athlete"];
             $temps_natation = $_POST["temps_natation"];
 
-            // Convertir le temps de natation au format m'ss'xx en secondes
-            $temps_secondes = convertirTempsEnSecondes($temps_natation);
+
 
             // Ajouter le temps de natation à l'athlète correspondant
             foreach ($athletes_data as $categorie => &$athletes) {
                 foreach ($athletes as &$athlete) {
                     if ($athlete['nom'] === $nom_athlete) {
-                        $athlete['temps_natation'] = $temps_secondes;
+                        $athlete['temps_natation'] = $temps_natation;
 
                         // Calculer les points pour le temps de natation
                         $tmp_nat = $categories[$categorie]['nat'];
@@ -95,36 +94,6 @@ if (isset($_SESSION['role'])) {
                 }
             }
 
-            foreach ($athletes_data as $categorie => &$athletes) {
-                foreach ($athletes as &$athlete) {
-                    if ($athlete['nom'] === $nom_athlete) {
-                        $athlete['temps_natation'] = $_POST["temps_natation"];
-
-                        // Calculer les points pour le temps de natation
-                        $tmp_nat = $categories[$categorie]['nat'];
-                        list($minutes, $secondes, $supp, $centiemes) = explode("'", $temps_natation);
-                        $seconde_natation =  $minutes * 60 + $secondes;
-                        $base_pts_nat = 250;
-                        if ($centiemes == 0) {
-                            $centi = 0;
-                        } else if ($centiemes > 0 && $centiemes < 49) {
-                            $centi = 1;
-                        } else if ($centiemes > 49 && $centiemes < 99) {
-                            $centi = 2;
-                        }
-
-                        if ($seconde_natation < $tmp_nat) {
-                            $points_nat = $base_pts_nat + ($tmp_nat - $seconde_natation) * 2 - $centi;
-                        } else if ($seconde_natation > $tmp_nat) {
-                            $points_nat = $base_pts_nat - ($seconde_natation - $tmp_nat) * 2 - $centi;
-                        } else if ($seconde_natation == $tmp_nat) {
-                            $points_nat = $base_pts_nat - $centi;
-                        }
-
-                        $athlete['points_nat'] = $points_nat;
-                    }
-                }
-            }
 
             foreach ($athletes_data as $categorie => &$athletes) {
                 // Vérifier si des athlètes existent dans la catégorie
@@ -158,9 +127,6 @@ if (isset($_SESSION['role'])) {
 
             // Afficher un message de succès
             echo "<p>Temps de natation ajouté avec succès pour l'athlète {$nom_athlete}.</p>";
-
-            // Rediriger l'utilisateur vers la même page pour actualiser les données
-            header("Refresh:0");
         }
 
         function convertirTempsEnSecondes($temps)
@@ -189,7 +155,7 @@ if (isset($_SESSION['role'])) {
         </center>
         <h3><?php echo $categorie; ?></h3>
         <center>
-            <?php $title = 'test';
+            <?php $title = 'Résultat Natation ' . $nom_competition;
                 echo "<a class='w3-button' href='download_cat_nat.php?file=$fileName&title=$title&cat=$categorie' target='_blank'>Télécharger cette catégorie</a>"; ?>
             <table style='width: 90%;' border='1'>
                 <tr>
@@ -226,7 +192,7 @@ if (isset($_SESSION['role'])) {
             $centiemes = (intval($temps_secondes) - floor(intval($temps_secondes))) * 100;
             return sprintf("%02d'%02d''%02d", $minutes, $secondes, $centiemes);
         }
-        $title = 'test';
+        $title = 'Résultat Natation ' . $nom_competition;
         echo "<a class='w3-button' href='download_nat.php?file=$fileName&title=$title' target='_blank'>Télécharger en PDF</a>";
         echo "<a class='w3-button' href='resultats.php?title=résultat&file=$fileName'>Résultats</a></br>";
         echo "<a class='w3-button' href='ajouter_temps_lr.php?competition=" . $_GET["competition"] . "'>Ajouter le Temps de Laser Run</a></br>";
