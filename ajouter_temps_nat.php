@@ -67,11 +67,10 @@ if (isset($_SESSION['role'])) {
             $nom_athlete = $_POST["nom_athlete"];
             $temps_natation = $_POST["temps_natation"];
 
-
-
             // Ajouter le temps de natation à l'athlète correspondant
             foreach ($athletes_data as $categorie => &$athletes) {
                 foreach ($athletes as &$athlete) {
+                    $base_pts_nat = 250;
                     if ($athlete['nom'] === $nom_athlete) {
                         $athlete['temps_natation'] = $temps_natation;
 
@@ -79,7 +78,6 @@ if (isset($_SESSION['role'])) {
                         $tmp_nat = $categories[$categorie]['nat'];
                         list($minutes, $secondes, $supp, $centiemes) = explode("'", $temps_natation);
                         $seconde_natation =  $minutes * 60 + $secondes;
-                        $base_pts_nat = 250;
                         if ($centiemes == 0) {
                             $centi = 0;
                         } else if ($centiemes > 0 && $centiemes < 49) {

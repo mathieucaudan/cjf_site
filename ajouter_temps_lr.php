@@ -10,6 +10,7 @@ if (isset($_SESSION['role'])) {
         <center>
             <h1>Ajouter les temps de laser run</h1>
         </center>
+
         <?php
         // Définir le tableau des catégories avec les temps de laser run et les points de base
         $categories = array(
@@ -85,17 +86,21 @@ if (isset($_SESSION['role'])) {
                     }
                 }
             }
+            foreach ($athletes_data as $categorie => &$athletes) {
+                // Vérifier si des athlètes existent dans la catégorie
+                if (isset($athletes) && is_array($athletes) && count($athletes) > 0) {
+                    // Trier les athlètes par ordre décroissant de points_nat
+                    // Trier les athlètes par ordre de points total
+                    usort($athletes, function ($a, $b) {
+                        // Si total n'est pas défini pour l'un des athlètes, considérez-le comme ayant des points nuls
+                        $totalA = isset($a['total']) ? $a['total'] : 0;
+                        $totalB = isset($b['total']) ? $b['total'] : 0;
+                        return $totalB <=> $totalA;
+                    });
 
-
-            // Trier les athlètes par ordre de points total
-            usort($athletes, function ($a, $b) {
-                // Si total n'est pas défini pour l'un des athlètes, considérez-le comme ayant des points nuls
-                $totalA = isset($a['total']) ? $a['total'] : 0;
-                $totalB = isset($b['total']) ? $b['total'] : 0;
-                return $totalB <=> $totalA;
-            });
-
-
+                    unset($athlete); // Libérer la référence
+                }
+            }
             // Enregistrer les données mises à jour dans le fichier JSON
             file_put_contents($fileName, json_encode($athletes_data));
 
