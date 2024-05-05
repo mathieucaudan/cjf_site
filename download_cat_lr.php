@@ -54,6 +54,7 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
                 echo '<table>';
                 echo '<tr>';
                 echo '<th>Nom</th>';
+                echo '<th>Club</th>';
                 echo '<th>Temps de Natation</th>';
                 echo '<th>Points de Natation</th>';
                 echo '<th>Temps de Laser Run</th>';
@@ -63,6 +64,7 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
                 foreach ($data[$categorie] as $athlete) {
                     echo '<tr>';
                     echo '<td>' . $athlete['nom'] . '</td>';
+                    echo '<td>' . $athlete['club'] . '</td>';
                     echo '<td>' . (isset($athlete['temps_natation']) ? $athlete['temps_natation'] : '') . '</td>';
                     echo '<td>' . (isset($athlete['points_nat']) ? $athlete['points_nat'] : '') . '</td>';
                     echo '<td>' . (isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : '') . '</td>';

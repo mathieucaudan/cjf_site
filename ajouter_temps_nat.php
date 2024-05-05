@@ -72,21 +72,28 @@ if (isset($_SESSION['role'])) {
                 foreach ($athletes as &$athlete) {
                     $base_pts_nat = 250;
                     if ($athlete['nom'] === $nom_athlete) {
-                        $athlete['temps_natation'] = $temps_natation;
+                        if ($temps_natation == 'dnf') {
+                            $athlete['temps_natation'] = 'dnf';
+                            $points_nat = 0;
+                        } else if ($temps_natation == 'dns') {
+                            $athlete['temps_natation'] = 'dns';
+                            $points_nat = 0;
+                        } else {
+                            $athlete['temps_natation'] = $temps_natation;
 
-                        // Calculer les points pour le temps de natation
-                        $tmp_nat = $categories[$categorie]['nat'];
-                        list($minutes, $secondes, $supp, $centiemes) = explode("'", $temps_natation);
-                        $seconde_natation =  $minutes * 60 + $secondes;
-                        if ($centiemes == 0) {
-                            $centi = 0;
-                        } else if ($centiemes > 0 && $centiemes < 49) {
-                            $centi = 1;
-                        } else if ($centiemes > 49 && $centiemes < 99) {
-                            $centi = 2;
+                            // Calculer les points pour le temps de natation
+                            $tmp_nat = $categories[$categorie]['nat'];
+                            list($minutes, $secondes, $supp, $centiemes) = explode("'", $temps_natation);
+                            $seconde_natation =  $minutes * 60 + $secondes;
+                            if ($centiemes == 0) {
+                                $centi = 0;
+                            } else if ($centiemes > 0 && $centiemes < 49) {
+                                $centi = 1;
+                            } else if ($centiemes > 49 && $centiemes < 99) {
+                                $centi = 2;
+                            }
+                            $points_nat = $base_pts_nat - ($seconde_natation - $tmp_nat) * 2 - $centi;
                         }
-                        $points_nat = $base_pts_nat - ($seconde_natation - $tmp_nat) * 2 - $centi;
-
                         $athlete['points_nat'] = $points_nat;
                     }
                 }
@@ -96,8 +103,6 @@ if (isset($_SESSION['role'])) {
             foreach ($athletes_data as $categorie => &$athletes) {
                 // Vérifier si des athlètes existent dans la catégorie
                 if (isset($athletes) && is_array($athletes) && count($athletes) > 0) {
-                    // Trier les athlètes par ordre décroissant de points_nat
-                    // Trier les athlètes par ordre de points total
                     usort($athletes, function ($a, $b) {
                         // Si total n'est pas défini pour l'un des athlètes, considérez-le comme ayant des points nuls
                         $totalA = isset($a['points_nat']) ? $a['points_nat'] : 0;
@@ -157,6 +162,7 @@ if (isset($_SESSION['role'])) {
             <table style='width: 90%;' border='1'>
                 <tr>
                     <th>Nom</th>
+                    <th>Club</th>
                     <th>Temps de Natation</th>
                     <th>Points</th>
                     <th>Différence avec le leader</th>
@@ -165,6 +171,7 @@ if (isset($_SESSION['role'])) {
                 <?php foreach ($athletes as $athlete) : ?>
                     <tr>
                         <td><?php echo $athlete['nom']; ?></td>
+                        <td><?php echo $athlete['club']; ?></td>
                         <td><?php echo isset($athlete['temps_natation']) ? $athlete['temps_natation'] : ''; ?></td>
                         <td><?php echo isset($athlete['points_nat']) ? $athlete['points_nat'] : ''; ?></td>
                         <td><?php echo isset($athlete['diff_points_leader']) ? $athlete['diff_points_leader'] : ''; ?></td>
@@ -173,6 +180,15 @@ if (isset($_SESSION['role'])) {
                                 <input type="text" name="temps_natation" value="<?php echo isset($athlete['temps_natation']) ? $athlete['temps_natation'] : ''; ?>" pattern="[0-9]{1,2}'[0-5][0-9]''[0-9][0-9]" required>
                                 <input type="hidden" name="nom_athlete" value="<?php echo $athlete['nom']; ?>">
                                 <button class='w3-button' type="submit" value="">Ajouter/Modifier temps</button>
+                            </form>
+                            </form>
+                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?competition={$nom_competition}"; ?>">
+                                <input type="hidden" name="nom_athlete" value="<?php echo $athlete['nom']; ?>">
+                                <button type="submit" name="temps_natation" value="dns">DNS</button>
+                            </form>
+                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?competition={$nom_competition}"; ?>">
+                                <input type="hidden" name="nom_athlete" value="<?php echo $athlete['nom']; ?>">
+                                <button type="submit" name="temps_natation" value="dnf">DNF</button>
                             </form>
                         </td>
                     </tr>

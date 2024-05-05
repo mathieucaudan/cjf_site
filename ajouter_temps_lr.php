@@ -72,15 +72,21 @@ if (isset($_SESSION['role'])) {
                 foreach ($athletes as &$athlete) {
                     $base_pts_lr = 500;
                     if ($athlete['nom'] === $nom_athlete) {
-                        $athlete['temps_laser_run'] = $temps_lr;
-
-                        // Calculer les points pour le temps de laser run
-                        $tmp_lr = $categories[$categorie]['lr'];
-                        list($minutes, $secondes) = explode("'", $temps_lr);
-                        $seconde_lr = ($minutes * 60) + $secondes;
-                        // Exemple de calcul des points (à adapter selon votre besoin)
-                        $points_lr = $base_pts_lr - ($seconde_lr - intval($tmp_lr));
-
+                        if ($temps_lr == 'dnf') {
+                            $athlete['temps_laser_run'] = 'dnf';
+                            $points_lr = 0;
+                        } else if ($temps_lr == 'dns') {
+                            $athlete['temps_laser_run'] = 'dns';
+                            $points_lr = 0;
+                        } else {
+                            $athlete['temps_laser_run'] = $temps_lr;
+                            // Calculer les points pour le temps de laser run
+                            $tmp_lr = $categories[$categorie]['lr'];
+                            list($minutes, $secondes) = explode("'", $temps_lr);
+                            $seconde_lr = ($minutes * 60) + $secondes;
+                            // Exemple de calcul des points (à adapter selon votre besoin)
+                            $points_lr = $base_pts_lr - ($seconde_lr - intval($tmp_lr));
+                        }
                         $athlete['points_lr'] = $points_lr;
                         $athlete['total'] = $points_lr + $athlete['points_nat'];
                     }
@@ -120,6 +126,7 @@ if (isset($_SESSION['role'])) {
             <table style='width: 90%;' border="1">
                 <tr>
                     <th>Nom</th>
+                    <th>Club</th>
                     <th>Temps de Natation</th>
                     <th>Points de Natation</th>
                     <th>Temps de Laser Run</th>
@@ -130,6 +137,7 @@ if (isset($_SESSION['role'])) {
                 <?php foreach ($athletes as $athlete) : ?>
                     <tr>
                         <td><?php echo $athlete['nom']; ?></td>
+                        <td><?php echo $athlete['club']; ?></td>
                         <td><?php echo isset($athlete['temps_natation']) ? $athlete['temps_natation'] : ''; ?></td>
                         <td><?php echo isset($athlete['points_nat']) ? $athlete['points_nat'] : ''; ?></td>
                         <td><?php echo isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : ''; ?></td>
@@ -140,6 +148,15 @@ if (isset($_SESSION['role'])) {
                                 <input type="text" name="temps_laser_run" value="<?php echo isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : ''; ?>" pattern="[0-9]{1,2}'[0-5][0-9]" required>
                                 <input type="hidden" name="nom_athlete" value="<?php echo $athlete['nom']; ?>">
                                 <button type="submit" value="">Ajouter/Modifier temps</button>
+                            </form>
+                            </form>
+                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?competition={$nom_competition}"; ?>">
+                                <input type="hidden" name="nom_athlete" value="<?php echo $athlete['nom']; ?>">
+                                <button type="submit" name="temps_laser_run" value="dns">DNS</button>
+                            </form>
+                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?competition={$nom_competition}"; ?>">
+                                <input type="hidden" name="nom_athlete" value="<?php echo $athlete['nom']; ?>">
+                                <button type="submit" name="temps_laser_run" value="dnf">DNF</button>
                             </form>
                         </td>
                     </tr>

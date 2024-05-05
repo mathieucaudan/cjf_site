@@ -41,16 +41,21 @@ if (isset($_SESSION['role'])) {
             }
 
             // Traitement des données lors de la soumission du formulaire d'ajout d'athlète
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["nom"])) {
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["nom"]) &&  isset($_POST["club"])) {
                 // Récupérer les valeurs du formulaire
                 $nom_athlete = $_POST["nom"];
+                $club_athlete = $_POST["club"];
                 $categorie = $_POST["categorie"];
 
                 // Charger les données JSON existantes s'il y en a
                 $fileName = "competitions/{$nom_competition}/athletes.json";
+                $database  = "competitions/base_athletes.json";;
                 $data = [];
                 if (file_exists($fileName)) {
                     $data = json_decode(file_get_contents($fileName), true);
+                }
+                if (file_exists($database)) {
+                    $data_athletes = json_decode(file_get_contents($database), true);
                 }
 
                 // Vérifier si l'athlète existe déjà dans une catégorie différente
@@ -71,9 +76,25 @@ if (isset($_SESSION['role'])) {
 
                 // Ajouter les données dans le tableau
                 $data[$categorie][] = array(
-                    'nom' => $nom_athlete
+                    'nom' => $nom_athlete,
+                    'club' => $club_athlete
                 );
+                $athleteExists = false;
+                foreach ($data_athletes['athletes'] as $row) {
+                    if ($row['nom'] == $nom_athlete && $row['club'] == $club_athlete) {
+                        $athleteExists = true;
+                        break;
+                    }
+                }
 
+                if (!$athleteExists) {
+                    $data_athletes['athletes'][] = array(
+                        'nom' => $nom_athlete,
+                        'club' => $club_athlete
+                    );
+                    file_put_contents($database, json_encode($data_athletes));
+                    echo "<p>Athlète ajouté avec succès à la base de données.</p>";
+                }
                 // Enregistrer les données dans le fichier JSON
                 file_put_contents($fileName, json_encode($data));
 
@@ -144,6 +165,35 @@ if (isset($_SESSION['role'])) {
                 echo "<p>Changement de nom pour l'athlète '{$athlete_name}' effectué avec succès.</p>";
             }
 
+            // Traitement du changement de club
+            if (isset($_POST['modify_club']) && isset($_POST['athlete_club']) && isset($_POST['new_club'])) {
+                $athlete_name = $_POST['athlete_club'];
+                $new_name = $_POST['new_club'][0]; // Utiliser $_POST['new_club'] pour obtenir le nouveau nom
+
+                // Charger les données JSON existantes
+                $fileName = "competitions/{$nom_competition}/athletes.json";
+                $data = [];
+                if (file_exists($fileName)) {
+                    $data = json_decode(file_get_contents($fileName), true);
+                }
+
+                // Parcourir les données pour trouver l'athlète et modifier son nom
+                foreach ($data as $category => $athletes) {
+                    foreach ($athletes as $key => $athlete) {
+                        if ($athlete['club'] === $athlete_name) {
+                            $data[$category][$key]['club'] = $new_name;
+                        }
+                    }
+                }
+
+                // Enregistrer les données mises à jour dans le fichier JSON
+                file_put_contents($fileName, json_encode($data));
+
+                // Afficher un message de succès
+                echo "<p>Changement de nom pour l'athlète '{$athlete_name}' effectué avec succès.</p>";
+            }
+
+
             // Traitement de la suppression d'un athlète
             if (isset($_POST['delete_athlete']) && isset($_POST['athlete_name'])) {
                 $athlete_name = $_POST['athlete_name'];
@@ -180,6 +230,8 @@ if (isset($_SESSION['role'])) {
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?competition={$nom_competition}"; ?>">
                     <label for="nom">Nom de l'athlète :</label>
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type="text" id="nom" name="nom" required><br><br>
+                    <label for="club">Club de l'athlète :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type="text" id="club" name="club" required><br><br>
                     <label for="categorie">Catégorie :</label>
                     <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' id="categorie" name="categorie" onchange="saveLastCategory()" required>
                         <option value="u9 garcons">U9 Garçons</option>
@@ -235,6 +287,16 @@ if (isset($_SESSION['role'])) {
                             echo "</div>";
                             echo "<div style='display: inline-block;'>";
                             echo "<button class='w3-button' type='submit' name='modify_name' value=''>Modifier nom</button>";
+                            echo "</div>";
+                            echo "</center></td>";
+
+                            echo "<td><center>";
+                            echo "<div style='display: inline-block;'>";
+                            echo "<input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='new_club[]' value='{$athlete['club']}' required>";
+                            echo "<input type='hidden' name='athlete_club' value='{$athlete['club']}'>";
+                            echo "</div>";
+                            echo "<div style='display: inline-block;'>";
+                            echo "<button class='w3-button' type='submit' name='modify_club' value=''>Modifier club</button>";
                             echo "</div>";
                             echo "</center></td>";
 

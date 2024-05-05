@@ -1,0 +1,8 @@
+{
+  "athletes": [
+    { "nom": "Mathieu CAUDAN", "club": "CJF Saint-Malo" },
+    { "nom": "Aziliz NAOUR", "club": "CJF Saint-Malo" },
+    { "nom": "Arnaud Eveillard", "club": "CJF Saint-Malo" },
+    { "nom": "Julien TERTRAIN", "club": "CJF Saint-Malo" }
+  ]
+}

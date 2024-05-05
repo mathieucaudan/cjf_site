@@ -46,6 +46,7 @@ th {
                         echo '<table style="width: 90%;">';
                         echo '<tr style="color: rgb(32, 47, 74)";>';
                         echo '<th>Nom</th>';
+                        echo '<th>Club</th>';
                         echo '<th>Temps de Natation</th>';
                         echo '<th>Points de Natation</th>';
                         echo '<th>Temps de Laser Run</th>';
@@ -55,6 +56,7 @@ th {
                         foreach ($athletes as $athlete) {
                             echo '<tr>';
                             echo '<td>' . $athlete['nom'] . '</td>';
+                            echo '<td>' . $athlete['club'] . '</td>';
                             echo '<td>' . (isset($athlete['temps_natation']) ? $athlete['temps_natation'] : '') . '</td>';
                             echo '<td>' . (isset($athlete['points_nat']) ? $athlete['points_nat'] : '') . '</td>';
                             echo '<td>' . (isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : '') . '</td>';
