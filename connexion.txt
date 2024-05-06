@@ -80,12 +80,3 @@
 2024-04-23 12:41:36 - Utilisateur: mathieu - Adresse IP: 127.0.0.1
 2024-04-23 14:00:13 - Utilisateur: mathieu - Adresse IP: 127.0.0.1
 2024-04-23 15:14:04 - Utilisateur: mathieu - Adresse IP: 2a02:842b:269:801:d13a:badd:bc62:90c6
-<<<<<<< Updated upstream
-2024-04-23 16:05:13 - Utilisateur: mathieu - Adresse IP: 79.95.87.70
-2024-04-25 05:14:51 - Utilisateur: arnaud - Adresse IP: 2a02:8428:8db:5b01:789e:be0:d13:92262024-05-03 09:50:56 - Utilisateur: mathieu - Adresse IP: 77.133.250.254
-2024-05-03 16:52:46 - Utilisateur: mathieu - Adresse IP: 92.88.171.171
-2024-05-03 17:00:47 - Utilisateur: mathieu - Adresse IP: 127.0.0.1
-2024-05-05 14:34:18 - Utilisateur: arnaud - Adresse IP: 2a02:8440:d103:f250:c108:9b76:cf60:7c0f
-=======
-2024-04-23 16:05:13 - Utilisateur: mathieu - Adresse IP: 79.95.87.70
->>>>>>> Stashed changes

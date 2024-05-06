@@ -226,12 +226,56 @@ if (isset($_SESSION['role'])) {
                 }
             }
             ?>
+
             <div class='w3-center w3-padding-48 w3-large'>
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?competition={$nom_competition}"; ?>">
                     <label for="nom">Nom de l'athlète :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type="text" id="nom" name="nom" required><br><br>
+                    <input class='w3-input w3-border name' style='background-color: rgb(32, 47, 74); color: white;' type="text" id="nom" name="nom" required oninput="showSuggestions()">
+                    <div id="suggestions"></div> <!-- Div pour afficher les suggestions -->
                     <label for="club">Club de l'athlète :</label>
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type="text" id="club" name="club" required><br><br>
+                    <script>
+                        var searchInput = document.getElementById('nom');
+                        var clubInput = document.getElementById('club');
+                        var suggestionsDiv = document.getElementById('suggestions');
+                        var athletes = []; // Liste pour stocker les noms d'athlètes et leurs clubs
+
+                        // Charger le fichier JSON des athlètes
+                        fetch('competitions/base_athletes.json')
+                            .then(response => response.json())
+                            .then(data => {
+                                // Extraire les noms d'athlètes et leurs clubs du fichier JSON
+                                athletes = data.athletes;
+                            })
+                            .catch(error => console.error('Erreur lors du chargement du fichier JSON:', error));
+
+                        // Fonction pour afficher les suggestions correspondant à la recherche
+                        // Fonction pour afficher les suggestions correspondant à la recherche
+                        function showSuggestions() {
+                            var searchQuery = searchInput.value.toLowerCase();
+                            suggestionsDiv.innerHTML = ''; // Effacer les suggestions précédentes
+                            // Filtrer les suggestions en fonction de la recherche
+                            var filteredSuggestions = athletes.filter(function(athlete) {
+                                return athlete.nom.toLowerCase().indexOf(searchQuery) !== -1;
+                            });
+                            // Prendre seulement les 5 premières suggestions filtrées
+                            var limitedSuggestions = filteredSuggestions.slice(0, 5);
+                            // Afficher les suggestions limitées
+                            limitedSuggestions.forEach(function(athlete) {
+                                var suggestionElement = document.createElement('div');
+                                suggestionElement.textContent = athlete.nom;
+                                suggestionElement.onclick = function() {
+                                    // Remplacer le contenu du champ de recherche par la suggestion cliquée
+                                    searchInput.value = athlete.nom;
+                                    clubInput.value = athlete.club; // Remplir le champ de club avec le club de l'athlète sélectionné
+                                    suggestionsDiv.innerHTML = ''; // Effacer les suggestions après avoir choisi une suggestion
+                                };
+                                suggestionsDiv.appendChild(suggestionElement);
+                            });
+                            // Afficher les suggestions si le champ de recherche est non vide
+                            suggestionsDiv.style.display = searchQuery.length > 0 ? 'block' : 'none';
+                        }
+                    </script>
                     <label for="categorie">Catégorie :</label>
                     <select class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' id="categorie" name="categorie" onchange="saveLastCategory()" required>
                         <option value="u9 garcons">U9 Garçons</option>
