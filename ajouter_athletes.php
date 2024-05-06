@@ -162,13 +162,13 @@ if (isset($_SESSION['role'])) {
                 file_put_contents($fileName, json_encode($data));
 
                 // Afficher un message de succès
-                echo "<p>Changement de nom pour l'athlète '{$athlete_name}' effectué avec succès.</p>";
+                echo "<p>Changement de nom pour l'athlète {$new_name} effectué avec succès.</p>";
             }
 
             // Traitement du changement de club
             if (isset($_POST['modify_club']) && isset($_POST['athlete_club']) && isset($_POST['new_club'])) {
-                $athlete_name = $_POST['athlete_club'];
-                $new_name = $_POST['new_club'][0]; // Utiliser $_POST['new_club'] pour obtenir le nouveau nom
+                $athlete_club = $_POST['athlete_club'];
+                $new_club = $_POST['new_club'][0]; // Utiliser $_POST['new_club'] pour obtenir le nouveau nom
 
                 // Charger les données JSON existantes
                 $fileName = "competitions/{$nom_competition}/athletes.json";
@@ -180,8 +180,9 @@ if (isset($_SESSION['role'])) {
                 // Parcourir les données pour trouver l'athlète et modifier son nom
                 foreach ($data as $category => $athletes) {
                     foreach ($athletes as $key => $athlete) {
-                        if ($athlete['club'] === $athlete_name) {
-                            $data[$category][$key]['club'] = $new_name;
+                        if ($athlete['club'] === $athlete_club) {
+                            $data[$category][$key]['club'] = $new_club;
+                            $athlete_name = $athlete['nom'];
                         }
                     }
                 }
@@ -190,7 +191,7 @@ if (isset($_SESSION['role'])) {
                 file_put_contents($fileName, json_encode($data));
 
                 // Afficher un message de succès
-                echo "<p>Changement de nom pour l'athlète '{$athlete_name}' effectué avec succès.</p>";
+                echo "<p>Changement de club pour l'athlète {$athlete_name} vers {$new_club} effectué avec succès.</p>";
             }
 
 
@@ -249,7 +250,6 @@ if (isset($_SESSION['role'])) {
                             })
                             .catch(error => console.error('Erreur lors du chargement du fichier JSON:', error));
 
-                        // Fonction pour afficher les suggestions correspondant à la recherche
                         // Fonction pour afficher les suggestions correspondant à la recherche
                         function showSuggestions() {
                             var searchQuery = searchInput.value.toLowerCase();
