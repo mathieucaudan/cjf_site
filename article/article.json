@@ -52,5 +52,11 @@
         "image": "circuit.webp",
         "description": "Le CJF a organis\u00e9 son premier circuit national",
         "date": "20\/01\/24"
+    },
+    {
+        "titre": "Championnats de France de triathle Saint-Cyprien 2024",
+        "image": "TRIATHLE.jpeg",
+        "description": "10 repr\u00e9sentants du CjF Saint-Malo au Championnat de France",
+        "date": "04\/05\/24"
     }
 ]
