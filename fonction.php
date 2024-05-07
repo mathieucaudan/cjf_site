@@ -210,9 +210,22 @@ function ajoutGalerie()
         // Chemin où les images seront stockées avec nom et extension
         $imagePath =  $nomImage . '.' . $extension;
 
+        // Vérifier si l'image est au format WebP, si non, la convertir
+        if ($extension !== "webp") {
+            // Crée une image à partir du fichier
+            $image = imagecreatefromstring(file_get_contents($imageTemp));
 
-        // Déplace l'image téléchargée vers le chemin de stockage
-        move_uploaded_file($imageTemp, './image/galerie_image/' . $imagePath);
+            // Enregistre l'image au format WebP
+            $webpFilePath = 'image/galerie_image/' . $nomImage . '.webp';
+            imagewebp($image, $webpFilePath);
+            $imagePath = $nomImage . '.webp';
+
+            // Libère la mémoire
+            imagedestroy($image);
+        } else {
+            // Si l'image est déjà en format WebP, simplement la déplacer
+            move_uploaded_file($imageTemp, 'image/galerie_image/' . $imagePath);
+        }
 
         // Chemin du fichier JSON
         $jsonFile = "galerie/data.json";
@@ -277,13 +290,14 @@ function ajoutGalerie()
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_image' required><br>
                         
                     <label class='w3-text-white' for='image'>Sélectionnez une image :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/webp' required><br>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/webp, image/jpeg, image/png' required><br>
                         
                     <button type='submit'>Envoyer</button>
                 </form>";
         }
     }
 }
+
 function suppGalerie()
 {
     $dossierPartage = './galerie/';
@@ -925,7 +939,7 @@ function ajoutArticle()
     $dossierJson = './article/article.json';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['img'])) {
-        // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
+        // Déplacer le fichier vers son dossier de destination avec le nouveau nom
         $fichierTemporaire = $_FILES['fichier']['tmp_name'];
         $nomFichierOriginal = $_FILES['fichier']['name'];
         $nomFichierTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
@@ -946,14 +960,26 @@ function ajoutArticle()
         // Générer un nouveau nom d'image en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
         $nouveauNomImage = $nomImageTelechargement ? $nomImageTelechargement . '.' . $extensionImage : $nomImageOriginal;
 
-        // Déplacer le fichier vers le dossier de destination avec le nouveau nom
+        // Chemins des fichiers de destination
         $cheminFichier = $dossierPdf . $nouveauNomFichier;
         $cheminImage = $dossierImage . $nouveauNomImage;
 
+        // Vérifier si l'extension de l'image est déjà en WebP
+        if ($extensionImage !== "webp") {
+            // Si ce n'est pas le cas, convertir l'image en format WebP
+            $image = imagecreatefromstring(file_get_contents($imageTemporaire));
+            imagepalettetotruecolor($image);
+            $cheminImageWebP = $dossierImage . pathinfo($nouveauNomImage, PATHINFO_FILENAME) . '.webp';
+            imagewebp($image, $cheminImageWebP);
+            imagedestroy($image);
+            $nouveauNomImage = pathinfo($nouveauNomImage, PATHINFO_FILENAME) . '.webp';
+        }
+
+        // Déplacer les fichiers vers leur dossier de destination avec les nouveaux noms
         if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
             $data = json_decode(file_get_contents($dossierJson), true);
 
-            // Vérification de l'existence du titre ou de l'image
+            // Vérifier l'existence du titre ou de l'image
             $titreExiste = false;
             $imageExiste = false;
             foreach ($data as $item) {
@@ -967,11 +993,11 @@ function ajoutArticle()
 
             if (!$titreExiste && !$imageExiste) {
                 $titre = $_POST['titre'];
-                $image = $nouveauNomImage; // Utilisez le nouveau nom de l'image
+                $image = $nouveauNomImage; // Utiliser le nouveau nom de l'image
                 $description = $_POST['description_telechargement'];
                 $date = $_POST['date_telechargement'];
 
-                // Sauvegardez le tableau mis à jour dans le fichier JSON
+                // Sauvegarder le tableau mis à jour dans le fichier JSON
                 $nouvelArticle = array(
                     "titre" => $titre,
                     "image" => $image,
@@ -1014,7 +1040,7 @@ function ajoutArticle()
                         <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date_telechargement' pattern='\d{2}/\d{2}/\d{2}' placeholder='jj/mm/aa' required>
                         <br>
                         <label class='w3-text-white'>Sélectionner une image :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' accept='image/webp' required>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' accept='image/webp, image/jpeg, image/png' required>
                         <br>
                         <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
                     </form>";
@@ -1023,6 +1049,7 @@ function ajoutArticle()
         }
     }
 }
+
 function ajoutImageCarousel()
 {
     $dossierPartage = './image/carousel/';
