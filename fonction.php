@@ -975,80 +975,77 @@ function ajoutArticle()
             $nouveauNomImage = pathinfo($nouveauNomImage, PATHINFO_FILENAME) . '.webp';
         }
 
-        // Déplacer les fichiers vers leur dossier de destination avec les nouveaux noms
-        if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
-            $data = json_decode(file_get_contents($dossierJson), true);
-
-            // Vérifier l'existence du titre ou de l'image
-            $titreExiste = false;
-            $imageExiste = false;
-            foreach ($data as $item) {
-                if ($item['titre'] == $_POST['titre']) {
-                    $titreExiste = true;
-                }
-                if ($item['image'] == $nouveauNomImage) {
-                    $imageExiste = true;
-                }
+        // Vérifier si le titre ou le nom de l'image existent déjà
+        $data = json_decode(file_get_contents($dossierJson), true);
+        $titreExiste = false;
+        $imageExiste = false;
+        foreach ($data as $item) {
+            if ($item['titre'] == $_POST['titre']) {
+                $titreExiste = true;
             }
+            if ($item['image'] == $nouveauNomImage) {
+                $imageExiste = true;
+            }
+        }
 
-            if (!$titreExiste && !$imageExiste) {
+        // Afficher les messages d'erreur si le titre ou le nom de l'image existent déjà
+        if ($titreExiste || $imageExiste) {
+            if ($titreExiste) {
+                echo '<script>alert("Un article avec ce titre existe déjà.");</script>';
+            }
+            if ($imageExiste) {
+                echo '<script>alert("Une image avec ce nom existe déjà.");</script>';
+            }
+        } else {
+            // Déplacer les fichiers vers leur dossier de destination avec les nouveaux noms
+            if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
+                // Ajouter les données du nouvel article au fichier JSON
                 $titre = $_POST['titre'];
                 $image = $nouveauNomImage; // Utiliser le nouveau nom de l'image
                 $description = $_POST['description_telechargement'];
                 $date = $_POST['date_telechargement'];
-
-                // Sauvegarder le tableau mis à jour dans le fichier JSON
                 $nouvelArticle = array(
                     "titre" => $titre,
                     "image" => $image,
                     "description" => $description,
                     "date" => $date
                 );
-
                 $data[] = $nouvelArticle;
                 file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
-            } else {
-                if ($titreExiste) {
-                    echo '<script>alert("Un article avec ce titre existe déjà.");</script>';
-                }
-                if ($imageExiste) {
-                    echo '<script>alert("Une image avec ce nom existe déjà.");</script>';
-                }
             }
         }
     }
 
-    if (isset($_SESSION['role'])) {
-        if ($_SESSION['role'] == 'admin') {
-            echo "
-            <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-                <div class='w3-content'>
-                    <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
-                        <label class='w3-text-white'>Sélectionner un article :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='fichier' required>
-                        <br>
-                        <label class='w3-text-white'>Titre :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
-                        <br>
-                        <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9_-]+' required>
-                        <br>
-                        <label class='w3-text-white'>Description :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
-                        <br>
-                        <label class='w3-text-white'>Date :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date_telechargement' pattern='\d{2}/\d{2}/\d{2}' placeholder='jj/mm/aa' required>
-                        <br>
-                        <label class='w3-text-white'>Sélectionner une image :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' accept='image/webp, image/jpeg, image/png' required>
-                        <br>
-                        <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
-                    </form>";
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+        echo "
+        <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+            <div class='w3-content'>
+                <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
+                    <label class='w3-text-white'>Sélectionner un article :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='fichier' required>
+                    <br>
+                    <label class='w3-text-white'>Titre :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='titre' required>
+                    <br>
+                    <label class='w3-text-white'>Nom du fichier lors du téléchargement:</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9_-]+' required>
+                    <br>
+                    <label class='w3-text-white'>Description :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='description_telechargement' required>
+                    <br>
+                    <label class='w3-text-white'>Date :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date_telechargement' pattern='\d{2}/\d{2}/\d{2}' placeholder='jj/mm/aa' required>
+                    <br>
+                    <label class='w3-text-white'>Sélectionner une image :</label>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' accept='image/webp, image/jpeg, image/png' required>
+                    <br>
+                    <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
+                </form>";
 
-            echo "</div></div>";
-        }
+        echo "</div></div>";
     }
 }
+
 
 function ajoutImageCarousel()
 {
