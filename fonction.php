@@ -215,28 +215,48 @@ function ajoutGalerie()
         move_uploaded_file($imageTemp, './image/galerie_image/' . $imagePath);
 
         // Chemin du fichier JSON
-        $jsonFile = "galerie/data.json";
+$jsonFile = "galerie/data.json";
 
-        // Charge les données existantes du JSON
-        $donneesExistantes = [];
-        if (file_exists($jsonFile)) {
-            $donneesExistantes = json_decode(file_get_contents($jsonFile), true);
-        }
+// Charge les données existantes du JSON
+$donneesExistantes = [];
+if (file_exists($jsonFile)) {
+    $donneesExistantes = json_decode(file_get_contents($jsonFile), true);
+}
 
-        // Crée un tableau avec les données du nouvel article
-        $nouvelArticle = array(
-            "titre" => $titre,
-            "lien" => $lien,
-            "date" => $date,
-            "path_image" => $imagePath
-        );
-
-        // Ajoute le nouvel article aux données existantes
-        $donneesExistantes[] = $nouvelArticle;
-
-        // Convertit les données en format JSON sans échapper les barres obliques
-        file_put_contents($jsonFile, json_encode($donneesExistantes, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+// Vérifie si le titre ou le nom de l'image existe déjà
+$titreExiste = false;
+$nomImageExiste = false;
+foreach ($donneesExistantes as $item) {
+    if ($item['titre'] == $titre) {
+        $titreExiste = true;
     }
+    if ($item['path_image'] == $imagePath) {
+        $nomImageExiste = true;
+    }
+}
+
+if (!$titreExiste && !$nomImageExiste) {
+    // Crée un tableau avec les données du nouvel article
+    $nouvelArticle = array(
+        "titre" => $titre,
+        "lien" => $lien,
+        "date" => $date,
+        "path_image" => $imagePath
+    );
+
+    // Ajoute le nouvel article aux données existantes
+    $donneesExistantes[] = $nouvelArticle;
+
+    // Convertit les données en format JSON sans échapper les barres obliques
+    file_put_contents($jsonFile, json_encode($donneesExistantes, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+} else {
+    if ($titreExiste) {
+        echo '<script>console.log("Erreur: Un article avec le même titre existe déjà.");</script>';
+    }
+    if ($nomImageExiste) {
+        echo '<script>console.log("Erreur: Une image avec le même nom existe déjà.");</script>';
+    }
+}
     // Affiche le formulaire si tu est admin
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'admin') {
@@ -256,7 +276,7 @@ function ajoutGalerie()
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_image' required><br>
                         
                     <label class='w3-text-white' for='image'>Sélectionnez une image :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/*' required><br>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/webp' required><br>
                         
                     <button type='submit'>Envoyer</button>
                 </form>";
@@ -900,37 +920,51 @@ function changeRecord()
 function ajoutArticle()
 {
     $dossierPdf = './article/article_pdf/';
-    $dossierImage = './image/article_image/';
-    $dossierJson = './article/article.json';
+$dossierImage = './image/article_image/';
+$dossierJson = './article/article.json';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['img'])) {
-        // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
-        $fichierTemporaire = $_FILES['fichier']['tmp_name'];
-        $nomFichierOriginal = $_FILES['fichier']['name'];
-        $nomFichierTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['img'])) {
+    // Déplacer le fichier et l'image vers leur dossier de destination avec le nouveau nom
+    $fichierTemporaire = $_FILES['fichier']['tmp_name'];
+    $nomFichierOriginal = $_FILES['fichier']['name'];
+    $nomFichierTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
 
-        $imageTemporaire = $_FILES['img']['tmp_name'];
-        $nomImageOriginal = $_FILES['img']['name'];
-        $nomImageTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
+    $imageTemporaire = $_FILES['img']['tmp_name'];
+    $nomImageOriginal = $_FILES['img']['name'];
+    $nomImageTelechargement = isset($_POST['nom_telechargement']) ? $_POST['nom_telechargement'] : '';
 
-        // Récupérer l'extension du fichier
-        $extension = pathinfo($nomFichierOriginal, PATHINFO_EXTENSION);
+    // Récupérer l'extension du fichier
+    $extension = pathinfo($nomFichierOriginal, PATHINFO_EXTENSION);
 
-        // Récupérer l'extension de l'image
-        $extensionImage = pathinfo($nomImageOriginal, PATHINFO_EXTENSION);
+    // Récupérer l'extension de l'image
+    $extensionImage = pathinfo($nomImageOriginal, PATHINFO_EXTENSION);
 
-        // Générer un nouveau nom de fichier en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
-        $nouveauNomFichier = $nomFichierTelechargement ? $nomFichierTelechargement . '.' . $extension : $nomFichierOriginal;
+    // Générer un nouveau nom de fichier en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
+    $nouveauNomFichier = $nomFichierTelechargement ? $nomFichierTelechargement . '.' . $extension : $nomFichierOriginal;
 
-        // Générer un nouveau nom d'image en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
-        $nouveauNomImage = $nomImageTelechargement ? $nomImageTelechargement . '.' . $extensionImage : $nomImageOriginal;
+    // Générer un nouveau nom d'image en combinant l'ancien nom et le nom de téléchargement personnalisé (si fourni)
+    $nouveauNomImage = $nomImageTelechargement ? $nomImageTelechargement . '.' . $extensionImage : $nomImageOriginal;
 
-        // Déplacer le fichier vers le dossier de destination avec le nouveau nom
-        $cheminFichier = $dossierPdf . $nouveauNomFichier;
-        $cheminImage = $dossierImage . $nouveauNomImage;
+    // Déplacer le fichier vers le dossier de destination avec le nouveau nom
+    $cheminFichier = $dossierPdf . $nouveauNomFichier;
+    $cheminImage = $dossierImage . $nouveauNomImage;
 
-        if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
-            $data = json_decode(file_get_contents($dossierJson), true);
+    if (move_uploaded_file($imageTemporaire, $cheminImage) && move_uploaded_file($fichierTemporaire, $cheminFichier)) {
+        $data = json_decode(file_get_contents($dossierJson), true);
+
+        // Vérification de l'existence du titre ou de l'image
+        $titreExiste = false;
+        $imageExiste = false;
+        foreach ($data as $item) {
+            if ($item['titre'] == $_POST['titre']) {
+                $titreExiste = true;
+            }
+            if ($item['image'] == $nouveauNomImage) {
+                $imageExiste = true;
+            }
+        }
+
+        if (!$titreExiste && !$imageExiste) {
             $titre = $_POST['titre'];
             $image = $nouveauNomImage; // Utilisez le nouveau nom de l'image
             $description = $_POST['description_telechargement'];
@@ -945,10 +979,17 @@ function ajoutArticle()
             );
 
             $data[] = $nouvelArticle;
-
             file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
+        } else {
+            if ($titreExiste) {
+                echo '<script>alert("Un article avec ce titre existe déjà.");</script>';
+            }
+            if ($imageExiste) {
+                echo '<script>alert("Une image avec ce nom existe déjà.");</script>';
+            }
         }
     }
+}
 
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'admin') {
@@ -972,7 +1013,7 @@ function ajoutArticle()
                         <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date_telechargement' pattern='\d{2}/\d{2}/\d{2}' placeholder='jj/mm/aa' required>
                         <br>
                         <label class='w3-text-white'>Sélectionner une image :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' accept='image/*,.heic' required>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' accept='image/webp' required>
                         <br>
                         <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
                     </form>";
@@ -1007,7 +1048,7 @@ function ajoutImageCarousel()
                 <div class='w3-content'>
                     <form class='w3-container' action='' method='POST' enctype='multipart/form-data'>
                         <label class='w3-text-white'>Sélectionner une image :</label>
-                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='fichier' accept='image/*' required>
+                        <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74)' type='file' name='fichier' accept='image/webp' required>
                         <br>
                         <label class='w3-text-white'>Nom du fichier lors du téléchargement (facultatif) :</label>
                         <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_telechargement' pattern='[A-Za-z0-9]+'>
