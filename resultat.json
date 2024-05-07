@@ -1,1 +1,12 @@
-[{"titre":"Jeux m\u00e9diterran\u00e9ens","description":"Aziliz 5\u00e8me individuelle et 3\u00e8me en relais mixte","date":"2023-09-10"}]
+[
+    {
+        "titre": "Jeux m\u00e9diterran\u00e9ens",
+        "description": "Aziliz 5\u00e8me individuelle et 3\u00e8me en relais mixte",
+        "date": "2023-09-10"
+    },
+    {
+        "titre": "TRIATHLE",
+        "description": "Nouvelle m\u00e9daille nationale pour Mathieu CAUDAN associ\u00e9 \u00e0 Axelle De GOUSSENCOURT en relai mixte U22",
+        "date": "2024-05-05"
+    }
+]
