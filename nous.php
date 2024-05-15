@@ -164,7 +164,7 @@ navbar();
             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
               <path />
             </svg>
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+            <img class="card__thumb" src="image/favicon.webp" alt="" />
             <div class="card__header-text">
               <h3 class="card__title">Jean-Louis HELEU</h3>
               <h4 class="card__status">Président</h4>
@@ -185,7 +185,7 @@ navbar();
             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
               <path />
             </svg>
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+            <img class="card__thumb" src="image/favicon.webp" alt="" />
             <div class="card__header-text">
               <h3 class="card__title">Arnaud EVEILLARD</h3>
               <h4 class="card__status">Directeur sportif</h4>
@@ -215,7 +215,7 @@ navbar();
             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
               <path />
             </svg>
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+            <img class="card__thumb" src="image/favicon.webp" alt="" />
             <div class="card__header-text">
               <h3 class="card__title">Daniel BOURQUIN</h3>
               <h4 class="card__status">Course</h4>
@@ -238,7 +238,7 @@ navbar();
             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
               <path />
             </svg>
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+            <img class="card__thumb" src="image/favicon.webp" alt="" />
             <div class="card__header-text">
               <h3 class="card__title">Arnaud EVEILLARD</h3>
               <h4 class="card__status">Pentathlon</h4>
@@ -259,7 +259,7 @@ navbar();
             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
               <path />
             </svg>
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+            <img class="card__thumb" src="image/favicon.webp" alt="" />
             <div class="card__header-text">
               <h3 class="card__title">Julien</br>TERTRAIN</h3>
               <h4 class="card__status">Laser Run</h4>
@@ -280,7 +280,7 @@ navbar();
             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
               <path />
             </svg>
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+            <img class="card__thumb" src="image/favicon.webp" alt="" />
             <div class="card__header-text">
               <h3 class="card__title">Ludmila POZDEJEVA</h3>
               <h4 class="card__status">Escrime</h4>
@@ -301,7 +301,7 @@ navbar();
             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
               <path />
             </svg>
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+            <img class="card__thumb" src="image/favicon.webp" alt="" />
             <div class="card__header-text">
               <h3 class="card__title">Fred</br>GARCIA</h3>
               <h4 class="card__status">Natation</h4>
@@ -330,7 +330,7 @@ navbar();
             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
               <path />
             </svg>
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+            <img class="card__thumb" src="image/favicon.webp" alt="" />
             <div class="card__header-text">
               <h3 class="card__title">Aziliz Naour</h3>
               <h4 class="card__status">U22</h4>
@@ -353,7 +353,7 @@ navbar();
             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
               <path />
             </svg>
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+            <img class="card__thumb" src="image/favicon.webp" alt="" />
             <div class="card__header-text">
               <h3 class="card__title">Arnaud Eveillard</h3>
               <h4 class="card__status">Master</h4>
@@ -374,7 +374,7 @@ navbar();
             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
               <path />
             </svg>
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
+            <img class="card__thumb" src="image/favicon.webp" alt="" />
             <div class="card__header-text">
               <h3 class="card__title">Mathieu Caudan</h3>
               <h4 class="card__status">U22</h4>
