@@ -16,7 +16,7 @@ function entete()
         <link rel='stylesheet' href='style/global.css'> <!-- Ajout de la référence au fichier CSS -->
         <link rel='stylesheet' href='style/footer.css'> <!-- Ajout de la référence au fichier CSS -->
         <link rel='stylesheet' href='style/navbar.css'> <!-- Ajout de la référence au fichier CSS -->
-        <link rel='shortcut icon' href='image/favicon.png'>
+        <link rel='shortcut icon' href='image/favicon.webp'>
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'></script>
 
      </head>";
@@ -85,7 +85,7 @@ function navbar()
 {
     echo "
     <div class='navbarcontainer' style='background-color: rgb(32,47,74); color: white; text-align: center; padding: 10px;'>
-    <img id='logoclub' class= 'logoclub' src='image/logo_cjf.png'>    
+    <img id='logoclub' class= 'logoclub' src='image/logo_cjf.webp'>    
         <h1>CJF PENTATHLON MODERNE</h1>
         <a href='https://www.instagram.com/cjf_pentathlonmoderne/' target='_blank'><img id='insta' class= 'insta' src='image/logo_insta.webp' alt='Instagram'></a>
         <a href='https://www.facebook.com/profile.php?id=100085812112831' target='_blank'><img id='facebook' class= 'facebook' src='image/logo_facebook.webp' alt='Facebook'></a>
@@ -290,7 +290,7 @@ function ajoutGalerie()
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='nom_image' required><br>
                         
                     <label class='w3-text-white' for='image'>Sélectionnez une image :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/webp, image/jpeg, image/png' required><br>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='image' accept='image/webp, image/webp, image/webp' required><br>
                         
                     <button type='submit'>Envoyer</button>
                 </form>";
@@ -1037,7 +1037,7 @@ function ajoutArticle()
                     <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='text' name='date_telechargement' pattern='\d{2}/\d{2}/\d{2}' placeholder='jj/mm/aa' required>
                     <br>
                     <label class='w3-text-white'>Sélectionner une image :</label>
-                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' accept='image/webp, image/jpeg, image/png' required>
+                    <input class='w3-input w3-border' style='background-color: rgb(32, 47, 74); color: white;' type='file' name='img' accept='image/webp, image/webp, image/webp' required>
                     <br>
                     <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='partage'>
                 </form>";
