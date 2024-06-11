@@ -1,62 +1,68 @@
 [
-  {
-    "titre": "Championnat du monde de Laser Run 2022",
-    "image": "mondeLisbonne.webp",
-    "description": "Championnat du monde de Laser Run 2022 \u00e0 Lisbonne",
-    "date": "25/09/22"
-  },
-  {
-    "titre": "Aziliz Naour",
-    "image": "Aziliznaour.webp",
-    "description": "Aziliz Naour 3\u00e8me au championnat de france de Tetrathlon u22",
-    "date": "28/04/23"
-  },
-  {
-    "titre": "Championnat de France de Triathl\u00e9",
-    "image": "Triathl\u00e9.webp",
-    "description": "Championnat de France de Triathl\u00e9 2023 \u00e0 l'INSEP",
-    "date": "03/06/23"
-  },
-  {
-    "titre": "Championnat de France Laser RUN",
-    "image": "FranceLR.webp",
-    "description": "Championnat de France de Laser Run 2023 \u00e0 Salanque",
-    "date": "24/06/23"
-  },
-  {
-    "titre": "Championnat du Monde de Laser RUN",
-    "image": "MondeBathLR.webp",
-    "description": "Championnat du monde de Laser Run 2023 \u00e0 Bath",
-    "date": "21/08/23"
-  },
-  {
-    "titre": "Pr\u00e9sentation d'Axelle de GOUSSENCOURT",
-    "image": "axelledegoussencourt.webp",
-    "description": "Une nouvelle pentathl\u00e8te au club",
-    "date": "27/10/23"
-  },
-  {
-    "titre": "LASER RUN D'HALOWEEN",
-    "image": "laserrunhaloween.webp",
-    "description": "1\u00e8re comp\u00e9tition de l'ann\u00e9e \u00e0 Saint-malo",
-    "date": "28/10/23"
-  },
-  {
-    "titre": "Championnats de France de PENTATHLON MODERNE",
-    "image": "FRANCEPENTA.webp",
-    "description": "Aziliz termine 7\u00e8me des championnats de France 2023",
-    "date": "15/12/23"
-  },
-  {
-    "titre": "Circuit National U17",
-    "image": "circuit.webp",
-    "description": "Le CJF a organis\u00e9 son premier circuit national",
-    "date": "20/01/24"
-  },
-  {
-    "titre": "Championnats de France de triathle Saint-Cyprien 2024",
-    "image": "TRIATHLE.webp",
-    "description": "10 repr\u00e9sentants du CjF Saint-Malo au Championnat de France",
-    "date": "04/05/24"
-  }
+    {
+        "titre": "Championnat du monde de Laser Run 2022",
+        "image": "mondeLisbonne.webp",
+        "description": "Championnat du monde de Laser Run 2022 \u00e0 Lisbonne",
+        "date": "25\/09\/22"
+    },
+    {
+        "titre": "Aziliz Naour",
+        "image": "Aziliznaour.webp",
+        "description": "Aziliz Naour 3\u00e8me au championnat de france de Tetrathlon u22",
+        "date": "28\/04\/23"
+    },
+    {
+        "titre": "Championnat de France de Triathl\u00e9",
+        "image": "Triathl\u00e9.webp",
+        "description": "Championnat de France de Triathl\u00e9 2023 \u00e0 l'INSEP",
+        "date": "03\/06\/23"
+    },
+    {
+        "titre": "Championnat de France Laser RUN",
+        "image": "FranceLR.webp",
+        "description": "Championnat de France de Laser Run 2023 \u00e0 Salanque",
+        "date": "24\/06\/23"
+    },
+    {
+        "titre": "Championnat du Monde de Laser RUN",
+        "image": "MondeBathLR.webp",
+        "description": "Championnat du monde de Laser Run 2023 \u00e0 Bath",
+        "date": "21\/08\/23"
+    },
+    {
+        "titre": "Pr\u00e9sentation d'Axelle de GOUSSENCOURT",
+        "image": "axelledegoussencourt.webp",
+        "description": "Une nouvelle pentathl\u00e8te au club",
+        "date": "27\/10\/23"
+    },
+    {
+        "titre": "LASER RUN D'HALOWEEN",
+        "image": "laserrunhaloween.webp",
+        "description": "1\u00e8re comp\u00e9tition de l'ann\u00e9e \u00e0 Saint-malo",
+        "date": "28\/10\/23"
+    },
+    {
+        "titre": "Championnats de France de PENTATHLON MODERNE",
+        "image": "FRANCEPENTA.webp",
+        "description": "Aziliz termine 7\u00e8me des championnats de France 2023",
+        "date": "15\/12\/23"
+    },
+    {
+        "titre": "Circuit National U17",
+        "image": "circuit.webp",
+        "description": "Le CJF a organis\u00e9 son premier circuit national",
+        "date": "20\/01\/24"
+    },
+    {
+        "titre": "Championnats de France de triathle Saint-Cyprien 2024",
+        "image": "TRIATHLE.webp",
+        "description": "10 repr\u00e9sentants du CjF Saint-Malo au Championnat de France",
+        "date": "04\/05\/24"
+    },
+    {
+        "titre": "FRANCE UNSS 2024  - Coulommiers",
+        "image": "UNSS2024.webp",
+        "description": "L'AS du coll\u00e8ge LeBocage participe \u00e0 son deuxi\u00e8me Championnat de France",
+        "date": "22\/05\/24"
+    }
 ]
