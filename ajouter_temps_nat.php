@@ -111,7 +111,9 @@ if (isset($_SESSION['role'])) {
                     });
 
                     // Récupérer les points du leader de la catégorie
-                    $leader_points = $athletes[0]['points_nat']; // Le leader est le premier athlète dans le tableau trié
+                    if (isset($athletes[0]['points_nat'])) {
+                        $leader_points = $athletes[0]['points_nat']; // Le leader est le premier athlète dans le tableau trié
+                    }
                     // Calculer la différence de points avec le leader pour chaque athlète
                     foreach ($athletes as &$athlete) {
                         if (isset($athlete['points_nat'])) {
