@@ -1,9 +1,1 @@
-{
-  "athletes": [
-    { "nom": "Mathieu CAUDAN", "club": "CJF Saint-Malo" },
-    { "nom": "Aziliz NAOUR", "club": "CJF Saint-Malo" },
-    { "nom": "Arnaud EVEILLARD", "club": "CJF Saint-Malo" },
-    { "nom": "Julien TERTRAIN", "club": "CJF Saint-Malo" },
-    { "nom": "Gurvan LE MAZOU", "club": "CJF Saint-Malo" }
-  ]
-}
+{"athletes":[{"nom":"Mathieu CAUDAN","club":"CJF Saint-Malo"},{"nom":"Aziliz NAOUR","club":"CJF Saint-Malo"},{"nom":"Arnaud EVEILLARD","club":"CJF Saint-Malo"},{"nom":"Julien TERTRAIN","club":"CJF Saint-Malo"},{"nom":"Gurvan LE MAZOU","club":"CJF Saint-Malo"},{"nom":"Philippe DELAMARRE","club":"CJF Saint-Malo"},{"nom":"Arnaud DAULY","club":"CJF Saint-Malo"}]}
