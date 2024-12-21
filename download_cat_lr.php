@@ -29,7 +29,8 @@ th {
 }
 </style>";
 if (isset($_GET['title']) && isset($_GET['file'])) {
-    $titre = isset($_GET['title']) ? $_GET['title'] : "Résultats Natation"; // Titre par défaut si non spécifié dans l'URL
+    $titre = isset($_GET['title']) ? $_GET['title'] : "Résultats Natation";
+    $titredoc = isset($_GET['titledoc']) ? $_GET['titledoc'] : "Résultats Natation";// Titre par défaut si non spécifié dans l'URL
     $fileName = isset($_GET['file']) ? $_GET['file'] : ""; // Nom du fichier JSON
     $categorie = isset($_GET['cat']) ? $_GET['cat'] : ""; // Catégorie à Télécharger
 
