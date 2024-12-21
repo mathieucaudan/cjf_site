@@ -142,7 +142,8 @@ if (isset($_SESSION['role'])) {
         </center>
         <h3><?php echo $categorie; ?></h3>
         <center>
-            <?php $title = 'Résultat Triathlé ' . $nom_competition . " " . $categorie;
+            <?php $title = 'Résultat Triathlé ' . $nom_competition ;
+                $title_doc = 'Résultat Triathlé ' . $nom_competition . " " . $categorie;
                 echo "<a class='w3-button' href='download_cat_lr.php?file=$fileName&title=$title&cat=$categorie' target='_blank'>Télécharger cette catégorie</a>"; ?>
             <table style='width: 90%;' border="1">
                 <tr>
