@@ -69,41 +69,48 @@ if (isset($_SESSION['role'])) {
     
         // Ajouter le temps de laser run à l'athlète correspondant
         foreach ($athletes_data as $categorie => &$athletes) {
-            foreach ($athletes as &$athlete) {
-                $base_pts_lr = 500; // Base de points pour le laser run
-    
-                if ($athlete['nom'] === $nom_athlete) {
-                    if ($temps_lr == 'dnf') {
-                        $athlete['temps_laser_run'] = 'dnf';
-                        $points_lr = 0;
-                    } else if ($temps_lr == 'dns') {
-                        $athlete['temps_laser_run'] = 'dns';
-                        $points_lr = 0;
-                    } else {
-                        $athlete['temps_laser_run'] = $temps_lr;
-    
-                        // Calcul du temps en secondes à partir du temps formaté
-                        list($minutes, $secondes) = explode("'", $temps_lr);
-                        $seconde_lr = ($minutes * 60) + $secondes;
-    
-                        // Ajuster le temps de laser run en fonction de la différence de points au leader
-                        $temps_retard = $athlete['diff_points_leader'];
-                        if ($temps_retard > 90) {
-                            $temps_retard = 90; // Limiter à 90 secondes maximum
-                        }
-                        $seconde_lr -= $temps_retard;
-    
-                        // Calculer les points pour le temps ajusté
-                        $tmp_lr = $categories[$categorie]['lr'];
-                        $points_lr = $base_pts_lr - ($seconde_lr - intval($tmp_lr));
-                    }
-    
-                    // Mettre à jour les données de l'athlète
-                    $athlete['points_lr'] = max($points_lr, 0); // Éviter les points négatifs
-                    $athlete['total'] = $athlete['points_lr'] + $athlete['points_nat'];
+    foreach ($athletes as &$athlete) {
+        $base_pts_lr = 500; // Base de points pour le laser run
+
+        if ($athlete['nom'] === $nom_athlete) {
+            if ($temps_lr == 'dnf') {
+                $athlete['temps_laser_run'] = 'dnf';
+                $points_lr = 0;
+            } else if ($temps_lr == 'dns') {
+                $athlete['temps_laser_run'] = 'dns';
+                $points_lr = 0;
+            } else {
+                // Stocker le temps original dans une variable temporaire
+                $temps_original = $temps_lr;
+
+                // Convertir le temps en secondes à partir du format "MM'SS"
+                list($minutes, $secondes) = explode("'", $temps_lr);
+                $seconde_lr = ($minutes * 60) + $secondes;
+
+                // Ajuster le temps de laser run en fonction de la différence de points au leader
+                $temps_retard = $athlete['diff_points_leader'];
+                if ($temps_retard > 90) {
+                    $temps_retard = 90; // Limiter à 90 secondes maximum
                 }
+                $seconde_lr -= $temps_retard;
+
+                // Convertir le temps ajusté en format "MM'SS"
+                $minutes_ajuste = floor($seconde_lr / 60);
+                $secondes_ajuste = $seconde_lr % 60;
+                $athlete['temps_laser_run'] = sprintf("%d'%02d", $minutes_ajuste, $secondes_ajuste);
+
+                // Calculer les points pour le temps ajusté
+                $tmp_lr = $categories[$categorie]['lr'];
+                $points_lr = $base_pts_lr - ($seconde_lr - intval($tmp_lr));
             }
+
+            // Mettre à jour les données de l'athlète
+            $athlete['points_lr'] = max($points_lr, 0); // Éviter les points négatifs
+            $athlete['total'] = $athlete['points_lr'] + $athlete['points_nat'];
         }
+    }
+}
+
     
 
             foreach ($athletes_data as $categorie => &$athletes) {
