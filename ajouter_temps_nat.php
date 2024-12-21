@@ -176,7 +176,25 @@ if (isset($_SESSION['role'])) {
                         <td><?php echo $athlete['club']; ?></td>
                         <td><?php echo isset($athlete['temps_natation']) ? $athlete['temps_natation'] : ''; ?></td>
                         <td><?php echo isset($athlete['points_nat']) ? $athlete['points_nat'] : ''; ?></td>
-                        <td><?php echo isset($athlete['diff_points_leader']) ? $athlete['diff_points_leader'] : ''; ?></td>
+                        <td>
+                            <?php
+                            if (isset($athlete['diff_points_leader'])) {
+                                $diff_points_leader = $athlete['diff_points_leader'];
+                        
+                                if ($diff_points_leader > 90) {
+                                    $additional_seconds = $diff_points_leader - 90; // Temps restant au-delà de 90 secondes
+                                    echo "1'30 (+$additional_seconds)";
+                                } else {
+                                    $minutes = floor($diff_points_leader / 60);
+                                    $seconds = $diff_points_leader % 60;
+                                    echo sprintf("%d'%02d", $minutes, $seconds); // Format MM'SS
+                                }
+                            } else {
+                                echo ''; // Pas de valeur à afficher
+                            }
+                            ?>
+                        </td>
+
                         <td>
                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?competition={$nom_competition}"; ?>">
                                 <input type="text" name="temps_natation" value="<?php echo isset($athlete['temps_natation']) ? $athlete['temps_natation'] : ''; ?>" pattern="[0-9]{1,2}'[0-5][0-9]''[0-9][0-9]" required>
