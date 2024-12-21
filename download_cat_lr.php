@@ -94,7 +94,7 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
     $dompdf->render();
 
     // Nom du fichier PDF à télécharger
-    $filename = $titre . '.pdf';
+    $filename = $titredoc . '.pdf';
 
     // Télécharger le fichier PDF
     header('Content-Type: application/pdf');
