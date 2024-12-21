@@ -67,7 +67,23 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
                     echo '<td>' . $athlete['club'] . '</td>';
                     echo '<td>' . (isset($athlete['temps_natation']) ? $athlete['temps_natation'] : '') . '</td>';
                     echo '<td>' . (isset($athlete['points_nat']) ? $athlete['points_nat'] : '') . '</td>';
-                    echo '<td>' . (isset($athlete['diff_points_leader']) ? $athlete['diff_points_leader'] : '') . '</td>';
+                   echo '<td>';
+                    if (isset($athlete['diff_points_leader'])) {
+                        $diff_points_leader = $athlete['diff_points_leader'];
+                    
+                        if ($diff_points_leader > 90) {
+                            $additional_seconds = $diff_points_leader - 90; // Temps restant au-delà de 90 secondes
+                            echo "1'30 (+$additional_seconds)";
+                        } else {
+                            $minutes = floor($diff_points_leader / 60);
+                            $seconds = $diff_points_leader % 60;
+                            echo sprintf("%d'%02d", $minutes, $seconds); // Format MM'SS
+                        }
+                    } else {
+                        echo ''; // Pas de valeur à afficher
+                    }
+                    echo '</td>';
+
                     echo '</tr>';
                 }
                 echo '</table>';
