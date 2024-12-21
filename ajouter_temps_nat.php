@@ -159,8 +159,9 @@ if (isset($_SESSION['role'])) {
         </center>
         <h3><?php echo $categorie; ?></h3>
         <center>
-            <?php $title = 'Résultat Natation ' . $nom_competition . " " . $categorie;
-                echo "<a class='w3-button' href='download_cat_nat.php?file=$fileName&title=$title&cat=$categorie' target='_blank'>Télécharger cette catégorie</a>"; ?>
+            <?php $title = 'Résultat Natation ' . $nom_competition ;
+                $titledoc = 'Résultat Natation ' . $nom_competition . " " . $categorie;
+                echo "<a class='w3-button' href='download_cat_nat.php?file=$fileName&title=$title&titledoc=$titledoc&cat=$categorie' target='_blank'>Télécharger cette catégorie</a>"; ?>
             <table style='width: 90%;' border='1'>
                 <tr>
                     <th>Nom</th>
