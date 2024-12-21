@@ -187,7 +187,7 @@ if (isset($_SESSION['role'])) {
 
 
         <?php
-        $title = 'Résultat triathlé lollllllll ' . $nom_competition;
+        $title = 'Résultat triathlé ' . $nom_competition;
 
         echo "<a class='w3-button' href='resultats.php?title=$title&file=$fileName'>Résultats</a></br>";
         echo "<a class='w3-button' href='download_lr.php?file=$fileName&title=$title' target='_blank'>Télécharger en PDF</a></br>";
