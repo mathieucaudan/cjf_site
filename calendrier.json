@@ -19,7 +19,8 @@
     },
     "2024-01": {
         "20": "Circuit n\u00b02 u17 - Dinard\/Saint-Malo",
-        "21": "Circuit n\u00b02 u17 - Dinard\/Saint-Malo"
+        "21": "Circuit n\u00b02 u17 - Dinard\/Saint-Malo",
+        "19": "Triathle \u00e0 l'INSEP"
     },
     "2024-02": {
         "3": "Circuit 19\/U22 2 \u00e0 Antony\/VGA",
@@ -69,5 +70,8 @@
     },
     "2024-12": {
         "21": "TRIATHLE DE NOEL"
+    },
+    "2025-01": {
+        "18": "Circuit National U19\/U22  \u00e0 l'INSEP"
     }
 }
