@@ -110,4 +110,8 @@
 2024-12-21 12:29:11 - Utilisateur: mathieu - Adresse IP: 85.190.234.136
 2024-12-21 14:44:03 - Utilisateur: mathieu - Adresse IP: 2a02:8440:7152:8823:504d:4306:763:d638
 2024-12-26 22:18:08 - Utilisateur: mathieu - Adresse IP: 2a02:8440:7158:5c0d:b0aa:79b3:acf0:2c04
+<<<<<<< HEAD
 2025-01-02 19:58:35 - Utilisateur: mathieu - Adresse IP: 127.0.0.1
+=======
+2025-01-02 19:50:40 - Utilisateur: mathieu - Adresse IP: 85.190.234.141
+>>>>>>> 7d0fcd9e91b0d6de81a911a12d92a401950dbf92
