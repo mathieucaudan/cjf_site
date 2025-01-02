@@ -107,17 +107,31 @@ $data = json_decode($jsonData, true);
       <h2>Derniers résultats/infos</h2>
       <div>
         <?php
+        // Inverser les données pour afficher les plus récentes en premier
         $reversedData = array_reverse($data);
 
         foreach ($reversedData as $result) {
           echo "<h1>{$result['titre']}</h1>
-        <p>{$result['description']}</p>
-        <div>{$result['date']}</div>
-        <hr>";
+                  <p>{$result['description']}</p>
+                  <div>{$result['date']}</div>";
+
+          // Vérifier et afficher une URL si elle est présente
+          if (!empty($result['url'])) {
+            echo "<div><a href='{$result['url']}' target='_blank'>Voir plus</a></div>";
+          }
+
+          // Vérifier et afficher un lien pour ouvrir le PDF dans un nouvel onglet
+          if (!empty($result['pdf'])) {
+            echo "<div><a href='{$result['pdf']}' target='_blank'>Voir le PDF</a></div>";
+          }
+
+          echo "<hr>";
         }
         ?>
       </div>
     </div>
+
+
     <script>
       // Appeler la fonction pour démarrer le slider automatique
       startSlider();

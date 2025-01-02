@@ -1244,14 +1244,29 @@ function ajoutEvenement()
 function ajoutResultat()
 {
     $dossierJson = './resultat.json';
-
+    $dossierPdf = './info_pdf/';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['description'])) {
         // Récupérer les données du formulaire
         $titre = $_POST['titre'];
         $date = $_POST['date']; // La date est au format AAAA-MM-JJ
         $description = $_POST['description'];
+        $url = isset($_POST['url']) ? $_POST['url'] : null;
+        $pdfPath = null;
 
+        // Vérifier si un fichier PDF a été téléchargé
+        if (!empty($_FILES['pdf']['name'])) {
+            $pdfFileName = basename($_FILES['pdf']['name']);
+            $targetPath = $dossierPdf . $pdfFileName;
+
+            // Déplacer le fichier vers le dossier cible
+            if (move_uploaded_file($_FILES['pdf']['tmp_name'], $targetPath)) {
+                $pdfPath = $targetPath;
+            } else {
+                echo "<p>Erreur lors du téléchargement du fichier PDF.</p>";
+                return;
+            }
+        }
 
         // Charger le contenu actuel du fichier JSON
         $data = [];
@@ -1260,52 +1275,51 @@ function ajoutResultat()
             $data = json_decode($jsonContent, true);
         }
 
-
+        // Ajouter le nouvel article
+        $nouvelArticle = array(
+            "titre" => $titre,
+            "description" => $description,
+            "date" => $date,
+            "url" => $url,
+            "pdf" => $pdfPath
+        );
+        $data[] = $nouvelArticle;
 
         // Sauvegarder le tableau mis à jour dans le fichier JSON
-        if (file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT))) {
-            $data = json_decode(file_get_contents($dossierJson), true);
-            $titre = $_POST['titre'];
-            $description = $_POST['description'];
-            $date = $_POST['date'];
-
-            // Sauvegardez le tableau mis à jour dans le fichier JSON
-            $nouvelArticle = array(
-                "titre" => $titre,
-                "description" => $description,
-                "date" => $date
-            );
-
-            $data[] = $nouvelArticle;
-            file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
-        }
+        file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
     }
-    if (isset($_SESSION['role'])) {
-        if ($_SESSION['role'] == 'admin') {
-            echo "
-            <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-                <div class='w3-content'>
-                    <form method='POST' enctype='multipart/form-data'>
 
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+        echo "
+        <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+            <div class='w3-content'>
+                <form method='POST' enctype='multipart/form-data'>
                     <label for='titre'>Titre:</label>
                     <input class='w3-input w3-padding-16 w3-border' type='text' name='titre' required><br>
 
                     <label for='date'>Date de l'événement:</label>
                     <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "' required><br>
 
-                    <label for='evenement'>Description:</label>
+                    <label for='description'>Description:</label>
                     <input class='w3-input w3-padding-16 w3-border' type='text' name='description' required /><br>
 
+                    <label for='url'>URL (optionnel, si aucun PDF):</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='url' name='url' /><br>
+
+                    <label for='pdf'>Télécharger un PDF (optionnel, si aucune URL):</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='file' name='pdf' accept='application/pdf' /><br>
+
                     <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
-                    </form>
-                </div>
-            </div>";
-        }
+                </form>
+            </div>
+        </div>";
     }
 }
+
 function suppResultat()
 {
     $dossierJson = './resultat.json';
+    $dossierPdf = './info_pdf/';
 
     // Charger le contenu actuel du fichier JSON
     $data = [];
@@ -1320,13 +1334,22 @@ function suppResultat()
                 $articlesJson = file_get_contents($dossierJson);
                 $articles = json_decode($articlesJson, true);
                 $resultat = $_GET['fichier'];
+
                 foreach ($articles as $key => $article) {
-                    if ($article['titre'] == $resultat) { // Utilisez le nom de l'image avec extensions pour la comparaison
+                    if ($article['titre'] == $resultat) {
+                        // Supprimer le PDF du dossier si présent
+                        if (!empty($article['pdf']) && file_exists($article['pdf'])) {
+                            unlink($article['pdf']); // Supprimer le fichier PDF
+                        }
+
+                        // Supprimer l'article du tableau
                         unset($articles[$key]);
                         break;
                     }
                 }
-                file_put_contents($dossierJson, json_encode(array_values($articles)));
+
+                // Sauvegarder les modifications dans le fichier JSON
+                file_put_contents($dossierJson, json_encode(array_values($articles), JSON_PRETTY_PRINT));
             }
         }
     }
@@ -1350,6 +1373,7 @@ function suppResultat()
     echo "</div>
     </div>";
 }
+
 function suppEvenement()
 {
     $dossierJson = './resultat.json';
