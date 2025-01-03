@@ -106,34 +106,41 @@ $data = json_decode($jsonData, true);
     <div class="w3-container w3-third w3-center">
       <h2>Derniers résultats/infos</h2>
         <div>
-            <?php
-            // Inverser les données pour afficher les plus récentes en premier
-            $reversedData = array_reverse($data);
+    <?php
+    // Inverser les données pour afficher les plus récentes en premier
+    $reversedData = array_reverse($data);
+
+    foreach ($reversedData as $result) {
+        // Vérifier si la date est présente, sinon ne pas l'afficher
+        $date = !empty($result['date']) ? $result['date'] : '';
         
-            foreach ($reversedData as $result) {
-                echo "<h1>{$result['titre']}</h1>
-                      <p>{$result['description']}</p>
-                      <div>{$result['date']}</div>";
-        
-                // Vérifier et afficher une URL si elle est présente
-                if (!empty($result['url'])) {
-                    echo "<div><a href='{$result['url']}' target='_blank'>Voir plus</a></div>";
-                }
-        
-                // Vérifier si un PDF est présent et afficher un lien pour l'ouvrir
-                if (!empty($result['pdf'])) {
-                    echo "<div><a href='{$result['pdf']}' target='_blank'>Voir le PDF</a></div>";
-                }
-        
-                // Vérifier si une image est présente et l'afficher avec un style similaire à celui des articles
-                if (!empty($result['image']) && file_exists($result['image'])) {
-                    echo "<div><img src='{$result['image']}' alt='Image' class='titre-img' style='max-width: 100%; height: auto;'></div>";
-                }
-        
-                echo "<hr>";
-            }
-            ?>
-        </div>
+        echo "<h1>{$result['titre']}</h1>
+              <p>{$result['description']}</p>
+              <div>{$date}</div>";
+
+        // Vérifier et afficher une URL si elle est présente
+        if (!empty($result['url'])) {
+            echo "<div><a href='{$result['url']}' target='_blank'>Voir plus</a></div>";
+        }
+
+        // Vérifier si un PDF est présent et afficher un lien pour l'ouvrir
+        if (!empty($result['pdf'])) {
+            echo "<div><a href='{$result['pdf']}' target='_blank'>Voir le PDF</a></div>";
+        }
+
+        // Vérifier si une image est présente et l'afficher avec un style similaire à celui des articles
+        if (!empty($result['image']) && file_exists($result['image'])) {
+            echo "<div><img src='{$result['image']}' alt='Image' class='titre-img' style='max-width: 100%; height: auto;'></div>";
+        } else {
+            // Afficher une image par défaut si l'image n'existe pas
+            echo "<div><img src='path/to/default-image.jpg' alt='Image par défaut' class='titre-img' style='max-width: 100%; height: auto;'></div>";
+        }
+
+        echo "<hr>";
+    }
+    ?>
+</div>
+
 
     </div>
 
