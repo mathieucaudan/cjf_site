@@ -1310,16 +1310,17 @@ function ajoutResultat()
     $dossierPdf = './info_pdf/';
     $dossierImage = './info_images/';
 
-    // Vérifier si le formulaire soumis contient le token spécifique
+    // Initialiser les variables avec une valeur vide
+    $titre = $date = $description = $url = $pdfPath = $imagePath = null;
+
+    // Vérifier si le formulaire est soumis et contient le token spécifique
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form_token']) && $_POST['form_token'] === 'unique_form_token_value') {
-        
+
         // Récupérer les données du formulaire, avec une gestion des valeurs par défaut
         $titre = isset($_POST['titre']) ? $_POST['titre'] : null;
         $date = isset($_POST['date']) ? $_POST['date'] : null; // La date est au format AAAA-MM-JJ
         $description = isset($_POST['description']) ? $_POST['description'] : null;
         $url = isset($_POST['url']) ? $_POST['url'] : null;
-        $pdfPath = null;
-        $imagePath = null;
 
         // Vérifier si un fichier PDF a été téléchargé
         if (!empty($_FILES['pdf']['name'])) {
@@ -1370,11 +1371,10 @@ function ajoutResultat()
 
             // Sauvegarder le tableau mis à jour dans le fichier JSON
             file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
-        } else {
-            echo "<p>Veuillez remplir les champs obligatoires (titre, date, description).</p>";
         }
     }
 
+    // Si l'utilisateur est administrateur, afficher le formulaire
     if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
         echo "
         <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
@@ -1383,16 +1383,16 @@ function ajoutResultat()
                     <input type='hidden' name='form_token' value='unique_form_token_value'>
                     
                     <label for='titre'>Titre:</label>
-                    <input class='w3-input w3-padding-16 w3-border' type='text' name='titre'><br>
+                    <input class='w3-input w3-padding-16 w3-border' type='text' name='titre' value='$titre'><br>
 
                     <label for='date'>Date de l'événement:</label>
-                    <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "'><br>
+                    <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . ($date ?: date('Y-m-d')) . "'><br>
 
                     <label for='description'>Description:</label>
-                    <input class='w3-input w3-padding-16 w3-border' type='text' name='description' /><br>
+                    <input class='w3-input w3-padding-16 w3-border' type='text' name='description' value='$description'/><br>
 
                     <label for='url'>URL (optionnel, si aucun PDF):</label>
-                    <input class='w3-input w3-padding-16 w3-border' type='url' name='url' /><br>
+                    <input class='w3-input w3-padding-16 w3-border' type='url' name='url' value='$url'/><br>
 
                     <label for='pdf'>Télécharger un PDF (optionnel, si aucune URL):</label>
                     <input class='w3-input w3-padding-16 w3-border' type='file' name='pdf' accept='application/pdf' /><br>
@@ -1404,9 +1404,13 @@ function ajoutResultat()
                 </form>
             </div>
         </div>";
+
+        // Si un champ obligatoire est vide, afficher un message
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && (!$titre || !$date || !$description)) {
+            echo "<p style='color: red;'>Veuillez remplir tous les champs obligatoires (titre, date, description).</p>";
+        }
     }
 }
-
 
 function suppEvenement()
 {
