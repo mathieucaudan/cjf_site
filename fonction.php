@@ -1308,20 +1308,28 @@ function ajoutResultat()
     $dossierJson = './resultat.json';
     $dossierPdf = './info_pdf/';
     $dossierImage = './info_images/';
-    if ($_SERVER['REQUEST_METHOD'] === 'POST')  {
-        // Initialiser les variables avec une valeur vide ou null
+
+    // Initialiser les variables avec une valeur par défaut
+    $titre = '';
+    $date = date('Y-m-d'); // Valeur par défaut pour la date
+    $description = '';
+    $url = '';
+
+    // Vérifier si la méthode de la requête est POST
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Mettre à jour les variables avec les valeurs du formulaire si elles existent
         $titre = isset($_POST['titre']) ? $_POST['titre'] : '';
-        $date = isset($_POST['date']) ? $_POST['date'] : '';
+        $date = isset($_POST['date']) ? $_POST['date'] : date('Y-m-d');
         $description = isset($_POST['description']) ? $_POST['description'] : '';
         $url = isset($_POST['url']) ? $_POST['url'] : '';
         $pdfPath = null;
         $imagePath = null;
-    
+
         // Vérifier si un fichier PDF a été téléchargé
         if (!empty($_FILES['pdf']['name'])) {
             $pdfFileName = basename($_FILES['pdf']['name']);
             $targetPdfPath = $dossierPdf . $pdfFileName;
-    
+
             // Déplacer le fichier PDF vers le dossier cible
             if (move_uploaded_file($_FILES['pdf']['tmp_name'], $targetPdfPath)) {
                 $pdfPath = $targetPdfPath;
@@ -1329,12 +1337,12 @@ function ajoutResultat()
                 echo "<p>Erreur lors du téléchargement du fichier PDF.</p>";
             }
         }
-    
+
         // Vérifier si une image a été téléchargée
         if (!empty($_FILES['image']['name'])) {
             $imageFileName = basename($_FILES['image']['name']);
             $targetImagePath = $dossierImage . uniqid() . '_' . $imageFileName; // Ajouter un identifiant unique au nom de l'image
-    
+
             // Déplacer le fichier image vers le dossier cible
             if (move_uploaded_file($_FILES['image']['tmp_name'], $targetImagePath)) {
                 $imagePath = $targetImagePath;
@@ -1342,15 +1350,15 @@ function ajoutResultat()
                 echo "<p>Erreur lors du téléchargement de l'image.</p>";
             }
         }
-    
+
         // Charger le contenu actuel du fichier JSON
         $data = [];
         if (file_exists($dossierJson)) {
             $jsonContent = file_get_contents($dossierJson);
             $data = json_decode($jsonContent, true);
         }
-    
-        // Si titre et description sont vides, ne pas ajouter la date
+
+        // Créer un nouvel article avec les données soumises
         $nouvelArticle = array(
             "titre" => $titre,
             "description" => $description,
@@ -1358,18 +1366,27 @@ function ajoutResultat()
             "pdf" => $pdfPath ? $pdfPath : null, // Si aucun PDF n'est téléchargé, mettre null
             "image" => $imagePath ? $imagePath : null // Si aucune image n'est téléchargée, mettre null
         );
-    
+
         // Ajouter la date uniquement si le titre ou la description sont renseignés
         if (!empty($titre) || !empty($description)) {
             $nouvelArticle['date'] = $date ?: date('Y-m-d');
         }
-    
-        // Ajouter l'article à la liste
-        $data[] = $nouvelArticle;
-    
-        // Sauvegarder le tableau mis à jour dans le fichier JSON
-        file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
+
+        // Ajouter l'article seulement si le titre ou la description ne sont pas vides
+        if (!empty($titre) || !empty($description) || !empty($url) || $pdfPath || $imagePath) {
+            // Ajouter un ID unique à l'article pour l'identification
+            $nouvelArticle['id'] = uniqid();
+
+            // Ajouter l'article à la liste
+            $data[] = $nouvelArticle;
+
+            // Sauvegarder les données mises à jour dans le fichier JSON
+            file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
+        } else {
+            echo "<p>Veuillez remplir au moins un champ obligatoire (titre, description, URL, ou télécharger un fichier).</p>";
+        }
     }
+
     // Si l'utilisateur est administrateur, afficher le formulaire
     if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
         echo "
