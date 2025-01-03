@@ -1310,11 +1310,13 @@ function ajoutResultat()
     $dossierPdf = './info_pdf/';
     $dossierImage = './info_images/';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['description'])) {
-        // Récupérer les données du formulaire
-        $titre = $_POST['titre'];
-        $date = $_POST['date']; // La date est au format AAAA-MM-JJ
-        $description = $_POST['description'];
+    // Vérifier si le formulaire soumis contient le token spécifique
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form_token']) && $_POST['form_token'] === 'unique_form_token_value') {
+        
+        // Récupérer les données du formulaire, avec une gestion des valeurs par défaut
+        $titre = isset($_POST['titre']) ? $_POST['titre'] : null;
+        $date = isset($_POST['date']) ? $_POST['date'] : null; // La date est au format AAAA-MM-JJ
+        $description = isset($_POST['description']) ? $_POST['description'] : null;
         $url = isset($_POST['url']) ? $_POST['url'] : null;
         $pdfPath = null;
         $imagePath = null;
@@ -1354,19 +1356,23 @@ function ajoutResultat()
             $data = json_decode($jsonContent, true);
         }
 
-        // Ajouter le nouvel article
-        $nouvelArticle = array(
-            "titre" => $titre,
-            "description" => $description,
-            "date" => $date,
-            "url" => $url,
-            "pdf" => $pdfPath,
-            "image" => $imagePath
-        );
-        $data[] = $nouvelArticle;
+        // Ajouter le nouvel article si les données nécessaires sont présentes
+        if ($titre && $date && $description) {
+            $nouvelArticle = array(
+                "titre" => $titre,
+                "description" => $description,
+                "date" => $date,
+                "url" => $url,
+                "pdf" => $pdfPath,
+                "image" => $imagePath
+            );
+            $data[] = $nouvelArticle;
 
-        // Sauvegarder le tableau mis à jour dans le fichier JSON
-        file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
+            // Sauvegarder le tableau mis à jour dans le fichier JSON
+            file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
+        } else {
+            echo "<p>Veuillez remplir les champs obligatoires (titre, date, description).</p>";
+        }
     }
 
     if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
@@ -1374,14 +1380,16 @@ function ajoutResultat()
         <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
             <div class='w3-content'>
                 <form method='POST' enctype='multipart/form-data'>
+                    <input type='hidden' name='form_token' value='unique_form_token_value'>
+                    
                     <label for='titre'>Titre:</label>
-                    <input class='w3-input w3-padding-16 w3-border' type='text' name='titre' required><br>
+                    <input class='w3-input w3-padding-16 w3-border' type='text' name='titre'><br>
 
                     <label for='date'>Date de l'événement:</label>
-                    <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "' required><br>
+                    <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "'><br>
 
                     <label for='description'>Description:</label>
-                    <input class='w3-input w3-padding-16 w3-border' type='text' name='description' required /><br>
+                    <input class='w3-input w3-padding-16 w3-border' type='text' name='description' /><br>
 
                     <label for='url'>URL (optionnel, si aucun PDF):</label>
                     <input class='w3-input w3-padding-16 w3-border' type='url' name='url' /><br>
