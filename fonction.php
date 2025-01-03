@@ -1369,7 +1369,7 @@ function ajoutResultat()
 
     // Sauvegarder le tableau mis à jour dans le fichier JSON
     file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
-
+    var_dump($nouvelArticle);
     // Si l'utilisateur est administrateur, afficher le formulaire
     if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
         echo "
