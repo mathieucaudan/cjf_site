@@ -109,26 +109,31 @@ $data = json_decode($jsonData, true);
         <?php
         // Inverser les données pour afficher les plus récentes en premier
         $reversedData = array_reverse($data);
-
+    
         foreach ($reversedData as $result) {
-          echo "<h1>{$result['titre']}</h1>
+            echo "<h1>{$result['titre']}</h1>
                   <p>{$result['description']}</p>
                   <div>{$result['date']}</div>";
-
-          // Vérifier et afficher une URL si elle est présente
-          if (!empty($result['url'])) {
-            echo "<div><a href='{$result['url']}' target='_blank'>Voir plus</a></div>";
-          }
-
-          // Vérifier et afficher un lien pour ouvrir le PDF dans un nouvel onglet
-          if (!empty($result['pdf'])) {
-            echo "<div><a href='{$result['pdf']}' target='_blank'>Voir le PDF</a></div>";
-          }
-
-          echo "<hr>";
+    
+            // Vérifier et afficher une URL si elle est présente
+            if (!empty($result['url'])) {
+                echo "<div><a href='{$result['url']}' target='_blank'>Voir plus</a></div>";
+            }
+    
+            // Vérifier si un PDF est présent et afficher un lien pour l'ouvrir
+            if (!empty($result['pdf'])) {
+                echo "<div><a href='{$result['pdf']}' target='_blank'>Voir le PDF</a></div>";
+            }
+    
+            // Vérifier si une image est présente et l'afficher
+            if (!empty($result['image']) && file_exists($result['image'])) {
+                echo "<div><img src='{$result['image']}' alt='Image' style='max-width: 100%; height: auto;'></div>";
+            }
+    
+            echo "<hr>";
         }
         ?>
-      </div>
+        </div>
     </div>
 
 
