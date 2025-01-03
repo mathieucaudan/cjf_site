@@ -1333,7 +1333,7 @@ function ajoutResultat()
     // Vérifier si une image a été téléchargée
     if (!empty($_FILES['image']['name'])) {
         $imageFileName = basename($_FILES['image']['name']);
-        $targetImagePath = $dossierImage . $imageFileName;
+        $targetImagePath = $dossierImage . uniqid() . '_' . $imageFileName; // Ajouter un identifiant unique au nom de l'image
 
         // Déplacer le fichier image vers le dossier cible
         if (move_uploaded_file($_FILES['image']['tmp_name'], $targetImagePath)) {
