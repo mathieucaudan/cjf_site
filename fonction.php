@@ -1316,63 +1316,101 @@ function ajoutResultat()
     }
 }
 
-function suppResultat()
+function ajoutResultat()
 {
     $dossierJson = './resultat.json';
     $dossierPdf = './info_pdf/';
+    $dossierImage = './info_images/';
 
-    // Charger le contenu actuel du fichier JSON
-    $data = [];
-    if (file_exists($dossierJson)) {
-        $jsonContent = file_get_contents($dossierJson);
-        $data = json_decode($jsonContent, true);
-    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['description'])) {
+        // Récupérer les données du formulaire
+        $titre = $_POST['titre'];
+        $date = $_POST['date']; // La date est au format AAAA-MM-JJ
+        $description = $_POST['description'];
+        $url = isset($_POST['url']) ? $_POST['url'] : null;
+        $pdfPath = null;
+        $imagePath = null;
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'supprimer') {
-        if (isset($_GET['fichier'])) {
-            if (file_exists($dossierJson)) {
-                $articlesJson = file_get_contents($dossierJson);
-                $articles = json_decode($articlesJson, true);
-                $resultat = $_GET['fichier'];
+        // Vérifier si un fichier PDF a été téléchargé
+        if (!empty($_FILES['pdf']['name'])) {
+            $pdfFileName = basename($_FILES['pdf']['name']);
+            $targetPdfPath = $dossierPdf . $pdfFileName;
 
-                foreach ($articles as $key => $article) {
-                    if ($article['titre'] == $resultat) {
-                        // Supprimer le PDF du dossier si présent
-                        if (!empty($article['pdf']) && file_exists($article['pdf'])) {
-                            unlink($article['pdf']); // Supprimer le fichier PDF
-                        }
-
-                        // Supprimer l'article du tableau
-                        unset($articles[$key]);
-                        break;
-                    }
-                }
-
-                // Sauvegarder les modifications dans le fichier JSON
-                file_put_contents($dossierJson, json_encode(array_values($articles), JSON_PRETTY_PRINT));
+            // Déplacer le fichier PDF vers le dossier cible
+            if (move_uploaded_file($_FILES['pdf']['tmp_name'], $targetPdfPath)) {
+                $pdfPath = $targetPdfPath;
+            } else {
+                echo "<p>Erreur lors du téléchargement du fichier PDF.</p>";
+                return;
             }
         }
+
+        // Vérifier si une image a été téléchargée
+        if (!empty($_FILES['image']['name'])) {
+            $imageFileName = basename($_FILES['image']['name']);
+            $targetImagePath = $dossierImage . $imageFileName;
+
+            // Déplacer le fichier image vers le dossier cible
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetImagePath)) {
+                $imagePath = $targetImagePath;
+            } else {
+                echo "<p>Erreur lors du téléchargement de l'image.</p>";
+                return;
+            }
+        }
+
+        // Charger le contenu actuel du fichier JSON
+        $data = [];
+        if (file_exists($dossierJson)) {
+            $jsonContent = file_get_contents($dossierJson);
+            $data = json_decode($jsonContent, true);
+        }
+
+        // Ajouter le nouvel article
+        $nouvelArticle = array(
+            "titre" => $titre,
+            "description" => $description,
+            "date" => $date,
+            "url" => $url,
+            "pdf" => $pdfPath,
+            "image" => $imagePath
+        );
+        $data[] = $nouvelArticle;
+
+        // Sauvegarder le tableau mis à jour dans le fichier JSON
+        file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
     }
 
-    echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-            <div class='w3-content'>";
-    if (empty($data)) {
-        echo "<h2 class='w3-center'>AUCUN RESULTAT ENREGISTRE</h2>";
-    } else {
-        echo "<h2 class='w3-center'>Liste des articles partagés :</h2>";
-        echo "<ul class='w3-ul'>";
-        foreach ($data as $key => $article) {
-            echo "<li class='w3-padding'><span class='w3-large'>" . $article['titre'] . "</span>";
-            $resultat = $article['titre'];
-            echo "<input type='hidden' name='index' value='$key'>"; // Champ caché pour l'index
-            echo "<a class='w3-button' style='background-color: rgb(32, 47, 74)' href='?action=supprimer&fichier=$resultat'>Supprimer</a>";
-            echo "</li>";
-        }
-        echo "</ul>";
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+        echo "
+        <div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
+            <div class='w3-content'>
+                <form method='POST' enctype='multipart/form-data'>
+                    <label for='titre'>Titre:</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='text' name='titre' required><br>
+
+                    <label for='date'>Date de l'événement:</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='date' name='date' value='" . date('Y-m-d') . "' required><br>
+
+                    <label for='description'>Description:</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='text' name='description' required /><br>
+
+                    <label for='url'>URL (optionnel, si aucun PDF):</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='url' name='url' /><br>
+
+                    <label for='pdf'>Télécharger un PDF (optionnel, si aucune URL):</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='file' name='pdf' accept='application/pdf' /><br>
+
+                    <label for='image'>Télécharger une image (optionnel):</label>
+                    <input class='w3-input w3-padding-16 w3-border' type='file' name='image' accept='image/*' /><br>
+
+                    <input class='w3-button' style='background-color: rgb(32, 47, 74)' type='submit' value='Partager' name='Ajouter'>
+                </form>
+            </div>
+        </div>";
     }
-    echo "</div>
-    </div>";
 }
+
 
 function suppEvenement()
 {
