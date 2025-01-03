@@ -1303,7 +1303,6 @@ function suppResultat()
     echo "</div></div>";
 }
 
-
 function ajoutResultat()
 {
     $dossierJson = './resultat.json';
@@ -1351,15 +1350,19 @@ function ajoutResultat()
         $data = json_decode($jsonContent, true);
     }
 
-    // Ajouter le nouvel article même si certains champs sont vides
+    // Si titre et description sont vides, ne pas ajouter la date
     $nouvelArticle = array(
         "titre" => $titre,
         "description" => $description,
-        "date" => $date,
         "url" => $url,
         "pdf" => $pdfPath ? $pdfPath : null, // Si aucun PDF n'est téléchargé, mettre null
         "image" => $imagePath ? $imagePath : null // Si aucune image n'est téléchargée, mettre null
     );
+
+    // Ajouter la date uniquement si le titre ou la description sont renseignés
+    if (!empty($titre) || !empty($description)) {
+        $nouvelArticle['date'] = $date ?: date('Y-m-d');
+    }
 
     // Ajouter l'article à la liste
     $data[] = $nouvelArticle;
@@ -1399,6 +1402,7 @@ function ajoutResultat()
         </div>";
     }
 }
+
 function suppEvenement()
 {
     $dossierJson = './resultat.json';
