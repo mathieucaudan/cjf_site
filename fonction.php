@@ -1350,6 +1350,12 @@ function ajoutResultat()
         $data = json_decode($jsonContent, true);
     }
 
+    // Si titre et description sont vides, ne pas ajouter l'article
+    if (empty($titre) && empty($description)) {
+        echo "<p>Veuillez remplir au moins un champ obligatoire (titre ou description).</p>";
+        return; // Ne pas ajouter l'article si les champs sont vides
+    }
+
     // Si titre et description sont vides, ne pas ajouter la date
     $nouvelArticle = array(
         "titre" => $titre,
