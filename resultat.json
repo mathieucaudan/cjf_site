@@ -3,5 +3,12 @@
         "titre": "STAGE AVENIR",
         "description": "Stage de pr\u00e9paration aux comp\u00e9titions U15\/U17 du 21 au 25 octobre : Laser run \/ Natation \/ Obstacles \/ Escrime",
         "date": "2024-10-21"
+    },
+    {
+        "titre": "BONNE ANNEE !",
+        "description": "carte de voeux",
+        "date": "2025-01-03",
+        "url": "",
+        "pdf": ".\/info_pdf\/Carte de voeux CJF 1.pdf"
     }
 ]
