@@ -1310,69 +1310,62 @@ function ajoutResultat()
     $dossierPdf = './info_pdf/';
     $dossierImage = './info_images/';
 
-    // Initialiser les variables avec une valeur vide
-    $titre = $date = $description = $url = $pdfPath = $imagePath = null;
+    // Initialiser les variables avec une valeur vide ou null
+    $titre = isset($_POST['titre']) ? $_POST['titre'] : '';
+    $date = isset($_POST['date']) ? $_POST['date'] : '';
+    $description = isset($_POST['description']) ? $_POST['description'] : '';
+    $url = isset($_POST['url']) ? $_POST['url'] : '';
+    $pdfPath = null;
+    $imagePath = null;
 
-    // Vérifier si le formulaire est soumis et contient le token spécifique
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form_token']) && $_POST['form_token'] === 'unique_form_token_value') {
+    // Vérifier si un fichier PDF a été téléchargé
+    if (!empty($_FILES['pdf']['name'])) {
+        $pdfFileName = basename($_FILES['pdf']['name']);
+        $targetPdfPath = $dossierPdf . $pdfFileName;
 
-        // Récupérer les données du formulaire, avec une gestion des valeurs par défaut
-        $titre = isset($_POST['titre']) ? $_POST['titre'] : null;
-        $date = isset($_POST['date']) ? $_POST['date'] : null; // La date est au format AAAA-MM-JJ
-        $description = isset($_POST['description']) ? $_POST['description'] : null;
-        $url = isset($_POST['url']) ? $_POST['url'] : null;
-
-        // Vérifier si un fichier PDF a été téléchargé
-        if (!empty($_FILES['pdf']['name'])) {
-            $pdfFileName = basename($_FILES['pdf']['name']);
-            $targetPdfPath = $dossierPdf . $pdfFileName;
-
-            // Déplacer le fichier PDF vers le dossier cible
-            if (move_uploaded_file($_FILES['pdf']['tmp_name'], $targetPdfPath)) {
-                $pdfPath = $targetPdfPath;
-            } else {
-                echo "<p>Erreur lors du téléchargement du fichier PDF.</p>";
-                return;
-            }
-        }
-
-        // Vérifier si une image a été téléchargée
-        if (!empty($_FILES['image']['name'])) {
-            $imageFileName = basename($_FILES['image']['name']);
-            $targetImagePath = $dossierImage . $imageFileName;
-
-            // Déplacer le fichier image vers le dossier cible
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetImagePath)) {
-                $imagePath = $targetImagePath;
-            } else {
-                echo "<p>Erreur lors du téléchargement de l'image.</p>";
-                return;
-            }
-        }
-
-        // Charger le contenu actuel du fichier JSON
-        $data = [];
-        if (file_exists($dossierJson)) {
-            $jsonContent = file_get_contents($dossierJson);
-            $data = json_decode($jsonContent, true);
-        }
-
-        // Ajouter le nouvel article si les données nécessaires sont présentes
-        if ($titre && $date && $description) {
-            $nouvelArticle = array(
-                "titre" => $titre,
-                "description" => $description,
-                "date" => $date,
-                "url" => $url,
-                "pdf" => $pdfPath,
-                "image" => $imagePath
-            );
-            $data[] = $nouvelArticle;
-
-            // Sauvegarder le tableau mis à jour dans le fichier JSON
-            file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
+        // Déplacer le fichier PDF vers le dossier cible
+        if (move_uploaded_file($_FILES['pdf']['tmp_name'], $targetPdfPath)) {
+            $pdfPath = $targetPdfPath;
+        } else {
+            echo "<p>Erreur lors du téléchargement du fichier PDF.</p>";
         }
     }
+
+    // Vérifier si une image a été téléchargée
+    if (!empty($_FILES['image']['name'])) {
+        $imageFileName = basename($_FILES['image']['name']);
+        $targetImagePath = $dossierImage . $imageFileName;
+
+        // Déplacer le fichier image vers le dossier cible
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetImagePath)) {
+            $imagePath = $targetImagePath;
+        } else {
+            echo "<p>Erreur lors du téléchargement de l'image.</p>";
+        }
+    }
+
+    // Charger le contenu actuel du fichier JSON
+    $data = [];
+    if (file_exists($dossierJson)) {
+        $jsonContent = file_get_contents($dossierJson);
+        $data = json_decode($jsonContent, true);
+    }
+
+    // Ajouter le nouvel article même si certains champs sont vides
+    $nouvelArticle = array(
+        "titre" => $titre,
+        "description" => $description,
+        "date" => $date,
+        "url" => $url,
+        "pdf" => $pdfPath ? $pdfPath : null, // Si aucun PDF n'est téléchargé, mettre null
+        "image" => $imagePath ? $imagePath : null // Si aucune image n'est téléchargée, mettre null
+    );
+
+    // Ajouter l'article à la liste
+    $data[] = $nouvelArticle;
+
+    // Sauvegarder le tableau mis à jour dans le fichier JSON
+    file_put_contents($dossierJson, json_encode($data, JSON_PRETTY_PRINT));
 
     // Si l'utilisateur est administrateur, afficher le formulaire
     if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
@@ -1404,14 +1397,8 @@ function ajoutResultat()
                 </form>
             </div>
         </div>";
-
-        // Si un champ obligatoire est vide, afficher un message
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && (!$titre || !$date || !$description)) {
-            echo "<p style='color: red;'>Veuillez remplir tous les champs obligatoires (titre, date, description).</p>";
-        }
     }
 }
-
 function suppEvenement()
 {
     $dossierJson = './resultat.json';
