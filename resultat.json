@@ -4,6 +4,7 @@
         "description": "carte de voeux",
         "date": "2025-01-03",
         "url": "",
-        "pdf": ".\/info_pdf\/Carte de voeux CJF 1.pdf"
+        "pdf": null,
+        "image": ".\/info_images\/Version 1.png"
     }
 ]
