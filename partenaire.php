@@ -50,7 +50,7 @@ navbar();
                         </div>
                         <div class='parflip-card-back' onclick="window.open('https://agence.axa.fr/bretagne/ille-et-vilaine/saint-malo/ludmila-pozdejeva', '_blank');">
                             <h3>Ludmila Pozdejeva</h3>
-                            <h3>AXA</h3>
+                            <h3>Allianz</h3>
                             <h4>Meilleur rapport protection/cotisation en MUTUELLE SANTÉ, PRÉVOYANCE, ASSURANCE DE PRÊT</h4>
                             <h4>Optimisation fiscale d'ASSURANCE VIE, ÉPARGNE RETRAITE, PER</h4>
                             <h4>Contrats Collectifs et Individuels en Prévoyance / Santé</h4>
