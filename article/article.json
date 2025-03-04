@@ -82,5 +82,11 @@
         "image": "triathle.webp",
         "description": "Comp\u00e9tition du 21 d\u00e9cembre 2024 \u00e0 Saint-Malo",
         "date": "21\/12\/24"
+    },
+    {
+        "titre": "Championnat de Bretagne de triathle",
+        "image": "Championnatdetriathle.webp",
+        "description": "Championnat de Bretagne",
+        "date": "02\/03\/25"
     }
 ]
