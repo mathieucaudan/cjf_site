@@ -36,10 +36,10 @@ if (isset($_SESSION['role'])) {
             'm50 femmes' => array('lr' => 690),
             'm60 hommes' => array('lr' => 320),
             'm60 femmes' => array('lr' => 320),
-            'm70 hommes' => array('lr' => 320),
-            'm70 femmes' => array('lr' => 320),
-            'para hommes' => array('lr' => 240),
-            'para femmes' => array('lr' => 240),
+            'm70 hommes' => array('lr' => 240),
+            'm70 femmes' => array('lr' => 240),
+            'para hommes' => array('lr' => 800),
+            'para femmes' => array('lr' => 800),
         );
 
 
