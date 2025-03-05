@@ -38,8 +38,8 @@ if (isset($_SESSION['role'])) {
             'm60 femmes' => array('nat' =>  45),
             'm70 hommes' => array('nat' => 45),
             'm70 femmes' => array('nat' => 45),
-            'para hommes' => array('nat' => 80),
-            'para femmes' => array('nat' => 80),
+            'para hommes' => array('nat' => 45),
+            'para femmes' => array('nat' => 45),
         );
 
 
