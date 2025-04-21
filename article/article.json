@@ -88,5 +88,11 @@
         "image": "Championnatdetriathle.webp",
         "description": "Championnat de Bretagne",
         "date": "02\/03\/25"
+    },
+    {
+        "titre": "Championnat de Bretagne de laser run 2025",
+        "image": "bretagnelaserrun.webp",
+        "description": "R\u00e9sum\u00e9 du Championnat de Bretagne de Laser Run 2025",
+        "date": "12\/04\/25"
     }
 ]
