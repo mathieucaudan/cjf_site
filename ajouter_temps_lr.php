@@ -95,39 +95,47 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
 
     echo "<form method='post' action='?competition=$nom_competition'>";
 
-    foreach ($athletes_data as $categorie => $athletes) {
-        echo "<h3>$categorie</h3>
-              <center><a class='w3-button' href='download_cat_lr.php?file=$fileName&title=Résultat Triathlé $nom_competition&titledoc=Résultat Triathlé $nom_competition $categorie&cat=$categorie' target='_blank'>Télécharger cette catégorie</a></center>
-              <table style='width: 90%;' border='1' align='center'>
-                <tr>
-                    <th>Nom</th>
-                    <th>Club</th>
-                    <th>Temps Natation</th>
-                    <th>Points Natation</th>
-                    <th>Temps Laser Run</th>
-                    <th>Points Laser Run</th>
-                    <th>Total</th>
-                    <th>Saisie</th>
-                </tr>";
+    foreach ($athletes_data as $categorie => $athletes): ?>
+    <h3><?php echo $categorie; ?></h3>
+    <center>
+        <?php 
+        $title = "Résultat Triathlé $nom_competition";
+        $titledoc = "$title $categorie";
+        echo "<a class='w3-button' href='download_cat_lr.php?file=$fileName&title=$title&titledoc=$titledoc&cat=$categorie' target='_blank'>Télécharger cette catégorie</a>"; 
+        ?>
+    </center>
+    <table style='width: 90%;' border='1' align='center'>
+        <tr>
+            <th>Nom</th>
+            <th>Club</th>
+            <th>Temps Natation</th>
+            <th>Points Natation</th>
+            <th>Temps Laser Run</th>
+            <th>Points Laser Run</th>
+            <th>Total</th>
+            <th>Saisie</th>
+        </tr>
+        <?php foreach ($athletes as $athlete): ?>
+            <tr>
+                <td><?php echo htmlspecialchars($athlete['nom']); ?></td>
+                <td><?php echo htmlspecialchars($athlete['club']); ?></td>
+                <td><?php echo $athlete['temps_natation'] ?? ''; ?></td>
+                <td><?php echo $athlete['points_nat'] ?? ''; ?></td>
+                <td><?php echo $athlete['temps_laser_run'] ?? ''; ?></td>
+                <td><?php echo $athlete['points_lr'] ?? ''; ?></td>
+                <td><?php echo $athlete['total'] ?? ''; ?></td>
+                <td>
+                    <input type="text" 
+                           name="temps_laser_run[<?php echo htmlspecialchars($athlete['nom']); ?>]"
+                           value="<?php echo htmlspecialchars($athlete['temps_laser_run'] ?? ''); ?>"
+                           pattern="[0-9]{1,2}'[0-5][0-9]|dns|dnf"
+                           placeholder="ex : 2'34, dns ou dnf">
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table><br>
+<?php endforeach; ?>
 
-                foreach ($athletes as $athlete): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($athlete['nom']); ?></td>
-                        <td><?php echo htmlspecialchars($athlete['club']); ?></td>
-                        <td><?php echo $athlete['temps_natation'] ?? ''; ?></td>
-                        <td><?php echo $athlete['points_nat'] ?? ''; ?></td>
-                        <td><?php echo $athlete['temps_laser_run'] ?? ''; ?></td>
-                        <td><?php echo $athlete['points_lr'] ?? ''; ?></td>
-                        <td><?php echo $athlete['total'] ?? ''; ?></td>
-                        <td>
-                            <input type="text" 
-                                   name="temps_laser_run[<?php echo htmlspecialchars($athlete['nom']); ?>]"
-                                   value="<?php echo htmlspecialchars($athlete['temps_laser_run'] ?? ''); ?>"
-                                   pattern="[0-9]{1,2}'[0-5][0-9]|dns|dnf"
-                                   placeholder="ex : 2'34, dns ou dnf">
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
                 
 
         echo "</table><br>";
@@ -151,4 +159,3 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
 
 footer();
 echo "</body>";
-}
