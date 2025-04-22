@@ -128,8 +128,8 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                         </td>
                     </tr>
                 <?php endforeach; ?>
-
-
+                
+}
         echo "</table><br>";
     }
 
