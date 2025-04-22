@@ -99,7 +99,8 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     echo "<div class='onglets'>";
     foreach ($athletes_data as $categorie => $athletes) {
         if (!empty($athletes)) {
-            echo "<button onclick=\"afficherCategorie('" . md5($categorie) . "')\">$categorie</button>";
+            echo "<button onclick=\"afficherCategorie('<?php echo md5($categorie); ?>', event)\">$categorie</button>";
+
         }
     }
     echo "</div>";
@@ -156,7 +157,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     echo "</form>";
 
     echo "<script>
-        function afficherCategorie(id) {
+        function afficherCategorie(id, event) {
             document.querySelectorAll('.categorie-block').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.onglets button').forEach(b => b.classList.remove('active'));
             document.getElementById('cat_' + id).classList.add('active');
