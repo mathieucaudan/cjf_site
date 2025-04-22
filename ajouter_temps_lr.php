@@ -82,7 +82,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                     $athlete['total'] = $athlete['points_lr'] + ($athlete['points_nat'] ?? 0);
                 }
             }
-
+            unset($athlete);
             // Tri dans chaque catégorie
             usort($athletes, fn($a, $b) => ($b['total'] ?? 0) <=> ($a['total'] ?? 0));
         }
