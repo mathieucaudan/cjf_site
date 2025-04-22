@@ -5,7 +5,7 @@ echo "<link rel='stylesheet' href='style/parametres.css'>";
 navbar();
 echo "<body style='background-color: rgb(32, 47, 74); color:white'>";
 
-
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
 
     $categories = array(
         'senior hommes' => ['lr' => 800],
@@ -134,9 +134,9 @@ echo "<body style='background-color: rgb(32, 47, 74); color:white'>";
             </tr>
         <?php endforeach; ?>
     </table><br>
-<?php endforeach; ?>
+<?php endforeach; 
 
-    }
+    
 
     echo "<center><button type='submit' class='w3-button'>✅ Enregistrer tous les temps</button></center>";
     echo "</form>";
