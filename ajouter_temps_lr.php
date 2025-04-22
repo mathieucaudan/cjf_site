@@ -83,6 +83,11 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
             usort($athletes, fn($a, $b) => ($b['total'] ?? 0) <=> ($a['total'] ?? 0));
         }
         file_put_contents($fileName, json_encode($athletes_data));
+        echo "<script>window.location.href = '?competition=$nom_competition&success=1';</script>";
+        exit();
+    }
+
+    if (isset($_GET['success'])) {
         echo "<p style='text-align:center;'>✅ Tous les temps ont été enregistrés avec succès.</p>";
     }
 
