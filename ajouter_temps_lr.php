@@ -110,25 +110,25 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                     <th>Saisie</th>
                 </tr>";
 
-        foreach ($athletes as $athlete) {
-            $nom = $athlete['nom'];
-            echo "<tr>
-                    <td>$nom</td>
-                    <td>{$athlete['club']}</td>
-                    <td>" . ($athlete['temps_natation'] ?? '') . "</td>
-                    <td>" . ($athlete['points_nat'] ?? '') . "</td>
-                    <td>" . ($athlete['temps_laser_run'] ?? '') . "</td>
-                    <td>" . ($athlete['points_lr'] ?? '') . "</td>
-                    <td>" . ($athlete['total'] ?? '') . "</td>
-                    <td>
-                        <input type='text' 
-                               name='temps_laser_run[$nom]'
-                               value='" . ($athlete['temps_laser_run'] ?? '') . "'
-                               pattern=\"[0-9]{1,2}'[0-5][0-9]|dns|dnf\"
-                               placeholder=\"ex : 2'34, dns ou dnf\">
-                    </td>
-                </tr>";
-        }
+                foreach ($athletes as $athlete): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($athlete['nom']); ?></td>
+                        <td><?php echo htmlspecialchars($athlete['club']); ?></td>
+                        <td><?php echo $athlete['temps_natation'] ?? ''; ?></td>
+                        <td><?php echo $athlete['points_nat'] ?? ''; ?></td>
+                        <td><?php echo $athlete['temps_laser_run'] ?? ''; ?></td>
+                        <td><?php echo $athlete['points_lr'] ?? ''; ?></td>
+                        <td><?php echo $athlete['total'] ?? ''; ?></td>
+                        <td>
+                            <input type="text" 
+                                   name="temps_laser_run[<?php echo htmlspecialchars($athlete['nom']); ?>]"
+                                   value="<?php echo htmlspecialchars($athlete['temps_laser_run'] ?? ''); ?>"
+                                   pattern="[0-9]{1,2}'[0-5][0-9]|dns|dnf"
+                                   placeholder="ex : 2'34, dns ou dnf">
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+
 
         echo "</table><br>";
     }
