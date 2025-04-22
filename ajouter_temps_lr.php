@@ -100,7 +100,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     foreach ($athletes_data as $categorie => $athletes) {
         if (!empty($athletes)) {
             $id = md5($categorie);
-            echo "<button onclick=\"afficherCategorie('$id', event)\">$categorie</button>";
+            echo "<button class='onglet-button' data-id='$id'>$categorie</button>";
         }
     }
     echo "</div>";
@@ -157,18 +157,23 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     echo "</form>";
 
     echo "<script>
-        function afficherCategorie(id, event) {
-            document.querySelectorAll('.categorie-block').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.onglets button').forEach(b => b.classList.remove('active'));
-            document.getElementById('cat_' + id).classList.add('active');
-            event.target.classList.add('active');
-        }
         document.addEventListener('DOMContentLoaded', () => {
-            const firstBloc = document.querySelector('.categorie-block');
-            const firstButton = document.querySelector('.onglets button');
-            if (firstBloc && firstButton) {
-                firstBloc.classList.add('active');
-                firstButton.classList.add('active');
+            const blocs = document.querySelectorAll('.categorie-block');
+            const boutons = document.querySelectorAll('.onglet-button');
+
+            boutons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = btn.dataset.id;
+                    blocs.forEach(b => b.classList.remove('active'));
+                    boutons.forEach(b => b.classList.remove('active'));
+                    document.getElementById('cat_' + id).classList.add('active');
+                    btn.classList.add('active');
+                });
+            });
+
+            if (blocs.length && boutons.length) {
+                blocs[0].classList.add('active');
+                boutons[0].classList.add('active');
             }
         });
     </script>";
