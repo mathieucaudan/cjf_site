@@ -157,7 +157,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     echo "</form>";
 
     echo "<script>
-        function afficherCategorie(id, event) {
+        function afficherCategorie(id) {
             document.querySelectorAll('.categorie-block').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.onglets button').forEach(b => b.classList.remove('active'));
             document.getElementById('cat_' + id).classList.add('active');
