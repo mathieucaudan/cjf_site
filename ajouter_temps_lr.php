@@ -94,7 +94,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     echo "<center><h1>Ajouter les temps de laser run</h1><h2>Liste des athlètes par catégorie :</h2></center>";
 
     echo "<form method='post' action='?competition=$nom_competition'>";
-
+    $athletes_data = json_decode(file_get_contents($fileName), true);
     foreach ($athletes_data as $categorie => $athletes): ?>
     <h3><?php echo $categorie; ?></h3>
     <center>
