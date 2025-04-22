@@ -61,6 +61,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                 $nom = $athlete['nom'];
                 if (isset($temps_saisis[$nom]) && trim($temps_saisis[$nom]) !== "") {
                     $temps_lr = strtolower(trim($temps_saisis[$nom]));
+                    $athlete['temps_laser_run_brut'] = $temps_lr; // on stocke toujours le brut
 
                     if ($temps_lr === 'dns' || $temps_lr === 'dnf') {
                         $athlete['temps_laser_run'] = $temps_lr;
@@ -71,11 +72,11 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
 
                         $retard = $athlete['diff_points_leader'] ?? 0;
                         $retard = min($retard, 90);
-                        $seconde_lr -= $retard;
+                        $seconde_ajuste = $seconde_lr - $retard;
 
-                        $athlete['temps_laser_run'] = sprintf("%d'%02d", floor($seconde_lr / 60), $seconde_lr % 60);
+                        $athlete['temps_laser_run'] = sprintf("%d'%02d", floor($seconde_ajuste / 60), $seconde_ajuste % 60);
                         $ref_lr = $categories[$categorie]['lr'];
-                        $points_lr = $base_pts_lr - ($seconde_lr - intval($ref_lr));
+                        $points_lr = $base_pts_lr - ($seconde_ajuste - intval($ref_lr));
                         $athlete['points_lr'] = max($points_lr, 0);
                     }
 
@@ -83,7 +84,6 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                 }
             }
             unset($athlete);
-            // Tri dans chaque catégorie
             usort($athletes, fn($a, $b) => ($b['total'] ?? 0) <=> ($a['total'] ?? 0));
         }
 
@@ -94,54 +94,53 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     echo "<center><h1>Ajouter les temps de laser run</h1><h2>Liste des athlètes par catégorie :</h2></center>";
 
     echo "<form method='post' action='?competition=$nom_competition'>";
-    $athletes_data = json_decode(file_get_contents($fileName), true);
-    foreach ($athletes_data as $categorie => $athletes): ?>
-    <h3><?php echo $categorie; ?></h3>
-    <center>
-        <?php 
-        $title = "Résultat Triathlé $nom_competition";
-        $titledoc = "$title $categorie";
-        echo "<a class='w3-button' href='download_cat_lr.php?file=$fileName&title=$title&titledoc=$titledoc&cat=$categorie' target='_blank'>Télécharger cette catégorie</a>"; 
-        ?>
-    </center>
-    <table style='width: 90%;' border='1' align='center'>
-        <tr>
-            <th>Nom</th>
-            <th>Club</th>
-            <th>Temps Natation</th>
-            <th>Points Natation</th>
-            <th>Temps Laser Run</th>
-            <th>Points Laser Run</th>
-            <th>Total</th>
-            <th>Saisie</th>
-        </tr>
-        <?php foreach ($athletes as $athlete): ?>
-            <tr>
-                <td><?php echo htmlspecialchars($athlete['nom']); ?></td>
-                <td><?php echo htmlspecialchars($athlete['club']); ?></td>
-                <td><?php echo $athlete['temps_natation'] ?? ''; ?></td>
-                <td><?php echo $athlete['points_nat'] ?? ''; ?></td>
-                <td><?php echo $athlete['temps_laser_run'] ?? ''; ?></td>
-                <td><?php echo $athlete['points_lr'] ?? ''; ?></td>
-                <td><?php echo $athlete['total'] ?? ''; ?></td>
-                <td>
-                    <input type="text" 
-                           name="temps_laser_run[<?php echo htmlspecialchars($athlete['nom']); ?>]"
-                           value="<?php echo htmlspecialchars($athlete['temps_laser_run'] ?? ''); ?>"
-                           pattern="[0-9]{1,2}'[0-5][0-9]|dns|dnf"
-                           placeholder="ex : 2'34, dns ou dnf">
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table><br>
-<?php endforeach; 
 
-    
+    $athletes_data = json_decode(file_get_contents($fileName), true);
+
+    foreach ($athletes_data as $categorie => $athletes): ?>
+        <h3><?php echo $categorie; ?></h3>
+        <center>
+            <?php 
+            $title = "Résultat Triathlé $nom_competition";
+            $titledoc = "$title $categorie";
+            echo "<a class='w3-button' href='download_cat_lr.php?file=$fileName&title=$title&titledoc=$titledoc&cat=$categorie' target='_blank'>Télécharger cette catégorie</a>"; 
+            ?>
+        </center>
+        <table style='width: 90%;' border='1' align='center'>
+            <tr>
+                <th>Nom</th>
+                <th>Club</th>
+                <th>Temps Natation</th>
+                <th>Points Natation</th>
+                <th>Temps Laser Run</th>
+                <th>Points Laser Run</th>
+                <th>Total</th>
+                <th>Saisie</th>
+            </tr>
+            <?php foreach ($athletes as $athlete): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($athlete['nom']); ?></td>
+                    <td><?php echo htmlspecialchars($athlete['club']); ?></td>
+                    <td><?php echo $athlete['temps_natation'] ?? ''; ?></td>
+                    <td><?php echo $athlete['points_nat'] ?? ''; ?></td>
+                    <td><?php echo $athlete['temps_laser_run'] ?? ''; ?></td>
+                    <td><?php echo $athlete['points_lr'] ?? ''; ?></td>
+                    <td><?php echo $athlete['total'] ?? ''; ?></td>
+                    <td>
+                        <input type="text" 
+                               name="temps_laser_run[<?php echo htmlspecialchars($athlete['nom']); ?>]"
+                               value="<?php echo htmlspecialchars($athlete['temps_laser_run_brut'] ?? ''); ?>"
+                               pattern="[0-9]{1,2}'[0-5][0-9]|dns|dnf"
+                               placeholder="ex : 2'34, dns ou dnf">
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table><br>
+    <?php endforeach;
 
     echo "<center><button type='submit' class='w3-button'>✅ Enregistrer tous les temps</button></center>";
     echo "</form>";
 
-    // Liens généraux
     $title = 'Résultat triathlé ' . $nom_competition;
     echo "<br><center>
         <a class='w3-button' href='resultats.php?title=$title&file=$fileName'>Voir Résultats</a><br>
