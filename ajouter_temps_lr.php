@@ -129,7 +129,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                     </tr>
                 <?php endforeach; ?>
                 
-}
+
         echo "</table><br>";
     }
 
@@ -151,3 +151,4 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
 
 footer();
 echo "</body>";
+}
