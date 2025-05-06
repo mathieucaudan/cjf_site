@@ -71,11 +71,11 @@ if (isset($_SESSION['role'])) {
                             $athlete['temps_natation'] = $temps_nat;
                             $athlete['points_nat'] = 0;
                         } else {
-                            list($minutes, $secondes) = explode("'", $temps_nat);
-                            $seconde_nat = ($minutes * 60) + $secondes;
+                            list($minutes, $secondes, $centiemes) = sscanf($temps_nat, "%d'%d''%d");
+                            $total_seconds = ($minutes * 60) + $secondes + ($centiemes / 100);
                             $ref_nat = $categories[$categorie]['nat'];
-                            $points_nat = $base_pts_nat - ($seconde_nat - intval($ref_nat));
-                            $athlete['temps_natation'] = sprintf("%d'%02d", floor($seconde_nat / 60), $seconde_nat % 60);
+                            $points_nat = $base_pts_nat - round(($total_seconds - $ref_nat) * 2);
+                            $athlete['temps_natation'] = sprintf("%d'%02d''%02d", $minutes, $secondes, $centiemes);
                             $athlete['points_nat'] = max($points_nat, 0);
                         }
                         $athlete['total'] = ($athlete['points_nat'] ?? 0) + ($athlete['points_lr'] ?? 0);
@@ -122,8 +122,8 @@ if (isset($_SESSION['role'])) {
                                 <input type='text' 
                                        name=\"temps_natation[" . htmlspecialchars($athlete['nom']) . "]\"
                                        value=\"" . htmlspecialchars($athlete['temps_natation_brut'] ?? '') . "\"
-                                       pattern=\"[0-9]{1,2}'[0-5][0-9]''[0-9][0-9]|dns|dnf\"
-                                       placeholder=\"ex : 1'12, dns ou dnf\">
+                                       pattern=\"[0-9]{1,2}'[0-5][0-9]''[0-9]{2}|dns|dnf\"
+                                       placeholder=\"ex : 1'12''34, dns ou dnf\">
                             </td>
                           </tr>";
                 endforeach;
