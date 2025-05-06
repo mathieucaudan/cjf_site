@@ -120,10 +120,10 @@ if (isset($_SESSION['role'])) {
                             <td>" . ($athlete['total'] ?? '') . "</td>
                             <td>
                                 <input type='text' 
-                                       name='temps_natation[" . htmlspecialchars($athlete['nom']) . "]'
-                                       value='" . htmlspecialchars($athlete['temps_natation_brut'] ?? '') . "'
-                                       pattern="[0-9]{1,2}'[0-5][0-9]|dns|dnf"
-                                       placeholder="ex : 1'12, dns ou dnf">
+                                       name=\"temps_natation[" . htmlspecialchars($athlete['nom']) . "]\"
+                                       value=\"" . htmlspecialchars($athlete['temps_natation_brut'] ?? '') . "\"
+                                       pattern=\"[0-9]{1,2}'[0-5][0-9]|dns|dnf\"
+                                       placeholder=\"ex : 1'12, dns ou dnf\">
                             </td>
                           </tr>";
                 endforeach;
