@@ -9,7 +9,16 @@ if (isset($_SESSION['role'])) {
 ?>
         <center>
             <h1>Ajouter les temps de natation</h1>
+            <h2>Liste des athlètes par catégorie :</h2>
         </center>
+
+        <style>
+            .onglets { text-align:center; margin-bottom:20px; }
+            .onglets button { margin:5px; padding:10px 20px; background:#2c3e50; color:white; border:none; border-radius:5px; cursor:pointer; }
+            .onglets button.active { background:#1abc9c; }
+            .categorie-block { display:none; }
+            .categorie-block.active { display:block; }
+        </style>
 
         <?php
         $categories = array(
@@ -93,12 +102,20 @@ if (isset($_SESSION['role'])) {
             echo "<p style='text-align:center;'>✅ Tous les temps de natation ont été enregistrés avec succès.</p>";
         }
 
-        echo "<center><h2>Liste des athlètes par catégorie :</h2></center>";
+        echo "<div class='onglets'>";
+        foreach ($athletes_data as $categorie => $athletes) {
+            if (!empty($athletes)) {
+                $id = md5($categorie);
+                echo "<button class='onglet-button' data-id='$id'>$categorie</button>";
+            }
+        }
+        echo "</div>";
 
         echo "<form method='post' action='?competition=$nom_competition'>";
         foreach ($athletes_data as $categorie => $athletes):
             if (!empty($athletes)):
-                echo "<h3>$categorie</h3><center>";
+                $id = md5($categorie);
+                echo "<div class='categorie-block' id='cat_$id'><h3>$categorie</h3><center>";
                 $title = 'Résultat Natation ' . $nom_competition;
                 $titledoc = $title . " $categorie";
                 echo "<a class='w3-button' href='download_cat_nat.php?file=$fileName&title=$title&titledoc=$titledoc&cat=$categorie' target='_blank'>Télécharger cette catégorie</a>";
@@ -127,11 +144,33 @@ if (isset($_SESSION['role'])) {
                             </td>
                           </tr>";
                 endforeach;
-                echo "</table><br>";
+                echo "</table><br></div>";
             endif;
         endforeach;
         echo "<center><button type='submit' class='w3-button'>✅ Enregistrer tous les temps</button></center>";
         echo "</form>";
+
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const blocs = document.querySelectorAll('.categorie-block');
+            const boutons = document.querySelectorAll('.onglet-button');
+
+            boutons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.id;
+                    blocs.forEach(b => b.classList.remove('active'));
+                    boutons.forEach(b => b.classList.remove('active'));
+                    document.getElementById('cat_' + id).classList.add('active');
+                    btn.classList.add('active');
+                });
+            });
+
+            if (blocs.length && boutons.length) {
+                blocs[0].classList.add('active');
+                boutons[0].classList.add('active');
+            }
+        });
+        </script>";
 
         $title = 'Résultat Natation ' . $nom_competition;
         echo "<center>
