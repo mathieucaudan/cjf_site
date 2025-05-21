@@ -175,6 +175,7 @@ if (isset($_SESSION['role'])) {
         $title = 'Résultat Natation ' . $nom_competition;
         echo "<center>
         <a class='w3-button' href='download_nat.php?file=$fileName&title=$title' target='_blank'>Télécharger en PDF</a><br>
+        <a class='w3-button' href='download_nat_csv.php?file=$fileName' target='_blank'>📥 Télécharger en CSV</a><br>
         <a class='w3-button' href='resultats.php?title=$title&file=$fileName'>Résultats</a><br>
         <a class='w3-button' href='ajouter_temps_lr.php?competition=$nom_competition'>Ajouter le Temps de Laser Run</a><br>
         <a class='w3-button' href='compet.php'>Retour à l'accueil</a>
