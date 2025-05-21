@@ -43,19 +43,31 @@ foreach ($athletes as $athlete) {
     // On ignore les DNS / DNF ou ceux sans points
     if (!is_numeric($points) || $points <= 0) continue;
 
-    // Traitement nom et prénom
     $nom_complet = trim($athlete['nom'] ?? '');
     $prenom = trim($athlete['prenom'] ?? '');
-
-    // Séparation si jamais le nom et prénom sont mélangés
+    
     if (empty($prenom) && str_contains($nom_complet, ' ')) {
-        $parts = explode(' ', $nom_complet, 2);
-        $nom_complet = $parts[0];
-        $prenom = $parts[1] ?? '';
+        $parts = preg_split('/\s+/', $nom_complet);
+        $nom_parts = [];
+        $prenom_parts = [];
+    
+        foreach ($parts as $part) {
+            $first_letter = mb_substr($part, 0, 1);
+            if ($first_letter === mb_strtoupper($first_letter)) {
+                $nom_parts[] = $part;
+            } else {
+                $prenom_parts[] = $part;
+            }
+        }
+    
+        $nom_complet = implode(' ', $nom_parts);
+        $prenom = implode(' ', $prenom_parts);
     }
-
+    
+    // Mise en forme finale
     $nom_final = strtoupper($nom_complet);
-    $prenom_final = ucfirst(strtolower($prenom));
+    $prenom_final = ucwords(strtolower($prenom)); // Jean-Michel par exemple
+
 
     // Ajout à la ligne
     $sheet->fromArray([$place++, $nom_final, $prenom_final, $categorie], NULL, "A$row");
