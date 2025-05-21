@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php'; // Chemin vers l'autoloader de PhpSpreadsheet
+require 'vendor/autoload.php'; // Assure-toi que PhpSpreadsheet est bien installé
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -21,32 +21,28 @@ if (!isset($athletes_data[$categorie])) {
 }
 
 $athletes = $athletes_data[$categorie];
-usort($athletes, fn($a, $b) => ($b['points_nat'] ?? 0) <=> ($a['points_nat'] ?? 0));
 
 // Création du fichier Excel
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
-$sheet->setTitle(substr($categorie, 0, 31)); // Limite Excel
+$sheet->setTitle(substr($categorie, 0, 31)); // Titre max 31 caractères
 
 // En-têtes
-$sheet->fromArray(['Place', 'Nom', 'Prénom', 'Catégorie'], NULL, 'A1');
+$sheet->fromArray(['Nom', 'Prénom'], NULL, 'A1');
 
-// Données
+// Remplissage
 $row = 2;
-$place = 1;
 foreach ($athletes as $athlete) {
-    $points = $athlete['points_nat'] ?? 0;
-    if (!is_numeric($points) || $points <= 0) continue;
+    $nom = strtoupper($athlete['nom'] ?? '');
+    $prenom = ucfirst(strtolower($athlete['prenom'] ?? ''));
 
-    $nom = $athlete['nom'];
-    $prenom = $athlete['prenom'] ?? '';
-
-    $sheet->fromArray([$place++, $nom, $prenom, $categorie], NULL, "A$row");
+    $sheet->setCellValue("A$row", $nom);
+    $sheet->setCellValue("B$row", $prenom);
     $row++;
 }
 
 // Envoi au navigateur
-$filename = "resultats_natation_" . str_replace(' ', '_', $categorie) . ".xlsx";
+$filename = "athletes_natation_" . str_replace(' ', '_', $categorie) . ".xlsx";
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header("Content-Disposition: attachment; filename=\"$filename\"");
 header('Cache-Control: max-age=0');
