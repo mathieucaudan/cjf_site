@@ -46,27 +46,29 @@ foreach ($athletes as $athlete) {
     $nom_complet = trim($athlete['nom'] ?? '');
     $prenom = trim($athlete['prenom'] ?? '');
     
+    // Si le prénom est vide et que tout est dans le champ nom
     if (empty($prenom) && str_contains($nom_complet, ' ')) {
-        $parts = preg_split('/\s+/', $nom_complet);
+        $parts = preg_split('/\s+/', $nom_complet, -1, PREG_SPLIT_NO_EMPTY);
         $nom_parts = [];
         $prenom_parts = [];
     
         foreach ($parts as $part) {
-            $first_letter = mb_substr($part, 0, 1);
-            if ($first_letter === mb_strtoupper($first_letter)) {
+            if ($part === mb_strtoupper($part)) {
                 $nom_parts[] = $part;
             } else {
                 $prenom_parts[] = $part;
             }
         }
     
-        $nom_complet = implode(' ', $nom_parts);
+        $nom = implode(' ', $nom_parts);
         $prenom = implode(' ', $prenom_parts);
+    } else {
+        $nom = $nom_complet;
     }
     
-    // Mise en forme finale
-    $nom_final = strtoupper($nom_complet);
-    $prenom_final = ucwords(strtolower($prenom)); // Jean-Michel par exemple
+    // Mise en forme
+    $nom_final = strtoupper($nom);
+    $prenom_final = ucwords(mb_strtolower($prenom)); // ex: Benoit Joseph ou Nolan
 
 
     // Ajout à la ligne
