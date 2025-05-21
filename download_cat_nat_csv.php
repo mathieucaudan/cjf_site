@@ -1,4 +1,9 @@
 <?php
+require 'vendor/autoload.php'; // Chemin vers l'autoloader de PhpSpreadsheet
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 if (!isset($_GET['file'], $_GET['cat']) || !file_exists($_GET['file'])) {
     header('Content-Type: text/plain');
     echo "Fichier ou catégorie manquants.";
@@ -16,29 +21,36 @@ if (!isset($athletes_data[$categorie])) {
 }
 
 $athletes = $athletes_data[$categorie];
-
-// Trier par points natation (décroissant)
 usort($athletes, fn($a, $b) => ($b['points_nat'] ?? 0) <=> ($a['points_nat'] ?? 0));
 
-// Préparer envoi CSV
-header('Content-Type: text/csv');
-$filename = "resultats_natation_" . str_replace(' ', '_', $categorie) . ".csv";
-header("Content-Disposition: attachment; filename=\"$filename\"");
+// Création du fichier Excel
+$spreadsheet = new Spreadsheet();
+$sheet = $spreadsheet->getActiveSheet();
+$sheet->setTitle(substr($categorie, 0, 31)); // Limite Excel
 
-$output = fopen('php://output', 'w');
-fputcsv($output, ['Place', 'Nom', 'Prénom', 'Catégorie']);
+// En-têtes
+$sheet->fromArray(['Place', 'Nom', 'Prénom', 'Catégorie'], NULL, 'A1');
 
+// Données
+$row = 2;
 $place = 1;
 foreach ($athletes as $athlete) {
-    $nom = $athlete['nom'];
-    $prenom = $athlete['prenom'] ?? '';
     $points = $athlete['points_nat'] ?? 0;
-
-    // Ignorer DNS/DNF
     if (!is_numeric($points) || $points <= 0) continue;
 
-    fputcsv($output, [$place++, $nom, $prenom, $categorie]);
+    $nom = $athlete['nom'];
+    $prenom = $athlete['prenom'] ?? '';
+
+    $sheet->fromArray([$place++, $nom, $prenom, $categorie], NULL, "A$row");
+    $row++;
 }
 
-fclose($output);
+// Envoi au navigateur
+$filename = "resultats_natation_" . str_replace(' ', '_', $categorie) . ".xlsx";
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header("Content-Disposition: attachment; filename=\"$filename\"");
+header('Cache-Control: max-age=0');
+
+$writer = new Xlsx($spreadsheet);
+$writer->save('php://output');
 exit();
