@@ -13,7 +13,18 @@ if (!isset($_GET['file'], $_GET['cat']) || !file_exists($_GET['file'])) {
 }
 
 $file = $_GET['file'];
-$categorie = $_GET['cat'];
+// Récupération + normalisation de la catégorie
+$categorie = mb_strtolower(trim($_GET['cat']));
+$categorie = strtr($categorie, [
+    'é' => 'e', 'è' => 'e', 'ê' => 'e', 'ë' => 'e',
+    'à' => 'a', 'â' => 'a',
+    'î' => 'i', 'ï' => 'i',
+    'ô' => 'o',
+    'ù' => 'u', 'û' => 'u',
+    'ç' => 'c'
+]);
+
+
 
 // Liste ordonnée des catégories
 $categories = [
@@ -45,20 +56,14 @@ $categories = [
 
 
 
-$cat_index = array_search($categorie, $categories);
-if ($cat_index === false) {
+
+// Vérification dans le dictionnaire
+if (!array_key_exists($categorie, $categories)) {
     header('Content-Type: text/plain');
     echo "Catégorie non reconnue.";
     exit();
 }
 
-$athletes_data = json_decode(file_get_contents($file), true);
-var_dump($athletes_data);
-if (!isset($athletes_data[$categorie])) {
-    header('Content-Type: text/plain');
-    echo "Catégorie non trouvée.";
-    exit();
-}
 
 $athletes = $athletes_data[$categorie];
 usort($athletes, fn($a, $b) => ($b['points_nat'] ?? 0) <=> ($a['points_nat'] ?? 0));
