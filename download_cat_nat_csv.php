@@ -56,16 +56,17 @@ $categories = [
 
 
 
+// Lecture des données du fichier JSON
+$athletes_data = json_decode(file_get_contents($file), true);
 
-// Vérification dans le dictionnaire
-if (!array_key_exists($categorie, $categories)) {
+if (!isset($athletes_data[$categorie])) {
     header('Content-Type: text/plain');
-    echo "Catégorie non reconnue.";
+    echo "Catégorie non trouvée.";
     exit();
 }
 
-
 $athletes = $athletes_data[$categorie];
+
 usort($athletes, fn($a, $b) => ($b['points_nat'] ?? 0) <=> ($a['points_nat'] ?? 0));
 
 // Excel init
