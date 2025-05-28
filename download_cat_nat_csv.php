@@ -17,29 +17,33 @@ $categorie = $_GET['cat'];
 
 // Liste ordonnée des catégories
 $categories = [
-    "U9/U11",
-    "U13 Filles",
-    "U13 Garçons",
-    "Masters 70 Femmes",
-    "Masters 70 Hommes",
-    "Masters 60 Femmes",
-    "Masters 60 Hommes",
-    "Handi",
-    "Masters 40 Femmes",
-    "Masters 40 Hommes",
-    "Masters 50 Femmes",
-    "Masters 50 Hommes",
-    "U15 Filles",
-    "U15 Garçons",
-    "U17 Filles",
-    "U17 Garçons",
-    "U19 Femmes",
-    "U22 Femmes",
-    "Senior Femmes",
-    "U19 Hommes",
-    "U22 Hommes",
-    "Senior Hommes"
+    "u11 filles"     => 1,
+    "u11 garcons"    => 1.06,
+    "u13 filles"     => 2,
+    "u13 garcons"    => 3,
+    "m70 femmes"     => 4,
+    "m70 hommes"     => 5,
+    "m60 femmes"     => 6,
+    "m60 hommes"     => 7,
+    "para femmes"    => 8,
+    "para hommes"    => 8.04,
+    "m40 femmes"     => 9,
+    "m40 hommes"     => 10,
+    "m50 femmes"     => 11,
+    "m50 hommes"     => 12,
+    "u15 filles"     => 13,
+    "u15 garcons"    => 14,
+    "u17 filles"     => 15,
+    "u17 garcons"    => 16,
+    "u19 femmes"     => 17,
+    "u22 femmes"     => 19,
+    "senior femmes"  => 20,
+    "u19 hommes"     => 21,
+    "u22 hommes"     => 22,
+    "senior hommes"  => 23
 ];
+
+
 
 $cat_index = array_search($categorie, $categories);
 if ($cat_index === false) {
@@ -85,7 +89,8 @@ $sexe = match ($dernier_mot) {
 };
 
 $row = 2;
-$prefix_dossard = ($cat_index + 1) * 100; // Exemple : 2300 pour la 23e catégorie
+$prefix_dossard = $categories[$categorie] * 100;
+ 
 $compteur = 1;
 
 foreach ($athletes as $athlete) {
