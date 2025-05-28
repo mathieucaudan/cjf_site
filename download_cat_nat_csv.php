@@ -4,9 +4,7 @@ require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Border;
-use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
-use PhpOffice\PhpSpreadsheet\Style\Font;
 
 if (!isset($_GET['file'], $_GET['cat']) || !file_exists($_GET['file'])) {
     header('Content-Type: text/plain');
@@ -17,6 +15,39 @@ if (!isset($_GET['file'], $_GET['cat']) || !file_exists($_GET['file'])) {
 $file = $_GET['file'];
 $categorie = $_GET['cat'];
 
+// Liste ordonnée des catégories
+$categories = [
+    "U9/U11",
+    "U13 Filles",
+    "U13 Garçons",
+    "Masters 70 Femmes",
+    "Masters 70 Hommes",
+    "Masters 60 Femmes",
+    "Masters 60 Hommes",
+    "Handi",
+    "Masters 40 Femmes",
+    "Masters 40 Hommes",
+    "Masters 50 Femmes",
+    "Masters 50 Hommes",
+    "U15 Filles",
+    "U15 Garçons",
+    "U17 Filles",
+    "U17 Garçons",
+    "U19 Femmes",
+    "U22 Femmes",
+    "Senior Femmes",
+    "U19 Hommes",
+    "U22 Hommes",
+    "Senior Hommes"
+];
+
+$cat_index = array_search($categorie, $categories);
+if ($cat_index === false) {
+    header('Content-Type: text/plain');
+    echo "Catégorie non reconnue.";
+    exit();
+}
+
 $athletes_data = json_decode(file_get_contents($file), true);
 if (!isset($athletes_data[$categorie])) {
     header('Content-Type: text/plain');
@@ -25,8 +56,6 @@ if (!isset($athletes_data[$categorie])) {
 }
 
 $athletes = $athletes_data[$categorie];
-
-// Tri par points de natation décroissants
 usort($athletes, fn($a, $b) => ($b['points_nat'] ?? 0) <=> ($a['points_nat'] ?? 0));
 
 // Excel init
@@ -39,17 +68,14 @@ $headers = ['Dossard', 'Nom', 'Prénom', 'Club', 'Sexe', 'Nationalité', 'Catég
 $sheet->fromArray($headers, NULL, 'A1');
 
 // Format des en-têtes
-$headerStyle = $sheet->getStyle('A1:H1');
-$headerStyle->getFont()->setBold(true);
-$headerStyle->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-$headerStyle->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
+$sheet->getStyle('A1:H1')->applyFromArray([
+    'font' => ['bold' => true],
+    'alignment' => ['horizontal' => Alignment::HORIZONTAL_CENTER],
+    'borders' => ['allBorders' => ['borderStyle' => Border::BORDER_THIN]],
+]);
 $sheet->setAutoFilter('A1:H1');
 
-// Lignes de données
-$row = 2;
-$dossard = 1;
-
-// Déduction sexe
+// Sexe
 $categorie_parts = explode(' ', $categorie);
 $dernier_mot = mb_strtolower(end($categorie_parts));
 $sexe = match ($dernier_mot) {
@@ -58,6 +84,10 @@ $sexe = match ($dernier_mot) {
     default => '',
 };
 
+$row = 2;
+$prefix_dossard = ($cat_index + 1) * 100; // Exemple : 2300 pour la 23e catégorie
+$compteur = 1;
+
 foreach ($athletes as $athlete) {
     $points = $athlete['points_nat'] ?? 0;
     if (!is_numeric($points) || $points <= 0) continue;
@@ -65,7 +95,6 @@ foreach ($athletes as $athlete) {
     $nom_complet = trim($athlete['nom'] ?? '');
     $prenom = trim($athlete['prenom'] ?? '');
 
-    // Traitement nom/prénom fusionné
     if (empty($prenom) && str_contains($nom_complet, ' ')) {
         $parts = preg_split('/\s+/', $nom_complet);
         $nom_parts = [];
@@ -87,30 +116,26 @@ foreach ($athletes as $athlete) {
 
     $nom_final = strtoupper($nom);
     $prenom_final = ucwords(mb_strtolower($prenom));
-
     $club = $athlete['club'] ?? '';
     $nationalite = 'FRA';
     $categorie_simple = $categorie_parts[0];
     $course = $categorie;
+    $dossard = $prefix_dossard + $compteur++;
 
-    // Ligne dans Excel
     $sheet->fromArray([
-        $dossard++, $nom_final, $prenom_final, $club, $sexe, $nationalite, $categorie_simple, $course
+        $dossard, $nom_final, $prenom_final, $club, $sexe, $nationalite, $categorie_simple, $course
     ], NULL, "A$row");
 
-    // Bordures pour chaque ligne
-    $sheet->getStyle("A$row:H$row")
-        ->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
-    
+    $sheet->getStyle("A$row:H$row")->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
     $row++;
 }
 
-// Auto-size des colonnes
+// Auto-size
 foreach (range('A', 'H') as $col) {
     $sheet->getColumnDimension($col)->setAutoSize(true);
 }
 
-// Téléchargement
+// Export
 $filename = "resultats_natation_" . str_replace(' ', '_', $categorie) . ".xlsx";
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header("Content-Disposition: attachment; filename=\"$filename\"");
