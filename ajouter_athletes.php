@@ -318,7 +318,8 @@ if (isset($_SESSION['role'])) {
                 if (file_exists($fileName)) {
                     $data = json_decode(file_get_contents($fileName), true);
                     foreach ($data as $category => $athletes) {
-                        echo "<h3>{$category}</h3>";
+                        $nombre = count($athletes);
+                        echo "<h3>{$category} ({$nombre} athlète" . ($nombre > 1 ? "s" : "") . ")</h3>";
                         echo "<table style='width: 90%;' border='1'>";
                         echo "<tr><th>Nom</th><th>Modifier catégorie</th><th>Supprimer</th></tr>";
                         foreach ($athletes as $athlete) {
