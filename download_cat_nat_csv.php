@@ -29,7 +29,7 @@ $categorie = strtr($categorie, [
 // Liste ordonnée des catégories
 $categories = [
     "u11 filles"     => 1,
-    "u11 garcons"    => 1.06,
+    "u11 garcons"    => 1.05,
     "u13 filles"     => 2,
     "u13 garcons"    => 3,
     "m70 femmes"     => 4,
@@ -37,7 +37,7 @@ $categories = [
     "m60 femmes"     => 6,
     "m60 hommes"     => 7,
     "para femmes"    => 8,
-    "para hommes"    => 8.04,
+    "para hommes"    => 8.01,
     "m40 femmes"     => 9,
     "m40 hommes"     => 10,
     "m50 femmes"     => 11,
