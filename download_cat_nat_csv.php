@@ -1,8 +1,12 @@
 <?php
-require 'vendor/autoload.php'; // Autoload PhpSpreadsheet
+require 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Font;
 
 if (!isset($_GET['file'], $_GET['cat']) || !file_exists($_GET['file'])) {
     header('Content-Type: text/plain');
@@ -22,36 +26,51 @@ if (!isset($athletes_data[$categorie])) {
 
 $athletes = $athletes_data[$categorie];
 
-// Trier par points de natation décroissants
+// Tri par points de natation décroissants
 usort($athletes, fn($a, $b) => ($b['points_nat'] ?? 0) <=> ($a['points_nat'] ?? 0));
 
-// Création du fichier Excel
+// Excel init
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
-$sheet->setTitle(substr($categorie, 0, 31)); // Excel limite à 31 caractères
+$sheet->setTitle(substr($categorie, 0, 31));
 
 // En-têtes
-$sheet->fromArray(['Place', 'Nom', 'Prénom', 'Catégorie'], NULL, 'A1');
+$headers = ['Dossard', 'Nom', 'Prénom', 'Club', 'Sexe', 'Nationalité', 'Catégorie', 'Course'];
+$sheet->fromArray($headers, NULL, 'A1');
 
-// Ligne de départ
+// Format des en-têtes
+$headerStyle = $sheet->getStyle('A1:H1');
+$headerStyle->getFont()->setBold(true);
+$headerStyle->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+$headerStyle->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
+$sheet->setAutoFilter('A1:H1');
+
+// Lignes de données
 $row = 2;
-$place = 1;
+$dossard = 1;
+
+// Déduction sexe
+$categorie_parts = explode(' ', $categorie);
+$dernier_mot = mb_strtolower(end($categorie_parts));
+$sexe = match ($dernier_mot) {
+    'filles', 'femmes' => 'F',
+    'garçons', 'garcons', 'hommes' => 'M',
+    default => '',
+};
 
 foreach ($athletes as $athlete) {
     $points = $athlete['points_nat'] ?? 0;
-
-    // On ignore les DNS / DNF ou ceux sans points
     if (!is_numeric($points) || $points <= 0) continue;
 
     $nom_complet = trim($athlete['nom'] ?? '');
     $prenom = trim($athlete['prenom'] ?? '');
-    
-    // Si le prénom est vide et que tout est dans le champ nom
+
+    // Traitement nom/prénom fusionné
     if (empty($prenom) && str_contains($nom_complet, ' ')) {
-        $parts = preg_split('/\s+/', $nom_complet, -1, PREG_SPLIT_NO_EMPTY);
+        $parts = preg_split('/\s+/', $nom_complet);
         $nom_parts = [];
         $prenom_parts = [];
-    
+
         foreach ($parts as $part) {
             if ($part === mb_strtoupper($part)) {
                 $nom_parts[] = $part;
@@ -59,24 +78,39 @@ foreach ($athletes as $athlete) {
                 $prenom_parts[] = $part;
             }
         }
-    
+
         $nom = implode(' ', $nom_parts);
         $prenom = implode(' ', $prenom_parts);
     } else {
         $nom = $nom_complet;
     }
-    
-    // Mise en forme
+
     $nom_final = strtoupper($nom);
-    $prenom_final = ucwords(mb_strtolower($prenom)); // ex: Benoit Joseph ou Nolan
+    $prenom_final = ucwords(mb_strtolower($prenom));
 
+    $club = $athlete['club'] ?? '';
+    $nationalite = 'FRA';
+    $categorie_simple = $categorie_parts[0];
+    $course = $categorie;
 
-    // Ajout à la ligne
-    $sheet->fromArray([$place++, $nom_final, $prenom_final, $categorie], NULL, "A$row");
+    // Ligne dans Excel
+    $sheet->fromArray([
+        $dossard++, $nom_final, $prenom_final, $club, $sexe, $nationalite, $categorie_simple, $course
+    ], NULL, "A$row");
+
+    // Bordures pour chaque ligne
+    $sheet->getStyle("A$row:H$row")
+        ->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
+    
     $row++;
 }
 
-// Envoi du fichier Excel
+// Auto-size des colonnes
+foreach (range('A', 'H') as $col) {
+    $sheet->getColumnDimension($col)->setAutoSize(true);
+}
+
+// Téléchargement
 $filename = "resultats_natation_" . str_replace(' ', '_', $categorie) . ".xlsx";
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header("Content-Disposition: attachment; filename=\"$filename\"");
