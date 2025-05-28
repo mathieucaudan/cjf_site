@@ -55,6 +55,7 @@ if ($cat_index === false) {
 $athletes_data = json_decode(file_get_contents($file), true);
 if (!isset($athletes_data[$categorie])) {
     header('Content-Type: text/plain');
+    echo ($athletes_data[$categorie]);
     echo "Catégorie non trouvée.";
     exit();
 }
