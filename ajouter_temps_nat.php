@@ -92,11 +92,11 @@ if (isset($_SESSION['role'])) {
                 }
                 unset($athlete);
                 usort($athletes, fn($a, $b) => ($b['points_nat'] ?? 0) <=> ($a['points_nat'] ?? 0));
-                // 🔥 Ajout de diff_points_leader ici :
-    $leader_points = $athletes[0]['points_nat'] ?? 0;
-    foreach ($athletes as &$athlete) {
-        $athlete['diff_points_leader'] = max(0, $leader_points - ($athlete['points_nat'] ?? 0));
-    }
+ 
+                $leader_points = $athletes[0]['points_nat'] ?? 0;
+                foreach ($athletes as &$athlete) {
+                    $athlete['diff_points_leader'] = max(0, $leader_points - ($athlete['points_nat'] ?? 0));
+                }
             }
             file_put_contents($fileName, json_encode($athletes_data));
             echo "<script>window.location.href = '?competition=$nom_competition&success=1';</script>";
