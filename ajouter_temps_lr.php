@@ -91,6 +91,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                             $ref_lr = $categories[$categorie]['lr'];
                             $points_lr = $base_pts_lr - round(($total_corrige - $ref_lr));
                             $athlete['points_lr'] = max($points_lr, 0);
+                            $athlete['total']= $athlete['points_lr']+$athlete['points_nat'];
                         } else {
                             $athlete['temps_laser_run'] = 'format invalide';
                             $athlete['points_lr'] = 0;
