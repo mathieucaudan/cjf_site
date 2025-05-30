@@ -64,7 +64,7 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
     foreach ($athletes as &$athlete) {
         $athlete['diff_points_leader'] = $leader_points - $athlete['points_nat'];
     }
-
+    unset($athlete);
     // Réaffecter au tableau initial
     $data[$categorie] = $athletes;
 
