@@ -83,9 +83,11 @@ if (isset($_SESSION['role'])) {
                             list($minutes, $secondes, $centiemes) = sscanf($temps_nat, "%d'%d''%d");
                             $total_seconds = ($minutes * 60) + $secondes + ($centiemes / 100);
                             $ref_nat = $categories[$categorie]['nat'];
-                            $points_nat = $base_pts_nat - round(($total_seconds - $ref_nat) * 2);
-                            $athlete['temps_natation'] = sprintf("%d'%02d''%02d", $minutes, $secondes, $centiemes);
+                            $diff = $total_seconds - $ref_nat;
+                            $penalite = floor($diff * 2); // chaque 0.5s = 1 point
+                            $points_nat = $base_pts_nat - $penalite;
                             $athlete['points_nat'] = max($points_nat, 0);
+
                         }
                         $athlete['total'] = ($athlete['points_nat'] ?? 0) + ($athlete['points_lr'] ?? 0);
                     }
