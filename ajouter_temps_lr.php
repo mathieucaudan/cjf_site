@@ -59,39 +59,38 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         foreach ($athletes as &$athlete) {
             $nom = $athlete['nom'];
             if (isset($temps_saisis[$nom]) && trim($temps_saisis[$nom]) !== "") {
-                $temps_lr = strtolower(trim($temps_saisis[$nom]));
-                $athlete['temps_laser_run_brut'] = $temps_lr;
+                $saisi = strtolower(trim($temps_saisis[$nom]));
+                $athlete['temps_laser_run_brut'] = $saisi;
 
-                if ($temps_lr === 'dns' || $temps_lr === 'dnf') {
-                    $athlete['temps_laser_run'] = $temps_lr;
+                if ($saisi === 'dns' || $saisi === 'dnf') {
+                    $athlete['temps_laser_run'] = $saisi;
                     $athlete['points_lr'] = 0;
                 } else {
-                    list($minutes, $secondes, $centiemes) = sscanf($temps_lr, "%d'%d''%d");
-                    $total_seconds = ($minutes * 60) + $secondes + ($centiemes / 100);
+                    // Conversion brute
+                    list($m, $s, $cs) = sscanf($saisi, "%d'%d''%d");
+                    $total_brut = $m * 60 + $s + $cs / 100;
 
-                    // Handicap à retirer (en secondes)
+                    // Handicap
                     $handicap = $athlete['handicap_depart'] ?? 0;
+                    $total_corrige = $total_brut - $handicap;
+                    if ($total_corrige < 0) $total_corrige = 0;
 
-                    // Temps corrigé
-                    $temps_corrige = $total_seconds - $handicap;
-                    if ($temps_corrige < 0) $temps_corrige = 0;
+                    // Format corrigé
+                    $min_corr = floor($total_corrige / 60);
+                    $sec_corr = floor($total_corrige % 60);
+                    $cent_corr = round(($total_corrige - floor($total_corrige)) * 100);
 
-                    // Enregistrement du temps corrigé
-                    $minutes_corrige = floor($temps_corrige / 60);
-                    $secondes_corrige = floor($temps_corrige % 60);
-                    $centiemes_corrige = round(($temps_corrige - floor($temps_corrige)) * 100);
-                    $athlete['temps_laser_run'] = sprintf("%d'%02d''%02d", $minutes_corrige, $secondes_corrige, $centiemes_corrige);
+                    $athlete['temps_laser_run'] = sprintf("%d'%02d''%02d", $min_corr, $sec_corr, $cent_corr);
 
-                    // Référence à ajuster selon ta logique
+                    // Calcul des points (ajuste la ref selon ta règle)
                     $ref_lr = 300;
-                    $points_lr = $base_pts_lr - round(($temps_corrige - $ref_lr) * 2);
-                    $athlete['points_lr'] = max($points_lr, 0);
+                    $points = $base_pts_lr - round(($total_corrige - $ref_lr) * 2);
+                    $athlete['points_lr'] = max(0, $points);
                 }
 
                 $athlete['total'] = ($athlete['points_nat'] ?? 0) + ($athlete['points_lr'] ?? 0);
             }
         }
-        unset($athlete);
         usort($athletes, fn($a, $b) => ($b['points_lr'] ?? 0) <=> ($a['points_lr'] ?? 0));
     }
 
