@@ -52,52 +52,40 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
     $athletes_data = json_decode(file_get_contents($fileName), true);
 
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["temps_laser_run"])) {
-    $base_pts_lr = 250;
-    $temps_saisis = $_POST["temps_laser_run"];
+        $base_pts_lr = 500;
+        $temps_saisis = $_POST["temps_laser_run"];
 
-    foreach ($athletes_data as $categorie => &$athletes) {
-        foreach ($athletes as &$athlete) {
-            $nom = $athlete['nom'];
-            if (isset($temps_saisis[$nom]) && trim($temps_saisis[$nom]) !== "") {
-                $saisi = strtolower(trim($temps_saisis[$nom]));
-                $athlete['temps_laser_run_brut'] = $saisi;
+        foreach ($athletes_data as $categorie => &$athletes) {
+            foreach ($athletes as &$athlete) {
+                $nom = $athlete['nom'];
+                if (isset($temps_saisis[$nom]) && trim($temps_saisis[$nom]) !== "") {
+                    $temps_lr = strtolower(trim($temps_saisis[$nom]));
+                    $athlete['temps_laser_run_brut'] = $temps_lr;
 
-                if ($saisi === 'dns' || $saisi === 'dnf') {
-                    $athlete['temps_laser_run'] = $saisi;
-                    $athlete['points_lr'] = 0;
-                } else {
-                    // Conversion brute
-                    list($m, $s, $cs) = sscanf($saisi, "%d'%d''%d");
-                    $total_brut = $m * 60 + $s + $cs / 100;
-
-                    // Handicap
-                    $handicap = $athlete['handicap_depart'] ?? 0;
-                    $total_corrige = $total_brut - $handicap;
-                    if ($total_corrige < 0) $total_corrige = 0;
-
-                    // Format corrigé
-                    $min_corr = floor($total_corrige / 60);
-                    $sec_corr = floor($total_corrige % 60);
-                    $cent_corr = round(($total_corrige - floor($total_corrige)) * 100);
-
-                    $athlete['temps_laser_run'] = sprintf("%d'%02d''%02d", $min_corr, $sec_corr, $cent_corr);
-
-                    // Calcul des points (ajuste la ref selon ta règle)
-                    $ref_lr = 300;
-                    $points = $base_pts_lr - round(($total_corrige - $ref_lr) * 2);
-                    $athlete['points_lr'] = max(0, $points);
+                    if ($temps_lr === 'dns' || $temps_lr === 'dnf') {
+                        $athlete['temps_laser_run'] = $temps_lr;
+                        $athlete['points_lr'] = 0;
+                    } else {
+                        list($minutes, $secondes) = explode("'", $temps_lr);
+                        $seconde_lr = ($minutes * 60) + $secondes;
+                        $retard = $athlete['diff_points_leader'] ?? 0;
+                        $retard = min($retard, 90);
+                        $seconde_ajuste = $seconde_lr - $retard;
+                        $athlete['temps_laser_run'] = sprintf("%d'%02d", floor($seconde_ajuste / 60), $seconde_ajuste % 60);
+                        $ref_lr = $categories[$categorie]['lr'];
+                        $points_lr = $base_pts_lr - ($seconde_ajuste - intval($ref_lr));
+                        $athlete['points_lr'] = max($points_lr, 0);
+                    }
+                    $athlete['total'] = $athlete['points_lr'] + ($athlete['points_nat'] ?? 0);
                 }
-
-                $athlete['total'] = ($athlete['points_nat'] ?? 0) + ($athlete['points_lr'] ?? 0);
             }
+            unset($athlete);
+            usort($athletes, fn($a, $b) => ($b['total'] ?? 0) <=> ($a['total'] ?? 0));
         }
-        usort($athletes, fn($a, $b) => ($b['points_lr'] ?? 0) <=> ($a['points_lr'] ?? 0));
+        file_put_contents($fileName, json_encode($athletes_data));
+        echo "<script>window.location.href = '?competition=$nom_competition&success=1';</script>";
+        exit();
     }
-
-    file_put_contents($fileName, json_encode($athletes_data));
-    echo "<script>window.location.href = '?competition=$nom_competition&success=1';</script>";
-    exit();
-}
 
     if (isset($_GET['success'])) {
         echo "<p style='text-align:center;'>✅ Tous les temps ont été enregistrés avec succès.</p>";
