@@ -49,44 +49,61 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
         // Vérifier si des données existent dans le fichier JSON
         if (!empty($data)) {
 
-            // Vérifier si la catégorie spécifiée existe dans les données
             if (isset($data[$categorie])) {
-                echo '<h2>' . $categorie . '</h2>';
-                echo '<table>';
-                echo '<tr>';
-                echo '<th>Nom</th>';
-                echo '<th>Club</th>';
-                echo '<th>Temps de Natation</th>';
-                echo '<th>Points</th>';
-                echo '<th>Différence avec le leader</th>';
-                echo '</tr>';
-                foreach ($data[$categorie] as $athlete) {
-                    echo '<tr>';
-                    echo '<td>' . $athlete['nom'] . '</td>';
-                    echo '<td>' . $athlete['club'] . '</td>';
-                    echo '<td>' . (isset($athlete['temps_natation']) ? $athlete['temps_natation'] : '') . '</td>';
-                    echo '<td>' . (isset($athlete['points_nat']) ? $athlete['points_nat'] : '') . '</td>';
-                   echo '<td>';
-                    if (isset($athlete['diff_points_leader'])) {
-                        $diff_points_leader = $athlete['diff_points_leader'];
-                    
-                        if ($diff_points_leader > 90) {
-                            $additional_seconds = $diff_points_leader - 90; // Temps restant au-delà de 90 secondes
-                            echo "1'30 (+$additional_seconds)";
-                        } else {
-                            $minutes = floor($diff_points_leader / 60);
-                            $seconds = $diff_points_leader % 60;
-                            echo sprintf("%d'%02d", $minutes, $seconds); // Format MM'SS
-                        }
-                    } else {
-                        echo ''; // Pas de valeur à afficher
-                    }
-                    echo '</td>';
+    $athletes = $data[$categorie];
 
-                    echo '</tr>';
-                }
-                echo '</table>';
-            } else {
+    // Déterminer le score max (leader)
+    usort($athletes, function($a, $b) {
+        return $b['points_nat'] <=> $a['points_nat'];
+    });
+
+    $leader_points = $athletes[0]['points_nat'];
+
+    // Ajouter la différence au tableau
+    foreach ($athletes as &$athlete) {
+        $athlete['diff_points_leader'] = $leader_points - $athlete['points_nat'];
+    }
+
+    // Réaffecter au tableau initial
+    $data[$categorie] = $athletes;
+
+    // Affichage
+    echo '<h2>' . $categorie . '</h2>';
+    echo '<table>';
+    echo '<tr>';
+    echo '<th>Nom</th>';
+    echo '<th>Club</th>';
+    echo '<th>Temps de Natation</th>';
+    echo '<th>Points</th>';
+    echo '<th>Différence avec le leader</th>';
+    echo '</tr>';
+
+    foreach ($data[$categorie] as $athlete) {
+        echo '<tr>';
+        echo '<td>' . $athlete['nom'] . '</td>';
+        echo '<td>' . $athlete['club'] . '</td>';
+        echo '<td>' . $athlete['temps_natation'] . '</td>';
+        echo '<td>' . $athlete['points_nat'] . '</td>';
+
+        echo '<td>';
+        $diff = $athlete['diff_points_leader'];
+
+        if ($diff > 90) {
+            $additional = $diff - 90;
+            echo "1'30 (+$additional)";
+        } else {
+            $min = floor($diff / 60);
+            $sec = $diff % 60;
+            echo sprintf("%d'%02d", $min, $sec);
+        }
+
+        echo '</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+}
+
+             else {
                 echo "<p>Aucune donnée disponible pour la catégorie spécifiée.</p>";
             }
         } else {
