@@ -60,42 +60,43 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                 $nom = $athlete['nom'];
                 if (isset($temps_saisis[$nom]) && trim($temps_saisis[$nom]) !== "") {
                     $temps_lr = strtolower(trim($temps_saisis[$nom]));
-                    $athlete['temps_laser_run_brut'] = $temps_lr;
-                    
-                    if ($temps_lr === 'dns' || $temps_lr === 'dnf') {
-                        $athlete['temps_laser_run'] = $temps_lr;
-                        $athlete['points_lr'] = 0;
-                    } else {
-                        // prise en compte du format avec ou sans centièmes
-                        if (preg_match("/^(\d+)'(\d{1,2})(?:''(\d{1,2}))?$/", $temps_lr, $matches)) {
-                            $minutes = (int)$matches[1];
-                            $secondes = (int)$matches[2];
-                            $centiemes = isset($matches[3]) ? (int)$matches[3] : 0;
-                    
-                            $total_seconds = $minutes * 60 + $secondes + ($centiemes / 100);
-                    
-                            // retard/handicap de départ
-                            $retard = $athlete['diff_points_leader'] ?? 0;
-                            $retard = min($retard, 90);
-                    
-                            $total_corrige = $total_seconds - $retard;
-                            if ($total_corrige < 0) $total_corrige = 0;
-                    
-                            $min_corr = floor($total_corrige / 60);
-                            $sec_corr = floor($total_corrige % 60);
-                            $cent_corr = round(($total_corrige - floor($total_corrige)) * 100);
-                    
-                            $athlete['temps_laser_run'] = sprintf("%d'%02d''%02d", $min_corr, $sec_corr, $cent_corr);
-                    
-                            // Référence par catégorie
-                            $ref_lr = $categories[$categorie]['lr'];
-                            $points_lr = $base_pts_lr - round(($total_corrige - $ref_lr));
-                            $athlete['points_lr'] = max($points_lr, 0);
-                        } else {
-                            $athlete['temps_laser_run'] = 'format invalide';
-                            $athlete['points_lr'] = 0;
-                        }
-                    }}
+$athlete['temps_laser_run_brut'] = $temps_lr;
+
+if ($temps_lr === 'dns' || $temps_lr === 'dnf') {
+    $athlete['temps_laser_run'] = $temps_lr;
+    $athlete['points_lr'] = 0;
+} else {
+    // prise en compte du format avec ou sans centièmes
+    if (preg_match("/^(\d+)'(\d{1,2})(?:''(\d{1,2}))?$/", $temps_lr, $matches)) {
+        $minutes = (int)$matches[1];
+        $secondes = (int)$matches[2];
+        $centiemes = isset($matches[3]) ? (int)$matches[3] : 0;
+
+        $total_seconds = $minutes * 60 + $secondes + ($centiemes / 100);
+
+        // retard/handicap de départ
+        $retard = $athlete['diff_points_leader'] ?? 0;
+        $retard = min($retard, 90);
+
+        $total_corrige = $total_seconds - $retard;
+        if ($total_corrige < 0) $total_corrige = 0;
+
+        $min_corr = floor($total_corrige / 60);
+        $sec_corr = floor($total_corrige % 60);
+        $cent_corr = round(($total_corrige - floor($total_corrige)) * 100);
+
+        $athlete['temps_laser_run'] = sprintf("%d'%02d''%02d", $min_corr, $sec_corr, $cent_corr);
+
+        // Référence par catégorie
+        $ref_lr = $categories[$categorie]['lr'];
+        $points_lr = $base_pts_lr - round(($total_corrige - $ref_lr));
+        $athlete['points_lr'] = max($points_lr, 0);
+    } else {
+        $athlete['temps_laser_run'] = 'format invalide';
+        $athlete['points_lr'] = 0;
+    }
+}
+}
 
             }
             unset($athlete);
