@@ -1,6 +1,6 @@
 <?php
 // Chemin du fichier JSON
-$jsonFile = 'resultats.json'; // remplace avec le chemin réel si besoin
+$jsonFile = 'competitions/Championnat de france de Triathlé 2025/athletes.json'; // remplace avec le chemin réel si besoin
 
 // Lire et décoder le contenu JSON
 $jsonContent = file_get_contents($jsonFile);
