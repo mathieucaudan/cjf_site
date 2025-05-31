@@ -83,7 +83,7 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
         echo '<tr>';
         echo '<td>' . $athlete['nom'] . '</td>';
         echo '<td>' . $athlete['club'] . '</td>';
-        echo '<td>' . $athlete['temps_natation'] . '</td>';
+        echo '<td>' . $athlete['temps_natation_brut'] . '</td>';
         echo '<td>' . $athlete['points_nat'] . '</td>';
 
         echo '<td>';
