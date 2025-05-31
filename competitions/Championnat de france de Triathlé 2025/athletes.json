@@ -694,7 +694,7 @@
     },
     {
       "nom": "DELMAU Adrien",
-      "club": "Salanque",
+      "club": "Saint Cyprien",
       "temps_natation_brut": "1'20''41",
       "temps_natation": "1'20''41",
       "points_nat": 250,
@@ -730,7 +730,7 @@
     },
     {
       "nom": "ERCILBENGOA Paul",
-      "club": "RMA",
+      "club": "Antony",
       "temps_natation_brut": "1'11''81",
       "temps_natation": "1'11''81",
       "points_nat": 267,
@@ -790,7 +790,7 @@
     },
     {
       "nom": "NOTTON Thimothée",
-      "club": "RMA",
+      "club": "VGA",
       "temps_natation_brut": "1'44''51",
       "temps_natation": "1'44''51",
       "points_nat": 201,
@@ -802,7 +802,7 @@
     },
     {
       "nom": "CREPIN BELLANGE Louis",
-      "club": "RMA",
+      "club": "CJF Saint-Malo",
       "temps_natation_brut": "1'09''69",
       "temps_natation": "1'09''69",
       "points_nat": 271,
@@ -814,7 +814,7 @@
     },
     {
       "nom": "BROUZET Victor",
-      "club": "Saint Cyprien",
+      "club": "PERPIGNAN",
       "temps_natation_brut": "1'17''97",
       "temps_natation": "1'17''97",
       "points_nat": 255,
@@ -826,7 +826,7 @@
     },
     {
       "nom": "LE GENDRE Elouan",
-      "club": "RMA",
+      "club": "VGA",
       "temps_natation_brut": "1'31''91",
       "temps_natation": "1'31''91",
       "points_nat": 227,
@@ -838,7 +838,7 @@
     },
     {
       "nom": "ERCILBENGOA Arthur",
-      "club": "RMA",
+      "club": "Antony",
       "temps_natation_brut": "1'11''78",
       "temps_natation": "1'11''78",
       "points_nat": 267,
@@ -862,7 +862,7 @@
     },
     {
       "nom": "DESCHAMPS Mathis",
-      "club": "RMA",
+      "club": "VGA",
       "temps_natation_brut": "1'26''44",
       "temps_natation": "1'26''44",
       "points_nat": 238,
@@ -948,7 +948,7 @@
     },
     {
       "nom": "BETTENS Joséphine",
-      "club": "RMA",
+      "club": "VGA",
       "temps_natation_brut": "1'11''47",
       "temps_natation": "1'11''47",
       "points_nat": 268,
@@ -993,18 +993,6 @@
       "temps_laser_run_brut": "8'58",
       "temps_laser_run": "8'50''00",
       "points_lr": 430
-    },
-    {
-      "nom": "GEORGE Elli",
-      "club": "RMA",
-      "temps_natation_brut": "1'19''38",
-      "temps_natation": "1'19''38",
-      "points_nat": 252,
-      "total": 689,
-      "diff_points_leader": 16,
-      "temps_laser_run_brut": "8'59",
-      "temps_laser_run": "8'43''00",
-      "points_lr": 437
     },
     {
       "nom": "GERORGE Elli",
@@ -1067,7 +1055,7 @@
       "points_lr": 418
     },
     {
-      "nom": "DURET BUFFIER Maé",
+      "nom": "DURET BUFFIER Manael",
       "club": "PERPIGNAN",
       "temps_natation_brut": "1'33''04",
       "temps_natation": "1'33''04",
