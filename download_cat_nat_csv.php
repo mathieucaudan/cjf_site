@@ -50,8 +50,8 @@ $categories = [
     "u22 femmes"     => 19,
     "senior femmes"  => 20,
     "u19 hommes"     => 0.57,
-    "u22 hommes"     => 22,
-    "senior hommes"  => 23
+    "u22 hommes"     => 0.62,
+    "senior hommes"  => 0.65
 ];
 
 
