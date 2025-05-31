@@ -140,9 +140,9 @@ if (isset($_SESSION['role'])) {
                     echo "<tr>
                             <td>" . htmlspecialchars($athlete['nom']) . "</td>
                             <td>" . htmlspecialchars($athlete['club']) . "</td>
-                            <td>" . ($athlete['temps_natation'] ?? '') . "</td>
+                            <td>" . ($athlete['temps_natation_brut'] ?? '') . "</td>
                             <td>" . ($athlete['points_nat'] ?? '') . "</td>
-                            <td>" . ($athlete['total'] ?? '') . "</td>
+                            <td>" . ($athlete['diff_points_leader'] ?? '') . "</td>
                             <td>
                                 <input type='text' 
                                        name=\"temps_natation[" . htmlspecialchars($athlete['nom']) . "]\"
