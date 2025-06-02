@@ -160,7 +160,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                         <tr>
                             <td><?php echo htmlspecialchars($athlete['nom']); ?></td>
                             <td><?php echo htmlspecialchars($athlete['club']); ?></td>
-                            <td><?php echo $athlete['temps_natation'] ?? ''; ?></td>
+                            <td><?php echo $athlete['temps_natation_brut'] ?? ''; ?></td>
                             <td><?php echo $athlete['points_nat'] ?? ''; ?></td>
                             <td><?php echo $athlete['temps_laser_run'] ?? ''; ?></td>
                             <td><?php echo $athlete['points_lr'] ?? ''; ?></td>
