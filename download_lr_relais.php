@@ -107,7 +107,7 @@ if (!empty($fileName) && file_exists($fileName)) {
     $dompdf->render();
 
     // Nom du fichier PDF à télécharger
-    $filename = $titre . '.pdf';
+    $filename = 'Résultat triathlé Championnat de france de Triathlé Relais 2025.pdf';
 
     // Télécharger le fichier PDF
     header('Content-Type: application/pdf');
