@@ -41,40 +41,65 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
 
     // Ajouter le copyright en bas de page
     echo '<p style="position: fixed; bottom: 20px; width: 100%; text-align: center;">© ' . date("Y") . ' CJF Saint-Malo PM</p>';
+if (!empty($fileName) && file_exists($fileName)) {
+    $data = json_decode(file_get_contents($fileName), true);
 
-    if (!empty($fileName) && file_exists($fileName)) {
-        $data = json_decode(file_get_contents($fileName), true);
+    if (!empty($data)) {
+        foreach ($data as $categorie => $athletes) {
+            $parts = explode(' ', $categorie);
+            $premierMot = $parts[0];
+            echo '<h2>Relais ' . $premierMot . '</h2>';
+            echo '<table>';
+            echo '<tr>';
+            echo '<th>Ordre</th>';
+            echo '<th>Nom</th>';
+            echo '<th>Club</th>';
+            echo '<th>Temps de Natation</th>';
+            echo '<th>Temps de Laser Run</th>';
+            echo '</tr>';
 
-        // Vérifier si des données existent dans le fichier JSON
-        if (!empty($data)) {
-            foreach ($data as $categorie => $athletes) {
-                $parts = explode(' ', $categorie);
-                $premierMot = $parts[0];
-                echo '<h2>Relais ' . $premierMot . '</h2>';
-                echo '<table>';
-                echo '<tr>';
-                echo '<th>Nom</th>';
-                echo '<th>Club</th>';
-                echo '<th>Temps de Natation</th>';
-                echo '<th>Temps de Laser Run</th>';
-                echo '</tr>';
-                foreach ($athletes as $athlete) {
-                    echo '<tr>';
-                    echo '<td>' . $athlete['nom'] . '</td>';
-                    echo '<td>' . $athlete['club'] . '</td>';
-                    echo '<td>' . (isset($athlete['temps_natation_brut']) ? $athlete['temps_natation_brut'] : '') . '</td>';
-                    echo '<td>' . (isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : '') . '</td>';
-                    echo '</tr>';
+            // Séparer les non-classés (club avec "/") et les classés
+            $nc = [];
+            $classes = [];
+            foreach ($athletes as $athlete) {
+                if (strpos($athlete['club'], '/') !== false) {
+                    $nc[] = $athlete;
+                } else {
+                    $classes[] = $athlete;
                 }
-                echo '</table>';
             }
-        } else {
-            echo "<p>Aucune donnée disponible.</p>";
+
+            // Afficher les NC (ordre = NC)
+            foreach ($nc as $athlete) {
+                echo '<tr>';
+                echo '<td>NC</td>';
+                echo '<td>' . $athlete['nom'] . '</td>';
+                echo '<td>' . $athlete['club'] . '</td>';
+                echo '<td>' . (isset($athlete['temps_natation_brut']) ? $athlete['temps_natation_brut'] : '') . '</td>';
+                echo '<td>' . (isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : '') . '</td>';
+                echo '</tr>';
+            }
+
+            // Afficher les classés (ordre 1, 2, 3...)
+            $ordre = 1;
+            foreach ($classes as $athlete) {
+                echo '<tr>';
+                echo '<td>' . $ordre++ . '</td>';
+                echo '<td>' . $athlete['nom'] . '</td>';
+                echo '<td>' . $athlete['club'] . '</td>';
+                echo '<td>' . (isset($athlete['temps_natation_brut']) ? $athlete['temps_natation_brut'] : '') . '</td>';
+                echo '<td>' . (isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : '') . '</td>';
+                echo '</tr>';
+            }
+
+            echo '</table>';
         }
     } else {
-        echo "<p>Fichier introuvable.</p>";
+        echo "<p>Aucune donnée disponible.</p>";
     }
-
+} else {
+    echo "<p>Fichier introuvable.</p>";
+}
 
 
     // Créer le PDF
