@@ -68,18 +68,6 @@ if (!empty($fileName) && file_exists($fileName)) {
                     $classes[] = $athlete;
                 }
             }
-
-            // Afficher les NC (ordre = NC)
-            foreach ($nc as $athlete) {
-                echo '<tr>';
-                echo '<td>NC</td>';
-                echo '<td>' . $athlete['nom'] . '</td>';
-                echo '<td>' . $athlete['club'] . '</td>';
-                echo '<td>' . (isset($athlete['temps_natation_brut']) ? $athlete['temps_natation_brut'] : '') . '</td>';
-                echo '<td>' . (isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : '') . '</td>';
-                echo '</tr>';
-            }
-
             // Afficher les classés (ordre 1, 2, 3...)
             $ordre = 1;
             foreach ($classes as $athlete) {
@@ -91,7 +79,16 @@ if (!empty($fileName) && file_exists($fileName)) {
                 echo '<td>' . (isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : '') . '</td>';
                 echo '</tr>';
             }
-
+            // Afficher les NC (ordre = NC)
+            foreach ($nc as $athlete) {
+                echo '<tr>';
+                echo '<td>NC</td>';
+                echo '<td>' . $athlete['nom'] . '</td>';
+                echo '<td>' . $athlete['club'] . '</td>';
+                echo '<td>' . (isset($athlete['temps_natation_brut']) ? $athlete['temps_natation_brut'] : '') . '</td>';
+                echo '<td>' . (isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : '') . '</td>';
+                echo '</tr>';
+            }
             echo '</table>';
         }
     } else {
