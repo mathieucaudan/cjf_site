@@ -57,7 +57,7 @@ th {
                             echo '<tr>';
                             echo '<td>' . $athlete['nom'] . '</td>';
                             echo '<td>' . $athlete['club'] . '</td>';
-                            echo '<td>' . (isset($athlete['temps_natation_brut']) ? $athlete['temps_natation'] : '') . '</td>';
+                            echo '<td>' . (isset($athlete['temps_natation_brut']) ? $athlete['temps_natation_brut'] : '') . '</td>';
                             echo '<td>' . (isset($athlete['points_nat']) ? $athlete['points_nat'] : '') . '</td>';
                             echo '<td>' . (isset($athlete['temps_laser_run']) ? $athlete['temps_laser_run'] : '') . '</td>';
                             echo '<td>' . (isset($athlete['points_lr']) ? $athlete['points_lr'] : '') . '</td>';
