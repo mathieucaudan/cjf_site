@@ -48,7 +48,9 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
         // Vérifier si des données existent dans le fichier JSON
         if (!empty($data)) {
             foreach ($data as $categorie => $athletes) {
-                echo '<h2>' . $categorie . '</h2>';
+                $parts = explode(' ', $categorie);
+                $premierMot = $parts[0];
+                echo '<h2>Relais ' . $premierMot . '</h2>';
                 echo '<table>';
                 echo '<tr>';
                 echo '<th>Nom</th>';
