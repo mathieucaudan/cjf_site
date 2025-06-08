@@ -44,13 +44,14 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
 
     if (!empty($fileName) && file_exists($fileName)) {
         $data = json_decode(file_get_contents($fileName), true);
-
+    
         // Vérifier si des données existent dans le fichier JSON
         if (!empty($data)) {
             foreach ($data as $categorie => $athletes) {
                 echo '<h2>' . $categorie . '</h2>';
                 echo '<table>';
                 echo '<tr>';
+                echo '<th>Classement</th>'; // colonne classement ajoutée
                 echo '<th>Nom</th>';
                 echo '<th>Club</th>';
                 echo '<th>Temps de Natation</th>';
@@ -59,8 +60,12 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
                 echo '<th>Points de Laser Run</th>';
                 echo '<th>Points Total</th>';
                 echo '</tr>';
+    
+                $rank = 1; // initialisation du classement
+    
                 foreach ($athletes as $athlete) {
                     echo '<tr>';
+                    echo '<td>' . $rank . '</td>'; // affichage du classement
                     echo '<td>' . $athlete['nom'] . '</td>';
                     echo '<td>' . $athlete['club'] . '</td>';
                     echo '<td>' . (isset($athlete['temps_natation']) ? $athlete['temps_natation'] : '') . '</td>';
@@ -69,7 +74,10 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
                     echo '<td>' . (isset($athlete['points_lr']) ? $athlete['points_lr'] : '') . '</td>';
                     echo '<td>' . (isset($athlete['total']) ? $athlete['total'] : '') . '</td>';
                     echo '</tr>';
+    
+                    $rank++; // on incrémente le classement
                 }
+    
                 echo '</table>';
             }
         } else {
