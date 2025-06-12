@@ -32,8 +32,8 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
         'm60 femmes' => ['lr' => 320],
         'm70 hommes' => ['lr' => 240],
         'm70 femmes' => ['lr' => 240],
-        'para hommes' => ['lr' => 800],
-        'para femmes' => ['lr' => 800],
+        'para hommes' => ['lr' => 320],
+        'para femmes' => ['lr' => 320],
     );
 
     if (!isset($_GET["competition"])) {
