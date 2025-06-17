@@ -1,22 +1,37 @@
-import json
-from collections import Counter
+<?php
+// Chemin vers le fichier JSON
+$fichier = 'competitions/Championnat de france de Triathlé 2025/athlestes.json';
 
-# Chemin vers le fichier JSON
-chemin_fichier = "competitions/Championnat de france de Triathlé 2025/athlestes.json"
+// Vérifie que le fichier existe
+if (!file_exists($fichier)) {
+    die("Fichier JSON non trouvé : $fichier");
+}
 
-# Chargement du fichier JSON
-with open(chemin_fichier, "r", encoding="utf-8") as f:
-    data = json.load(f)
+// Charge et décode le JSON
+$json = file_get_contents($fichier);
+$data = json_decode($json, true);
 
-# Compteur de clubs
-club_counter = Counter()
+// Tableau pour compter les clubs
+$clubCounts = [];
 
-# Parcours des catégories et des participants
-for participants in data.values():
-    for personne in participants:
-        club = personne.get("club", "Inconnu")
-        club_counter[club] += 1
+// Parcours des catégories et des participants
+foreach ($data as $categorie => $participants) {
+    foreach ($participants as $personne) {
+        $club = $personne['club'] ?? 'Inconnu';
+        if (!isset($clubCounts[$club])) {
+            $clubCounts[$club] = 0;
+        }
+        $clubCounts[$club]++;
+    }
+}
 
-# Affichage du résultat
-for club, nb in club_counter.most_common():
-    print(f"{club}: {nb} participant(s)")
+// Tri décroissant
+arsort($clubCounts);
+
+// Affichage
+echo "<h1>Nombre de participants par club</h1><ul>";
+foreach ($clubCounts as $club => $nb) {
+    echo "<li><strong>$club</strong> : $nb participant(s)</li>";
+}
+echo "</ul>";
+?>
