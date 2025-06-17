@@ -1,6 +1,6 @@
 <?php
 // Chemin vers le fichier JSON
-$fichier = 'competitions/Championnat de france de Triathlé 2025/athlestes.json';
+$fichier = './competitions/Championnat de france de Triathlé 2025/athletes.json';
 
 // Vérifie que le fichier existe
 if (!file_exists($fichier)) {
