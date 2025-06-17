@@ -2,6 +2,7 @@
 // Chemin vers le fichier JSON
 $fichier = './competitions/Championnat de france de Triathlé 2025/athletes.json';
 
+
 // Vérifie que le fichier existe
 if (!file_exists($fichier)) {
     die("Fichier JSON non trouvé : $fichier");
@@ -13,15 +14,14 @@ $data = json_decode($json, true);
 
 // Tableau pour compter les clubs
 $clubCounts = [];
+$totalParticipants = 0;
 
 // Parcours des catégories et des participants
 foreach ($data as $categorie => $participants) {
     foreach ($participants as $personne) {
         $club = $personne['club'] ?? 'Inconnu';
-        if (!isset($clubCounts[$club])) {
-            $clubCounts[$club] = 0;
-        }
-        $clubCounts[$club]++;
+        $clubCounts[$club] = ($clubCounts[$club] ?? 0) + 1;
+        $totalParticipants++;
     }
 }
 
@@ -34,4 +34,6 @@ foreach ($clubCounts as $club => $nb) {
     echo "<li><strong>$club</strong> : $nb participant(s)</li>";
 }
 echo "</ul>";
-?>
+
+// Affichage du total
+echo "<h2>Total général : $totalParticipants participant(s)</h2>";
