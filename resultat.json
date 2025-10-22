@@ -22,5 +22,14 @@
         "pdf": null,
         "image": ".\/info_images\/6777c06b0e36c_Version 1.png",
         "id": "6777c06b0ed36"
+    },
+    {
+        "titre": "LASER RUN D'HALLOWEEN",
+        "description": "laser run \u00e0 Marville",
+        "url": "",
+        "pdf": ".\/info_pdf\/ AFFICHE LASER RUN HALLOWEEN 2025:2026.pdf",
+        "image": null,
+        "date": "2025-11-02",
+        "id": "68f8df28c67d4"
     }
 ]
