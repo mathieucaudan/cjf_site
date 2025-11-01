@@ -1,1 +1,168 @@
-{"m40 hommes":[{"nom":"Pierre Maxime RENON","club":"VGA"},{"nom":"Arnaud EVEILLARD","club":"VGA"}],"m50 hommes":[{"nom":"Vincent DOIGNEAUX","club":"AC CESSON"}],"m40 femmes":[{"nom":"Am\u00e9lie DUBOIS","club":"AC CESSON"}],"u15 filles":[{"nom":"Emma TANNOUX","club":"AC CESSON"},{"nom":"Julia PINSON","club":"VGA"},{"nom":"Elo\u00efse COX","club":"VGA"},{"nom":"Charlotte MARTINEAU","club":"VGA"},{"nom":"Leina JOSSELIN","club":"VGA"},{"nom":"In\u00e8s DEHIBA","club":"VGA"},{"nom":"Jos\u00e9phine BETTENS","club":"VGA"}],"u15 gar\u00e7ons":[{"nom":"Benjamin HAMON","club":"VGA"},{"nom":"Roussel JEROME","club":"VGA"},{"nom":"Simon JEROME","club":"VGA"},{"nom":"Lucien LEGRET","club":"VGA"},{"nom":"Notton LEGRET","club":"VGA"},{"nom":"Timoth\u00e9e DEHIBA","club":"VGA"}],"u17 filles":[{"nom":"Z\u00e9lie LEPORT","club":"VGA"},{"nom":"Emilie BERGANO","club":"VGA"},{"nom":"Anna SCOLARI","club":"VGA"}],"u17 gar\u00e7ons":[{"nom":"Louis CREPIN","club":"VGA"},{"nom":"Bellange Noa REGEARD","club":"VGA"},{"nom":"Erwan GAZENGEL","club":"VGA"},{"nom":"Quentin GELLON","club":"VGA"},{"nom":"Jules ARENS","club":"VGA"}],"seniors femmes":[{"nom":"Estelle DOIGNEAUX","club":"AC CESSON"},{"nom":"Lesley-Ann DUFLOT","club":"VGA"},{"nom":"Agathe CORMIER","club":"VGA"},{"nom":"Diane DELAMARRE","club":"VGA"},{"nom":"Juliette KECHID","club":"VGA"},{"nom":"Florence LEDUC","club":"VGA"},{"nom":"Victoria MICHON","club":"VGA"}],"seniors hommes":[{"nom":"Fran\u00e7ois KECHID","club":"AC CESSON"},{"nom":"\u00c9quipe CHERBOURG MASCULIN 1","club":"CHERBOURG"},{"nom":"\u00c9quipe CHERBOURG MASCULIN 2","club":"CHERBOURG"}],"u13 garcons":[{"nom":"Th\u00e9o TANNOUX","club":"AC CESSON"}],"m60 hommes":[{"nom":"Thierry GARDIN","club":"CJF Saint-Malo"},{"nom":"Philippe DELAMARRE","club":"CJF Saint-Malo"}]}
+{
+  "m40 hommes": [
+    {
+      "nom": "Pierre Maxime RENON",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Arnaud EVEILLARD",
+      "club": "CJF Saint-Malo"
+    }
+  ],
+  "m50 hommes": [
+    {
+      "nom": "Vincent DOIGNEAUX",
+      "club": "AC CESSON"
+    }
+  ],
+  "m40 femmes": [
+    {
+      "nom": "Amélie DUBOIS",
+      "club": "AC CESSON"
+    }
+  ],
+  "u15 filles": [
+    {
+      "nom": "Emma TANNOUX",
+      "club": "AC CESSON"
+    },
+    {
+      "nom": "Julia PINSON",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Eloïse COX",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Charlotte MARTINEAU",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Leina JOSSELIN",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Inès DEHIBA",
+      "club": "VGA"
+    },
+    {
+      "nom": "Joséphine BETTENS",
+      "club": "VGA"
+    }
+  ],
+  "u15 garçons": [
+    {
+      "nom": "Benjamin HAMON ROUSSEL",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Simon JEROME",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Lucien LEGRET",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Timothée NOTTON",
+      "club": "VGA"
+    }
+  ],
+  "u17 filles": [
+    {
+      "nom": "Zélie LEPORT",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Emilie BERGANO",
+      "club": "VGA"
+    },
+    {
+      "nom": "Anna SCOLARI",
+      "club": "CJF Saint-Malo"
+    }
+  ],
+  "u17 garçons": [
+    {
+      "nom": "Louis CREPIN BELLANGE",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Noa REGEARD",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Erwan GAZENGEL",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Quentin GELLON",
+      "club": "VGA"
+    },
+    {
+      "nom": "Jules ARENS",
+      "club": "VGA"
+    }
+  ],
+  "seniors femmes": [
+    {
+      "nom": "Estelle DOIGNEAUX",
+      "club": "AC CESSON"
+    },
+    {
+      "nom": "Lesley-Ann DUFLOT",
+      "club": "AC CESSON"
+    },
+    {
+      "nom": "Agathe CORMIER",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Diane DELAMARRE",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Juliette KECHID",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Florence LEDUC",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Victoria MICHON",
+      "club": "CJF Saint-Malo"
+    }
+  ],
+  "seniors hommes": [
+    {
+      "nom": "François KECHID",
+      "club": "AC CESSON"
+    },
+    {
+      "nom": "Équipe CHERBOURG MASCULIN 1",
+      "club": "CHERBOURG"
+    },
+    {
+      "nom": "Équipe CHERBOURG MASCULIN 2",
+      "club": "CHERBOURG"
+    }
+  ],
+  "u13 garcons": [
+    {
+      "nom": "Théo TANNOUX",
+      "club": "AC CESSON"
+    }
+  ],
+  "m60 hommes": [
+    {
+      "nom": "Thierry GARDIN",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Philippe DELAMARRE",
+      "club": "CJF Saint-Malo"
+    }
+  ]
+}
