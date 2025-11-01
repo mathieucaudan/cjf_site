@@ -49,5 +49,19 @@
     { "nom": "Erwan GAZENGEL", "club": "" },
     { "nom": "Quentin GELLON", "club": "" },
     { "nom": "Jules ARENS", "club": "" }
+  ],
+  "seniors femmes": [
+    { "nom": "Estelle DOIGNEAUX", "club": "ACC" },
+    { "nom": "Lesley-Ann DUFLOT", "club": "" },
+    { "nom": "Agathe CORMIER", "club": "" },
+    { "nom": "Diane DELAMARRE", "club": "" },
+    { "nom": "Juliette KECHID", "club": "" },
+    { "nom": "Florence LEDUC", "club": "CHERBOURG FEMININE" },
+    { "nom": "Victoria MICHON", "club": "" }
+  ],
+  "seniors hommes": [
+    { "nom": "François KECHID", "club": "ACC" },
+    { "nom": "Équipe CHERBOURG MASCULIN 1", "club": "CHERBOURG" },
+    { "nom": "Équipe CHERBOURG MASCULIN 2", "club": "CHERBOURG" }
   ]
 }
