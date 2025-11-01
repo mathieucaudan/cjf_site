@@ -1,1 +1,53 @@
-{"m40 hommes":[{"nom":"Pierre Maxime RENON","club":"CJF Saint-Malo"},{"nom":"Arnaud EVEILLARD","club":"CJF Saint-Malo"}],"m50 hommes":[{"nom":"Vincent DOIGNEAUX","club":"AC CESSON"}],"m40 femmes":[{"nom":"Am\u00e9lie DUBOIS","club":"AC CESSON"}],"u15 filles":[{"nom":"Emma TANNOUX","club":"AC CESSON"},{"nom":"Julia PINSON","club":""},{"nom":"Elo\u00efse COX","club":""},{"nom":"Charlotte MARTINEAU","club":""},{"nom":"Leina JOSSELIN","club":""},{"nom":"In\u00e8s BETTENS","club":""},{"nom":"Jos\u00e9phine BETTENS","club":""}],"u15 gar\u00e7ons":[{"nom":"Benjamin HAMON","club":""},{"nom":"Roussel JEROME","club":""},{"nom":"Simon JEROME","club":""},{"nom":"Lucien LEGRET","club":""},{"nom":"Notton LEGRET","club":""},{"nom":"Timoth\u00e9e DEHIBA","club":""}]}
+{
+  "m40 hommes": [
+    {
+      "nom": "Pierre Maxime RENON",
+      "club": "CJF Saint-Malo"
+    },
+    {
+      "nom": "Arnaud EVEILLARD",
+      "club": "CJF Saint-Malo"
+    }
+  ],
+  "m50 hommes": [
+    {
+      "nom": "Vincent DOIGNEAUX",
+      "club": "AC CESSON"
+    }
+  ],
+  "m40 femmes": [
+    {
+      "nom": "Amélie DUBOIS",
+      "club": "AC CESSON"
+    }
+  ],
+  "u15 filles": [
+    { "nom": "Emma TANNOUX", "club": "ACC" },
+    { "nom": "Julia PINSON", "club": "" },
+    { "nom": "Eloïse COX", "club": "" },
+    { "nom": "Charlotte MARTINEAU", "club": "" },
+    { "nom": "Leina JOSSELIN", "club": "" },
+    { "nom": "Inès BETTENS", "club": "" },
+    { "nom": "Joséphine BETTENS", "club": "" }
+  ],
+  "u15 garçons": [
+    { "nom": "Benjamin HAMON", "club": "" },
+    { "nom": "Roussel JEROME", "club": "" },
+    { "nom": "Simon JEROME", "club": "" },
+    { "nom": "Lucien LEGRET", "club": "" },
+    { "nom": "Notton LEGRET", "club": "" },
+    { "nom": "Timothée DEHIBA", "club": "" }
+  ],
+  "u17 filles": [
+    { "nom": "Zélie LEPORT", "club": "" },
+    { "nom": "Emilie BERGANO", "club": "" },
+    { "nom": "Anna SCOLARI", "club": "" }
+  ],
+  "u17 garçons": [
+    { "nom": "Louis CREPIN", "club": "" },
+    { "nom": "Bellange Noa REGEARD", "club": "" },
+    { "nom": "Erwan GAZENGEL", "club": "" },
+    { "nom": "Quentin GELLON", "club": "" },
+    { "nom": "Jules ARENS", "club": "" }
+  ]
+}
