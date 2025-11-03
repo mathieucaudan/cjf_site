@@ -1,3 +1,9 @@
 {
-    "athletes": []
+    "athletes": {
+        "a6908e069d2fc81.90270226": {
+            "nom": "Arnaud EVEILLARD",
+            "club": "CJF Saint-Malo",
+            "categorie": "m40 hommes"
+        }
+    }
 }

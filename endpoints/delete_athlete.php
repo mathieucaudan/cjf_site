@@ -8,17 +8,9 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 }
 
 $input = json_decode(file_get_contents('php://input'), true);
-if (!$input) {
-    echo json_encode(['ok' => false, 'error' => 'Aucune donnée reçue']);
-    exit;
-}
-
 $discipline = $input['discipline'] ?? '';
 $competition = $input['competition'] ?? '';
 $id = $input['id'] ?? '';
-$nom = trim($input['nom'] ?? '');
-$club = trim($input['club'] ?? '');
-$categorie = trim($input['categorie'] ?? '');
 
 $file = "../competitions/$discipline/$competition/athletes.json";
 if (!$discipline || !$competition || !$id || !file_exists($file)) {
@@ -32,10 +24,7 @@ if (flock($fp, LOCK_EX)) {
     $data = json_decode($content, true);
 
     if (isset($data['athletes'][$id])) {
-        $data['athletes'][$id]['nom'] = htmlspecialchars($nom, ENT_QUOTES);
-        $data['athletes'][$id]['club'] = htmlspecialchars($club, ENT_QUOTES);
-        $data['athletes'][$id]['categorie'] = htmlspecialchars($categorie, ENT_QUOTES);
-
+        unset($data['athletes'][$id]);
         ftruncate($fp, 0);
         rewind($fp);
         fwrite($fp, json_encode($data, JSON_PRETTY_PRINT));
