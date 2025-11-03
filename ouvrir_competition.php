@@ -1,82 +1,93 @@
 <?php
+session_start();
 include 'fonction.php';
+
 entete();
 echo "<link rel='stylesheet' href='style/parametres.css'>";
 navbar();
+
 echo "<body style='background-color: rgb(32, 47, 74); color:white'>";
-if (isset($_SESSION['role'])) {
-    if ($_SESSION['role'] == 'admin') {
-?>
-        <center>
-            <h1>Choisir une compétition</h1>
 
-            <?php
-            // Répertoire où se trouvent les dossiers de compétition
-            $competitions_directory = './competitions/';
-
-            // Vérifier si le dossier "competitions" existe
-            if (is_dir($competitions_directory)) {
-                // Afficher la liste des dossiers de compétition
-                echo "<h2>Choisir un dossier :</h2>";
-                echo "<ul>";
-
-                // Parcourir le répertoire des compétitions
-                if ($handle = opendir($competitions_directory)) {
-                    while (false !== ($entry = readdir($handle))) {
-                        // Vérifier si l'entrée est un dossier et n'est pas . ou ..
-                        if ($entry != "." && $entry != ".." && is_dir($competitions_directory . $entry)) {
-                            // Afficher le nom du dossier avec un lien vers cette page
-                            echo "<li><a class='w3-button' href='{$_SERVER['PHP_SELF']}?directory={$competitions_directory}{$entry}'>$entry</a></li>";
-                        }
-                    }
-                    closedir($handle);
-                }
-
-                echo "</ul>";
-
-                // Vérifier si un dossier est sélectionné
-                if (isset($_GET["directory"])) {
-                    // Si oui, afficher la liste des fichiers JSON dans ce dossier
-                    $selectedDirectory = $_GET["directory"];
-                    $selectedDirectoryParts = explode('/', $selectedDirectory);
-                    $competition_name = end($selectedDirectoryParts);
-                    echo "<h2>Fichiers dans la compétition $competition_name :</h2>";
-
-                    // Ouvrir le répertoire sélectionné
-                    if ($handle = opendir($selectedDirectory)) {
-                        echo "<ul>";
-                        // Parcourir le répertoire
-                        while (false !== ($file = readdir($handle))) {
-                            // Vérifier si le fichier est un fichier JSON
-                            if (pathinfo($file, PATHINFO_EXTENSION) == 'json') {
-                                // Afficher le nom du fichier avec un lien vers test.php
-                                echo "<li>{$file} - ";
-                                $competition_name = basename($selectedDirectory);
-                                echo "<a class='w3-button' href='ajouter_athletes.php?competition={$competition_name}'>Ajouter Athletes</a> | ";
-                                echo "<a class='w3-button' href='ajouter_temps_nat.php?competition={$competition_name}'>Ajouter Temps Nat</a> | ";
-                                echo "<a class='w3-button' href='ajouter_temps_lr.php?competition={$competition_name}'>Ajouter Temps LR</a> | ";
-                                echo "<a class='w3-button' href='resultats.php?title=résultat&file={$selectedDirectory}/{$file}'>Résultats</a>";
-                                echo "</li>";
-                            }
-                        }
-                        echo "</ul>";
-                        // Fermer le gestionnaire de répertoire
-                        closedir($handle);
-                    } else {
-                        echo "<p>Aucun fichier JSON trouvé dans ce répertoire.</p>";
-                    }
-                }
-            } else {
-                echo "<p>Aucun dossier 'competitions' trouvé.</p>";
-            }
-            ?>
-            <a class='w3-button' href="compet.php">Retour à l'accueil</a>
-        </center>
-<?php }
-} else {
-    echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-  <h2 class='w3-center'>Autorisation non accordée</h2>
-  </div>";
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    echo "<div class='w3-center w3-padding-48 w3-xxlarge'>
+            <h2>Autorisation non accordée</h2>
+          </div>";
+    footer();
+    exit;
 }
+?>
+
+<center>
+    <h1>Gestion des Compétitions</h1>
+    <h2>Choisissez une discipline :</h2>
+    <div style="display:flex; justify-content:center; gap:30px; margin-bottom:30px;">
+        <a class='w3-button w3-blue' href='?discipline=laserrun'>Laser Run</a>
+        <a class='w3-button w3-green' href='?discipline=triathle'>Triathlé</a>
+    </div>
+
+<?php
+// Dossier racine des compétitions
+$competitions_directory = './competitions/';
+
+// Vérifie la discipline sélectionnée
+if (isset($_GET['discipline'])) {
+    $discipline = htmlspecialchars($_GET['discipline']);
+    $discipline_path = $competitions_directory . $discipline . '/';
+
+    if (!is_dir($discipline_path)) {
+        echo "<p>Le dossier pour la discipline <b>$discipline</b> n'existe pas encore.</p>";
+    } else {
+        echo "<h2>Compétitions de $discipline :</h2>";
+
+        // Liste les sous-dossiers
+        $competitions = array_filter(scandir($discipline_path), function ($entry) use ($discipline_path) {
+            return $entry !== '.' && $entry !== '..' && is_dir($discipline_path . $entry);
+        });
+
+        if (empty($competitions)) {
+            echo "<p>Aucune compétition trouvée pour cette discipline.</p>";
+        } else {
+            echo "<ul style='list-style:none;'>";
+            foreach ($competitions as $comp) {
+                $path = $discipline_path . $comp;
+                echo "<li style='margin-bottom:10px;'>
+                        <a class='w3-button w3-border' href='?discipline=$discipline&directory=$path'>$comp</a>
+                      </li>";
+            }
+            echo "</ul>";
+        }
+
+        // Si une compétition est sélectionnée
+        if (isset($_GET['directory'])) {
+            $selectedDirectory = htmlspecialchars($_GET['directory']);
+            $competition_name = basename($selectedDirectory);
+
+            echo "<hr><h2>Fichiers dans la compétition <b>$competition_name</b> :</h2>";
+
+            if ($handle = opendir($selectedDirectory)) {
+                echo "<ul style='list-style:none;'>";
+                while (false !== ($file = readdir($handle))) {
+                    if (pathinfo($file, PATHINFO_EXTENSION) == 'json') {
+                        echo "<li style='margin-bottom:8px;'>
+                                <b>$file</b> - 
+                                <a class='w3-button w3-small w3-indigo' href='ajouter_athletes.php?competition=$competition_name&discipline=$discipline'>Ajouter Athlètes</a>
+                                <a class='w3-button w3-small w3-teal' href='ajouter_temps_nat.php?competition=$competition_name&discipline=$discipline'>Ajouter Temps Nat</a>
+                                <a class='w3-button w3-small w3-red' href='ajouter_temps_lr.php?competition=$competition_name&discipline=$discipline'>Ajouter Temps LR</a>
+                                <a class='w3-button w3-small w3-orange' href='resultats.php?title=resultats&file=$selectedDirectory/$file&discipline=$discipline'>Résultats</a>
+                              </li>";
+                    }
+                }
+                echo "</ul>";
+                closedir($handle);
+            } else {
+                echo "<p>Impossible d'ouvrir le dossier sélectionné.</p>";
+            }
+        }
+    }
+
+    echo "<a class='w3-button w3-gray' href='index.php'>Retour</a>";
+}
+
 footer();
 echo "</body>";
+?>
