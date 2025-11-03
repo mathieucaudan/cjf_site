@@ -64,10 +64,18 @@ if (!file_exists($file_json)) {
                 <option value="u17 femmes">U17 Femmes</option>
                 <option value="u19 hommes">U19 Hommes</option>
                 <option value="u19 femmes">U19 Femmes</option>
+                <option value="u22 hommes">U22 Hommes</option>
+                <option value="u22 femmes">U22 Femmes</option>
                 <option value="senior hommes">Senior Hommes</option>
                 <option value="senior femmes">Senior Femmes</option>
                 <option value="m40 hommes">Master 40 Hommes</option>
                 <option value="m40 femmes">Master 40 Femmes</option>
+                <option value="m50 hommes">Master 50 Hommes</option>
+                <option value="m50 femmes">Master 50 Femmes</option>
+                <option value="m60 hommes">Master 60 Hommes</option>
+                <option value="m60 femmes">Master 60 Femmes</option>
+                <option value="m70 hommes">Master 70 Hommes</option>
+                <option value="m70 femmes">Master 70 Femmes</option>
                 <option value="para hommes">Para Hommes</option>
                 <option value="para femmes">Para Femmes</option>
             </select>
@@ -85,10 +93,11 @@ const container = document.getElementById('athletes-container');
 const formAdd = document.getElementById('form-add');
 
 function getCategoriesList() {
-    return [
-        "u9 garcons","u9 filles","u11 garcons","u11 filles","u13 garcons","u13 filles",
-        "u15 garcons","u15 filles","u17 hommes","u17 femmes","u19 hommes","u19 femmes",
-        "senior hommes","senior femmes","m40 hommes","m40 femmes","para hommes","para femmes"
+    const cats = [
+        "u9 garcons","u9 filles","u11 garcons","u11 filles","u13 garcons","u13 filles","u15 garcons","u15 filles",
+        "u17 hommes","u17 femmes","u19 hommes","u19 femmes","u22 hommes","u22 femmes","senior hommes","senior femmes",
+        "m40 hommes","m40 femmes","m50 hommes","m50 femmes","m60 hommes","m60 femmes","m70 hommes","m70 femmes",
+        "para hommes","para femmes"
     ];
 }
 
