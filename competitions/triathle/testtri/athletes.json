@@ -20,8 +20,11 @@
             "temps_natation_brut": "2'18''96",
             "points_nat": 273,
             "temps_natation": "2'18''96",
-            "total": 273,
-            "diff_points_leader": 0
+            "total": 955,
+            "diff_points_leader": 0,
+            "temps_laser_run_brut": "10'18",
+            "temps_laser_run": "10'18''00",
+            "points_lr": 682
         }
     }
 }
