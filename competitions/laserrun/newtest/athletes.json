@@ -1,19 +1,23 @@
 {
-    "athletes": {
-        "a6908e069d2fc81.90270226": {
+    "athletes": [
+        {
+            "nom": "Mathieu CAUDAN",
+            "club": "CJF Saint-Malo",
+            "categorie": "senior hommes",
+            "temps_laser_run_brut": "10'24",
+            "temps_laser_run": "10'24''00",
+            "points_lr": 676,
+            "total": 676
+        },
+        {
             "nom": "Arnaud EVEILLARD",
             "club": "CJF Saint-Malo",
             "categorie": "m40 hommes"
         },
-        "a6908e0b86fd508.60178592": {
-            "nom": "Mathieu CAUDAN",
-            "club": "CJF Saint-Malo",
-            "categorie": "senior hommes"
-        },
-        "a6908e247d44e72.91827315": {
+        {
             "nom": "Am\u00e9lie DUBOIS",
             "club": "AC CESSON",
             "categorie": "u19 femmes"
         }
-    }
+    ]
 }
