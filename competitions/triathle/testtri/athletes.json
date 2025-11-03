@@ -3,7 +3,16 @@
         "a6908e6cd512696.01405534": {
             "nom": "Arnaud EVEILLARD",
             "club": "CJF Saint-Malo",
-            "categorie": "m40 hommes"
+            "categorie": "m40 hommes",
+            "temps_laser_run_brut": "9'06",
+            "temps_laser_run": "9'06''00",
+            "points_lr": 644,
+            "total": 644
+        },
+        "a6908e6df280168.40733656": {
+            "nom": "Mathieu CAUDAN",
+            "club": "CJF Saint-Malo",
+            "categorie": "senior hommes"
         }
     }
 }
