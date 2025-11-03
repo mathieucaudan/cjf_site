@@ -179,7 +179,6 @@ foreach ($cat_names as $cat) {
     $id = md5($cat);
     echo "<div class='tabcontent' id='tab_$id' style='display:none;'>";
     echo "<h2 style='text-align:center;'>".htmlspecialchars($cat)."</h2>";
-    echo "<p style='text-align:center; font-size:1.1em;'>Télécharger cette catégorie</p>";
 
     $title = 'Résultat ' . ucfirst($discipline) . ' - ' . $nom_competition;
     $titledoc = "$title $cat";
