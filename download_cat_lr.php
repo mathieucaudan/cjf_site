@@ -44,8 +44,8 @@ tr:nth-child(even) {
 </style>";
 
 if (isset($_GET['title']) && isset($_GET['file'])) {
-    $titre = $_GET['title'] ?? "Résultats Natation";
-    $titredoc = $_GET['titledoc'] ?? "Résultats Natation";
+    $titre = $_GET['title'] ?? "Résultats";
+    $titredoc = $_GET['titledoc'] ?? "Résultats";
     $fileName = $_GET['file'] ?? "";
     $categorie = $_GET['cat'] ?? "";
 
@@ -83,8 +83,6 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
                             <tr>
                                 <th>Nom</th>
                                 <th>Club</th>
-                                <th>Temps Natation</th>
-                                <th>Points Natation</th>
                                 <th>Temps Laser Run</th>
                                 <th>Points Laser Run</th>
                                 <th>Total</th>
@@ -96,8 +94,6 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
                     echo "<tr>
                             <td>" . htmlspecialchars($athlete['nom'] ?? '') . "</td>
                             <td>" . htmlspecialchars($athlete['club'] ?? '') . "</td>
-                            <td>" . htmlspecialchars($athlete['temps_natation'] ?? '') . "</td>
-                            <td>" . htmlspecialchars($athlete['points_nat'] ?? '') . "</td>
                             <td>" . htmlspecialchars($athlete['temps_laser_run'] ?? '') . "</td>
                             <td>" . htmlspecialchars($athlete['points_lr'] ?? '') . "</td>
                             <td>" . htmlspecialchars($athlete['total'] ?? '') . "</td>
