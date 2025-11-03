@@ -92,8 +92,9 @@ if (!file_exists($file_json)) {
 const container = document.getElementById('athletes-container');
 const formAdd = document.getElementById('form-add');
 
+// ✅ Correction : cette fonction doit retourner le tableau !
 function getCategoriesList() {
-    const cats = [
+    return [
         "u9 garcons","u9 filles","u11 garcons","u11 filles","u13 garcons","u13 filles","u15 garcons","u15 filles",
         "u17 hommes","u17 femmes","u19 hommes","u19 femmes","u22 hommes","u22 femmes","senior hommes","senior femmes",
         "m40 hommes","m40 femmes","m50 hommes","m50 femmes","m60 hommes","m60 femmes","m70 hommes","m70 femmes",
@@ -105,7 +106,6 @@ function categoryLabel(cat) {
     return cat.replace(/(^|\s)\S/g, t => t.toUpperCase());
 }
 
-// Charger les athlètes triés
 async function loadAthletes() {
     const res = await fetch('endpoints/get_athletes.php?discipline=<?= urlencode($discipline) ?>&competition=<?= urlencode($competition) ?>');
     const data = await res.json();
@@ -115,20 +115,18 @@ async function loadAthletes() {
     }
 
     const athletes = Object.entries(data.athletes || {});
-    // Regrouper par catégorie
     const grouped = {};
+
     athletes.forEach(([id, a]) => {
         if (!grouped[a.categorie]) grouped[a.categorie] = [];
         grouped[a.categorie].push({ id, ...a });
     });
 
-    // Trier les catégories et les athlètes par nom
     const categories = Object.keys(grouped).sort();
     for (const cat in grouped) {
         grouped[cat].sort((a,b) => a.nom.localeCompare(b.nom, 'fr', { sensitivity: 'base' }));
     }
 
-    // Construction HTML
     container.innerHTML = '';
     categories.forEach(cat => {
         const athletesList = grouped[cat];
@@ -145,7 +143,7 @@ async function loadAthletes() {
         const table = document.createElement('table');
         table.className = "w3-table w3-bordered";
         table.style.marginBottom = "15px";
-        table.style.display = "none"; // masqué par défaut
+        table.style.display = "none";
 
         const thead = document.createElement('thead');
         thead.innerHTML = `
@@ -176,7 +174,7 @@ async function loadAthletes() {
         section.appendChild(table);
         container.appendChild(section);
 
-        // Toggle ouverture/fermeture catégorie
+        // Déroulement
         header.addEventListener('click', () => {
             const open = table.style.display === "table";
             document.querySelectorAll('.cat-section table').forEach(t => t.style.display = 'none');
@@ -189,7 +187,7 @@ async function loadAthletes() {
     });
 }
 
-// Ajouter un athlète
+// Ajouter
 formAdd.addEventListener('submit', async e => {
     e.preventDefault();
     const formData = new FormData(formAdd);
