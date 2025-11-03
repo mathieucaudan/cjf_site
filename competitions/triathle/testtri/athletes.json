@@ -7,12 +7,21 @@
             "temps_laser_run_brut": "9'06",
             "temps_laser_run": "9'06''00",
             "points_lr": 644,
-            "total": 644
+            "total": 904,
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'15''36",
+            "points_nat": 260,
+            "temps_natation": "1'15''36"
         },
         "a6908e6df280168.40733656": {
             "nom": "Mathieu CAUDAN",
             "club": "CJF Saint-Malo",
-            "categorie": "senior hommes"
+            "categorie": "senior hommes",
+            "temps_natation_brut": "2'18''96",
+            "points_nat": 273,
+            "temps_natation": "2'18''96",
+            "total": 273,
+            "diff_points_leader": 0
         }
     }
 }
