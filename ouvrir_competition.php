@@ -84,7 +84,7 @@ if (isset($_GET['discipline'])) {
         }
     }
 
-    echo "<a class='w3-button w3-gray' href='index.php'>Retour</a>";
+    echo "<a class='w3-button w3-gray' href='compet.php'>Retour</a>";
 }
 
 footer();
