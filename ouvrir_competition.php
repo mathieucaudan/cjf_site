@@ -36,7 +36,7 @@ if (isset($_GET['discipline'])) {
     if (!is_dir($discipline_path)) {
         echo "<p>Le dossier pour la discipline <b>$discipline</b> n'existe pas encore.</p>";
     } else {
-        echo "<h2>Compétitions de $discipline :</h2>";
+        echo "<h2>Compétitions de " . ucfirst($discipline) . " :</h2>";
 
         // Liste les sous-dossiers
         $competitions = array_filter(scandir($discipline_path), function ($entry) use ($discipline_path) {
@@ -67,12 +67,20 @@ if (isset($_GET['discipline'])) {
                 echo "<ul style='list-style:none;'>";
                 while (false !== ($file = readdir($handle))) {
                     if (pathinfo($file, PATHINFO_EXTENSION) == 'json') {
+
                         echo "<li style='margin-bottom:8px;'>
                                 <b>$file</b> - 
-                                <a class='w3-button w3-small w3-indigo' href='ajouter_athletes.php?competition=$competition_name&discipline=$discipline'>Ajouter Athlètes</a>
-                                <a class='w3-button w3-small w3-teal' href='ajouter_temps_nat.php?competition=$competition_name&discipline=$discipline'>Ajouter Temps Nat</a>
-                                <a class='w3-button w3-small w3-red' href='ajouter_temps_lr.php?competition=$competition_name&discipline=$discipline'>Ajouter Temps LR</a>
-                                <a class='w3-button w3-small w3-orange' href='resultats.php?title=resultats&file=$selectedDirectory/$file&discipline=$discipline'>Résultats</a>
+                                <a class='w3-button w3-small w3-indigo' href='ajouter_athletes.php?competition=$competition_name&discipline=$discipline'>Ajouter Athlètes</a>";
+
+                        // 🔹 Discipline spécifique
+                        if ($discipline === 'triathle') {
+                            echo " <a class='w3-button w3-small w3-teal' href='ajouter_temps_nat.php?competition=$competition_name&discipline=$discipline'>Ajouter Temps Nat</a>";
+                            echo " <a class='w3-button w3-small w3-red' href='ajouter_temps_lr.php?competition=$competition_name&discipline=$discipline'>Ajouter Temps LR</a>";
+                        } elseif ($discipline === 'laserrun') {
+                            echo " <a class='w3-button w3-small w3-red' href='ajouter_temps_lr.php?competition=$competition_name&discipline=$discipline'>Ajouter Temps LR</a>";
+                        }
+
+                        echo " <a class='w3-button w3-small w3-orange' href='resultats.php?title=resultats&file=$selectedDirectory/$file&discipline=$discipline'>Résultats</a>
                               </li>";
                     }
                 }
