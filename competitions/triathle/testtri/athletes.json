@@ -25,6 +25,19 @@
             "temps_laser_run_brut": "10'18",
             "temps_laser_run": "10'18''00",
             "points_lr": 682
+        },
+        "a6937da9ea1baa5.51385511": {
+            "nom": "Gurvan LE MAZOU",
+            "club": "CJF Saint-Malo",
+            "categorie": "senior hommes",
+            "temps_natation_brut": "2'55''65",
+            "points_nat": 199,
+            "temps_natation": "2'55''65",
+            "total": 818,
+            "diff_points_leader": 74,
+            "temps_laser_run_brut": "12'35",
+            "temps_laser_run": "11'21''00",
+            "points_lr": 619
         }
     }
 }

@@ -86,6 +86,37 @@ if (!file_exists($file_json)) {
 
     <h3>Liste des athlètes</h3>
     <div id="athletes-container" style="width:80%; text-align:left;"></div>
+    <!-- 🔹 Bloc actions compétition -->
+    <div style="margin-bottom:25px; display:flex; gap:15px; justify-content:center;">
+
+
+        <!-- Boutons selon discipline -->
+        <?php if ($discipline === 'triathle'): ?>
+            <a class='w3-button w3-teal w3-round'
+            href='ajouter_temps_nat.php?competition=<?= urlencode($competition) ?>&discipline=<?= urlencode($discipline) ?>'>
+            ⏱ Ajouter Temps Natation
+            </a>
+
+            <a class='w3-button w3-red w3-round'
+            href='ajouter_temps_lr.php?competition=<?= urlencode($competition) ?>&discipline=<?= urlencode($discipline) ?>'>
+            ⏱ Ajouter Temps Laser Run
+            </a>
+
+        <?php elseif ($discipline === 'laserrun'): ?>
+            <a class='w3-button w3-red w3-round'
+            href='ajouter_temps_lr.php?competition=<?= urlencode($competition) ?>&discipline=<?= urlencode($discipline) ?>'>
+            ⏱ Ajouter Temps Laser Run
+            </a>
+        <?php endif; ?>
+
+        <!-- Résultats -->
+        <a class='w3-button w3-orange w3-round'
+        href='resultats.php?title=resultats&file=competitions/<?= urlencode($discipline) ?>/<?= urlencode($competition) ?>/athletes.json&discipline=<?= urlencode($discipline) ?>'>
+        📊 Voir Résultats
+        </a>
+
+    </div>
+
 </center>
 
 <script>

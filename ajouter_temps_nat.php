@@ -181,7 +181,7 @@ foreach ($cat_names as $cat) {
             </tr>";
 
     $rows = $grouped[$cat];
-    usort($rows, fn($a,$b)=>strcmp($a['nom'],$b['nom']));
+    usort($rows, fn($a,$b)=>strcmp($b['nom'],$a['nom']));
 
     foreach ($rows as $ath) {
         echo "<tr>
