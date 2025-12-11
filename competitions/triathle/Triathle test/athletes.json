@@ -3,12 +3,30 @@
         "a693b2e68cf6536.16227872": {
             "nom": "Guillaume COBAT",
             "club": "CJF",
-            "categorie": "senior hommes"
+            "categorie": "senior hommes",
+            "diff_points_leader": 0
         },
         "a693b2e71e5b6c7.14228352": {
             "nom": "Mathieu CAUDAN",
             "club": "4eme",
-            "categorie": "u19 femmes"
+            "categorie": "u19 femmes",
+            "diff_points_leader": 0
+        },
+        "a693b2e830befb2.32165881": {
+            "nom": "Julien TERTRAIN",
+            "club": "RISK",
+            "categorie": "m40 femmes",
+            "temps_natation_brut": "1'22\"99",
+            "points_nat": 0,
+            "temps_natation": "format invalide",
+            "total": 0,
+            "diff_points_leader": 0
+        },
+        "a693b2e968d4f81.73794537": {
+            "nom": "COnnard TEST",
+            "club": "con",
+            "categorie": "u19 femmes",
+            "diff_points_leader": 0
         }
     }
 }
