@@ -21,7 +21,10 @@
             "temps_natation_brut": "1'05''65",
             "points_nat": 419,
             "temps_natation": "1'05''65",
-            "total": 419
+            "total": 968,
+            "temps_laser_run_brut": "12'34",
+            "temps_laser_run": "12'31''00",
+            "points_lr": 549
         },
         "a693b2e830befb2.32165881": {
             "nom": "Julien TERTRAIN",
@@ -44,7 +47,10 @@
             "temps_natation_brut": "1'04''45",
             "points_nat": 422,
             "temps_natation": "1'04''45",
-            "total": 422
+            "total": 1132,
+            "temps_laser_run_brut": "9'50",
+            "temps_laser_run": "9'50''00",
+            "points_lr": 710
         }
     }
 }
