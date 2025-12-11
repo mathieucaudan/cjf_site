@@ -8,7 +8,10 @@
             "temps_natation_brut": "1'12''88",
             "points_nat": 405,
             "temps_natation": "1'12''88",
-            "total": 405
+            "total": 1551,
+            "temps_laser_run_brut": "2'34",
+            "temps_laser_run": "2'34''00",
+            "points_lr": 1146
         },
         "a693b2e71e5b6c7.14228352": {
             "nom": "Mathieu CAUDAN",
@@ -24,11 +27,14 @@
             "nom": "Julien TERTRAIN",
             "club": "RISK",
             "categorie": "m40 femmes",
-            "temps_natation_brut": "1'22''99",
-            "points_nat": 245,
-            "temps_natation": "1'22''99",
-            "total": 245,
-            "diff_points_leader": 0
+            "temps_natation_brut": "1'20''99",
+            "points_nat": 249,
+            "temps_natation": "1'20''99",
+            "total": 769,
+            "diff_points_leader": 0,
+            "temps_laser_run_brut": "11'10",
+            "temps_laser_run": "11'10''00",
+            "points_lr": 520
         },
         "a693b2e968d4f81.73794537": {
             "nom": "COnnard TEST",
