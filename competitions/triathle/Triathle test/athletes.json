@@ -14,11 +14,11 @@
             "nom": "Mathieu CAUDAN",
             "club": "4eme",
             "categorie": "u19 femmes",
-            "diff_points_leader": 0,
-            "temps_natation_brut": "1'05\"33",
-            "points_nat": 0,
-            "temps_natation": "format invalide",
-            "total": 0
+            "diff_points_leader": 3,
+            "temps_natation_brut": "1'05''65",
+            "points_nat": 419,
+            "temps_natation": "1'05''65",
+            "total": 419
         },
         "a693b2e830befb2.32165881": {
             "nom": "Julien TERTRAIN",
@@ -35,10 +35,10 @@
             "club": "con",
             "categorie": "u19 femmes",
             "diff_points_leader": 0,
-            "temps_natation_brut": "1'99\"55",
-            "points_nat": 0,
-            "temps_natation": "format invalide",
-            "total": 0
+            "temps_natation_brut": "1'04''45",
+            "points_nat": 422,
+            "temps_natation": "1'04''45",
+            "total": 422
         }
     }
 }
