@@ -1,3 +1,9 @@
 {
-    "athletes": []
+    "athletes": {
+        "a693b2c44eefb22.19014540": {
+            "nom": "Michel LE HENAFF",
+            "club": "AC CESSON",
+            "categorie": "m60 hommes"
+        }
+    }
 }

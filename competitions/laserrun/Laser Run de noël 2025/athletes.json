@@ -1,3 +1,9 @@
 {
-    "athletes": []
+    "athletes": {
+        "a693b2c427bfea0.84806583": {
+            "nom": "Pascal DELTOUR",
+            "club": "AC CESSON",
+            "categorie": "m60 hommes"
+        }
+    }
 }
