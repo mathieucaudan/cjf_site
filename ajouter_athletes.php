@@ -78,6 +78,8 @@ if (!file_exists($file_json)) {
                 <option value="m70 femmes">Master 70 Femmes</option>
                 <option value="para hommes">Para Hommes</option>
                 <option value="para femmes">Para Femmes</option>
+                <option value="open hommes">Open Hommes</option>
+                <option value="open femmes">Open Femmes</option>
             </select>
 
             <button class="w3-button w3-blue" type="submit" style="margin-top:10px;">Ajouter</button>
@@ -129,7 +131,7 @@ function getCategoriesList() {
         "u9 garcons","u9 filles","u11 garcons","u11 filles","u13 garcons","u13 filles","u15 garcons","u15 filles",
         "u17 hommes","u17 femmes","u19 hommes","u19 femmes","u22 hommes","u22 femmes","senior hommes","senior femmes",
         "m40 hommes","m40 femmes","m50 hommes","m50 femmes","m60 hommes","m60 femmes","m70 hommes","m70 femmes",
-        "para hommes","para femmes"
+        "para hommes","para femmes","open femmes","open hommes"
     ];
 }
 

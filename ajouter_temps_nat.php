@@ -69,6 +69,8 @@ $categories = [
     'm70 femmes' => ['nat' => 45],
     'para hommes' => ['nat' => 45],
     'para femmes' => ['nat' => 45],
+    'open hommes' => ['nat' => 80],
+    'open femmes' => ['nat' => 80],
 ];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["temps_natation"])) {

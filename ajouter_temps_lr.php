@@ -74,6 +74,8 @@ $categories_ref = [
     'm70 femmes' => ['lr' => 240],
     'para hommes' => ['lr' => 320],
     'para femmes' => ['lr' => 320],
+    'open hommes' => ['nat' => 320],
+    'open femmes' => ['nat' => 320],
 ];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["temps_laser_run"])) {
