@@ -55,12 +55,22 @@
         "a693c2e481e8264.31756997": {
             "nom": "test TEST",
             "club": "HJH",
-            "categorie": "open hommes"
+            "categorie": "open hommes",
+            "temps_natation_brut": "1'54''20",
+            "points_nat": 182,
+            "temps_natation": "1'54''20",
+            "total": 182,
+            "diff_points_leader": 0
         },
         "a693c2e51b56eb6.25638541": {
             "nom": "DTGHIOJ",
             "club": "HG",
-            "categorie": "open hommes"
+            "categorie": "open hommes",
+            "temps_natation_brut": "2'36''88",
+            "points_nat": 97,
+            "temps_natation": "2'36''88",
+            "total": 97,
+            "diff_points_leader": 85
         }
     }
 }
