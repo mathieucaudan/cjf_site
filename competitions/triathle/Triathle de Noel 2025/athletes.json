@@ -198,7 +198,10 @@
             "temps_natation_brut": "1'48''10",
             "points_nat": 194,
             "temps_natation": "1'48''10",
-            "total": 194
+            "total": 999,
+            "temps_laser_run_brut": "9'05",
+            "temps_laser_run": "8'15''00",
+            "points_lr": 805
         },
         "a693d1113766645.34063492": {
             "nom": "Samuel MARTINEAU",
@@ -208,7 +211,10 @@
             "temps_natation_brut": "1'47''40",
             "points_nat": 196,
             "temps_natation": "1'47''40",
-            "total": 196
+            "total": 1066,
+            "temps_laser_run_brut": "7'58",
+            "temps_laser_run": "7'10''00",
+            "points_lr": 870
         },
         "a693d1129153db3.52521935": {
             "nom": "Mathieu BROCHARD",
@@ -218,7 +224,10 @@
             "temps_natation_brut": "1'23''22",
             "points_nat": 244,
             "temps_natation": "1'23''22",
-            "total": 244
+            "total": 1152,
+            "temps_laser_run_brut": "6'32",
+            "temps_laser_run": "6'32''00",
+            "points_lr": 908
         },
         "a693d113fbc99e6.98625926": {
             "nom": "Cl\u00e9mentine MARTINEAU",
