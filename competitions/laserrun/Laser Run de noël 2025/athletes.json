@@ -40,7 +40,11 @@
         "a693c00cb353cf1.70202328": {
             "nom": "M\u00e9lanie LEVEQUE",
             "club": "AC CESSON",
-            "categorie": "m40 femmes"
+            "categorie": "m40 femmes",
+            "temps_laser_run_brut": "14'09",
+            "temps_laser_run": "14'09''00",
+            "points_lr": 341,
+            "total": 341
         },
         "a693c00dbb7cfa6.23684990": {
             "nom": "David TANNOUX",
@@ -86,7 +90,11 @@
         "a693d484ef17683.30566185": {
             "nom": "M\u00e9lanie DANIEL",
             "club": "CJF Saint-Malo",
-            "categorie": "m40 femmes"
+            "categorie": "m40 femmes",
+            "temps_laser_run_brut": "10'07",
+            "temps_laser_run": "10'07''00",
+            "points_lr": 583,
+            "total": 583
         },
         "a693d48902e01f7.92945697": {
             "nom": "Anna SCOLARI",
