@@ -60,7 +60,10 @@
             "temps_natation_brut": "2'57''15",
             "points_nat": 196,
             "temps_natation": "2'57''15",
-            "total": 196
+            "total": 569,
+            "temps_laser_run_brut": "12'37",
+            "temps_laser_run": "12'37''00",
+            "points_lr": 373
         },
         "a693bfd84a1fd04.90956170": {
             "nom": "Louis CREPIN BELLANGE",

@@ -106,8 +106,12 @@
         },
         "a693d48902e01f7.92945697": {
             "nom": "Anna SCOLARI",
-            "club": "X",
-            "categorie": "u17 femmes"
+            "club": "CJF Saint-Malo",
+            "categorie": "u17 femmes",
+            "temps_laser_run_brut": "14'45",
+            "temps_laser_run": "14'45''00",
+            "points_lr": 245,
+            "total": 245
         },
         "a693d48b7852be6.44582641": {
             "nom": "Florence LEDUC",
