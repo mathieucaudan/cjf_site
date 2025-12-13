@@ -84,28 +84,28 @@
             "nom": "Ninon GOUIX",
             "club": "CJF Saint-Malo",
             "categorie": "open femmes",
-            "temps_laser_run_brut": "8'00",
-            "temps_laser_run": "8'00''00",
-            "points_lr": 820,
-            "total": 820
+            "temps_laser_run_brut": "7'10",
+            "temps_laser_run": "7'10''00",
+            "points_lr": 870,
+            "total": 870
         },
         "a693d4d26b8d301.28962459": {
             "nom": "Titouan CHAUSSEE",
             "club": "CJF Saint-Malo",
             "categorie": "open hommes",
-            "temps_laser_run_brut": "8'29",
-            "temps_laser_run": "8'29''00",
-            "points_lr": 791,
-            "total": 791
+            "temps_laser_run_brut": "7'39",
+            "temps_laser_run": "7'39''00",
+            "points_lr": 841,
+            "total": 841
         },
         "a693d4f799358b7.31845779": {
             "nom": "Enora LE LAN LE CALVEZ",
             "club": "CJF Saint-Malo",
             "categorie": "open femmes",
-            "temps_laser_run_brut": "8'04",
-            "temps_laser_run": "8'04''00",
-            "points_lr": 816,
-            "total": 816
+            "temps_laser_run_brut": "7'14",
+            "temps_laser_run": "7'14''00",
+            "points_lr": 866,
+            "total": 866
         }
     }
 }
