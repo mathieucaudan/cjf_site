@@ -62,7 +62,11 @@
             "nom": "Fran\u00e7ois KECHID",
             "club": "AC CESSON",
             "categorie": "senior hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "4'12''35",
+            "points_nat": 46,
+            "temps_natation": "4'12''35",
+            "total": 46
         },
         "a693c1f0c5986f3.90758537": {
             "nom": "Philippe DELAMARRE",
@@ -178,7 +182,11 @@
             "nom": "Agathe CORMIER",
             "club": "CJF Saint-Malo",
             "categorie": "senior femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "3'14''15",
+            "points_nat": 162,
+            "temps_natation": "3'14''15",
+            "total": 162
         }
     }
 }
