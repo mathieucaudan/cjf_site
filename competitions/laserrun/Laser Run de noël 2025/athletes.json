@@ -35,7 +35,11 @@
         "a693c00b29ab186.65035413": {
             "nom": "S\u00e9bastien LEVEQUE",
             "club": "AC CESSON",
-            "categorie": "m40 hommes"
+            "categorie": "m40 hommes",
+            "temps_laser_run_brut": "7'19",
+            "temps_laser_run": "7'19''00",
+            "points_lr": 751,
+            "total": 751
         },
         "a693c00cb353cf1.70202328": {
             "nom": "M\u00e9lanie LEVEQUE",
