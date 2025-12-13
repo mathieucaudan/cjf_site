@@ -7,8 +7,11 @@
             "temps_natation_brut": "0'41''31",
             "points_nat": 258,
             "temps_natation": "0'41''31",
-            "total": 258,
-            "diff_points_leader": 0
+            "total": 782,
+            "diff_points_leader": 0,
+            "temps_laser_run_brut": "4'56",
+            "temps_laser_run": "4'56''00",
+            "points_lr": 524
         },
         "a693b2e0197dbf6.86618038": {
             "nom": "Jean marc JONNET",
@@ -18,7 +21,10 @@
             "temps_natation_brut": "0'51''94",
             "points_nat": 237,
             "temps_natation": "0'51''94",
-            "total": 237
+            "total": 820,
+            "temps_laser_run_brut": "4'18",
+            "temps_laser_run": "3'57''00",
+            "points_lr": 583
         },
         "a693bfcaa063681.94243094": {
             "nom": "BLANCARD Sylvaine",
@@ -88,7 +94,10 @@
             "temps_natation_brut": "0'45''50",
             "points_nat": 249,
             "temps_natation": "0'45''50",
-            "total": 249
+            "total": 740,
+            "temps_laser_run_brut": "5'38",
+            "temps_laser_run": "5'29''00",
+            "points_lr": 491
         },
         "a693d0fb6038101.94049079": {
             "nom": "Neil LE DANTEC",
