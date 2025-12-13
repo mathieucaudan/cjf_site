@@ -14,19 +14,31 @@
             "nom": "Jean marc JONNET",
             "club": "AC CESSON",
             "categorie": "m60 hommes",
-            "diff_points_leader": 258
+            "diff_points_leader": 21,
+            "temps_natation_brut": "0'51''94",
+            "points_nat": 237,
+            "temps_natation": "0'51''94",
+            "total": 237
         },
         "a693bfcaa063681.94243094": {
             "nom": "BLANCARD Sylvaine",
             "club": "CJF Saint-Malo",
             "categorie": "m50 femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'49''53",
+            "points_nat": 191,
+            "temps_natation": "1'49''53",
+            "total": 191
         },
         "a693bfd50de5be4.58393048": {
             "nom": "Am\u00e9lie DUBOIS",
             "club": "AC CESSON",
             "categorie": "m50 femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 4,
+            "temps_natation_brut": "1'51''80",
+            "points_nat": 187,
+            "temps_natation": "1'51''80",
+            "total": 187
         },
         "a693bfd6d5a6712.30561501": {
             "nom": "Lyse BERNARD",
@@ -56,7 +68,11 @@
             "nom": "Philippe DELAMARRE",
             "club": "CJF Saint-Malo",
             "categorie": "m60 hommes",
-            "diff_points_leader": 258
+            "diff_points_leader": 9,
+            "temps_natation_brut": "0'45''50",
+            "points_nat": 249,
+            "temps_natation": "0'45''50",
+            "total": 249
         },
         "a693d0fb6038101.94049079": {
             "nom": "Neil LE DANTEC",
