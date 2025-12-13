@@ -138,25 +138,41 @@
             "nom": "Edouard LEGRET",
             "club": "OPEN",
             "categorie": "open hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 50,
+            "temps_natation_brut": "1'48''10",
+            "points_nat": 194,
+            "temps_natation": "1'48''10",
+            "total": 194
         },
         "a693d1113766645.34063492": {
             "nom": "Samuel MARTINEAU",
             "club": "OPEN",
             "categorie": "open hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 48,
+            "temps_natation_brut": "1'47''40",
+            "points_nat": 196,
+            "temps_natation": "1'47''40",
+            "total": 196
         },
         "a693d1129153db3.52521935": {
             "nom": "Mathieu BROCHARD",
             "club": "OPEN",
             "categorie": "open hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'23''22",
+            "points_nat": 244,
+            "temps_natation": "1'23''22",
+            "total": 244
         },
         "a693d113fbc99e6.98625926": {
             "nom": "Cl\u00e9mentine MARTINEAU",
             "club": "OPEN",
             "categorie": "open femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'43''20",
+            "points_nat": 204,
+            "temps_natation": "1'43''20",
+            "total": 204
         },
         "a693d1307b86ec1.07140565": {
             "nom": "Agathe CORMIER",
