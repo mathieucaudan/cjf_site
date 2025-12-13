@@ -3,7 +3,11 @@
         "a693b2c427bfea0.84806583": {
             "nom": "Pascal DELTOUR",
             "club": "AC CESSON",
-            "categorie": "m60 hommes"
+            "categorie": "m60 hommes",
+            "temps_laser_run_brut": "4'41",
+            "temps_laser_run": "4'41''00",
+            "points_lr": 539,
+            "total": 539
         },
         "a693c000ccfba03.48404491": {
             "nom": "Marceau LAHAYE",
@@ -38,7 +42,11 @@
         "a693d47404d63a5.74184888": {
             "nom": "Th\u00e9o TANNOUX",
             "club": "AC CESSON",
-            "categorie": "u13 garcons"
+            "categorie": "u13 garcons",
+            "temps_laser_run_brut": "4'44",
+            "temps_laser_run": "4'44''00",
+            "points_lr": 536,
+            "total": 536
         },
         "a693d4788992c56.21836464": {
             "nom": "Joseph DEVAUX",
