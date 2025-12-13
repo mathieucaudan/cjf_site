@@ -179,7 +179,11 @@
         "a693d5de0c8b164.91167872": {
             "nom": "Erwann GAZENGEL",
             "club": "CJF Saint-Malo",
-            "categorie": "u17 hommes"
+            "categorie": "u17 hommes",
+            "temps_laser_run_brut": "12'48",
+            "temps_laser_run": "12'48''00",
+            "points_lr": 362,
+            "total": 362
         }
     }
 }
