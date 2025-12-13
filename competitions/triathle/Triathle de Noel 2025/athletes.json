@@ -44,7 +44,11 @@
             "nom": "Lyse BERNARD",
             "club": "CJF Saint-Malo",
             "categorie": "u17 femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "2'57''15",
+            "points_nat": 196,
+            "temps_natation": "2'57''15",
+            "total": 196
         },
         "a693bfd84a1fd04.90956170": {
             "nom": "Louis CREPIN BELLANGE",
@@ -82,61 +86,101 @@
             "nom": "Neil LE DANTEC",
             "club": "CJF Saint-Malo",
             "categorie": "u15 garcons",
-            "diff_points_leader": 0
+            "diff_points_leader": 49,
+            "temps_natation_brut": "2'10''80",
+            "points_nat": 149,
+            "temps_natation": "2'10''80",
+            "total": 149
         },
         "a693d0fc2bacbe4.31144146": {
             "nom": "Lucien LEGRET",
             "club": "CJF Saint-Malo",
             "categorie": "u15 garcons",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'46''40",
+            "points_nat": 198,
+            "temps_natation": "1'46''40",
+            "total": 198
         },
         "a693d0fd85e3bd3.05886605": {
             "nom": "Simon JEROME",
             "club": "CJF Saint-Malo",
             "categorie": "u15 garcons",
-            "diff_points_leader": 0
+            "diff_points_leader": 61,
+            "temps_natation_brut": "2'16''70",
+            "points_nat": 137,
+            "temps_natation": "2'16''70",
+            "total": 137
         },
         "a693d10450f5484.87361107": {
             "nom": "Nolwenn BALLAN",
             "club": "CJF Saint-Malo",
             "categorie": "u15 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 91,
+            "temps_natation_brut": "2'02''40",
+            "points_nat": 166,
+            "temps_natation": "2'02''40",
+            "total": 166
         },
         "a693d10560c6422.87380551": {
             "nom": "Charlotte MARTINEAU",
             "club": "CJF Saint-Malo",
             "categorie": "u15 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 117,
+            "temps_natation_brut": "2'15''32",
+            "points_nat": 140,
+            "temps_natation": "2'15''32",
+            "total": 140
         },
         "a693d10748914c6.50647771": {
             "nom": "Axel BERTHELIN",
             "club": "CJF Saint-Malo",
             "categorie": "u15 garcons",
-            "diff_points_leader": 0
+            "diff_points_leader": 9,
+            "temps_natation_brut": "1'50''87",
+            "points_nat": 189,
+            "temps_natation": "1'50''87",
+            "total": 189
         },
         "a693d109e3e2287.63031968": {
             "nom": "Mia GAGNERAUD",
             "club": "CJF Saint-Malo",
             "categorie": "u15 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 100,
+            "temps_natation_brut": "2'06''80",
+            "points_nat": 157,
+            "temps_natation": "2'06''80",
+            "total": 157
         },
         "a693d10b11b3ff0.75853315": {
             "nom": "Le\u00efa PINSON",
             "club": "CJF Saint-Malo",
             "categorie": "u15 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 34,
+            "temps_natation_brut": "1'33''80",
+            "points_nat": 223,
+            "temps_natation": "1'33''80",
+            "total": 223
         },
         "a693d10bd196163.35628046": {
             "nom": "Elo\u00efse COX",
             "club": "CJF Saint-Malo",
             "categorie": "u15 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'16''94",
+            "points_nat": 257,
+            "temps_natation": "1'16''94",
+            "total": 257
         },
         "a693d10cb225302.86776169": {
             "nom": "Rose GERARD CHEDMAIL",
             "club": "CJF Saint-Malo",
             "categorie": "u15 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 10,
+            "temps_natation_brut": "1'21''90",
+            "points_nat": 247,
+            "temps_natation": "1'21''90",
+            "total": 247
         },
         "a693d10f9369a78.35772158": {
             "nom": "Edouard LEGRET",
