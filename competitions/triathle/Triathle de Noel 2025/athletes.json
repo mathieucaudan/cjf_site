@@ -107,7 +107,10 @@
             "temps_natation_brut": "2'10''80",
             "points_nat": 149,
             "temps_natation": "2'10''80",
-            "total": 149
+            "total": 517,
+            "temps_laser_run_brut": "10'41",
+            "temps_laser_run": "9'52''00",
+            "points_lr": 368
         },
         "a693d0fc2bacbe4.31144146": {
             "nom": "Lucien LEGRET",
@@ -117,7 +120,10 @@
             "temps_natation_brut": "1'46''40",
             "points_nat": 198,
             "temps_natation": "1'46''40",
-            "total": 198
+            "total": 581,
+            "temps_laser_run_brut": "9'37",
+            "temps_laser_run": "9'37''00",
+            "points_lr": 383
         },
         "a693d0fd85e3bd3.05886605": {
             "nom": "Simon JEROME",
@@ -127,7 +133,10 @@
             "temps_natation_brut": "2'16''70",
             "points_nat": 137,
             "temps_natation": "2'16''70",
-            "total": 137
+            "total": 554,
+            "temps_laser_run_brut": "10'04",
+            "temps_laser_run": "9'03''00",
+            "points_lr": 417
         },
         "a693d10450f5484.87361107": {
             "nom": "Nolwenn BALLAN",
@@ -157,7 +166,10 @@
             "temps_natation_brut": "1'50''87",
             "points_nat": 189,
             "temps_natation": "1'50''87",
-            "total": 189
+            "total": 579,
+            "temps_laser_run_brut": "9'39",
+            "temps_laser_run": "9'30''00",
+            "points_lr": 390
         },
         "a693d109e3e2287.63031968": {
             "nom": "Mia GAGNERAUD",
