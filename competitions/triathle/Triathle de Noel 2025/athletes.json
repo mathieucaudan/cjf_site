@@ -10,36 +10,6 @@
             "club": "AC CESSON",
             "categorie": "m60 hommes"
         },
-        "a693bf9c3daefd9.20535330": {
-            "nom": "Nolwenn BALLAN",
-            "club": "X",
-            "categorie": "u15 filles"
-        },
-        "a693bf9d76a0f82.77017975": {
-            "nom": "Le\u00efa PINSON",
-            "club": "X",
-            "categorie": "u15 filles"
-        },
-        "a693bf9ec246940.69840176": {
-            "nom": "Mia GAGNERAUD",
-            "club": "X",
-            "categorie": "u15 filles"
-        },
-        "a693bfa080d00a0.79647719": {
-            "nom": "Elo\u00efse COX",
-            "club": "X",
-            "categorie": "u15 filles"
-        },
-        "a693bfa51dfb4b4.35054660": {
-            "nom": "Rose GERARD CHEDMAIL",
-            "club": "X",
-            "categorie": "u15 filles"
-        },
-        "a693bfa625e4e25.95122264": {
-            "nom": "Charlotte MARTINEAU",
-            "club": "X",
-            "categorie": "u15 filles"
-        },
         "a693bfcaa063681.94243094": {
             "nom": "BLANCARD Sylvaine",
             "club": "CJF Saint-Malo",
@@ -70,11 +40,6 @@
             "club": "AC CESSON",
             "categorie": "senior hommes"
         },
-        "a693c1e2202c045.15096312": {
-            "nom": "Laura DANIEL",
-            "club": "X",
-            "categorie": "u15 filles"
-        },
         "a693c1e5299abf2.63858351": {
             "nom": "M\u00e9lanie DANIEL",
             "club": "CJF Saint-Malo",
@@ -97,6 +62,16 @@
         },
         "a693d0fd85e3bd3.05886605": {
             "nom": "Simon JEROME",
+            "club": "CJF Saint-Malo",
+            "categorie": "u15 garcons"
+        },
+        "a693d0fe848c347.29286644": {
+            "nom": "Joseph DEVAUX",
+            "club": "CJF Saint-Malo",
+            "categorie": "u15 garcons"
+        },
+        "a693d0ffcb5a780.82384144": {
+            "nom": "Nolwenn BALLAN",
             "club": "CJF Saint-Malo",
             "categorie": "u15 garcons"
         }
