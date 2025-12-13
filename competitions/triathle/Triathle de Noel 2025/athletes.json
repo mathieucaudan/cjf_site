@@ -54,13 +54,21 @@
             "nom": "Louis CREPIN BELLANGE",
             "club": "CJF Saint-Malo",
             "categorie": "u17 hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "2'33''20",
+            "points_nat": 244,
+            "temps_natation": "2'33''20",
+            "total": 244
         },
         "a693bfed35cc388.81804654": {
             "nom": "Noa REGEARD",
             "club": "CJF Saint-Malo",
             "categorie": "u17 hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 64,
+            "temps_natation_brut": "3'05''09",
+            "points_nat": 180,
+            "temps_natation": "3'05''09",
+            "total": 180
         },
         "a693bfef81acba6.22724299": {
             "nom": "Fran\u00e7ois KECHID",
