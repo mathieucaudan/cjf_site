@@ -73,7 +73,10 @@
             "temps_natation_brut": "2'33''20",
             "points_nat": 244,
             "temps_natation": "2'33''20",
-            "total": 244
+            "total": 710,
+            "temps_laser_run_brut": "11'04",
+            "temps_laser_run": "11'04''00",
+            "points_lr": 466
         },
         "a693bfed35cc388.81804654": {
             "nom": "Noa REGEARD",
@@ -83,7 +86,10 @@
             "temps_natation_brut": "3'05''09",
             "points_nat": 180,
             "temps_natation": "3'05''09",
-            "total": 180
+            "total": 764,
+            "temps_laser_run_brut": "10'10",
+            "temps_laser_run": "9'06''00",
+            "points_lr": 584
         },
         "a693bfef81acba6.22724299": {
             "nom": "Fran\u00e7ois KECHID",
