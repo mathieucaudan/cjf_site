@@ -34,7 +34,10 @@
             "temps_natation_brut": "1'49''53",
             "points_nat": 191,
             "temps_natation": "1'49''53",
-            "total": 191
+            "total": 871,
+            "temps_laser_run_brut": "8'30",
+            "temps_laser_run": "8'30''00",
+            "points_lr": 680
         },
         "a693bfd50de5be4.58393048": {
             "nom": "Am\u00e9lie DUBOIS",
@@ -44,7 +47,10 @@
             "temps_natation_brut": "1'51''80",
             "points_nat": 187,
             "temps_natation": "1'51''80",
-            "total": 187
+            "total": 770,
+            "temps_laser_run_brut": "10'11",
+            "temps_laser_run": "10'07''00",
+            "points_lr": 583
         },
         "a693bfd6d5a6712.30561501": {
             "nom": "Lyse BERNARD",
