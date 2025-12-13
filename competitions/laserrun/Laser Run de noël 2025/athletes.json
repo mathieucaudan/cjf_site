@@ -116,12 +116,20 @@
         "a693d48b7852be6.44582641": {
             "nom": "Florence LEDUC",
             "club": "CJF Saint-Malo",
-            "categorie": "senior femmes"
+            "categorie": "senior femmes",
+            "temps_laser_run_brut": "15'54",
+            "temps_laser_run": "15'54''00",
+            "points_lr": 346,
+            "total": 346
         },
         "a693d48c6758ab7.05918887": {
             "nom": "Juliette KECHID",
             "club": "CJF Saint-Malo",
-            "categorie": "senior femmes"
+            "categorie": "senior femmes",
+            "temps_laser_run_brut": "17'31",
+            "temps_laser_run": "17'31''00",
+            "points_lr": 249,
+            "total": 249
         },
         "a693d48dfaef3f1.08436476": {
             "nom": "Jean BUREL",
