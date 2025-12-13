@@ -12,12 +12,20 @@
         "a693c000ccfba03.48404491": {
             "nom": "Marceau LAHAYE",
             "club": "X",
-            "categorie": "u15 garcons"
+            "categorie": "u15 garcons",
+            "temps_laser_run_brut": "1'01",
+            "temps_laser_run": "1'01''00",
+            "points_lr": 899,
+            "total": 899
         },
         "a693c002aefb398.76589275": {
             "nom": "Benjamin HAMON ROUSSEL",
             "club": "X",
-            "categorie": "u15 garcons"
+            "categorie": "u15 garcons",
+            "temps_laser_run_brut": "9'50",
+            "temps_laser_run": "9'50''00",
+            "points_lr": 370,
+            "total": 370
         },
         "a693c0089a32782.04241840": {
             "nom": "Arnaud GUTIERREZZ MOUGIN",
@@ -51,7 +59,11 @@
         "a693d4788992c56.21836464": {
             "nom": "Joseph DEVAUX",
             "club": "X",
-            "categorie": "u15 garcons"
+            "categorie": "u15 garcons",
+            "temps_laser_run_brut": "10'12",
+            "temps_laser_run": "10'12''00",
+            "points_lr": 348,
+            "total": 348
         },
         "a693d47fd4b6668.45336676": {
             "nom": "Emma TANNOUX",
