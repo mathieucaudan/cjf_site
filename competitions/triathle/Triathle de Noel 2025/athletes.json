@@ -99,7 +99,10 @@
             "temps_natation_brut": "4'12''35",
             "points_nat": 46,
             "temps_natation": "4'12''35",
-            "total": 46
+            "total": 615,
+            "temps_laser_run_brut": "12'11",
+            "temps_laser_run": "12'11''00",
+            "points_lr": 569
         },
         "a693c1f0c5986f3.90758537": {
             "nom": "Philippe DELAMARRE",
@@ -301,7 +304,10 @@
             "temps_natation_brut": "3'14''15",
             "points_nat": 162,
             "temps_natation": "3'14''15",
-            "total": 162
+            "total": 624,
+            "temps_laser_run_brut": "13'58",
+            "temps_laser_run": "13'58''00",
+            "points_lr": 462
         }
     }
 }

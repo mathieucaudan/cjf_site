@@ -134,7 +134,11 @@
         "a693d48dfaef3f1.08436476": {
             "nom": "Jean BUREL",
             "club": "AC CESSON",
-            "categorie": "senior hommes"
+            "categorie": "senior hommes",
+            "temps_laser_run_brut": "14'49",
+            "temps_laser_run": "14'49''00",
+            "points_lr": 411,
+            "total": 411
         },
         "a693d4d1a0cb3a6.37095239": {
             "nom": "Ninon GOUIX",
