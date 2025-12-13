@@ -68,12 +68,20 @@
         "a693d47fd4b6668.45336676": {
             "nom": "Emma TANNOUX",
             "club": "AC CESSON",
-            "categorie": "u15 filles"
+            "categorie": "u15 filles",
+            "temps_laser_run_brut": "10'50",
+            "temps_laser_run": "10'50''00",
+            "points_lr": 310,
+            "total": 310
         },
         "a693d4827a0e083.49313916": {
             "nom": "Laura DANIEL",
             "club": "CJF Saint-Malo",
-            "categorie": "u15 filles"
+            "categorie": "u15 filles",
+            "temps_laser_run_brut": "10'32",
+            "temps_laser_run": "10'32''00",
+            "points_lr": 328,
+            "total": 328
         },
         "a693d484ef17683.30566185": {
             "nom": "M\u00e9lanie DANIEL",
