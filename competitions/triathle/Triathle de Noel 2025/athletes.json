@@ -146,7 +146,10 @@
             "temps_natation_brut": "2'02''40",
             "points_nat": 166,
             "temps_natation": "2'02''40",
-            "total": 166
+            "total": 468,
+            "temps_laser_run_brut": "12'28",
+            "temps_laser_run": "10'58''00",
+            "points_lr": 302
         },
         "a693d10560c6422.87380551": {
             "nom": "Charlotte MARTINEAU",
@@ -156,7 +159,10 @@
             "temps_natation_brut": "2'15''32",
             "points_nat": 140,
             "temps_natation": "2'15''32",
-            "total": 140
+            "total": 361,
+            "temps_laser_run_brut": "13'49",
+            "temps_laser_run": "12'19''00",
+            "points_lr": 221
         },
         "a693d10748914c6.50647771": {
             "nom": "Axel BERTHELIN",
@@ -179,7 +185,10 @@
             "temps_natation_brut": "2'06''80",
             "points_nat": 157,
             "temps_natation": "2'06''80",
-            "total": 157
+            "total": 460,
+            "temps_laser_run_brut": "12'27",
+            "temps_laser_run": "10'57''00",
+            "points_lr": 303
         },
         "a693d10b11b3ff0.75853315": {
             "nom": "Le\u00efa PINSON",
@@ -189,7 +198,10 @@
             "temps_natation_brut": "1'33''80",
             "points_nat": 223,
             "temps_natation": "1'33''80",
-            "total": 223
+            "total": 607,
+            "temps_laser_run_brut": "10'10",
+            "temps_laser_run": "9'36''00",
+            "points_lr": 384
         },
         "a693d10bd196163.35628046": {
             "nom": "Elo\u00efse COX",
@@ -199,7 +211,10 @@
             "temps_natation_brut": "1'16''94",
             "points_nat": 257,
             "temps_natation": "1'16''94",
-            "total": 257
+            "total": 717,
+            "temps_laser_run_brut": "8'20",
+            "temps_laser_run": "8'20''00",
+            "points_lr": 460
         },
         "a693d10cb225302.86776169": {
             "nom": "Rose GERARD CHEDMAIL",
@@ -209,7 +224,10 @@
             "temps_natation_brut": "1'21''90",
             "points_nat": 247,
             "temps_natation": "1'21''90",
-            "total": 247
+            "total": 648,
+            "temps_laser_run_brut": "9'29",
+            "temps_laser_run": "9'19''00",
+            "points_lr": 401
         },
         "a693d10f9369a78.35772158": {
             "nom": "Edouard LEGRET",
