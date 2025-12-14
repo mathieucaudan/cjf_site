@@ -100,5 +100,11 @@
         "image": "laserrun.webp",
         "description": "Premi\u00e8re comp\u00e9tition de l'ann\u00e9e !",
         "date": "02\/11\/25"
+    },
+    {
+        "titre": "Triathl\u00e9 de NOEL 2025",
+        "image": "triat.webp",
+        "description": "1er triath\u00e9 de l'ann\u00e9e \u00e0 Saint-Malo",
+        "date": "13\/12\/25"
     }
 ]
