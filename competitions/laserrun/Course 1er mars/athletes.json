@@ -12,7 +12,11 @@
         "a69a415dd465006.66606134": {
             "nom": "JONNET Jean Marc",
             "club": "ACC",
-            "categorie": "m60 hommes"
+            "categorie": "m60 hommes",
+            "temps_laser_run_brut": "4'00",
+            "temps_laser_run": "4'00''00",
+            "points_lr": 580,
+            "total": 580
         },
         "a69a41772c3d493.28693254": {
             "nom": "DENOUAL Johann",
