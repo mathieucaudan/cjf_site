@@ -321,7 +321,10 @@
             "temps_natation_brut": "2'46''40",
             "points_nat": 218,
             "temps_natation": "2'46''40",
-            "total": 218
+            "total": 858,
+            "temps_laser_run_brut": "11'00",
+            "temps_laser_run": "11'00''00",
+            "points_lr": 640
         },
         "a69a3f3895704e1.76600784": {
             "nom": "KECHID Fran\u00e7ois",
