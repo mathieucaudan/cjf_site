@@ -3,142 +3,174 @@
         "a69a3f0796b7b85.59472026": {
             "nom": "WALDURA Samuel",
             "club": "ACC",
-            "categorie": "para hommes"
+            "categorie": "para hommes",
+            "diff_points_leader": 0
         },
         "a69a3f1806daf18.39130647": {
             "nom": "GARDIN Thierry",
             "club": "CJF",
-            "categorie": "m60 hommes"
+            "categorie": "m60 hommes",
+            "diff_points_leader": 0
         },
         "a69a3f1919e5352.31521580": {
             "nom": "DANIEL Ethan",
             "club": "CJF",
-            "categorie": "u9 garcons"
+            "categorie": "u9 garcons",
+            "diff_points_leader": 0
         },
         "a69a3f1a6538496.23406211": {
             "nom": "DANIEL Tha\u00efs",
             "club": "CJF",
-            "categorie": "u11 filles"
+            "categorie": "u11 filles",
+            "diff_points_leader": 0
         },
         "a69a3f1bce4b2d1.51666884": {
             "nom": "DANIEL Ana\u00efs",
             "club": "CJF",
-            "categorie": "u9 filles"
+            "categorie": "u9 filles",
+            "temps_natation_brut": "1'11''00",
+            "points_nat": 198,
+            "temps_natation": "1'11''00",
+            "total": 198,
+            "diff_points_leader": 0
         },
         "a69a3f1d0ac35f6.36802875": {
             "nom": "DANIEL Aaron",
             "club": "CJF",
-            "categorie": "u13 garcons"
+            "categorie": "u13 garcons",
+            "diff_points_leader": 0
         },
         "a69a3f1e6bb59f1.36211623": {
             "nom": "LEGRET Lucien",
             "club": "CJF",
-            "categorie": "u15 garcons"
+            "categorie": "u15 garcons",
+            "diff_points_leader": 0
         },
         "a69a3f1f6b02057.21516102": {
             "nom": "JEROME Simon",
             "club": "CJF",
-            "categorie": "u15 garcons"
+            "categorie": "u15 garcons",
+            "diff_points_leader": 0
         },
         "a69a3f205a3caf3.81854535": {
             "nom": "LEBRETON Ana\u00eblle",
             "club": "CJF",
-            "categorie": "u15 filles"
+            "categorie": "u15 filles",
+            "diff_points_leader": 0
         },
         "a69a3f21fef8140.63686354": {
             "nom": "TANNOUX Emma",
             "club": "ACC",
-            "categorie": "u15 filles"
+            "categorie": "u15 filles",
+            "diff_points_leader": 0
         },
         "a69a3f22f660e28.14798753": {
             "nom": "PINSON Le\u00efa",
             "club": "CJF",
-            "categorie": "u15 filles"
+            "categorie": "u15 filles",
+            "diff_points_leader": 0
         },
         "a69a3f23ede9e53.20261216": {
             "nom": "COX Elo\u00efse",
             "club": "CJF",
-            "categorie": "u15 filles"
+            "categorie": "u15 filles",
+            "diff_points_leader": 0
         },
         "a69a3f2541aa749.62777309": {
             "nom": "MARTINEAU Charlotte",
             "club": "CJF",
-            "categorie": "u15 filles"
+            "categorie": "u15 filles",
+            "diff_points_leader": 0
         },
         "a69a3f26b443b34.42633541": {
             "nom": "LEGRET Edouard",
             "club": "Open",
-            "categorie": "open hommes"
+            "categorie": "open hommes",
+            "diff_points_leader": 0
         },
         "a69a3f2a71bb606.14466201": {
             "nom": "LEROY Mickael",
             "club": "Open",
-            "categorie": "open hommes"
+            "categorie": "open hommes",
+            "diff_points_leader": 0
         },
         "a69a3f2bb95a9d9.43298439": {
             "nom": "BROCHARD Mathieu",
             "club": "Open",
-            "categorie": "open hommes"
+            "categorie": "open hommes",
+            "diff_points_leader": 0
         },
         "a69a3f2d18e4a40.94640435": {
             "nom": "DANIEL Carole",
             "club": "CJF",
-            "categorie": "m40 femmes"
+            "categorie": "m40 femmes",
+            "diff_points_leader": 0
         },
         "a69a3f2e558dc73.29204049": {
             "nom": "DUBOIS Am\u00e9lie",
             "club": "ACC",
-            "categorie": "m50 femmes"
+            "categorie": "m50 femmes",
+            "diff_points_leader": 0
         },
         "a69a3f2fb9afc11.43339003": {
             "nom": "DANIEL M\u00e9lanie",
             "club": "CJF",
-            "categorie": "m40 femmes"
+            "categorie": "m40 femmes",
+            "diff_points_leader": 0
         },
         "a69a3f312c70d38.32395148": {
             "nom": "DANIEL Fabien",
             "club": "CJF",
-            "categorie": "m40 hommes"
+            "categorie": "m40 hommes",
+            "diff_points_leader": 0
         },
         "a69a3f32865f417.39506990": {
             "nom": "GUTIERREZ MOUGIN Arnaud",
             "club": "CJF",
-            "categorie": "m50 hommes"
+            "categorie": "m50 hommes",
+            "diff_points_leader": 0
         },
         "a69a3f33b0dc1f7.46154770": {
             "nom": "LE PORT Z\u00e9lie",
             "club": "CJF",
-            "categorie": "u17 femmes"
+            "categorie": "u17 femmes",
+            "diff_points_leader": 0
         },
         "a69a3f34897a8c6.80450373": {
             "nom": "REGEARD Noa",
             "club": "CJF",
-            "categorie": "u17 hommes"
+            "categorie": "u17 hommes",
+            "diff_points_leader": 0
         },
         "a69a3f3581bf723.59820339": {
             "nom": "DANIEL Laura",
             "club": "CJF",
-            "categorie": "u17 femmes"
+            "categorie": "u17 femmes",
+            "diff_points_leader": 0
         },
         "a69a3f36edc0134.97410844": {
             "nom": "CORMIER Agathe",
             "club": "CJF",
-            "categorie": "senior femmes"
+            "categorie": "senior femmes",
+            "diff_points_leader": 0
         },
         "a69a3f37c474cd7.78214031": {
             "nom": "CAUDAN Mathieu",
             "club": "CJF",
-            "categorie": "senior hommes"
+            "categorie": "senior hommes",
+            "diff_points_leader": 0
         },
         "a69a3f3895704e1.76600784": {
             "nom": "KECHID Fran\u00e7ois",
             "club": "ACC",
-            "categorie": "senior hommes"
+            "categorie": "senior hommes",
+            "diff_points_leader": 0
         },
         "a69a3f398b2c085.83368316": {
             "nom": "MICHON Victoria",
             "club": "CJF",
-            "categorie": "senior femmes"
+            "categorie": "senior femmes",
+            "diff_points_leader": 0
         }
     }
 }
