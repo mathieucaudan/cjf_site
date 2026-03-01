@@ -132,7 +132,10 @@
             "temps_natation_brut": "1'28''50",
             "points_nat": 233,
             "temps_natation": "1'28''50",
-            "total": 233
+            "total": 614,
+            "temps_laser_run_brut": "10'05",
+            "temps_laser_run": "9'39''00",
+            "points_lr": 381
         },
         "a69a3f23ede9e53.20261216": {
             "nom": "COX Elo\u00efse",
