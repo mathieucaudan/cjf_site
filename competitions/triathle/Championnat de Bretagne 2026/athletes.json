@@ -220,25 +220,33 @@
             "nom": "CORMIER Agathe",
             "club": "CJF",
             "categorie": "senior femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 178
         },
         "a69a3f37c474cd7.78214031": {
             "nom": "CAUDAN Mathieu",
             "club": "CJF",
             "categorie": "senior hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "3'57''88",
+            "points_nat": 75,
+            "temps_natation": "3'57''88",
+            "total": 75
         },
         "a69a3f3895704e1.76600784": {
             "nom": "KECHID Fran\u00e7ois",
             "club": "ACC",
             "categorie": "senior hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 75
         },
         "a69a3f398b2c085.83368316": {
             "nom": "MICHON Victoria",
             "club": "CJF",
             "categorie": "senior femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "3'06''43",
+            "points_nat": 178,
+            "temps_natation": "3'06''43",
+            "total": 178
         }
     }
 }
