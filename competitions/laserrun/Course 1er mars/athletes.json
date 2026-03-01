@@ -53,12 +53,20 @@
         "a69a417c4aebf77.50779883": {
             "nom": "BERTHELIN Axel",
             "club": "CJF",
-            "categorie": "u15 garcons"
+            "categorie": "u15 garcons",
+            "temps_laser_run_brut": "9'18",
+            "temps_laser_run": "9'18''00",
+            "points_lr": 402,
+            "total": 402
         },
         "a69a417d3e693f6.74709274": {
             "nom": "HAMON ROUSSEL Benjamin",
             "club": "CJF",
-            "categorie": "u15 garcons"
+            "categorie": "u15 garcons",
+            "temps_laser_run_brut": "8'36",
+            "temps_laser_run": "8'36''00",
+            "points_lr": 444,
+            "total": 444
         },
         "a69a417fa3f5722.92587156": {
             "nom": "BLANCARD Sylvaine",
