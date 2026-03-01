@@ -320,7 +320,10 @@
             "temps_natation_brut": "3'12''97",
             "points_nat": 165,
             "temps_natation": "3'12''97",
-            "total": 165
+            "total": 559,
+            "temps_laser_run_brut": "15'19",
+            "temps_laser_run": "15'06''00",
+            "points_lr": 394
         },
         "a69a3f37c474cd7.78214031": {
             "nom": "CAUDAN Mathieu",
@@ -343,7 +346,10 @@
             "temps_natation_brut": "3'57''88",
             "points_nat": 75,
             "temps_natation": "3'57''88",
-            "total": 75
+            "total": 660,
+            "temps_laser_run_brut": "13'25",
+            "temps_laser_run": "11'55''00",
+            "points_lr": 585
         },
         "a69a3f398b2c085.83368316": {
             "nom": "MICHON Victoria",
@@ -353,7 +359,10 @@
             "temps_natation_brut": "3'06''43",
             "points_nat": 178,
             "temps_natation": "3'06''43",
-            "total": 178
+            "total": 624,
+            "temps_laser_run_brut": "14'14",
+            "temps_laser_run": "14'14''00",
+            "points_lr": 446
         }
     }
 }
