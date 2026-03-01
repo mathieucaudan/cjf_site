@@ -129,12 +129,20 @@
         "a69a41872e61922.31482541": {
             "nom": "KECHID Juliette",
             "club": "CJF",
-            "categorie": "senior femmes"
+            "categorie": "senior femmes",
+            "temps_laser_run_brut": "17'22",
+            "temps_laser_run": "17'22''00",
+            "points_lr": 258,
+            "total": 258
         },
         "a69a41881aaa039.52492208": {
             "nom": "BREUILLOT Joseph",
             "club": "ACC",
-            "categorie": "u22 hommes"
+            "categorie": "u22 hommes",
+            "temps_laser_run_brut": "12'51",
+            "temps_laser_run": "12'51''00",
+            "points_lr": 529,
+            "total": 529
         }
     }
 }
