@@ -16,7 +16,11 @@
             "nom": "DANIEL Ethan",
             "club": "CJF",
             "categorie": "u9 garcons",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "0'53''12",
+            "points_nat": 234,
+            "temps_natation": "0'53''12",
+            "total": 234
         },
         "a69a3f1a6538496.23406211": {
             "nom": "DANIEL Tha\u00efs",
@@ -48,43 +52,51 @@
             "nom": "LEGRET Lucien",
             "club": "CJF",
             "categorie": "u15 garcons",
-            "diff_points_leader": 0
+            "diff_points_leader": 172
         },
         "a69a3f1f6b02057.21516102": {
             "nom": "JEROME Simon",
             "club": "CJF",
             "categorie": "u15 garcons",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'59''15",
+            "points_nat": 172,
+            "temps_natation": "1'59''15",
+            "total": 172
         },
         "a69a3f205a3caf3.81854535": {
             "nom": "LEBRETON Ana\u00eblle",
             "club": "CJF",
             "categorie": "u15 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 233
         },
         "a69a3f21fef8140.63686354": {
             "nom": "TANNOUX Emma",
             "club": "ACC",
             "categorie": "u15 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 233
         },
         "a69a3f22f660e28.14798753": {
             "nom": "PINSON Le\u00efa",
             "club": "CJF",
             "categorie": "u15 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'28''50",
+            "points_nat": 233,
+            "temps_natation": "1'28''50",
+            "total": 233
         },
         "a69a3f23ede9e53.20261216": {
             "nom": "COX Elo\u00efse",
             "club": "CJF",
             "categorie": "u15 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 233
         },
         "a69a3f2541aa749.62777309": {
             "nom": "MARTINEAU Charlotte",
             "club": "CJF",
             "categorie": "u15 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 233
         },
         "a69a3f26b443b34.42633541": {
             "nom": "LEGRET Edouard",
