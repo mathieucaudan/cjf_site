@@ -144,19 +144,31 @@
             "nom": "DANIEL Carole",
             "club": "CJF",
             "categorie": "m40 femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'20''53",
+            "points_nat": 249,
+            "temps_natation": "1'20''53",
+            "total": 249
         },
         "a69a3f2e558dc73.29204049": {
             "nom": "DUBOIS Am\u00e9lie",
             "club": "ACC",
             "categorie": "m50 femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'50''28",
+            "points_nat": 190,
+            "temps_natation": "1'50''28",
+            "total": 190
         },
         "a69a3f2fb9afc11.43339003": {
             "nom": "DANIEL M\u00e9lanie",
             "club": "CJF",
             "categorie": "m40 femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 57,
+            "temps_natation_brut": "1'49''16",
+            "points_nat": 192,
+            "temps_natation": "1'49''16",
+            "total": 192
         },
         "a69a3f312c70d38.32395148": {
             "nom": "DANIEL Fabien",
