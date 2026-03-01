@@ -10,7 +10,11 @@
             "nom": "GARDIN Thierry",
             "club": "CJF",
             "categorie": "m60 hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "0'45''66",
+            "points_nat": 249,
+            "temps_natation": "0'45''66",
+            "total": 249
         },
         "a69a3f1919e5352.31521580": {
             "nom": "DANIEL Ethan",
@@ -52,13 +56,17 @@
             "nom": "LEGRET Lucien",
             "club": "CJF",
             "categorie": "u15 garcons",
-            "diff_points_leader": 172
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'49''66",
+            "points_nat": 191,
+            "temps_natation": "1'49''66",
+            "total": 191
         },
         "a69a3f1f6b02057.21516102": {
             "nom": "JEROME Simon",
             "club": "CJF",
             "categorie": "u15 garcons",
-            "diff_points_leader": 0,
+            "diff_points_leader": 19,
             "temps_natation_brut": "1'59''15",
             "points_nat": 172,
             "temps_natation": "1'59''15",
@@ -102,19 +110,23 @@
             "nom": "LEGRET Edouard",
             "club": "Open",
             "categorie": "open hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 224
         },
         "a69a3f2a71bb606.14466201": {
             "nom": "LEROY Mickael",
             "club": "Open",
             "categorie": "open hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'33''10",
+            "points_nat": 224,
+            "temps_natation": "1'33''10",
+            "total": 224
         },
         "a69a3f2bb95a9d9.43298439": {
             "nom": "BROCHARD Mathieu",
             "club": "Open",
             "categorie": "open hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 224
         },
         "a69a3f2d18e4a40.94640435": {
             "nom": "DANIEL Carole",
