@@ -246,7 +246,10 @@
             "temps_natation_brut": "1'08''50",
             "points_nat": 273,
             "temps_natation": "1'08''50",
-            "total": 273
+            "total": 724,
+            "temps_laser_run_brut": "8'29",
+            "temps_laser_run": "8'29''00",
+            "points_lr": 451
         },
         "a69a3f32865f417.39506990": {
             "nom": "GUTIERREZ MOUGIN Arnaud",
@@ -256,7 +259,10 @@
             "temps_natation_brut": "1'33''00",
             "points_nat": 224,
             "temps_natation": "1'33''00",
-            "total": 224
+            "total": 663,
+            "temps_laser_run_brut": "8'41",
+            "temps_laser_run": "8'41''00",
+            "points_lr": 439
         },
         "a69a3f33b0dc1f7.46154770": {
             "nom": "LE PORT Z\u00e9lie",
