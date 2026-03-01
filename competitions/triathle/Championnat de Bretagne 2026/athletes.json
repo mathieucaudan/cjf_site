@@ -86,7 +86,10 @@
             "temps_natation_brut": "1'49''66",
             "points_nat": 191,
             "temps_natation": "1'49''66",
-            "total": 191
+            "total": 569,
+            "temps_laser_run_brut": "9'42",
+            "temps_laser_run": "9'42''00",
+            "points_lr": 378
         },
         "a69a3f1f6b02057.21516102": {
             "nom": "JEROME Simon",
@@ -96,7 +99,10 @@
             "temps_natation_brut": "1'59''15",
             "points_nat": 172,
             "temps_natation": "1'59''15",
-            "total": 172
+            "total": 563,
+            "temps_laser_run_brut": "9'48",
+            "temps_laser_run": "9'29''00",
+            "points_lr": 391
         },
         "a69a3f205a3caf3.81854535": {
             "nom": "LEBRETON Ana\u00eblle",
