@@ -156,7 +156,10 @@
             "temps_natation_brut": "1'50''13",
             "points_nat": 190,
             "temps_natation": "1'50''13",
-            "total": 190
+            "total": 1069,
+            "temps_laser_run_brut": "7'59",
+            "temps_laser_run": "7'01''00",
+            "points_lr": 879
         },
         "a69a3f2a71bb606.14466201": {
             "nom": "LEROY Mickael",
@@ -166,7 +169,10 @@
             "temps_natation_brut": "1'33''10",
             "points_nat": 224,
             "temps_natation": "1'33''10",
-            "total": 224
+            "total": 1066,
+            "temps_laser_run_brut": "8'02",
+            "temps_laser_run": "7'38''00",
+            "points_lr": 842
         },
         "a69a3f2bb95a9d9.43298439": {
             "nom": "BROCHARD Mathieu",
@@ -176,7 +182,10 @@
             "temps_natation_brut": "1'21''44",
             "points_nat": 248,
             "temps_natation": "1'21''44",
-            "total": 248
+            "total": 1096,
+            "temps_laser_run_brut": "7'32",
+            "temps_laser_run": "7'32''00",
+            "points_lr": 848
         },
         "a69a3f2d18e4a40.94640435": {
             "nom": "DANIEL Carole",
