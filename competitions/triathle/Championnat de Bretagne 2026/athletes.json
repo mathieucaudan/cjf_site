@@ -216,7 +216,10 @@
             "temps_natation_brut": "1'20''53",
             "points_nat": 249,
             "temps_natation": "1'20''53",
-            "total": 249
+            "total": 617,
+            "temps_laser_run_brut": "9'52",
+            "temps_laser_run": "9'52''00",
+            "points_lr": 368
         },
         "a69a3f2e558dc73.29204049": {
             "nom": "DUBOIS Am\u00e9lie",
@@ -226,7 +229,10 @@
             "temps_natation_brut": "1'50''28",
             "points_nat": 190,
             "temps_natation": "1'50''28",
-            "total": 190
+            "total": 469,
+            "temps_laser_run_brut": "11'21",
+            "temps_laser_run": "11'21''00",
+            "points_lr": 279
         },
         "a69a3f2fb9afc11.43339003": {
             "nom": "DANIEL M\u00e9lanie",
@@ -236,7 +242,10 @@
             "temps_natation_brut": "1'49''16",
             "points_nat": 192,
             "temps_natation": "1'49''16",
-            "total": 192
+            "total": 601,
+            "temps_laser_run_brut": "10'08",
+            "temps_laser_run": "9'11''00",
+            "points_lr": 409
         },
         "a69a3f312c70d38.32395148": {
             "nom": "DANIEL Fabien",
