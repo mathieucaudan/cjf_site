@@ -26,17 +26,29 @@
         "a69a4178d09bee4.35102128": {
             "nom": "LEROY Milian",
             "club": "open",
-            "categorie": "open hommes"
+            "categorie": "open hommes",
+            "temps_laser_run_brut": "6'01",
+            "temps_laser_run": "6'01''00",
+            "points_lr": 939,
+            "total": 939
         },
         "a69a4179e7c4eb7.19663059": {
             "nom": "VIOT Erwan",
             "club": "open",
-            "categorie": "open hommes"
+            "categorie": "open hommes",
+            "temps_laser_run_brut": "6'53",
+            "temps_laser_run": "6'53''00",
+            "points_lr": 887,
+            "total": 887
         },
         "a69a417ad9a27b5.16257711": {
             "nom": "GARDIN L\u00e9o",
             "club": "open",
-            "categorie": "open hommes"
+            "categorie": "open hommes",
+            "temps_laser_run_brut": "6'03",
+            "temps_laser_run": "6'03''00",
+            "points_lr": 937,
+            "total": 937
         },
         "a69a417c4aebf77.50779883": {
             "nom": "BERTHELIN Axel",
