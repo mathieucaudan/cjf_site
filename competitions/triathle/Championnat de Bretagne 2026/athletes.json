@@ -22,7 +22,11 @@
             "nom": "DANIEL Tha\u00efs",
             "club": "CJF",
             "categorie": "u11 filles",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "0'40''97",
+            "points_nat": 259,
+            "temps_natation": "0'40''97",
+            "total": 259
         },
         "a69a3f1bce4b2d1.51666884": {
             "nom": "DANIEL Ana\u00efs",
