@@ -84,7 +84,7 @@
             "nom": "LEBRETON Ana\u00eblle",
             "club": "CJF",
             "categorie": "u15 filles",
-            "diff_points_leader": 47,
+            "diff_points_leader": 73,
             "temps_natation_brut": "1'52''28",
             "points_nat": 186,
             "temps_natation": "1'52''28",
@@ -94,7 +94,7 @@
             "nom": "TANNOUX Emma",
             "club": "ACC",
             "categorie": "u15 filles",
-            "diff_points_leader": 71,
+            "diff_points_leader": 97,
             "temps_natation_brut": "2'04''32",
             "points_nat": 162,
             "temps_natation": "2'04''32",
@@ -104,7 +104,7 @@
             "nom": "PINSON Le\u00efa",
             "club": "CJF",
             "categorie": "u15 filles",
-            "diff_points_leader": 0,
+            "diff_points_leader": 26,
             "temps_natation_brut": "1'28''50",
             "points_nat": 233,
             "temps_natation": "1'28''50",
@@ -114,13 +114,21 @@
             "nom": "COX Elo\u00efse",
             "club": "CJF",
             "categorie": "u15 filles",
-            "diff_points_leader": 233
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'15''75",
+            "points_nat": 259,
+            "temps_natation": "1'15''75",
+            "total": 259
         },
         "a69a3f2541aa749.62777309": {
             "nom": "MARTINEAU Charlotte",
             "club": "CJF",
             "categorie": "u15 filles",
-            "diff_points_leader": 233
+            "diff_points_leader": 93,
+            "temps_natation_brut": "2'02''44",
+            "points_nat": 166,
+            "temps_natation": "2'02''44",
+            "total": 166
         },
         "a69a3f26b443b34.42633541": {
             "nom": "LEGRET Edouard",
