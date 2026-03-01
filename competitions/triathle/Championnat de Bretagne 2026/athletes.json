@@ -122,13 +122,17 @@
             "nom": "LEGRET Edouard",
             "club": "Open",
             "categorie": "open hommes",
-            "diff_points_leader": 224
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'21''44",
+            "points_nat": 248,
+            "temps_natation": "1'21''44",
+            "total": 248
         },
         "a69a3f2a71bb606.14466201": {
             "nom": "LEROY Mickael",
             "club": "Open",
             "categorie": "open hommes",
-            "diff_points_leader": 0,
+            "diff_points_leader": 24,
             "temps_natation_brut": "1'33''10",
             "points_nat": 224,
             "temps_natation": "1'33''10",
@@ -138,7 +142,7 @@
             "nom": "BROCHARD Mathieu",
             "club": "Open",
             "categorie": "open hommes",
-            "diff_points_leader": 224
+            "diff_points_leader": 248
         },
         "a69a3f2d18e4a40.94640435": {
             "nom": "DANIEL Carole",
@@ -174,13 +178,21 @@
             "nom": "DANIEL Fabien",
             "club": "CJF",
             "categorie": "m40 hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'08''50",
+            "points_nat": 273,
+            "temps_natation": "1'08''50",
+            "total": 273
         },
         "a69a3f32865f417.39506990": {
             "nom": "GUTIERREZ MOUGIN Arnaud",
             "club": "CJF",
             "categorie": "m50 hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'33''00",
+            "points_nat": 224,
+            "temps_natation": "1'33''00",
+            "total": 224
         },
         "a69a3f33b0dc1f7.46154770": {
             "nom": "LE PORT Z\u00e9lie",
