@@ -71,17 +71,29 @@
         "a69a417fa3f5722.92587156": {
             "nom": "BLANCARD Sylvaine",
             "club": "CJF",
-            "categorie": "m50 femmes"
+            "categorie": "m50 femmes",
+            "temps_laser_run_brut": "8'37",
+            "temps_laser_run": "8'37''00",
+            "points_lr": 443,
+            "total": 443
         },
         "a69a418047e5d89.81152636": {
             "nom": "DOIGNEAUX Vincent",
             "club": "ACC",
-            "categorie": "m50 hommes"
+            "categorie": "m50 hommes",
+            "temps_laser_run_brut": "10'15",
+            "temps_laser_run": "10'15''00",
+            "points_lr": 345,
+            "total": 345
         },
         "a69a418199b9589.34291279": {
             "nom": "TANNOUX David",
             "club": "ACC",
-            "categorie": "m50 hommes"
+            "categorie": "m50 hommes",
+            "temps_laser_run_brut": "9'01",
+            "temps_laser_run": "9'01''00",
+            "points_lr": 419,
+            "total": 419
         },
         "a69a4182fca5724.86879558": {
             "nom": "SALERY Edgar",
