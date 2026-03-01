@@ -206,7 +206,11 @@
             "nom": "LE PORT Z\u00e9lie",
             "club": "CJF",
             "categorie": "u17 femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 107,
+            "temps_natation_brut": "4'05''19",
+            "points_nat": 60,
+            "temps_natation": "4'05''19",
+            "total": 60
         },
         "a69a3f34897a8c6.80450373": {
             "nom": "REGEARD Noa",
@@ -222,7 +226,11 @@
             "nom": "DANIEL Laura",
             "club": "CJF",
             "categorie": "u17 femmes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "3'11''72",
+            "points_nat": 167,
+            "temps_natation": "3'11''72",
+            "total": 167
         },
         "a69a3f36edc0134.97410844": {
             "nom": "CORMIER Agathe",
