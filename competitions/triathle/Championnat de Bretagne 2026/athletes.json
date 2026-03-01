@@ -58,7 +58,10 @@
             "temps_natation_brut": "1'11''03",
             "points_nat": 268,
             "temps_natation": "1'11''03",
-            "total": 268
+            "total": 816,
+            "temps_laser_run_brut": "4'32",
+            "temps_laser_run": "4'32''00",
+            "points_lr": 548
         },
         "a69a3f1e6bb59f1.36211623": {
             "nom": "LEGRET Lucien",
