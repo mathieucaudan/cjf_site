@@ -94,7 +94,11 @@
             "nom": "TANNOUX Emma",
             "club": "ACC",
             "categorie": "u15 filles",
-            "diff_points_leader": 233
+            "diff_points_leader": 71,
+            "temps_natation_brut": "2'04''32",
+            "points_nat": 162,
+            "temps_natation": "2'04''32",
+            "total": 162
         },
         "a69a3f22f660e28.14798753": {
             "nom": "PINSON Le\u00efa",
@@ -208,7 +212,11 @@
             "nom": "REGEARD Noa",
             "club": "CJF",
             "categorie": "u17 hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "3'16''79",
+            "points_nat": 157,
+            "temps_natation": "3'16''79",
+            "total": 157
         },
         "a69a3f3581bf723.59820339": {
             "nom": "DANIEL Laura",
@@ -227,16 +235,20 @@
             "club": "CJF",
             "categorie": "senior hommes",
             "diff_points_leader": 0,
-            "temps_natation_brut": "3'57''88",
-            "points_nat": 75,
-            "temps_natation": "3'57''88",
-            "total": 75
+            "temps_natation_brut": "2'46''40",
+            "points_nat": 218,
+            "temps_natation": "2'46''40",
+            "total": 218
         },
         "a69a3f3895704e1.76600784": {
             "nom": "KECHID Fran\u00e7ois",
             "club": "ACC",
             "categorie": "senior hommes",
-            "diff_points_leader": 75
+            "diff_points_leader": 143,
+            "temps_natation_brut": "3'57''88",
+            "points_nat": 75,
+            "temps_natation": "3'57''88",
+            "total": 75
         },
         "a69a3f398b2c085.83368316": {
             "nom": "MICHON Victoria",
