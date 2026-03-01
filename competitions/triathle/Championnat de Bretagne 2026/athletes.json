@@ -84,7 +84,11 @@
             "nom": "LEBRETON Ana\u00eblle",
             "club": "CJF",
             "categorie": "u15 filles",
-            "diff_points_leader": 233
+            "diff_points_leader": 47,
+            "temps_natation_brut": "1'52''28",
+            "points_nat": 186,
+            "temps_natation": "1'52''28",
+            "total": 186
         },
         "a69a3f21fef8140.63686354": {
             "nom": "TANNOUX Emma",
