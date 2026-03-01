@@ -8,7 +8,10 @@
             "temps_natation_brut": "0'53''44",
             "points_nat": 234,
             "temps_natation": "0'53''44",
-            "total": 234
+            "total": 693,
+            "temps_laser_run_brut": "6'01",
+            "temps_laser_run": "6'01''00",
+            "points_lr": 459
         },
         "a69a3f1806daf18.39130647": {
             "nom": "GARDIN Thierry",
@@ -31,7 +34,10 @@
             "temps_natation_brut": "0'53''12",
             "points_nat": 234,
             "temps_natation": "0'53''12",
-            "total": 234
+            "total": 700,
+            "temps_laser_run_brut": "4'34",
+            "temps_laser_run": "4'34''00",
+            "points_lr": 466
         },
         "a69a3f1a6538496.23406211": {
             "nom": "DANIEL Tha\u00efs",
