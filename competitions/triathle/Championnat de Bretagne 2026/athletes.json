@@ -4,7 +4,11 @@
             "nom": "WALDURA Samuel",
             "club": "ACC",
             "categorie": "para hommes",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "0'53''44",
+            "points_nat": 234,
+            "temps_natation": "0'53''44",
+            "total": 234
         },
         "a69a3f1806daf18.39130647": {
             "nom": "GARDIN Thierry",
@@ -50,7 +54,11 @@
             "nom": "DANIEL Aaron",
             "club": "CJF",
             "categorie": "u13 garcons",
-            "diff_points_leader": 0
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'11''03",
+            "points_nat": 268,
+            "temps_natation": "1'11''03",
+            "total": 268
         },
         "a69a3f1e6bb59f1.36211623": {
             "nom": "LEGRET Lucien",
