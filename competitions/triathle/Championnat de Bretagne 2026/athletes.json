@@ -281,7 +281,10 @@
             "temps_natation_brut": "4'05''19",
             "points_nat": 60,
             "temps_natation": "4'05''19",
-            "total": 60
+            "total": 340,
+            "temps_laser_run_brut": "15'40",
+            "temps_laser_run": "14'10''00",
+            "points_lr": 280
         },
         "a69a3f34897a8c6.80450373": {
             "nom": "REGEARD Noa",
@@ -291,7 +294,10 @@
             "temps_natation_brut": "3'16''79",
             "points_nat": 157,
             "temps_natation": "3'16''79",
-            "total": 157
+            "total": 686,
+            "temps_laser_run_brut": "10'01",
+            "temps_laser_run": "10'01''00",
+            "points_lr": 529
         },
         "a69a3f3581bf723.59820339": {
             "nom": "DANIEL Laura",
@@ -301,7 +307,10 @@
             "temps_natation_brut": "3'11''72",
             "points_nat": 167,
             "temps_natation": "3'11''72",
-            "total": 167
+            "total": 479,
+            "temps_laser_run_brut": "13'38",
+            "temps_laser_run": "13'38''00",
+            "points_lr": 312
         },
         "a69a3f36edc0134.97410844": {
             "nom": "CORMIER Agathe",

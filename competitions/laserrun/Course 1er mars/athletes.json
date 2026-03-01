@@ -102,17 +102,29 @@
         "a69a4182fca5724.86879558": {
             "nom": "SALERY Edgar",
             "club": "CJF",
-            "categorie": "u17 hommes"
+            "categorie": "u17 hommes",
+            "temps_laser_run_brut": "11'33",
+            "temps_laser_run": "11'33''00",
+            "points_lr": 437,
+            "total": 437
         },
         "a69a4184321f780.02629111": {
             "nom": "GAZENGEL Erwan",
             "club": "CJF",
-            "categorie": "u17 hommes"
+            "categorie": "u17 hommes",
+            "temps_laser_run_brut": "11'37",
+            "temps_laser_run": "11'37''00",
+            "points_lr": 433,
+            "total": 433
         },
         "a69a41857d4d989.60512243": {
             "nom": "SCOLARI Anna",
             "club": "CJF",
-            "categorie": "u17 femmes"
+            "categorie": "u17 femmes",
+            "temps_laser_run_brut": "14'17",
+            "temps_laser_run": "14'17''00",
+            "points_lr": 273,
+            "total": 273
         },
         "a69a41872e61922.31482541": {
             "nom": "KECHID Juliette",
