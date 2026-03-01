@@ -47,7 +47,10 @@
             "temps_natation_brut": "0'40''97",
             "points_nat": 259,
             "temps_natation": "0'40''97",
-            "total": 259
+            "total": 726,
+            "temps_laser_run_brut": "4'33",
+            "temps_laser_run": "4'33''00",
+            "points_lr": 467
         },
         "a69a3f1bce4b2d1.51666884": {
             "nom": "DANIEL Ana\u00efs",
@@ -56,8 +59,11 @@
             "temps_natation_brut": "1'11''00",
             "points_nat": 198,
             "temps_natation": "1'11''00",
-            "total": 198,
-            "diff_points_leader": 0
+            "total": 676,
+            "diff_points_leader": 0,
+            "temps_laser_run_brut": "4'22",
+            "temps_laser_run": "4'22''00",
+            "points_lr": 478
         },
         "a69a3f1d0ac35f6.36802875": {
             "nom": "DANIEL Aaron",

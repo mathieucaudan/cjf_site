@@ -3,7 +3,11 @@
         "a69a415b81cd849.02704997": {
             "nom": "TANNOUX Th\u00e9o",
             "club": "ACC",
-            "categorie": "u13 garcons"
+            "categorie": "u13 garcons",
+            "temps_laser_run_brut": "5'28",
+            "temps_laser_run": "5'28''00",
+            "points_lr": 492,
+            "total": 492
         },
         "a69a415dd465006.66606134": {
             "nom": "JONNET Jean Marc",
@@ -13,7 +17,11 @@
         "a69a41772c3d493.28693254": {
             "nom": "DENOUAL Johann",
             "club": "CJF",
-            "categorie": "u13 garcons"
+            "categorie": "u13 garcons",
+            "temps_laser_run_brut": "6'07",
+            "temps_laser_run": "6'07''00",
+            "points_lr": 453,
+            "total": 453
         },
         "a69a4178d09bee4.35102128": {
             "nom": "LEROY Milian",
