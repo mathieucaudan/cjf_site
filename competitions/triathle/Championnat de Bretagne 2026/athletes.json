@@ -228,7 +228,11 @@
             "nom": "CORMIER Agathe",
             "club": "CJF",
             "categorie": "senior femmes",
-            "diff_points_leader": 178
+            "diff_points_leader": 13,
+            "temps_natation_brut": "3'12''97",
+            "points_nat": 165,
+            "temps_natation": "3'12''97",
+            "total": 165
         },
         "a69a3f37c474cd7.78214031": {
             "nom": "CAUDAN Mathieu",
