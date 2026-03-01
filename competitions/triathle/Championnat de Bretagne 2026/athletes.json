@@ -112,7 +112,10 @@
             "temps_natation_brut": "1'52''28",
             "points_nat": 186,
             "temps_natation": "1'52''28",
-            "total": 186
+            "total": 454,
+            "temps_laser_run_brut": "12'45",
+            "temps_laser_run": "11'32''00",
+            "points_lr": 268
         },
         "a69a3f21fef8140.63686354": {
             "nom": "TANNOUX Emma",
@@ -161,7 +164,10 @@
             "temps_natation_brut": "2'02''44",
             "points_nat": 166,
             "temps_natation": "2'02''44",
-            "total": 166
+            "total": 392,
+            "temps_laser_run_brut": "13'44",
+            "temps_laser_run": "12'14''00",
+            "points_lr": 226
         },
         "a69a3f26b443b34.42633541": {
             "nom": "LEGRET Edouard",
