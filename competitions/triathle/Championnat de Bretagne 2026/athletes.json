@@ -122,11 +122,11 @@
             "nom": "LEGRET Edouard",
             "club": "Open",
             "categorie": "open hommes",
-            "diff_points_leader": 0,
-            "temps_natation_brut": "1'21''44",
-            "points_nat": 248,
-            "temps_natation": "1'21''44",
-            "total": 248
+            "diff_points_leader": 58,
+            "temps_natation_brut": "1'50''13",
+            "points_nat": 190,
+            "temps_natation": "1'50''13",
+            "total": 190
         },
         "a69a3f2a71bb606.14466201": {
             "nom": "LEROY Mickael",
@@ -142,7 +142,11 @@
             "nom": "BROCHARD Mathieu",
             "club": "Open",
             "categorie": "open hommes",
-            "diff_points_leader": 248
+            "diff_points_leader": 0,
+            "temps_natation_brut": "1'21''44",
+            "points_nat": 248,
+            "temps_natation": "1'21''44",
+            "total": 248
         },
         "a69a3f2d18e4a40.94640435": {
             "nom": "DANIEL Carole",
