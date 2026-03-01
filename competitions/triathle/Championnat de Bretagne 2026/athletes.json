@@ -142,7 +142,10 @@
             "temps_natation_brut": "1'15''75",
             "points_nat": 259,
             "temps_natation": "1'15''75",
-            "total": 259
+            "total": 734,
+            "temps_laser_run_brut": "8'05",
+            "temps_laser_run": "8'05''00",
+            "points_lr": 475
         },
         "a69a3f2541aa749.62777309": {
             "nom": "MARTINEAU Charlotte",
