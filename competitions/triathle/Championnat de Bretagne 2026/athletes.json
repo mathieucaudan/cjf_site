@@ -39,45 +39,6 @@
             "temps_laser_run": "4'34''00",
             "points_lr": 466
         },
-        "a69a3f1a6538496.23406211": {
-            "nom": "DANIEL Tha\u00efs",
-            "club": "CJF",
-            "categorie": "u11 filles",
-            "diff_points_leader": 0,
-            "temps_natation_brut": "0'40''97",
-            "points_nat": 259,
-            "temps_natation": "0'40''97",
-            "total": 726,
-            "temps_laser_run_brut": "4'33",
-            "temps_laser_run": "4'33''00",
-            "points_lr": 467
-        },
-        "a69a3f1bce4b2d1.51666884": {
-            "nom": "DANIEL Ana\u00efs",
-            "club": "CJF",
-            "categorie": "u9 filles",
-            "temps_natation_brut": "1'11''00",
-            "points_nat": 198,
-            "temps_natation": "1'11''00",
-            "total": 676,
-            "diff_points_leader": 0,
-            "temps_laser_run_brut": "4'22",
-            "temps_laser_run": "4'22''00",
-            "points_lr": 478
-        },
-        "a69a3f1d0ac35f6.36802875": {
-            "nom": "DANIEL Aaron",
-            "club": "CJF",
-            "categorie": "u13 garcons",
-            "diff_points_leader": 0,
-            "temps_natation_brut": "1'11''03",
-            "points_nat": 268,
-            "temps_natation": "1'11''03",
-            "total": 816,
-            "temps_laser_run_brut": "4'32",
-            "temps_laser_run": "4'32''00",
-            "points_lr": 548
-        },
         "a69a3f1e6bb59f1.36211623": {
             "nom": "LEGRET Lucien",
             "club": "CJF",
@@ -208,19 +169,6 @@
             "temps_laser_run": "7'32''00",
             "points_lr": 848
         },
-        "a69a3f2d18e4a40.94640435": {
-            "nom": "DANIEL Carole",
-            "club": "CJF",
-            "categorie": "m40 femmes",
-            "diff_points_leader": 0,
-            "temps_natation_brut": "1'20''53",
-            "points_nat": 249,
-            "temps_natation": "1'20''53",
-            "total": 617,
-            "temps_laser_run_brut": "9'52",
-            "temps_laser_run": "9'52''00",
-            "points_lr": 368
-        },
         "a69a3f2e558dc73.29204049": {
             "nom": "DUBOIS Am\u00e9lie",
             "club": "ACC",
@@ -246,19 +194,6 @@
             "temps_laser_run_brut": "10'08",
             "temps_laser_run": "9'11''00",
             "points_lr": 409
-        },
-        "a69a3f312c70d38.32395148": {
-            "nom": "DANIEL Fabien",
-            "club": "CJF",
-            "categorie": "m40 hommes",
-            "diff_points_leader": 0,
-            "temps_natation_brut": "1'08''50",
-            "points_nat": 273,
-            "temps_natation": "1'08''50",
-            "total": 724,
-            "temps_laser_run_brut": "8'29",
-            "temps_laser_run": "8'29''00",
-            "points_lr": 451
         },
         "a69a3f32865f417.39506990": {
             "nom": "GUTIERREZ MOUGIN Arnaud",
