@@ -1,102 +1,71 @@
-<link rel='stylesheet' href='style/partenaire.css'> <!-- Ajout de la référence au fichier CSS -->
-<link rel='stylesheet' href='style/global_tab.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
-
 <?php
 include 'fonction.php';
-entete();
-echo "<body style='background-color: rgb(32, 47, 74); color:white;'>";
+
+$dossierPartenaires = './partenaires/Dossier partenaires CJF Pentathlon Moderne.pdf';
+
+entete('Partenaires');
 navbar();
+bandeau('Partenaires', 'Ils soutiennent le club et ses athlètes. Merci à eux.');
 ?>
 
-<h1 style='color:white'>
-    <center>Partenaires</center>
-</h1>
-<center>
-    <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
-        <button class="tablinks prive active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'prive')">Partenaire Privés</button>
-        <button class="tablinks public" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'public')">Partenaire Publics</button>
-        <button class="tablinks evenement" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'evenement')">Evenement</button>
+<section class="section section--serre">
+  <div class="wrap">
+    <?php onglets(['prives' => 'Partenaires privés', 'publics' => 'Partenaires publics', 'evenement' => 'Événement entreprises']); ?>
+
+    <div id="prives" role="tabpanel" aria-labelledby="onglet-prives" tabindex="0">
+      <div class="partenaires">
+        <article class="partenaire">
+          <div class="partenaire__logo partenaire__logo--photo"><img src="./image/partenaires_images/swisslife.webp" alt="Valentin Vivier, Swiss Life, avec les athlètes du club"></div>
+          <div class="partenaire__texte">
+            <h3>Valentin Vivier</h3>
+            <div class="partenaire__qui">Swiss Life</div>
+            <p>Expertise en protection sociale et patrimoniale. Pour les dirigeants d'entreprise : prévoyance, complémentaire santé et retraite, protection sociale des salariés, obligations conventionnelles, indemnités de fin de carrière, trésorerie.</p>
+            <p>Pour les particuliers : assurance emprunteur, protection de la famille, complémentaire santé, optimisation fiscale, placement et gestion de patrimoine.</p>
+            <a class="btn btn--contour btn--petit" href="https://agences.swisslife-direct.fr/assurance/agence-valentin-vivier-id0065363" target="_blank" rel="noopener">Voir l'agence</a>
+          </div>
+        </article>
+        <article class="partenaire">
+          <div class="partenaire__logo partenaire__logo--photo"><img src="./image/partenaires_images/axa.webp" alt="Ludmila Pozdejeva, AXA, avec les athlètes du club"></div>
+          <div class="partenaire__texte">
+            <h3>Ludmila Pozdejeva</h3>
+            <div class="partenaire__qui">AXA Saint-Malo</div>
+            <p>Mutuelle santé, prévoyance et assurance de prêt. Assurance vie et épargne retraite, contrats collectifs et individuels.</p>
+            <p>Experte en protection sociale et gestion du patrimoine, elle accompagne particuliers, professions libérales et chefs d'entreprise sur l'investissement, la retraite et la prévoyance.</p>
+            <a class="btn btn--contour btn--petit" href="https://agence.axa.fr/bretagne/ille-et-vilaine/saint-malo/ludmila-pozdejeva" target="_blank" rel="noopener">Voir l'agence</a>
+          </div>
+        </article>
+      </div>
     </div>
-</center>
 
+    <div id="publics" role="tabpanel" aria-labelledby="onglet-publics" tabindex="0">
+      <div class="partenaires">
+        <article class="partenaire">
+          <div class="partenaire__logo"><img src="./image/partenaires_images/logo_ans.webp" alt="Agence nationale du Sport"></div>
+          <div class="partenaire__texte">
+            <h3>ANS</h3>
+            <div class="partenaire__qui">Agence nationale du Sport</div>
+            <a class="btn btn--contour btn--petit" href="https://www.agencedusport.fr/" target="_blank" rel="noopener">Voir le site</a>
+          </div>
+        </article>
+      </div>
+    </div>
 
-<div id="prive" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
-    <table class='table'>
-        <div class='parcontainerResponsive'>
-            <div class='paritem'>
-                <div class='parflip-card'>
-                    <div class='parflip-card-inner'>
-                        <div class='parflip-card-front'>
-                            <img src='./image/partenaires_images/swisslife.webp'>
-                        </div>
-                        <div class='parflip-card-back' onclick="window.open('https://agences.swisslife-direct.fr/assurance/agence-valentin-vivier-id0065363', '_blank');">
-                            <h3>Valentin Vivier</h3>
-                            <h3>Swiss Life</h3>
-                            <h4>Expertise en protection sociale et patrimoniale</h4>
-                            <h4>Accompagnement du dirigeant d'entreprise :</h4>
-                            <p>Audit et solutions prévoyance, complémentaire santé et retraite, protection sociale des salariés, respect des obligations conventionnelles, indemnités de fin de carrière, trésorerie d'entreprise.</p>
-                            <h4>Conseil auprès des particulier:</h4>
-                            <p>Assurance emprunteru, protection de la famille, complémentaire santé, l'optimisation fiscale, placement, gestion de patrimoine.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class='paritem'>
-                <div class='parflip-card'>
-                    <div class='parflip-card-inner'>
-                        <div class='parflip-card-front'>
-                            <img src='./image/partenaires_images/axa.webp'>
-                        </div>
-                        <div class='parflip-card-back' onclick="window.open('https://agence.axa.fr/bretagne/ille-et-vilaine/saint-malo/ludmila-pozdejeva', '_blank');">
-                            <h3>Ludmila Pozdejeva</h3>
-                            <h3>Allianz</h3>
-                            <h4>Meilleur rapport protection/cotisation en MUTUELLE SANTÉ, PRÉVOYANCE, ASSURANCE DE PRÊT</h4>
-                            <h4>Optimisation fiscale d'ASSURANCE VIE, ÉPARGNE RETRAITE</h4>
-                            <h4>Contrats Collectifs et Individuels en Prévoyance / Santé</h4>
-                            <p>Expert en Protection Sociale & Gestion du Patrimoine - J'accompagne les clients Particuliers, les Professions Libérales et les Chefs d'Entreprises sur les volets de l'investissement, la retraite et de la prévoyance</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a href=" ./partenaires/Dossier partenaires CJF Pentathlon Moderne.pdf" target="_blank" class="parcenter-button">
-            <button class='parglowing-btn'>
-                <span class='parglowing-txt'>NOUS<span class='parfaulty-letter'>REJOIN</span>DRE</span>
-            </button>
-        </a>
-    </table>
-</div>
+    <div id="evenement" role="tabpanel" aria-labelledby="onglet-evenement" tabindex="0">
+      <div class="image-pleine" style="max-width: 860px; margin: 0 auto;">
+        <img src="./partenaires/LR_Entreprise.jpg" alt="Affiche du laser run des entreprises">
+      </div>
+    </div>
+  </div>
+</section>
 
-<div id="public" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
-    <table class='table'>
-        <div class='parcontainerResponsive'>
-            <div class='paritem'>
-                <div class='parflip-card'>
-                    <div class='parflip-card-inner'>
-                        <div class='parflip-card-front' style="display: flex; align-items: center; justify-content: center; background-color: white;">
-                            <img src='./image/partenaires_images/logo_ans.webp' style="height: 55%;">
-                        </div>
-                        <div class='parflip-card-back' onclick="window.open('https://www.agencedusport.fr/', '_blank');">
-                            <h3>ANS</h3>
-                            <h3>Agence National du Sport</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a href=" ./partenaires/Dossier partenaires CJF Pentathlon Moderne.pdf" target="_blank" class="parcenter-button">
-            <button class='parglowing-btn'>
-                <span class='parglowing-txt'>NOUS<span class='parfaulty-letter'>REJOIN</span>DRE</span>
-            </button>
-        </a>
-    </table>
-</div>
+<section class="appel">
+  <div class="wrap">
+    <div>
+      <h2>Devenir partenaire</h2>
+      <p>Visibilité, événements entreprises et soutien aux athlètes : tout est dans notre dossier.</p>
+    </div>
+    <a class="btn btn--clair" href="<?= e($dossierPartenaires) ?>" target="_blank" rel="noopener">Lire le dossier partenaires</a>
+  </div>
+</section>
 
-<div id="evenement" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
-    <img src='./partenaires/LR_Entreprise.jpg'>
-</div>
-<?php
-footer();
-echo "</body>";
-?>
+<?php footer(); ?>

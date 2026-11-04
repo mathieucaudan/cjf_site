@@ -1,47 +1,22 @@
-<link rel='stylesheet' href='style/parametres.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/parametres.js'></script> <!-- Ajout de la référence au fichier JS -->
-
 <?php
 include 'fonction.php';
-entete();
+exiger_admin("Articles");
+
+entete('Articles');
 navbar();
-echo "<body style='background-color: rgb(32, 47, 74);'>";
-if (isset($_SESSION['role'])) {
-  if ($_SESSION['role'] == 'admin') {
+bandeau('Articles', 'Publier un article (PDF et image) ou en retirer un.', true);
 ?>
 
-<div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
-<body onload="openTab(event, 'ajoutArticle')">
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutArticle')">Ajouter un article</button>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppArticle')">Supprimer un article</button>
-</body>  
-</center></div>
+<section class="section section--serre">
+  <div class="wrap">
+    <?php onglets(['ajoutArticle' => 'Ajouter un article', 'suppArticle' => 'Supprimer un article']); ?>
+    <div id="ajoutArticle" role="tabpanel" aria-labelledby="onglet-ajoutArticle" tabindex="0">
+      <?php ajoutArticle(); ?>
+    </div>
+    <div id="suppArticle" role="tabpanel" aria-labelledby="onglet-suppArticle" tabindex="0">
+      <?php suppArticle(); ?>
+    </div>
+  </div>
+</section>
 
-<div id="ajoutArticle" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
-  <table>
-  <?php
-    ajoutArticle(); 
-    ?>
-  </table>
-</div>
-
-<div id="suppArticle" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
-  <table>
-  <?php
-    suppArticle();
-    ?>
-  </table>
-</div>
-
-<?php
-  }
-}else{
-  echo"<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-      <h2 class='w3-center'>Autorisation non accordée</h2>
-      </div>";
-}
-footer();
-echo "</body>";
-?>
-
-
+<?php footer(); ?>

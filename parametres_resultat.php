@@ -1,48 +1,22 @@
-<link rel='stylesheet' href='style/parametres.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/parametres.js'></script> <!-- Ajout de la référence au fichier JS -->
-
 <?php
 include 'fonction.php';
-entete();
+exiger_admin("Infos et résultats");
+
+entete('Infos et résultats');
 navbar();
-echo "<body style='background-color: rgb(32, 47, 74);'>";
-if (isset($_SESSION['role'])) {
-  if ($_SESSION['role'] == 'admin') {
+bandeau('Infos et résultats', "Le bloc « Au programme » de la page d'accueil.", true);
 ?>
 
-    <div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
-      <center>
-
-        <body onload="openTab(event, 'ajoutResultat')">
-          <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutResultat')">Ajouter un Résultat</button>
-          <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppResultat')">Supprimer un Résultat</button>
-
-        </body>
-      </center>
+<section class="section section--serre">
+  <div class="wrap">
+    <?php onglets(['ajoutResultat' => 'Publier une info', 'suppResultat' => 'Supprimer une info']); ?>
+    <div id="ajoutResultat" role="tabpanel" aria-labelledby="onglet-ajoutResultat" tabindex="0">
+      <?php ajoutResultat(); ?>
     </div>
-
-    <div id="ajoutResultat" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
-      <table>
-        <?php
-        ajoutResultat();
-        ?>
-      </table>
+    <div id="suppResultat" role="tabpanel" aria-labelledby="onglet-suppResultat" tabindex="0">
+      <?php suppResultat(); ?>
     </div>
-    <div id="suppResultat" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
-      <table>
-        <?php
-        suppResultat();
-        ?>
-      </table>
-    </div>
+  </div>
+</section>
 
-<?php
-  }
-} else {
-  echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-  <h2 class='w3-center'>Autorisation non accordée</h2>
-  </div>";
-}
-footer();
-echo "</body>";
-?>
+<?php footer(); ?>

@@ -1,59 +1,35 @@
-<link rel='stylesheet' href='style/galerie_photo.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/galerie.js'></script> <!-- Ajout de la référence au fichier JS -->
-
 <?php
 include 'fonction.php';
-entete();
-echo "<body style='background-color: rgb(32, 47, 74);'>";
-navbar();
-?>
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<?php
-$dossierJson = './galerie/data.json';
-
-$jsonData = file_get_contents($dossierJson);
-$data = json_decode($jsonData, true);
-usort($data, function ($a, $b) {
-  $dateA = DateTime::createFromFormat('d/m/Y', $a['date']);
-  $dateB = DateTime::createFromFormat('d/m/Y', $b['date']);
-  return $dateB <=> $dateA;
+// Albums (Administration > Galerie) : titre, lien vers l'album en ligne, date, image de couverture
+$albums = json_decode(@file_get_contents('./galerie/data.json'), true) ?: [];
+usort($albums, function ($a, $b) {
+    return lire_date($b['date']) <=> lire_date($a['date']);
 });
+
+entete('Photos');
+navbar();
+bandeau('Photos', 'Les albums des compétitions et des stages. Chaque album s\'ouvre dans un nouvel onglet.');
 ?>
 
-<center>
-  <h1>Galerie photo</h1>
-</center>
-
-<main class="galcontent">
-  <div id="cardsWrapper">
-    <section class="galcards-wrapper">
-      <?php
-      foreach ($data as $galerie) {
-        echo "<script>
-        console.log('./{$galerie['path_image']}');
-        </script>";
-        echo "<div class='galcard-grid-space'>
-        <a class='galcard' href='{$galerie['lien']}' target='_blank' style='background-image: url(./image/galerie_image/{$galerie['path_image']});'>
-            <div>
-                <h1>{$galerie['titre']}</h1>
-                <div>{$galerie['date']}</div>    
+<section class="section section--serre">
+  <div class="wrap">
+    <?php if (!$albums): ?>
+      <p>Aucun album pour le moment.</p>
+    <?php else: ?>
+      <div class="albums">
+        <?php foreach ($albums as $album): ?>
+          <a class="album" href="<?= e($album['lien']) ?>" target="_blank" rel="noopener">
+            <img src="./image/galerie_image/<?= e($album['path_image']) ?>" alt="" loading="lazy">
+            <div class="album__texte">
+              <h3><?= e($album['titre']) ?></h3>
+              <span><?= e(date_lisible($album['date'])) ?></span>
             </div>
-        </a>
-      </div>";
-      }
-      ?>
-    </section>
+          </a>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
   </div>
-</main>
+</section>
 
-<div class="artfooter">
-  <div style="clear: both">
-    <?php
-    footer();
-    ?>
-  </div>
-</div>
+<?php footer(); ?>

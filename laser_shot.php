@@ -1,103 +1,60 @@
-<link rel='stylesheet' href='style/laser_shot.css'>
 <?php
 include 'fonction.php';
-entete();
-echo "<audio id='backgroundMusic' src='musique.mp3' type='audio/mpeg'></audio>";
+
+// Compteur de visites par semaine (consultable dans Administration > Statistiques Laser Shot)
+$fichierCompteur = 'compteur.json';
+$connexions = file_exists($fichierCompteur) ? (json_decode(file_get_contents($fichierCompteur), true) ?: []) : [];
+$semaine = date('W');
+$connexions[$semaine] = ($connexions[$semaine] ?? 0) + 1;
+file_put_contents($fichierCompteur, json_encode($connexions));
+
+entete('Laser Shot');
 navbar();
+bandeau('Laser Shot', 'Le jeu de soirée des tireurs du club. À consommer avec modération.');
 ?>
-<style>
-  /* Style pour centrer le bouton */
-  #playButtonContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
-  }
 
-  #button-85 {
-    padding: 20px 40px;
-    font-size: 50px;
-    cursor: pointer;
-  }
-</style>
+<section class="section section--serre">
+  <div class="wrap">
+    <audio id="musique" src="musique.mp3" preload="none"></audio>
+    <div class="boutons boutons--centre" id="lancer">
+      <button class="btn btn--rouge" type="button" aria-controls="regles" aria-expanded="false">Afficher les règles</button>
+    </div>
 
-<body style='margin: 20px; background-color: rgb(32, 47, 74); color: white;'>
-  <?php
-
-  $filePath = 'compteur.json';
-
-  if (file_exists($filePath)) {
-    $data = file_get_contents($filePath);
-    $connexions = json_decode($data, true);
-  } else {
-    $connexions = [];
-  }
-
-  $weekNumber = date('W');
-
-  if (array_key_exists($weekNumber, $connexions)) {
-    $connexions[$weekNumber] = $connexions[$weekNumber] + 1;
-  } else {
-    $connexions[$weekNumber] = 1;
-  }
-
-  file_put_contents($filePath, json_encode($connexions));
-  ?>
-
-
-  <center>
-    <h1>Laser Shot</h1>
-  </center>
-
-  <div id="playButtonContainer">
-    <button id="button-85" class="button-85" role="button">Afficher les règles</button>
+    <div class="regles carte" id="regles" hidden>
+      <h2>Préparation</h2>
+      <ul>
+        <li>Cible à 10 m.</li>
+        <li>Boisson principale : Marquisette et alcool fort, bière si rien de tout ça n'est disponible.</li>
+        <li>Un pistolet minimum.</li>
+      </ul>
+      <h2>Déroulement</h2>
+      <ul>
+        <li>Un tir pour allumer la cible.</li>
+        <li>Prendre son shot (alcool ou cul sec de bière).</li>
+        <li>Finir la cible.</li>
+        <li>Si la cible n'est pas finie, un shot supplémentaire. Sinon, joueur suivant.</li>
+        <li>Sur un 5/5, un shot au joueur de ton choix.</li>
+        <li>Interdiction de toucher le tireur ou la cible, et de se placer entre la cible et le tireur.</li>
+      </ul>
+      <h2>Variante à deux cibles</h2>
+      <ul>
+        <li>Tableau en quarts, demies et finale.</li>
+        <li>En match 1 contre 1, le perdant est celui qui met le plus de temps à finir la cible, ou celui qui a allumé le moins de vert. Il prend un shot supplémentaire.</li>
+      </ul>
+    </div>
   </div>
+</section>
 
-  <!-- Déplacer la balise <div id="rules"> ici -->
-  <div id="rules" style="display: none; text-align: center;">
-    <h2>Règlement du jeu</h2>
-    <h2>Préparation du jeu</h2>
-    <ul>
-
-      Cible à 10m<br>
-      Alcool principal : Marquisette et alcool fort, bière si aucun alcool cité précédemment n'est présent !<br>
-      Un pistolet minimum.<br>
-
-    </ul>
-    <h2>Déroulement du jeu</h2>
-    <ul>
-
-      Un tir pour allumer la cible.<br>
-      Prendre son shot (alcool ou cul sec de bière).<br>
-      Finir la cible.<br>
-      Si la cible n'est pas finie, un shot supplémentaire sinon joueur suivant.<br>
-      Si 5/5, un shot au joueur de ton choix.<br>
-      Interdiction de toucher le joueur lorsqu'il tire, interdiction de toucher la cible et de se mettre entre la cible et le tireur.<br>
-
-    </ul>
-    <h2>Variante possible à deux cibles.</h2>
-    <ul>
-
-      Tableau 1/4, 1/2 et final<br>
-      Match, pour définir le perdant, c'est celui qui met le plus de temps à finir la cible ou celui qui a mis moins de lumière verte, 1v1 le perdant prend un shot supplémentaire.<br>
-
-    </ul>
-  </div>
-
-
-  <script>
-    var audio = document.getElementById('backgroundMusic');
-    var rulesDiv = document.getElementById('rules');
-
-    // Fonction pour afficher les règles, lancer la musique lorsque le bouton est cliqué
-    document.getElementById('button-85').addEventListener('click', function() {
-      audio.play();
-      document.getElementById('playButtonContainer').style.display = 'none';
-      rulesDiv.style.display = 'block';
+<script>
+  (function () {
+    var bouton = document.querySelector('#lancer button');
+    bouton.addEventListener('click', function () {
+      document.getElementById('musique').play().catch(function () {});
+      document.getElementById('regles').hidden = false;
+      bouton.setAttribute('aria-expanded', 'true');
+      document.getElementById('lancer').hidden = true;
     });
-  </script>
+  })();
+</script>
 
-</body>
-
-</html>
+<?php footer(); ?>

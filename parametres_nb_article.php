@@ -1,20 +1,16 @@
-<link rel='stylesheet' href='style/parametres.css'> <!-- Ajout de la référence au fichier CSS -->
-
-
 <?php
 include 'fonction.php';
-entete();
+exiger_admin("Articles à la une");
+
+entete('Articles à la une');
 navbar();
-echo "<body style='background-color: rgb(32, 47, 74);'>";
-if (isset($_SESSION['role'])) {
-    if ($_SESSION['role'] == 'admin') {
-        nombre_article();
-    }
-} else {
-    echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-  <h2 class='w3-center'>Autorisation non accordée</h2>
-  </div>";
-}
-footer();
-echo "</body>";
+bandeau('Articles à la une', "Combien d'articles mettre en avant sur la page d'accueil.", true);
 ?>
+
+<section class="section section--serre">
+  <div class="wrap">
+    <?php nombre_article(); ?>
+  </div>
+</section>
+
+<?php footer(); ?>

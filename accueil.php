@@ -1,156 +1,162 @@
 <?php
 include 'fonction.php';
+
+/* ---------- Données ---------- */
+
+// Photos du héros (gérées dans Administration > Photos d'accueil)
+$diapos = glob("image/carousel/*.{jpg,png,gif,JPG,Jpg,jpeg,Jpeg,webp}", GLOB_BRACE) ?: [];
+$diapos = array_slice($diapos, 0, 5); // la cible de laser run compte 5 feux
+
+// Infos et résultats (Administration > Infos et résultats), les plus récents d'abord
+$infos = json_decode(@file_get_contents('./resultat.json'), true) ?: [];
+$infos = array_reverse($infos);
+
+// Articles à la une (Administration > Articles à la une)
+$nb_art = (int) trim((string) @file_get_contents('nb_art.txt'));
+if ($nb_art < 1 || $nb_art > 2) {
+    $nb_art = 1;
+}
+$dossierPdf = './article/article_pdf';
+$dossierImage = './image/article_image';
+$articles = json_decode(@file_get_contents('./article/article.json'), true) ?: [];
+usort($articles, function ($a, $b) {
+    return lire_date($b['date']) <=> lire_date($a['date']);
+});
+$aLaUne = array_slice($articles, 0, $nb_art);
+
 entete();
-echo "<link rel='stylesheet' href='style/accueil.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/accueil.js'></script> <!-- Ajout de la référence au fichier JS -->";
 navbar();
-$dossierJson = './resultat.json';
-$jsonData = file_get_contents($dossierJson);
-$data = json_decode($jsonData, true);
 ?>
 
-<body style='background-color: rgb(32, 47, 74); color:white'>
-  <div class="accslider-container">
-    <div class="accslider">
-      <?php
-      $imageFolder = "image/carousel/";
-      $images = glob($imageFolder . "*.{jpg,png,gif,JPG,Jpg,jpeg,Jpeg,webp}", GLOB_BRACE);
-      foreach ($images as $image) {
-        echo "<img src='$image' alt='Image' class='acccustom-img'>";
-      }
-      ?>
+<section class="heros" aria-label="Présentation du club">
+  <div class="heros__diapos">
+    <?php foreach ($diapos as $i => $image): ?>
+      <img class="heros__diapo" src="<?= e($image) ?>" alt="" <?= $i === 0 ? '' : 'loading="lazy"' ?>>
+    <?php endforeach; ?>
+  </div>
+  <div class="wrap heros__contenu">
+    <p class="heros__club">Cercle Jules Ferry Saint-Malo</p>
+    <h1>Pentathlon moderne</h1>
+    <p class="heros__disciplines">Laser run, natation, escrime et parcours d'obstacles. Des premiers pas aux championnats du monde.</p>
+    <div class="boutons">
+      <a class="btn btn--rouge" href="inscription.php">Nous rejoindre</a>
+      <a class="btn btn--contour-clair" href="creneaux.php">Voir les créneaux</a>
+    </div>
+    <?php if (count($diapos) > 1): ?>
+      <div class="cible">
+        <div class="cible__plaque" role="group" aria-label="Choisir la photo">
+          <?php foreach ($diapos as $i => $image): ?>
+            <button class="cible__feu" type="button" aria-label="Photo <?= $i + 1 ?>"></button>
+          <?php endforeach; ?>
+        </div>
+        <span class="cible__score" aria-hidden="true"></span>
+      </div>
+    <?php endif; ?>
+  </div>
+</section>
+
+<?php if ($infos): ?>
+<section class="section section--serre">
+  <div class="wrap">
+    <div class="section-titre">
+      <h2>Au programme</h2>
+      <a href="calendrier.php">Tout le calendrier</a>
+    </div>
+    <div class="infos">
+      <?php foreach ($infos as $info): ?>
+        <article class="info">
+          <div class="info__visuel">
+            <?php if (!empty($info['image']) && file_exists($info['image'])): ?>
+              <img src="<?= e($info['image']) ?>" alt="" loading="lazy">
+            <?php else: ?>
+              <img src="image/favicon.webp" alt="" loading="lazy" style="object-fit: contain; padding: 24px;">
+            <?php endif; ?>
+          </div>
+          <div class="info__corps">
+            <?php if (!empty($info['date'])): ?>
+              <div class="info__date"><?= e(date_lisible($info['date'])) ?></div>
+            <?php endif; ?>
+            <h3><?= e($info['titre']) ?></h3>
+            <?php if (!empty($info['description'])): ?>
+              <p><?= e($info['description']) ?></p>
+            <?php endif; ?>
+            <div class="info__liens">
+              <?php if (!empty($info['pdf'])): ?>
+                <a href="<?= e($info['pdf']) ?>" target="_blank" rel="noopener">Voir l'affiche</a>
+              <?php endif; ?>
+              <?php if (!empty($info['url'])): ?>
+                <a href="<?= e($info['url']) ?>" target="_blank" rel="noopener">En savoir plus</a>
+              <?php endif; ?>
+            </div>
+          </div>
+        </article>
+      <?php endforeach; ?>
     </div>
   </div>
-  <div>
-    <center>
-      <h1>Accueil</h1>
-    </center>
-    <div class="w3-container w3-twothird w3-center">
-      <h1>Article a la une</h1>
-      <div>
-        <?php
-        // Chemin du fichier contenant la valeur de nb_art
-        $nb_art_file = 'nb_art.txt';
+</section>
+<?php endif; ?>
 
-        // Vérifier si le fichier existe
-        if (file_exists($nb_art_file)) {
-          // Lire la valeur actuelle de nb_art à partir du fichier
-          $nb_art = file_get_contents($nb_art_file);
-        } else {
-          // Valeur par défaut si le fichier n'existe pas
-          $nb_art = 1;
-        }
-
-        // Vérifier si le formulaire a été soumis pour mettre à jour la valeur de nb_art
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          // Récupérer la nouvelle valeur de nb_art depuis le formulaire
-          $new_nb_art = $_POST['nb_art'];
-
-          // Écrire la nouvelle valeur de nb_art dans le fichier
-          file_put_contents($nb_art_file, $new_nb_art);
-        }
-        $dossierPdf = './article/article_pdf';
-        $dossierImage = './image/article_image';
-        $dossierJson = './article/article.json';
-
-        $jsonData = file_get_contents($dossierJson);
-        $article = json_decode($jsonData, true);
-        usort($article, function ($a, $b) {
-          $dateA = DateTime::createFromFormat('d/m/Y', $a['date']);
-          $dateB = DateTime::createFromFormat('d/m/Y', $b['date']);
-          return $dateB <=> $dateA;
-        });
-
-
-        if ($nb_art == 1) {
-          echo "<div class='article-container'>
-          <div class='w3-container w3-quarter '>
+<?php if ($aLaUne): ?>
+<section class="section section--blanc">
+  <div class="wrap">
+    <div class="section-titre">
+      <h2>À la une</h2>
+      <a href="article.php">Tous les articles</a>
+    </div>
+    <div class="articles articles--une">
+      <?php foreach ($aLaUne as $article):
+        $pdf = $dossierPdf . '/' . pathinfo($article['image'], PATHINFO_FILENAME) . '.pdf'; ?>
+        <article class="article">
+          <div class="article__visuel">
+            <img src="<?= e($dossierImage . '/' . $article['image']) ?>" alt="" loading="lazy">
           </div>
-          <div class='w3-container w3-half w3-center'>
-          <a class='artcard' href='$dossierPdf/" . pathinfo($article[0]['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='text-decoration: none;'>
-                <div>
-                  <h2>{$article[0]['titre']}</h2>
-                  <p>{$article[0]['description']}</p>
-                  <div>{$article[0]['date']}</div>
-                </div>
-                <img src='$dossierImage/{$article[0]['image']}' class='titre-img'>
-                </a>
-          </div></div>";
-        } elseif ($nb_art == 2) {
-          echo "<div class='article-container'>";
-          echo "<div class='w3-container w3-half w3-center'>";
-          echo "<a class='artcard' href='$dossierPdf/" . pathinfo($article[0]['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='text-decoration: none;'>
-                <div>
-                  <h2>{$article[0]['titre']}</h2>
-                  <p>{$article[0]['description']}</p>
-                  <div>{$article[0]['date']}</div>
-                </div>
-                <img src='$dossierImage/{$article[0]['image']}' class='titre-img'>
-                </a>";
-          echo "</div>";
-          echo "<div class='w3-container w3-half w3-center'>";
-          echo "<a class='artcard' href='$dossierPdf/" . pathinfo($article[1]['image'], PATHINFO_FILENAME) . ".pdf' target='_blank' style='text-decoration: none;'>
-                <div>
-                  <h2>{$article[1]['titre']}</h2>
-                  <p>{$article[1]['description']}</p>
-                  <div>{$article[1]['date']}</div>
-                </div>
-                <img src='$dossierImage/{$article[1]['image']}' class='titre-img'>
-                </a>";
-          echo "</div>";
-          echo "</div>";
-        }
-        ?>
-      </div>
+          <div class="article__corps">
+            <div class="article__date"><?= e(date_lisible($article['date'])) ?></div>
+            <h3><a href="<?= e($pdf) ?>" target="_blank" rel="noopener"><?= e($article['titre']) ?></a></h3>
+            <p><?= e($article['description']) ?></p>
+          </div>
+        </article>
+      <?php endforeach; ?>
     </div>
-    <div class="w3-container w3-third w3-center">
-      <h2>Derniers résultats/infos</h2>
-        <div>
-    <?php
-    // Inverser les données pour afficher les plus récentes en premier
-    $reversedData = array_reverse($data);
+  </div>
+</section>
+<?php endif; ?>
 
-    foreach ($reversedData as $result) {
-        // Vérifier si la date est présente, sinon ne pas l'afficher
-        $date = !empty($result['date']) ? $result['date'] : '';
-        
-        echo "<h1>{$result['titre']}</h1>
-              <p>{$result['description']}</p>
-              <div>{$date}</div>";
-
-        // Vérifier et afficher une URL si elle est présente
-        if (!empty($result['url'])) {
-            echo "<div><a href='{$result['url']}' target='_blank'>Voir plus</a></div>";
-        }
-
-        // Vérifier si un PDF est présent et afficher un lien pour l'ouvrir
-        if (!empty($result['pdf'])) {
-            echo "<div><a href='{$result['pdf']}' target='_blank'>Voir le PDF</a></div>";
-        }
-
-        // Vérifier si une image est présente et l'afficher avec un style similaire à celui des articles
-        if (!empty($result['image']) && file_exists($result['image'])) {
-            echo "<div><img src='{$result['image']}' alt='Image' class='titre-img' style='max-width: 100%; height: auto;'></div>";
-        } else {
-            // Afficher une image par défaut si l'image n'existe pas
-            echo "<div><img src='path/to/default-image.jpg' alt='Image par défaut' class='titre-img' style='max-width: 100%; height: auto;'></div>";
-        }
-
-        echo "<hr>";
-    }
-    ?>
-</div>
-
-
+<section class="section">
+  <div class="wrap">
+    <div class="section-titre">
+      <h2>Quatre épreuves, un seul sport</h2>
+      <a href="creneaux.php">Les horaires d'entraînement</a>
     </div>
+    <div class="disciplines">
+      <a class="discipline" href="creneaux.php#laserrun">
+        <img src="image/section_image/LR.png" alt="" loading="lazy">
+        <div class="discipline__texte"><h3>Laser run</h3><p>Course à pied et tir au pistolet laser, enchaînés.</p></div>
+      </a>
+      <a class="discipline" href="creneaux.php#natation">
+        <img src="image/section_image/nat.png" alt="" loading="lazy">
+        <div class="discipline__texte"><h3>Natation</h3><p>200 m nage libre pour les seniors.</p></div>
+      </a>
+      <a class="discipline" href="creneaux.php#escrime">
+        <img src="image/section_image/escrime2.jpg" alt="" loading="lazy">
+        <div class="discipline__texte"><h3>Escrime</h3><p>À l'épée, avec une maîtresse d'armes.</p></div>
+      </a>
+      <a class="discipline" href="creneaux.php#obstacle">
+        <img src="image/section_image/PO2.jpg" alt="" loading="lazy">
+        <div class="discipline__texte"><h3>Obstacles</h3><p>Le parcours qui remplace l'équitation depuis 2025.</p></div>
+      </a>
+    </div>
+  </div>
+</section>
 
+<section class="appel">
+  <div class="wrap">
+    <div>
+      <h2>Envie d'essayer ?</h2>
+      <p>Les dossiers d'inscription adultes et mineurs sont en ligne.</p>
+    </div>
+    <a class="btn btn--clair" href="inscription.php">S'inscrire au club</a>
+  </div>
+</section>
 
-    <script>
-      // Appeler la fonction pour démarrer le slider automatique
-      startSlider();
-    </script>
-</body>
-
-<?php
-footer();
-?>
+<?php footer(); ?>

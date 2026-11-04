@@ -1,128 +1,66 @@
-<link rel='stylesheet' href='style/global_tab.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
-
 <?php
 include 'fonction.php';
-entete();
-echo"<body style='background-color: rgb(32, 47, 74); color:white;'>";
+
+$records = json_decode(@file_get_contents('record.json'), true) ?: [];
+
+// Clé dans record.json => [identifiant d'onglet, libellé, colonne de performance]
+$disciplines = [
+    'Laser Run' => ['laserrun', 'Laser run', 'temps', 'Temps'],
+    'Triathlé' => ['triathle', 'Triathlé', 'points', 'Points'],
+    'Tetrathlon' => ['tetrathlon', 'Tétrathlon', 'points', 'Points'],
+    'Pentathlon' => ['pentathlon', 'Pentathlon', 'points', 'Points'],
+];
+
+/** Une case « - » du fichier de records signifie qu'il n'y a pas encore de record. */
+function case_record($valeur, $classe = '')
+{
+    $valeur = trim((string) $valeur);
+    if ($valeur === '' || $valeur === '-') {
+        return "<span class='vide'>—</span>";
+    }
+    return $classe ? "<span class='$classe'>" . e($valeur) . "</span>" : e($valeur);
+}
+
+entete('Records du club');
 navbar();
+bandeau('Records du club', 'Les meilleures performances des athlètes du CJF, catégorie par catégorie.');
 ?>
 
-<h1 style='color:white'><center>Les records</center></h1>
-<center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
-  <button class="tablinks laserrun active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laserrun')">Laser Run</button>
-  <button class="tablinks triathlé" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'triathlé')">Triathlé</button>
-  <button class="tablinks tetrathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'tetrathlon')">Tetrathlon</button>
-  <button class="tablinks pentathlon" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'pentathlon')">Pentathlon</button>
-</body>
-</center></div>
+<section class="section section--serre">
+  <div class="wrap">
+    <?php
+    $liste = [];
+    foreach ($disciplines as $cle => $d) {
+        $liste[$d[0]] = $d[1];
+    }
+    onglets($liste);
 
-<div id="laserrun" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; display: block; text-align:center;'>
-  <h3>Laser Run</h3>
-  <table class='table'>
-  <?php
-        $jsonData = file_get_contents('record.json');
+    foreach ($disciplines as $cle => [$id, $libelle, $champ, $titreChamp]): ?>
+      <div id="<?= $id ?>" role="tabpanel" aria-labelledby="onglet-<?= $id ?>" tabindex="0">
+        <div class="tableau-conteneur">
+          <table class="tableau tableau--empile">
+            <caption class="sr-only">Records de <?= e($libelle) ?></caption>
+            <thead>
+              <tr><th>Catégorie</th><th><?= $titreChamp ?></th><th>Athlète</th><th>Date</th><th>Lieu</th></tr>
+            </thead>
+            <tbody>
+              <?php foreach ($records[$cle] ?? [] as $r):
+                $athlete = trim(($r['prenom'] ?? '') . ' ' . ($r['nom'] ?? ''));
+                if ($athlete === '- -') $athlete = '-'; ?>
+                <tr>
+                  <td data-title="Catégorie" class="cat"><?= e($r['categorie']) ?></td>
+                  <td data-title="<?= $titreChamp ?>"><?= case_record($r[$champ] ?? '', 'perf') ?></td>
+                  <td data-title="Athlète"><?= case_record($athlete) ?></td>
+                  <td data-title="Date"><?= case_record($r['date'] ?? '') ?></td>
+                  <td data-title="Lieu"><?= case_record($r['lieux'] ?? '') ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</section>
 
-        $data = json_decode($jsonData, true);
-
-        echo '<table class="table" border="1">';
-        echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Temps</th><th>Lieu</th></tr></thead><tbody>';
-
-        foreach ($data['Laser Run'] as $participant) {
-          echo '<tr>';
-          echo '<td style="text-align: center;" data-title="Catégorie">' . $participant['categorie'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Nom">' . $participant['nom'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Prénom">' . $participant['prenom'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Date">' . $participant['date'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Temps">' . $participant['temps'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Lieu">' . $participant['lieux'] . '</td>';
-          echo '</tr>';
-        }
-        echo '</tbody></table>';
-    ?>
-  </table>
-</div>
-
-<div id="triathlé" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto; text-align:center;'>
-  <h3>Triathlé</h3>
-  <table class='table'>
-  <?php
-        $jsonData = file_get_contents('record.json');
-
-        $data = json_decode($jsonData, true);
-
-        echo '<table class="table" border="1">';
-        echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
-
-        foreach ($data['Triathlé'] as $participant) {
-          echo '<tr>';
-          echo '<td style="text-align: center;" data-title="Catégorie">' . $participant['categorie'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Nom">' . $participant['nom'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Prénom">' . $participant['prenom'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Date">' . $participant['date'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Points">' . $participant['points'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Lieu">' . $participant['lieux'] . '</td>';
-          echo '</tr>';
-        }
-
-        echo '</tbody></table>';
-    ?>
-  </table>
-</div>
-
-<div id="tetrathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto; text-align:center;'>
-  <h3>Tetrathlon</h3>
-  <table class='table'>
-  <?php
-        $jsonData = file_get_contents('record.json');
-
-        $data = json_decode($jsonData, true);
-
-        echo '<table class="table" border="1">';
-        echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
-
-        foreach ($data['Tetrathlon'] as $participant) {
-          echo '<tr>';
-          echo '<td style="text-align: center;" data-title="Catégorie">' . $participant['categorie'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Nom">' . $participant['nom'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Prénom">' . $participant['prenom'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Date">' . $participant['date'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Points">' . $participant['points'] . '</td>';
-          echo '<td style="text-align: center;" data-title="Lieu">' . $participant['lieux'] . '</td>';
-          echo '</tr>';
-        }
-
-        echo '</tbody></table>';
-    ?>
-  </table>
-</div>
-
-<div id="pentathlon" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; text-align:center;'>
-  <h3>Pentathlon</h3>
-  <table class='table'>
-  <?php
-        $jsonData = file_get_contents('record.json');
-
-        $data = json_decode($jsonData, true);
-
-        echo '<table class="table" border="1">';
-        echo '<thead><tr><th>Catégorie</th><th>Nom</th><th>Prénom</th><th>Date</th><th>Points</th><th>Lieu</th></tr></thead><tbody>';
-
-        foreach ($data['Pentathlon'] as $participant) {
-            echo '<tr>';
-            echo '<td style="text-align: center;" data-title="Catégorie">' . $participant['categorie'] . '</td>';
-            echo '<td style="text-align: center;" data-title="Nom">' . $participant['nom'] . '</td>';
-            echo '<td style="text-align: center;" data-title="Prénom">' . $participant['prenom'] . '</td>';
-            echo '<td style="text-align: center;" data-title="Date">' . $participant['date'] . '</td>';
-            echo '<td style="text-align: center;" data-title="Points">' . $participant['points'] . '</td>';
-            echo '<td style="text-align: center;" data-title="Lieu">' . $participant['lieux'] . '</td>';
-            echo '</tr>';
-        }
-        echo '</tbody></table>';
-    ?>
-  </table>
-</div>
-<?php
-footer();
-echo "</body>";
-?>
+<?php footer(); ?>

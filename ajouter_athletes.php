@@ -1,125 +1,74 @@
 <?php
 include 'fonction.php';
-entete();
-echo "<link rel='stylesheet' href='style/parametres.css'>";
-navbar();
-echo "<body style='background-color: rgb(32, 47, 74); color:white'>";
+exiger_admin('Athlètes');
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    echo "<div class='w3-center w3-padding-48 w3-xxlarge'>
-            <h2>Autorisation non accordée</h2>
-          </div>";
-    footer();
+$discipline = $_GET['discipline'] ?? '';
+$competition = $_GET['competition'] ?? '';
+if (!competition_valide($discipline, $competition)) {
+    header('Location: ouvrir_competition.php');
     exit;
 }
 
-$discipline = $_GET['discipline'] ?? null;
-$competition = $_GET['competition'] ?? null;
-
-if (!$discipline || !$competition) {
-    echo "<p style='color:red;'>Paramètres manquants (discipline ou compétition).</p>";
-    echo "<a class='w3-button w3-gray' href='creer_competition.php'>Retour</a>";
-    footer();
-    exit;
-}
-
-$competition_path = "competitions/{$discipline}/{$competition}";
-$file_json = "$competition_path/athletes.json";
+$file_json = "competitions/{$discipline}/{$competition}/athletes.json";
 if (!file_exists($file_json)) {
     file_put_contents($file_json, json_encode(['athletes' => []], JSON_PRETTY_PRINT));
 }
+$q = 'competition=' . urlencode($competition) . '&discipline=' . urlencode($discipline);
+$categories = [
+    'u9 garcons' => 'U9 Garçons', 'u9 filles' => 'U9 Filles', 'u11 garcons' => 'U11 Garçons', 'u11 filles' => 'U11 Filles',
+    'u13 garcons' => 'U13 Garçons', 'u13 filles' => 'U13 Filles', 'u15 garcons' => 'U15 Garçons', 'u15 filles' => 'U15 Filles',
+    'u17 hommes' => 'U17 Hommes', 'u17 femmes' => 'U17 Femmes', 'u19 hommes' => 'U19 Hommes', 'u19 femmes' => 'U19 Femmes',
+    'u22 hommes' => 'U22 Hommes', 'u22 femmes' => 'U22 Femmes', 'senior hommes' => 'Senior Hommes', 'senior femmes' => 'Senior Femmes',
+    'm40 hommes' => 'Master 40 Hommes', 'm40 femmes' => 'Master 40 Femmes', 'm50 hommes' => 'Master 50 Hommes', 'm50 femmes' => 'Master 50 Femmes',
+    'm60 hommes' => 'Master 60 Hommes', 'm60 femmes' => 'Master 60 Femmes', 'm70 hommes' => 'Master 70 Hommes', 'm70 femmes' => 'Master 70 Femmes',
+    'para hommes' => 'Para Hommes', 'para femmes' => 'Para Femmes', 'open hommes' => 'Open Hommes', 'open femmes' => 'Open Femmes',
+];
+
+entete('Athlètes : ' . $competition);
+navbar();
+bandeau($competition, 'Athlètes inscrits en ' . ($discipline === 'triathle' ? 'triathlé' : 'laser run') . '.', true);
 ?>
 
-<center>
-    <h1>Gestion des athlètes - <?= ucfirst($discipline) ?> / <?= htmlspecialchars($competition) ?></h1>
+<section class="section section--serre">
+  <div class="wrap">
+    <p class="fil"><a href="compet.php">Compétitions</a> / <a href="ouvrir_competition.php?discipline=<?= urlencode($discipline) ?>">Ouvrir</a> / Athlètes</p>
+    <?php if (isset($_GET['cree'])) message_admin('Compétition créée. Ajoutez maintenant les athlètes.'); ?>
 
-    <div style="margin-bottom: 20px;">
-        <button class="w3-button w3-gray" onclick="window.location.href='ouvrir_competition.php'">← Retour</button>
+    <div class="admin-panel">
+      <h2>Ajouter un athlète</h2>
+      <form id="form-add" class="formulaire">
+        <input type="hidden" name="discipline" value="<?= e($discipline) ?>">
+        <input type="hidden" name="competition" value="<?= e($competition) ?>">
+        <label for="ath-nom">Nom et prénom</label>
+        <input id="ath-nom" class="w3-input" name="nom" required>
+        <label for="ath-club">Club</label>
+        <input id="ath-club" class="w3-input" name="club" required>
+        <label for="ath-cat">Catégorie</label>
+        <select id="ath-cat" class="w3-input" name="categorie" required>
+          <option value="">Choisir une catégorie</option>
+          <?php foreach ($categories as $val => $lib): ?>
+            <option value="<?= e($val) ?>"><?= e($lib) ?></option>
+          <?php endforeach; ?>
+        </select>
+        <button class="w3-button" type="submit">Ajouter l'athlète</button>
+      </form>
     </div>
 
-    <div style="width: 80%; text-align: left; margin-bottom: 20px;">
-        <h3>Ajouter un athlète</h3>
-        <form id="form-add" class="w3-container" style="background:#20304a; padding:15px; border-radius:10px;">
-            <input type="hidden" name="discipline" value="<?= htmlspecialchars($discipline) ?>">
-            <input type="hidden" name="competition" value="<?= htmlspecialchars($competition) ?>">
-
-            <label>Nom :</label>
-            <input class="w3-input w3-border" style="background:#20304a; color:white" name="nom" required>
-
-            <label>Club :</label>
-            <input class="w3-input w3-border" style="background:#20304a; color:white" name="club" required>
-
-            <label>Catégorie :</label>
-            <select class="w3-input w3-border" style="background:#20304a; color:white" name="categorie" required>
-                <option value="">-- Choisir --</option>
-                <option value="u9 garcons">U9 Garçons</option>
-                <option value="u9 filles">U9 Filles</option>
-                <option value="u11 garcons">U11 Garçons</option>
-                <option value="u11 filles">U11 Filles</option>
-                <option value="u13 garcons">U13 Garçons</option>
-                <option value="u13 filles">U13 Filles</option>
-                <option value="u15 garcons">U15 Garçons</option>
-                <option value="u15 filles">U15 Filles</option>
-                <option value="u17 hommes">U17 Hommes</option>
-                <option value="u17 femmes">U17 Femmes</option>
-                <option value="u19 hommes">U19 Hommes</option>
-                <option value="u19 femmes">U19 Femmes</option>
-                <option value="u22 hommes">U22 Hommes</option>
-                <option value="u22 femmes">U22 Femmes</option>
-                <option value="senior hommes">Senior Hommes</option>
-                <option value="senior femmes">Senior Femmes</option>
-                <option value="m40 hommes">Master 40 Hommes</option>
-                <option value="m40 femmes">Master 40 Femmes</option>
-                <option value="m50 hommes">Master 50 Hommes</option>
-                <option value="m50 femmes">Master 50 Femmes</option>
-                <option value="m60 hommes">Master 60 Hommes</option>
-                <option value="m60 femmes">Master 60 Femmes</option>
-                <option value="m70 hommes">Master 70 Hommes</option>
-                <option value="m70 femmes">Master 70 Femmes</option>
-                <option value="para hommes">Para Hommes</option>
-                <option value="para femmes">Para Femmes</option>
-                <option value="open hommes">Open Hommes</option>
-                <option value="open femmes">Open Femmes</option>
-            </select>
-
-            <button class="w3-button w3-blue" type="submit" style="margin-top:10px;">Ajouter</button>
-        </form>
+    <div class="admin-panel">
+      <h2>Athlètes inscrits</h2>
+      <p>Cliquez sur une catégorie pour modifier ou retirer ses athlètes.</p>
+      <div id="athletes-container"></div>
     </div>
 
-    <h3>Liste des athlètes</h3>
-    <div id="athletes-container" style="width:80%; text-align:left;"></div>
-    <!-- 🔹 Bloc actions compétition -->
-    <div style="margin-bottom:25px; display:flex; gap:15px; justify-content:center;">
-
-
-        <!-- Boutons selon discipline -->
-        <?php if ($discipline === 'triathle'): ?>
-            <a class='w3-button w3-teal w3-round'
-            href='ajouter_temps_nat.php?competition=<?= urlencode($competition) ?>&discipline=<?= urlencode($discipline) ?>'>
-            ⏱ Ajouter Temps Natation
-            </a>
-
-            <a class='w3-button w3-red w3-round'
-            href='ajouter_temps_lr.php?competition=<?= urlencode($competition) ?>&discipline=<?= urlencode($discipline) ?>'>
-            ⏱ Ajouter Temps Laser Run
-            </a>
-
-        <?php elseif ($discipline === 'laserrun'): ?>
-            <a class='w3-button w3-red w3-round'
-            href='ajouter_temps_lr.php?competition=<?= urlencode($competition) ?>&discipline=<?= urlencode($discipline) ?>'>
-            ⏱ Ajouter Temps Laser Run
-            </a>
-        <?php endif; ?>
-
-        <!-- Résultats -->
-        <a class='w3-button w3-orange w3-round'
-        href='resultats.php?title=resultats&file=competitions/<?= urlencode($discipline) ?>/<?= urlencode($competition) ?>/athletes.json&discipline=<?= urlencode($discipline) ?>'>
-        📊 Voir Résultats
-        </a>
-
+    <div class="boutons">
+      <?php if ($discipline === 'triathle'): ?>
+        <a class="btn" href="ajouter_temps_nat.php?<?= $q ?>">Saisir les temps de natation</a>
+      <?php endif; ?>
+      <a class="btn" href="ajouter_temps_lr.php?<?= $q ?>">Saisir les temps de laser run</a>
+      <a class="btn btn--contour" href="resultats.php?title=<?= urlencode('Résultats ' . $competition) ?>&file=<?= urlencode($file_json) ?>&discipline=<?= urlencode($discipline) ?>">Voir les résultats</a>
     </div>
-
-</center>
+  </div>
+</section>
 
 <script>
 const container = document.getElementById('athletes-container');
@@ -143,7 +92,7 @@ async function loadAthletes() {
     const res = await fetch('endpoints/get_athletes.php?discipline=<?= urlencode($discipline) ?>&competition=<?= urlencode($competition) ?>');
     const data = await res.json();
     if (!data.ok) {
-        container.innerHTML = "<p style='color:red;'>Erreur lors du chargement.</p>";
+        container.innerHTML = "<div class='message message--erreur'>La liste des athlètes n'a pas pu être chargée. Rechargez la page.</div>";
         return;
     }
 
@@ -167,21 +116,19 @@ async function loadAthletes() {
         section.classList.add('cat-section');
 
         const header = document.createElement('h3');
-        header.innerHTML = `▶ ${categoryLabel(cat)} <span style="font-size:0.8em; color:gray;">(${athletesList.length})</span>`;
-        header.style.cursor = "pointer";
-        header.style.background = "#1e2f4d";
-        header.style.padding = "8px";
-        header.style.borderRadius = "8px";
+        header.innerHTML = `▶ ${categoryLabel(cat)} <span style="font-size:0.8em; color:var(--granite);">(${athletesList.length})</span>`;
+        header.tabIndex = 0;
+        header.setAttribute('role', 'button');
+        header.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); header.click(); } });
 
         const table = document.createElement('table');
-        table.className = "w3-table w3-bordered";
-        table.style.marginBottom = "15px";
+        table.className = "w3-table tableau";
         table.style.display = "none";
 
         const thead = document.createElement('thead');
         thead.innerHTML = `
-            <tr style="background-color:#14233d;">
-                <th>Nom</th><th>Club</th><th>Catégorie</th><th style="text-align:center;">Actions</th>
+            <tr>
+                <th>Nom</th><th>Club</th><th>Catégorie</th><th>Actions</th>
             </tr>`;
         table.appendChild(thead);
 
@@ -189,16 +136,16 @@ async function loadAthletes() {
         athletesList.forEach(a => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td><input data-id="${a.id}" data-field="nom" class="edit w3-input" style="background:#20304a; color:white" value="${a.nom}"></td>
-                <td><input data-id="${a.id}" data-field="club" class="edit w3-input" style="background:#20304a; color:white" value="${a.club}"></td>
+                <td><input data-id="${a.id}" data-field="nom" class="edit w3-input" value="${a.nom}"></td>
+                <td><input data-id="${a.id}" data-field="club" class="edit w3-input" value="${a.club}"></td>
                 <td>
-                    <select data-id="${a.id}" data-field="categorie" class="edit w3-input" style="background:#20304a; color:white">
+                    <select data-id="${a.id}" data-field="categorie" class="edit w3-input">
                         ${getCategoriesList().map(c => `<option value="${c}" ${c===a.categorie?'selected':''}>${categoryLabel(c)}</option>`).join('')}
                     </select>
                 </td>
-                <td style="text-align:center;">
-                    <button class="w3-button w3-green save" data-id="${a.id}">💾</button>
-                    <button class="w3-button w3-red delete" data-id="${a.id}">🗑️</button>
+                <td style="white-space:nowrap;">
+                    <button class="btn btn--petit save" data-id="${a.id}">Enregistrer</button>
+                    <button class="btn btn--danger btn--petit delete" data-id="${a.id}">Retirer</button>
                 </td>`;
             tbody.appendChild(row);
         });
@@ -224,7 +171,7 @@ async function loadAthletes() {
 formAdd.addEventListener('submit', async e => {
     e.preventDefault();
     const formData = new FormData(formAdd);
-    const res = await fetch('endpoints/add_athlete.php', { method: 'POST', body: formData });
+    const res = await fetch('endpoints/add_athlete.php', { method: 'POST', headers: {'X-CSRF-Token': window.CJF_CSRF}, body: formData });
     const data = await res.json();
     if (data.ok) {
         formAdd.reset();
@@ -238,14 +185,14 @@ container.addEventListener('click', async e => {
     if (e.target.classList.contains('save')) {
         const inputs = container.querySelectorAll(`[data-id="${id}"]`);
         const payload = {
-            discipline: "<?= $discipline ?>",
-            competition: "<?= $competition ?>",
+            discipline: <?= json_encode($discipline) ?>,
+            competition: <?= json_encode($competition) ?>,
             id: id
         };
         inputs.forEach(el => payload[el.dataset.field] = el.value);
         const res = await fetch('endpoints/update_athlete.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-CSRF-Token': window.CJF_CSRF},
             body: JSON.stringify(payload)
         });
         const data = await res.json();
@@ -255,10 +202,10 @@ container.addEventListener('click', async e => {
         if (confirm("Supprimer cet athlète ?")) {
             const res = await fetch('endpoints/delete_athlete.php', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: {'Content-Type': 'application/json', 'X-CSRF-Token': window.CJF_CSRF},
                 body: JSON.stringify({
-                    discipline: "<?= $discipline ?>",
-                    competition: "<?= $competition ?>",
+                    discipline: <?= json_encode($discipline) ?>,
+                    competition: <?= json_encode($competition) ?>,
                     id: id
                 })
             });
@@ -271,7 +218,4 @@ container.addEventListener('click', async e => {
 loadAthletes();
 </script>
 
-<?php
-footer();
-echo "</body>";
-?>
+<?php footer(); ?>

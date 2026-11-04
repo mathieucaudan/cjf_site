@@ -1,39 +1,16 @@
-<link rel='stylesheet' href='style/parametres.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/parametres.js'></script> <!-- Ajout de la référence au fichier JS -->
-
 <?php
 include 'fonction.php';
-entete();
+exiger_admin("Calendrier");
+
+entete('Calendrier');
 navbar();
-echo "<body style='background-color: rgb(32, 47, 74);'>";
-if (isset($_SESSION['role'])) {
-  if ($_SESSION['role'] == 'admin') {
+bandeau('Calendrier', 'Ajouter ou retirer un événement du calendrier.', true);
 ?>
 
-<div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
-<body onload="openTab(event, 'ajoutEvenement')">
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutEvenement')">Ajouter un événement dans le calendrier</button>
-</body>
-</center></div>
-<div id="message">
+<section class="section section--serre">
+  <div class="wrap">
+    <?php ajoutEvenement(); ?>
+  </div>
+</section>
 
-</div>
-<div id="ajoutEvenement" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
-  <table>
-  <?php
-    ajoutEvenement(); 
-    ?>
-  </table>
-</div>
-
-
-<?php
-}
-}else{
-  echo"<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-  <h2 class='w3-center'>Autorisation non accordée</h2>
-  </div>";
-}
-footer();
-echo "</body>";
-?>
+<?php footer(); ?>

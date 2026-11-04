@@ -1,43 +1,22 @@
-<link rel='stylesheet' href='style/parametres.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/parametres.js'></script> <!-- Ajout de la référence au fichier JS -->
-
 <?php
 include 'fonction.php';
-entete();
+exiger_admin("Section sportive");
+
+entete('Section sportive');
 navbar();
-echo "<body style='background-color: rgb(32, 47, 74);'>";
-if (isset($_SESSION['role'])) {
-  if ($_SESSION['role'] == 'admin') {
+bandeau('Section sportive', 'Les articles de la section sportive scolaire.', true);
 ?>
 
-<div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'><center>
-<body onload="openTab(event, 'ajoutArticleSection')">
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'ajoutArticleSection')">Ajouter un articles de section</button>
-  <button class="tablinks" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'suppArticleSection')">Supprimer les articles de section</button>
-</body>
-</center></div>
-<div id="ajoutArticleSection" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
-  <table>
-  <?php
-    ajoutArticleSection(); 
-    ?>
-  </table>
-</div>
-<div id="suppArticleSection" class="tabcontent" style='background-color: rgb(32, 47, 74); color: white; margin: 0 auto;'>
-  <table>
-  <?php
-    suppArticleSection(); 
-    ?>
-  </table>
-</div>
+<section class="section section--serre">
+  <div class="wrap">
+    <?php onglets(['ajoutArticleSection' => 'Ajouter un article', 'suppArticleSection' => 'Supprimer un article']); ?>
+    <div id="ajoutArticleSection" role="tabpanel" aria-labelledby="onglet-ajoutArticleSection" tabindex="0">
+      <?php ajoutArticleSection(); ?>
+    </div>
+    <div id="suppArticleSection" role="tabpanel" aria-labelledby="onglet-suppArticleSection" tabindex="0">
+      <?php suppArticleSection(); ?>
+    </div>
+  </div>
+</section>
 
-<?php
-}
-}else{
-  echo"<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-  <h2 class='w3-center'>Autorisation non accordée</h2>
-  </div>";
-}
-footer();
-echo "</body>";
-?>
+<?php footer(); ?>

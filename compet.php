@@ -1,46 +1,29 @@
 <?php
 include 'fonction.php';
-entete();
-echo "<link rel='stylesheet' href='style/parametres.css'>";
+exiger_admin('Compétitions');
+
+entete('Compétitions');
 navbar();
-echo "<body style='background-color: rgb(32, 47, 74); color:white'>";
-if (isset($_SESSION['role'])) {
-    if ($_SESSION['role'] == 'admin') {
+bandeau('Compétitions', 'Organiser une compétition du club : athlètes, saisie des temps et résultats.', true);
 ?>
-        <center>
-            <h1>Gestion des Compétitions</h1>
-            <h2>Choisissez une action :</h2>
-            <button class='w3-button' onclick="ouvrirCompetition()">
-                Ouvrir une compétition existante
-            </button>
-            <button class='w3-button' onclick="creerCompetition()">Créer une nouvelle compétition</button>
-            <button class='w3-button' onclick="supprimerCompetition()">
-                Supprimer une compétition existante
-            </button>
-        </center>
 
-        <script>
-            function ouvrirCompetition() {
-                // Redirection vers la page pour ouvrir une compétition existante
-                window.location.href = "ouvrir_competition.php";
-            }
+<section class="section section--serre">
+  <div class="wrap">
+    <div class="tuiles-admin">
+      <a class="tuile-admin" href="ouvrir_competition.php">
+        <strong>Ouvrir une compétition</strong>
+        <span>Ajouter des athlètes, saisir les temps, voir les résultats.</span>
+      </a>
+      <a class="tuile-admin" href="creer_competition.php">
+        <strong>Créer une compétition</strong>
+        <span>Laser run ou triathlé.</span>
+      </a>
+      <a class="tuile-admin tuile-admin--danger" href="supprimer_competition.php">
+        <strong>Supprimer une compétition</strong>
+        <span>Efface la compétition et tous ses résultats.</span>
+      </a>
+    </div>
+  </div>
+</section>
 
-            function creerCompetition() {
-                // Redirection vers la page pour créer une nouvelle compétition avec le nom spécifié
-                window.location.href = "creer_competition.php";
-            }
-
-            function supprimerCompetition() {
-                // Redirection vers la page pour supprimer une compétition existante
-                window.location.href = "supprimer_competition.php";
-            }
-        </script>
-<?php
-    }
-} else {
-    echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-  <h2 class='w3-center'>Autorisation non accordée</h2>
-  </div>";
-}
-footer();
-echo "</body>";
+<?php footer(); ?>

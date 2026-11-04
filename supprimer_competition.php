@@ -1,126 +1,77 @@
 <?php
 include 'fonction.php';
-entete();
-echo "<link rel='stylesheet' href='style/parametres.css'>";
-navbar();
-echo "<body style='background-color: rgb(32, 47, 74); color:white'>";
+exiger_admin('Supprimer une compétition');
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    echo "<div class='w3-center w3-padding-48 w3-xxlarge'><h2>Autorisation non accordée</h2></div>";
-    footer(); exit;
+$disciplines = ['laserrun' => 'Laser run', 'triathle' => 'Triathlé'];
+$discipline = $_GET['discipline'] ?? null;
+if ($discipline !== null && !isset($disciplines[$discipline])) {
+    $discipline = null;
 }
-?>
 
-<center>
-<h1>Choisir une compétition</h1>
-
-<?php
-$competitions_directory = './competitions/';
-
-/**
- * Supprime une compétition dans une discipline
- * Exemple : competitions/triathle/competitionABC
- */
-function supprimerCompetition($discipline, $competition)
-{
-    $path = "./competitions/$discipline/$competition";
-
-    if (!is_dir($path)) {
-        echo "<p>Le dossier n'existe pas : $path</p>";
-        return;
-    }
-
-    // supprimer fichiers
-    foreach (glob($path.'/*') as $file) {
-        if (is_file($file)) unlink($file);
-        if (is_dir($file)) rmdir($file);
-    }
-
-    // supprimer dossier
-    if (rmdir($path)) {
-        echo "<p>La compétition <b>$competition</b> a été supprimée avec succès.</p>";
+$message = null;
+if (($competition = demande_suppression()) !== null) {
+    $disc = $_POST['discipline'] ?? '';
+    if (competition_valide($disc, $competition)) {
+        $chemin = "./competitions/$disc/$competition";
+        foreach (glob($chemin . '/*') ?: [] as $f) {
+            if (is_file($f)) unlink($f);
+        }
+        $message = @rmdir($chemin)
+            ? ["Compétition « $competition » supprimée.", 'ok']
+            : ["La compétition « $competition » n'a pas pu être entièrement supprimée (sous-dossier présent).", 'erreur'];
     } else {
-        echo "<p>Erreur lors de la suppression de $competition.</p>";
+        $message = ['Compétition introuvable.', 'erreur'];
     }
 }
 
-/* -------------------------------------------------------
-   SUPPRESSION D’UNE COMPETITION
-------------------------------------------------------- */
-if (isset($_GET['discipline']) && isset($_GET['competition'])) {
-
-    $disc = $_GET['discipline'];
-    $comp = $_GET['competition'];
-
-    supprimerCompetition($disc, $comp);
-}
-
-/* -------------------------------------------------------
-   LISTE DES DISCIPLINES
-------------------------------------------------------- */
-
-echo "<h2>Choisir une discipline :</h2>";
-
-$disciplines = ['laserrun', 'triathle'];
-
-echo "<ul>";
-
-foreach ($disciplines as $disc) {
-    echo "<li>
-            <a class='w3-button' href='?discipline=$disc'>
-                ".ucfirst($disc)."
-            </a>
-          </li>";
-}
-
-echo "</ul>";
-
-/* -------------------------------------------------------
-   SI UNE DISCIPLINE EST CHOISIE
-------------------------------------------------------- */
-
-if (isset($_GET['discipline'])) {
-
-    $discipline = $_GET['discipline'];
-    $discipline_path = "./competitions/$discipline/";
-
-    if (!is_dir($discipline_path)) {
-        echo "<p>Aucune compétition trouvée pour ".htmlspecialchars($discipline).".</p>";
-        echo "</center>";
-        footer();
-        exit;
-    }
-
-    echo "<h2>Compétitions dans : ".ucfirst($discipline)."</h2>";
-
-    echo "<ul>";
-
-    $dirs = scandir($discipline_path);
-    foreach ($dirs as $entry) {
-        if ($entry === '.' || $entry === '..') continue;
-
-        if (is_dir($discipline_path . $entry)) {
-
-            echo "<li>
-                    <b>$entry</b> —
-                    <a class='w3-button w3-red' 
-                       href='?discipline=$discipline&competition=$entry'
-                       onclick='return confirm(\"Supprimer cette compétition ?\")'>
-                        Supprimer
-                    </a>
-                  </li>";
+$competitions = [];
+if ($discipline) {
+    $chemin = "./competitions/$discipline/";
+    foreach (is_dir($chemin) ? scandir($chemin) : [] as $entree) {
+        if ($entree[0] !== '.' && is_dir($chemin . $entree)) {
+            $competitions[] = $entree;
         }
     }
-
-    echo "</ul>";
+    natcasesort($competitions);
 }
 
+entete('Supprimer une compétition');
+navbar();
+bandeau('Supprimer une compétition', 'La suppression efface aussi les athlètes et les temps saisis. Elle est définitive.', true);
 ?>
 
-<a class='w3-button' href="compet.php">Retour à l'accueil</a>
-</center>
+<section class="section section--serre">
+  <div class="wrap">
+    <p class="fil"><a href="compet.php">Compétitions</a> / Supprimer</p>
+    <?php if ($message) message_admin($message[0], $message[1]); ?>
 
-<?php
-footer();
-echo "</body>";
-?>
+    <div class="admin-panel">
+      <h2>Discipline</h2>
+      <div class="boutons">
+        <?php foreach ($disciplines as $id => $nom): ?>
+          <a class="btn <?= $discipline === $id ? '' : 'btn--contour' ?>" href="?discipline=<?= $id ?>"><?= e($nom) ?></a>
+        <?php endforeach; ?>
+      </div>
+    </div>
+
+    <?php if ($discipline): ?>
+      <div class="admin-panel">
+        <h2>Compétitions de <?= e($disciplines[$discipline]) ?></h2>
+        <?php if (!$competitions): ?>
+          <p>Aucune compétition pour cette discipline.</p>
+        <?php else: ?>
+          <ul class="liste-admin">
+            <?php foreach ($competitions as $comp): ?>
+              <li>
+                <span><?= e($comp) ?></span>
+                <?= bouton_supprimer($comp, $comp, '', ['discipline' => $discipline]) ?>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
+      </div>
+    <?php endif; ?>
+  </div>
+</section>
+
+<?php footer(); ?>

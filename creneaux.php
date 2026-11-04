@@ -1,41 +1,48 @@
-<link rel='stylesheet' href='style/global_tab.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/global_tab.js'></script> <!-- Ajout de la référence au fichier JS -->
-
 <?php
 include 'fonction.php';
-entete();
-echo"<body style='background-color: rgb(32, 47, 74); color:white;'>";
+
+// Créneaux d'entraînement par discipline : [jour, horaire]
+$creneaux = [
+    'laserrun' => ['Laser run', 'laser', [['Mercredi', '18h00 – 19h00']]],
+    'natation' => ['Natation', 'nat', [
+        ['Lundi', '6h30 – 7h30'],
+        ['Mercredi', '6h30 – 7h30'],
+        ['Jeudi', '20h00 – 21h30'],
+        ['Vendredi', '6h30 – 7h30'],
+        ['Samedi', '8h00 – 9h30'],
+    ]],
+    'escrime' => ['Escrime', 'escrime', [
+        ['Lundi', '18h30 – 20h00'],
+        ['Mercredi', '19h00 – 20h00'],
+    ]],
+    'obstacle' => ['Obstacles', 'obstacle', []],
+];
+
+entete("Créneaux d'entraînement");
 navbar();
+bandeau("Créneaux d'entraînement", 'Les horaires de la saison, discipline par discipline.');
 ?>
 
-<h1 style='color:white'><center>Les créneaux</center></h1>
-<center><div class="tab" style='background-color: rgb(32, 47, 74); font-size: 40px'>
-  <button class="tablinks laserrun active" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'laserrun')">Laser Run</button>
-  <button class="tablinks natation" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'natation')">Natation</button>
-  <button class="tablinks escrime" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'escrime')">Escrime</button>
-  <button class="tablinks obstacle" style='background-color: rgb(32, 47, 74); color: white' onclick="openTab(event, 'obstacle')">Obstacle</button>
-</body>
-</center></div>
+<section class="section section--serre">
+  <div class="wrap">
+    <div class="creneaux">
+      <?php foreach ($creneaux as $id => [$nom, $classe, $seances]): ?>
+        <div class="creneau creneau--<?= $classe ?>" id="<?= $id ?>">
+          <h3><?= e($nom) ?></h3>
+          <?php if ($seances): ?>
+            <ul>
+              <?php foreach ($seances as [$jour, $heure]): ?>
+                <li><strong><?= e($jour) ?></strong><span><?= e($heure) ?></span></li>
+              <?php endforeach; ?>
+            </ul>
+          <?php else: ?>
+            <p class="vide">Horaires à venir. Renseignez-vous auprès des coachs.</p>
+          <?php endif; ?>
+        </div>
+      <?php endforeach; ?>
+    </div>
+    <p style="margin-top: 28px;">Une question sur un créneau ? Appelez le <a href="tel:+33608105644">06 08 10 56 44</a> ou écrivez-nous à <a href="mailto:cjf.saintmalo.pentathlonmoderne@gmail.com">cjf.saintmalo.pentathlonmoderne@gmail.com</a>.</p>
+  </div>
+</section>
 
-<div id="laserrun" class="tabcontent" style="text-align:center; display: block;">
-    <h3>Mercredi 18h00-19h00</h3>
-</div>
-<div id="natation" class="tabcontent" style="text-align:center;">
-    <h3>Lundi 6h30-7h30</h3>
-    <h3>Mercredi 6h30-7h30</h3>
-    <h3>Jeudi 20h0-21h30</h3>
-    <h3>Vendredi 6h30-7h30</h3>
-    <h3>Samedi 8h00-9h30</h3>
-</div>
-<div id="escrime" class="tabcontent" style="text-align:center;">
-    <h3>Lundi 18h30-20h00</h3>
-    <h3>Mercredi 19h00-20h00</h3>
-</div>
-<div id="obstacle" class="tabcontent" style="text-align:center;">
-    <h3>A voir</h3>
-</div>
-
-<?php 
-footer();
-echo "</body>";
-?>
+<?php footer(); ?>

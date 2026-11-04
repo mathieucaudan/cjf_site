@@ -1,66 +1,49 @@
-<link rel='stylesheet' href='style/parametres.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/parametres.js'></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- Ajout de la référence au fichier JS -->
+<?php
+include 'fonction.php';
+exiger_admin('Statistiques Laser Shot');
 
-<body style='background-color: rgb(32, 47, 74);'>
-    <?php
-    include 'fonction.php';
-    entete();
-    navbar();
-    echo "<body style='background-color: rgb(32, 47, 74);'>";
-    if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
-        // Lire le contenu du fichier compteur.json
-        $json_data = file_get_contents('compteur.json');
+// Visites de la page Laser Shot par numéro de semaine (compteur.json)
+$data = json_decode(@file_get_contents('compteur.json'), true) ?: [];
+ksort($data, SORT_NUMERIC);
+$semaines = array_map('strval', array_keys($data));
+$connexions = array_values($data);
+$total = array_sum($connexions);
 
-        // Convertir le contenu JSON en tableau associatif
-        $data = json_decode($json_data, true);
+entete('Statistiques Laser Shot');
+navbar();
+bandeau('Statistiques Laser Shot', 'Nombre de visites de la page Laser Shot, semaine par semaine.', true);
+?>
 
-        $semaines = array_keys($data);
-        $connexions = array_values($data);
-    } else {
-        echo "<div class='w3-center w3-padding-48 w3-xxlarge' style='background-color: rgb(32, 47, 74); color: white;'>
-      <h2 class='w3-center'>Autorisation non accordée</h2>
-      </div>";
+<section class="section section--serre">
+  <div class="wrap">
+    <div class="admin-panel">
+      <?php if (!$data): ?>
+        <p>Aucune visite enregistrée pour le moment.</p>
+      <?php else: ?>
+        <h2><?= $total ?> visite<?= $total > 1 ? 's' : '' ?> au total</h2>
+        <div class="graphique"><canvas id="graphique" aria-label="Visites par semaine" role="img"></canvas></div>
+      <?php endif; ?>
+    </div>
+  </div>
+</section>
+
+<?php if ($data): ?>
+<script src="script/chart.umd.js"></script>
+<script>
+  new Chart(document.getElementById('graphique'), {
+    type: 'bar',
+    data: {
+      labels: <?= json_encode($semaines) ?>.map(function (s) { return 'Sem. ' + s; }),
+      datasets: [{ label: 'Visites', data: <?= json_encode($connexions) ?>, backgroundColor: '#2e6cb8', borderRadius: 4 }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } }, x: { grid: { display: false } } }
     }
-    ?>
-    <center>
-        <canvas id="myChart" style="width: 80%; height: 60%;"></canvas>
-        <script>
-            // Récupérer les données PHP
-            var semaines = <?php echo json_encode($semaines); ?>;
-            var connexions = <?php echo json_encode($connexions); ?>;
+  });
+</script>
+<?php endif; ?>
 
-            // Configurer et afficher le graphique
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: semaines,
-                    datasets: [{
-                        label: 'Nombre de connexions par semaine',
-                        data: connexions,
-                        borderColor: 'blue',
-                        fill: false
-                    }]
-                },
-                options: {
-                    responsive: false, // Désactiver la réponse dynamique
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
-                            type: 'category',
-                            labels: semaines
-                        },
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        </script>
-    </center>
-    <?php
-    footer();
-    echo "</body>";
-    ?>
+<?php footer(); ?>

@@ -1,146 +1,92 @@
-<link rel='stylesheet' href='style/calendrier.css'> <!-- Ajout de la référence au fichier CSS -->
-<script src='script/calendrier.js'></script> <!-- Ajout de la référence au fichier JS -->
 <?php
 include 'fonction.php';
-entete();
-echo "<body style='background-color: rgb(32, 47, 74); color:white;'>";
+
+// Format : { "2025-12": { "13": "Triathlé de Noël" }, ... } (Administration > Calendrier)
+$calendrier = json_decode(@file_get_contents('calendrier.json'), true) ?: [];
+
+entete('Calendrier');
 navbar();
+bandeau('Calendrier', 'Compétitions, stages et événements du club.');
 ?>
 
-<h1 id="calcalendar-title" class="calcentered">Calendrier</h1>
-<div class="calcalendar-navigation">
-    <button class="calbuttonMois" onclick="previousMonth()">
-        Mois précédent
-        <span class="calfirst"></span>
-        <span class="calsecond"></span>
-        <span class="calthird"></span>
-        <span class="calfourth"></span>
-    </button>
+<section class="section section--serre">
+  <div class="wrap">
+    <div class="agenda" id="agenda">
+      <div class="agenda__tete">
+        <button class="btn agenda__nav" type="button" data-pas="-1" aria-label="Mois précédent"><?= icone('fleche') ?></button>
+        <h2 id="agenda-titre" aria-live="polite"></h2>
+        <button class="btn agenda__nav" type="button" data-pas="1" aria-label="Mois suivant" style="transform: scaleX(-1);"><?= icone('fleche') ?></button>
+      </div>
+      <div class="agenda__grille" id="agenda-grille"></div>
+      <ul class="agenda__liste" id="agenda-liste"></ul>
+    </div>
+    <noscript><p>Activez JavaScript pour afficher le calendrier.</p></noscript>
+  </div>
+</section>
 
-    <button class="calbuttonMois" onclick="nextMonth()">
-        Mois suivant
-        <span class="calfirst"></span>
-        <span class="calsecond"></span>
-        <span class="calthird"></span>
-        <span class="calfourth"></span>
-    </button>
-
-</div>
-<div class="calcalendar-container">
-    <table class="caltab">
-        <tr>
-            <th>Lundi</th>
-            <th>Mardi</th>
-            <th>Mercredi</th>
-            <th>Jeudi</th>
-            <th>Vendredi</th>
-            <th>Samedi</th>
-            <th>Dimanche</th>
-        </tr>
-        <?php
-        // Obtenez la date actuelle en PHP
-        $currentDate = new DateTime();
-        $currentYear = $currentDate->format('Y');
-        $currentMonth = $currentDate->format('n');
-        $currentDay = $currentDate->format('j');
-
-        // Obtenez le premier jour du mois actuel
-        $firstDayOfMonth = new DateTime("{$currentDate->format('Y-m')}-01");
-
-        // Obtenez le nombre de jours dans le mois actuel
-        $daysInMonth = $firstDayOfMonth->format('t');
-
-        // Obtenez le jour de la semaine du premier jour du mois (1 pour lundi, 7 pour dimanche)
-        $firstDayOfWeek = (int)$firstDayOfMonth->format('N');
-
-        // Commencez à compter les jours
-        $day = 1 - $firstDayOfWeek;
-
-        // Lisez le fichier JSON
-        $jsonData = file_get_contents('calendrier.json');
-        $calendarData = json_decode($jsonData, true);
-
-        // Déterminez le nombre de lignes nécessaires
-        $numRows = ceil(($daysInMonth + $firstDayOfWeek - 1) / 7);
-        // Boucle pour générer les cases du calendrier
-        for ($i = 0; $i < $numRows; $i++) {
-            echo "<tr>";
-            for ($j = 0; $j < 7; $j++) {
-                if ($day <= 0 || $day > $daysInMonth) {
-                    // Jours du mois précédent ou suivant
-                    echo "<td></td>";
-                } else {
-                    // Jours du mois actuel avec informations sous le numéro de jour
-                    $yearMonthKey = $currentYear . '-' . str_pad($currentMonth + 1, 2, '0', STR_PAD_LEFT); // Notez l'ajout de 1 ici
-                    $dayInfo = isset($calendarData[$yearMonthKey][$day]) ? $calendarData[$yearMonthKey][$day] : '';
-                    echo "<td class='calcalendar-cell'>$day<div class='calinfo-cell'>$dayInfo</div></td>";
-                }
-                $day++;
-            }
-            echo "</tr>";
-        }
-
-        ?>
-    </table>
-</div>
 <script>
-    var currentDate = new Date();
-    var calendarData = <?php echo json_encode($calendarData); ?>;
+(function () {
+  var donnees = <?= json_encode($calendrier, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
+  var mois = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+  var jours = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
+  var aujourdhui = new Date();
+  var courant = new Date(aujourdhui.getFullYear(), aujourdhui.getMonth(), 1);
 
-    // Fonction pour passer au mois précédent
-    function previousMonth() {
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        updateCalendar();
+  var titre = document.getElementById("agenda-titre");
+  var grille = document.getElementById("agenda-grille");
+  var liste = document.getElementById("agenda-liste");
+
+  function el(tag, classe, texte) {
+    var n = document.createElement(tag);
+    if (classe) n.className = classe;
+    if (texte !== undefined) n.textContent = texte;
+    return n;
+  }
+
+  function afficher() {
+    var annee = courant.getFullYear();
+    var m = courant.getMonth();
+    var cle = annee + "-" + String(m + 1).padStart(2, "0");
+    var evts = donnees[cle] || {};
+    titre.textContent = mois[m] + " " + annee;
+
+    grille.innerHTML = "";
+    liste.innerHTML = "";
+    jours.forEach(function (j) { grille.appendChild(el("div", "agenda__jour-sem", j)); });
+
+    var decalage = (new Date(annee, m, 1).getDay() + 6) % 7;
+    var nbJours = new Date(annee, m + 1, 0).getDate();
+    for (var i = 0; i < decalage; i++) grille.appendChild(el("div", "agenda__case agenda__case--hors"));
+
+    var compte = 0;
+    for (var jour = 1; jour <= nbJours; jour++) {
+      var cas = el("div", "agenda__case");
+      if (annee === aujourdhui.getFullYear() && m === aujourdhui.getMonth() && jour === aujourdhui.getDate()) {
+        cas.classList.add("agenda__case--auj");
+      }
+      cas.appendChild(el("span", "agenda__num", jour));
+      var evt = evts[jour] || evts[String(jour).padStart(2, "0")];
+      if (evt) {
+        cas.appendChild(el("span", "agenda__evt", evt));
+        var li = el("li");
+        li.appendChild(el("strong", "", jour));
+        li.appendChild(el("span", "", evt));
+        liste.appendChild(li);
+        compte++;
+      }
+      grille.appendChild(cas);
     }
+    if (!compte) liste.appendChild(el("li", "agenda__vide", "Aucun événement prévu ce mois-ci."));
+  }
 
-    // Fonction pour passer au mois suivant
-    function nextMonth() {
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        updateCalendar();
-    }
-
-    function updateCalendar() {
-        var calendarTitle = document.getElementById("calcalendar-title");
-        var monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-        calendarTitle.innerText = monthNames[currentDate.getMonth()] + " " + currentDate.getFullYear();
-
-        var table = document.querySelector("table");
-        table.innerHTML = "<tr><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th><th>Samedi</th><th>Dimanche</th></tr>";
-
-        var year = currentDate.getFullYear();
-        var month = currentDate.getMonth();
-
-        var firstDayOfMonth = new Date(year, month, 1);
-        var lastDayOfMonth = new Date(year, month + 1, 0);
-        var firstDayOfWeek = (firstDayOfMonth.getDay() + 6) % 7;
-
-        var numRows = Math.ceil((lastDayOfMonth.getDate() + firstDayOfWeek) / 7);
-
-        var day = 1 - firstDayOfWeek;
-
-        for (var i = 0; i < numRows; i++) {
-            var row = table.insertRow();
-            for (var j = 0; j < 7; j++) {
-                var cell = row.insertCell();
-                cell.classList.add("calbigger-cell"); // Ajoutez la classe pour agrandir les cellules
-
-                if (day <= 0 || day > lastDayOfMonth.getDate()) {
-                    // Jours du mois précédent ou suivant
-                    cell.innerHTML = "";
-                } else {
-                    // Jours du mois actuel avec informations sous le numéro de jour
-                    var yearMonthKey = year + '-' + (month + 1).toString().padStart(2, '0');
-                    var dayInfo = calendarData[yearMonthKey] && calendarData[yearMonthKey][day] ? calendarData[yearMonthKey][day] : '';
-                    cell.innerHTML = day + "<div class='calinfo-cell'>" + dayInfo + "</div>";
-                }
-                day++;
-            }
-        }
-    }
-    // Appelez la fonction de mise à jour du calendrier au chargement de la page
-    updateCalendar();
+  document.querySelectorAll(".agenda__nav").forEach(function (b) {
+    b.addEventListener("click", function () {
+      courant.setMonth(courant.getMonth() + Number(b.dataset.pas));
+      afficher();
+    });
+  });
+  afficher();
+})();
 </script>
-<?php
-footer();
-echo "</body>";
-?>
+
+<?php footer(); ?>

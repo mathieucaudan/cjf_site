@@ -1,100 +1,71 @@
 <?php
 include 'fonction.php';
+exiger_admin('Ouvrir une compétition');
 
-entete();
-echo "<link rel='stylesheet' href='style/parametres.css'>";
-navbar();
-
-echo "<body style='background-color: rgb(32, 47, 74); color:white'>";
-
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    echo "<div class='w3-center w3-padding-48 w3-xxlarge'>
-            <h2>Autorisation non accordée</h2>
-          </div>";
-    footer();
-    exit;
+$disciplines = ['laserrun' => 'Laser run', 'triathle' => 'Triathlé'];
+$discipline = $_GET['discipline'] ?? null;
+if ($discipline !== null && !isset($disciplines[$discipline])) {
+    $discipline = null;
 }
-?>
 
-<center>
-    <h1>Gestion des Compétitions</h1>
-    <h2>Choisissez une discipline :</h2>
-    <div style="display:flex; justify-content:center; gap:30px; margin-bottom:30px;">
-        <a class='w3-button w3-blue' href='?discipline=laserrun'>Laser Run</a>
-        <a class='w3-button w3-green' href='?discipline=triathle'>Triathlé</a>
-    </div>
-
-<?php
-// Dossier racine des compétitions
-$competitions_directory = './competitions/';
-
-// Vérifie la discipline sélectionnée
-if (isset($_GET['discipline'])) {
-    $discipline = htmlspecialchars($_GET['discipline']);
-    $discipline_path = $competitions_directory . $discipline . '/';
-
-    if (!is_dir($discipline_path)) {
-        echo "<p>Le dossier pour la discipline <b>$discipline</b> n'existe pas encore.</p>";
-    } else {
-        echo "<h2>Compétitions de " . ucfirst($discipline) . " :</h2>";
-
-        // Liste les sous-dossiers
-        $competitions = array_filter(scandir($discipline_path), function ($entry) use ($discipline_path) {
-            return $entry !== '.' && $entry !== '..' && is_dir($discipline_path . $entry);
-        });
-
-        if (empty($competitions)) {
-            echo "<p>Aucune compétition trouvée pour cette discipline.</p>";
-        } else {
-            echo "<ul style='list-style:none;'>";
-            foreach ($competitions as $comp) {
-                $path = $discipline_path . $comp;
-                echo "<li style='margin-bottom:10px;'>
-                        <a class='w3-button w3-border' href='?discipline=$discipline&directory=$path'>$comp</a>
-                      </li>";
-            }
-            echo "</ul>";
-        }
-
-        // Si une compétition est sélectionnée
-        if (isset($_GET['directory'])) {
-            $selectedDirectory = htmlspecialchars($_GET['directory']);
-            $competition_name = basename($selectedDirectory);
-
-            echo "<hr><h2>Fichiers dans la compétition <b>$competition_name</b> :</h2>";
-
-            if ($handle = opendir($selectedDirectory)) {
-                echo "<ul style='list-style:none;'>";
-                while (false !== ($file = readdir($handle))) {
-                    if (pathinfo($file, PATHINFO_EXTENSION) == 'json') {
-
-                        echo "<li style='margin-bottom:8px;'>
-                                <b>$file</b> - 
-                                <a class='w3-button w3-small w3-indigo' href='ajouter_athletes.php?competition=$competition_name&discipline=$discipline'>Ajouter Athlètes</a>";
-
-                        // 🔹 Discipline spécifique
-                        if ($discipline === 'triathle') {
-                            echo " <a class='w3-button w3-small w3-teal' href='ajouter_temps_nat.php?competition=$competition_name&discipline=$discipline'>Ajouter Temps Nat</a>";
-                            echo " <a class='w3-button w3-small w3-red' href='ajouter_temps_lr.php?competition=$competition_name&discipline=$discipline'>Ajouter Temps LR</a>";
-                        } elseif ($discipline === 'laserrun') {
-                            echo " <a class='w3-button w3-small w3-red' href='ajouter_temps_lr.php?competition=$competition_name&discipline=$discipline'>Ajouter Temps LR</a>";
-                        }
-
-                        echo " <a class='w3-button w3-small w3-orange' href='resultats.php?title=resultats&file=$selectedDirectory/$file&discipline=$discipline'>Résultats</a>
-                              </li>";
-                    }
-                }
-                echo "</ul>";
-                closedir($handle);
-            } else {
-                echo "<p>Impossible d'ouvrir le dossier sélectionné.</p>";
-            }
+$competitions = [];
+if ($discipline) {
+    $chemin = "./competitions/$discipline/";
+    foreach (is_dir($chemin) ? scandir($chemin) : [] as $entree) {
+        if ($entree[0] !== '.' && is_dir($chemin . $entree)) {
+            $competitions[] = $entree;
         }
     }
-
-    echo "<a class='w3-button w3-gray' href='compet.php'>Retour</a>";
+    natcasesort($competitions);
 }
 
-footer();
-echo "</body>";
+entete('Ouvrir une compétition');
+navbar();
+bandeau('Ouvrir une compétition', null, true);
 ?>
+
+<section class="section section--serre">
+  <div class="wrap">
+    <p class="fil"><a href="compet.php">Compétitions</a> / Ouvrir</p>
+
+    <div class="admin-panel">
+      <h2>Discipline</h2>
+      <div class="boutons">
+        <?php foreach ($disciplines as $id => $nom): ?>
+          <a class="btn <?= $discipline === $id ? '' : 'btn--contour' ?>" href="?discipline=<?= $id ?>"<?= $discipline === $id ? " aria-current='page'" : '' ?>><?= e($nom) ?></a>
+        <?php endforeach; ?>
+      </div>
+    </div>
+
+    <?php if ($discipline): ?>
+      <div class="admin-panel">
+        <h2>Compétitions de <?= e($disciplines[$discipline]) ?></h2>
+        <?php if (!$competitions): ?>
+          <p>Aucune compétition pour cette discipline. <a href="creer_competition.php">En créer une</a>.</p>
+        <?php else: ?>
+          <ul class="liste-admin">
+            <?php foreach ($competitions as $comp):
+              $q = 'competition=' . urlencode($comp) . '&discipline=' . urlencode($discipline);
+              $fichier = "competitions/$discipline/$comp/athletes.json"; ?>
+              <li>
+                <span><?= e($comp) ?></span>
+                <div class="boutons">
+                  <a class="btn btn--petit" href="ajouter_athletes.php?<?= $q ?>">Athlètes</a>
+                  <?php if ($discipline === 'triathle'): ?>
+                    <a class="btn btn--petit btn--contour" href="ajouter_temps_nat.php?<?= $q ?>">Temps natation</a>
+                  <?php endif; ?>
+                  <a class="btn btn--petit btn--contour" href="ajouter_temps_lr.php?<?= $q ?>">Temps laser run</a>
+                  <?php if (file_exists($fichier)): ?>
+                    <a class="btn btn--petit btn--contour" href="resultats.php?title=<?= urlencode('Résultats ' . $comp) ?>&file=<?= urlencode($fichier) ?>&discipline=<?= urlencode($discipline) ?>">Résultats</a>
+                  <?php endif; ?>
+                </div>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
+      </div>
+    <?php endif; ?>
+  </div>
+</section>
+
+<?php footer(); ?>

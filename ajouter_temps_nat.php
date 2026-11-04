@@ -1,27 +1,19 @@
 <?php
 include 'fonction.php';
-entete();
-echo "<link rel='stylesheet' href='style/parametres.css'>";
-navbar();
-echo "<body style='background-color: rgb(32, 47, 74); color:white'>";
-
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    echo "<div class='w3-center w3-padding-48 w3-xxlarge'><h2>Autorisation non accordée</h2></div>";
-    footer(); exit;
-}
+exiger_admin('Temps de natation');
 
 $discipline = $_GET["discipline"] ?? 'triathle';
-$nom_competition = $_GET["competition"] ?? null;
-
-if (!$nom_competition) {
-    echo "<p style='color:red;'>Paramètre 'competition' manquant.</p>";
-    footer(); exit;
+$nom_competition = $_GET["competition"] ?? '';
+if (!competition_valide($discipline, $nom_competition)) {
+    header('Location: ouvrir_competition.php');
+    exit;
 }
+$q = 'discipline=' . urlencode($discipline) . '&competition=' . urlencode($nom_competition);
 
 $fileName = "competitions/{$discipline}/{$nom_competition}/athletes.json";
 if (!file_exists($fileName)) {
-    echo "<p>Aucune donnée d'athlète trouvée pour cette compétition.</p>";
-    footer(); exit;
+    header('Location: ajouter_athletes.php?' . $q);
+    exit;
 }
 
 $athletes_data = json_decode(file_get_contents($fileName), true);
@@ -126,53 +118,45 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["temps_natation"])) {
         file_put_contents($fileName, json_encode($grouped, JSON_PRETTY_PRINT));
     }
 
-    echo "<script>window.location.href='?discipline=$discipline&competition=$nom_competition&success=1';</script>";
+    header('Location: ?' . $q . '&success=1');
     exit;
 }
 
-if (isset($_GET['success'])) {
-    echo "<p style='text-align:center;'>✅ Tous les temps de natation ont été enregistrés avec succès.</p>";
-}
+
 
 $cat_names = array_keys($grouped);
 sort($cat_names, SORT_NATURAL | SORT_FLAG_CASE);
 
-echo "<style>
-    .tabs {display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin:20px;}
-    .tabs button {background:#2c3e50; color:white; border:none; border-radius:8px; padding:10px 18px; cursor:pointer;}
-    .tabs button.active {background:#1abc9c;}
-    hr.sep {border:none; border-top:1px solid #4b5b74; margin:16px 0 24px;}
-    table {border-collapse:collapse; margin-top:15px; width:90%; color:white;}
-    th, td {border:1px solid #5b6b84; padding:10px; text-align:center;}
-    th {font-weight:600;}
-    tr:nth-child(even){background-color:#273956;}
-</style>";
 
-echo "<center>";
+entete('Temps de natation : ' . $nom_competition);
+navbar();
+bandeau($nom_competition, 'Temps de natation par catégorie.', true);
+echo "<section class='section section--serre'><div class='wrap'>";
+echo "<p class='fil'><a href='compet.php'>Compétitions</a> / <a href='ajouter_athletes.php?$q'>Athlètes</a> / Temps de natation</p>";
+if (isset($_GET['success'])) message_admin('Temps enregistrés.');
+if (!$cat_names) echo "<div class='admin-panel'><p>Aucun athlète inscrit. <a href='ajouter_athletes.php?$q'>Ajouter des athlètes</a>.</p></div>";
 echo "<div class='tabs'>";
 foreach ($cat_names as $cat) {
     $id = md5($cat);
     echo "<button class='tablink' data-id='$id'>".htmlspecialchars($cat)."</button>";
 }
 echo "</div>";
-echo "<hr class='sep'>";
 
 echo "<div id='tab-container'>";
 foreach ($cat_names as $cat) {
     $id = md5($cat);
     echo "<div class='tabcontent' id='tab_$id' style='display:none;'>";
-    echo "<h2 style='text-align:center;'>".htmlspecialchars($cat)."</h2>";
-    echo "<p style='text-align:center; font-size:1.1em;'>Télécharger cette catégorie</p>";
-
+    echo "<div class='admin-panel'><h2 style='text-transform:capitalize'>".htmlspecialchars($cat)."</h2>";
+    
     $title = 'Résultat Natation ' . $nom_competition;
     $titledoc = $title . " $cat";
-    echo "<center>
-            <a class='w3-button' href='download_cat_nat.php?discipline=$discipline&file=$fileName&title=$title&titledoc=$titledoc&cat=".urlencode($cat)."' target='_blank'>Télécharger cette catégorie</a>
-            <a class='w3-button' href='download_cat_nat_csv.php?discipline=$discipline&file=$fileName&cat=".urlencode($cat)."' target='_blank'>📥 CSV</a>
-          </center>";
+    echo "<p class='boutons'>
+            <a class='btn btn--contour btn--petit' href='download_cat_nat.php?discipline=".urlencode($discipline)."&file=".urlencode($fileName)."&title=".urlencode($title)."&titledoc=".urlencode($titledoc)."&cat=".urlencode($cat)."' target='_blank'>PDF de la catégorie</a>
+            <a class='btn btn--contour btn--petit' href='download_cat_nat_csv.php?discipline=".urlencode($discipline)."&file=".urlencode($fileName)."&cat=".urlencode($cat)."' target='_blank'>CSV de la catégorie</a>
+          </p>";
 
-    echo "<form method='post' action='?discipline=$discipline&competition=$nom_competition'>";
-    echo "<table align='center'>
+    echo "<form method='post' action='?$q'>";
+    echo "<div class='tableau-conteneur'><table class='tableau saisie'><thead>
             <tr>
                 <th>Nom</th>
                 <th>Club</th>
@@ -180,7 +164,7 @@ foreach ($cat_names as $cat) {
                 <th>Points Natation</th>
                 <th>Différence Leader</th>
                 <th>Saisie</th>
-            </tr>";
+            </tr></thead><tbody>";
 
     $rows = $grouped[$cat];
     usort($rows, fn($a,$b)=>strcmp($b['nom'],$a['nom']));
@@ -189,9 +173,9 @@ foreach ($cat_names as $cat) {
         echo "<tr>
                 <td>".htmlspecialchars($ath['nom'])."</td>
                 <td>".htmlspecialchars($ath['club'] ?? '')."</td>
-                <td>".($ath['temps_natation'] ?? '')."</td>
-                <td>".($ath['points_nat'] ?? '')."</td>
-                <td>".($ath['diff_points_leader'] ?? '')."</td>
+                <td>".e($ath['temps_natation'] ?? '')."</td>
+                <td>".e($ath['points_nat'] ?? '')."</td>
+                <td>".e($ath['diff_points_leader'] ?? '')."</td>
                 <td>
                     <input type='text' 
                            name='temps_natation[".htmlspecialchars($ath['nom'])."]'
@@ -201,9 +185,9 @@ foreach ($cat_names as $cat) {
             </tr>";
     }
 
-    echo "</table><br>
-          <center><button type='submit' class='w3-button'>✅ Enregistrer tous les temps</button></center>
-          </form></div>";
+    echo "</tbody></table></div>
+          <div class='boutons' style='margin-top:18px'><button type='submit' class='w3-button'>Enregistrer les temps de la catégorie</button></div>
+          </form></div></div>";
 }
 echo "</div>";
 
@@ -225,13 +209,10 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>";
 
 $title = 'Résultat Natation ' . $nom_competition;
-echo "<br>
-    <a class='w3-button' href='download_nat.php?discipline=$discipline&file=$fileName&title=$title' target='_blank'>Télécharger PDF</a><br>
-    <a class='w3-button' href='resultats.php?discipline=$discipline&title=$title&file=$fileName'>Voir Résultats</a><br>
-    <a class='w3-button' href='ajouter_temps_lr.php?discipline=$discipline&competition=$nom_competition'>Ajouter le Temps Laser Run</a><br>
-    <a class='w3-button' href='ouvrir_competition.php'>Retour aux compétitions</a>
-</center>";
+echo "<div class='boutons'>
+    <a class='btn' href='ajouter_temps_lr.php?$q'>Saisir les temps de laser run</a>
+    <a class='btn btn--contour' href='resultats.php?discipline=".urlencode($discipline)."&title=".urlencode($title)."&file=".urlencode($fileName)."'>Voir les résultats</a>
+    <a class='btn btn--contour' href='download_nat.php?discipline=".urlencode($discipline)."&file=".urlencode($fileName)."&title=".urlencode($title)."' target='_blank'>PDF complet</a>
+</div></div></section>";
 
 footer();
-echo "</body>";
-?>

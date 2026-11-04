@@ -1,42 +1,43 @@
 <?php
 include 'fonction.php';
-entete();
-echo "<body>";
+
+$erreur = $_SESSION['erreur'] ?? null;
+unset($_SESSION['erreur']);
+
+entete('Connexion');
 navbar();
+bandeau('Connexion');
 ?>
-<div style='background-color: rgb(32, 47, 74); color: white; display: flex; justify-content: center; align-items: center; height: 100vh;flex-direction: column;'>
-    <?php
 
-    if (isset($_SESSION['erreur'])) {
-        $erreur = $_SESSION['erreur'];
-        echo $erreur;
-        unset($_SESSION['erreur']); // Supprimer le message d'erreur de la session pour éviter de l'afficher à nouveau
-    }  ?>
-    <div>
-        <center>
-            <h1 class='titre' style='font-size: 32px;'>Connexion</h1>
-        </center>
-        <form action='/login.php' method='post'>
-            <div class='form-group'>
-                <label for='identifiant'>Nom d'utilisateur:</label>
-                <input type='text' id='identifiant' name='identifiant' required>
-            </div>
-            <div class='form-group'>
-                <label for='password'>Mot de passe:</label>
-                <input type='password' id='password' name='password' required>
-            </div>
-            <div class='form-group'>
-                <input type='submit' value='Se connecter'>
-            </div>
+<section class="section section--serre">
+  <div class="wrap">
+    <div class="connexion">
+      <div class="carte">
+        <h2>Espace du club</h2>
+        <p>Réservé aux membres du bureau et aux administrateurs du site.</p>
+        <?php if ($erreur):
+          $messages = [
+            'bloque' => 'Trop de tentatives. Réessayez dans 15 minutes.',
+            'expire' => 'La page a expiré. Saisissez à nouveau vos identifiants.',
+          ]; ?>
+          <div class="message message--erreur" role="alert"><?= e($messages[$erreur] ?? 'Identifiant ou mot de passe incorrect. Vérifiez-les et réessayez.') ?></div>
+        <?php endif; ?>
+        <form action="login.php" method="post">
+          <?= champ_csrf() ?>
+          <label for="identifiant">Nom d'utilisateur</label>
+          <input type="text" id="identifiant" name="identifiant" autocomplete="username" required>
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" required>
+          <input type="submit" value="Se connecter">
         </form>
+      </div>
+      <div class="carte">
+        <h2>Vous êtes athlète ?</h2>
+        <p>Votre licence, vos résultats et vos inscriptions aux compétitions se gèrent sur l'espace licencié de la Fédération française de pentathlon moderne.</p>
+        <a class="btn btn--contour" href="https://ffpentathlon.fr/espace-licencie/" target="_blank" rel="noopener">Aller sur l'espace licencié FFPM</a>
+      </div>
     </div>
-    <h4>Si vous êtes athlète, connectez vous sur le site de la Fédération francaise de Pentathlon Moderne</h4>
-    <div class='form-group'>
-        <a href='https://ffpentathlon.fr/espace-licencie/' target='_blank'><button>Se connecter sur ffpm</button></a>
-    </div>
-</div>
+  </div>
+</section>
 
-<?php
-footer();
-echo "</body>";
-?>
+<?php footer(); ?>
