@@ -1,9 +1,15 @@
 <?php
 header('Content-Type: application/json');
-session_start();
+require_once __DIR__ . '/../session.php';
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    http_response_code(403);
     echo json_encode(['ok' => false, 'error' => 'Non autorisé']);
+    exit;
+}
+if (!csrf_valide()) {
+    http_response_code(403);
+    echo json_encode(['ok' => false, 'error' => 'Session expirée : rechargez la page.']);
     exit;
 }
 
@@ -18,7 +24,11 @@ if (!$discipline || !$competition || !$nom || !$club || !$categorie) {
     exit;
 }
 
-$file = "../competitions/$discipline/$competition/athletes.json";
+if (!competition_valide($discipline, $competition)) {
+    echo json_encode(['ok' => false, 'error' => 'Compétition inconnue']);
+    exit;
+}
+$file = __DIR__ . "/../competitions/$discipline/$competition/athletes.json";
 if (!file_exists($file)) {
     file_put_contents($file, json_encode(['athletes' => []], JSON_PRETTY_PRINT));
 }

@@ -1,0 +1,49 @@
+# CJF Saint-Malo Pentathlon Moderne — protections du site (Apache / LiteSpeed, Hostinger)
+
+# Pas de liste des fichiers d'un dossier
+Options -Indexes
+
+DirectoryIndex accueil.php index.php
+
+# Données, journaux et fichiers techniques : jamais servis par le web.
+# (comptes admin, résultats de compétition, journal des connexions, scripts…)
+<FilesMatch "\.(json|txt|log|sh|md|lock|ini|bak|sql|dist|yml|yaml)$">
+    Require all denied
+</FilesMatch>
+
+# Exceptions publiques : consignes aux moteurs de recherche et licence des polices
+<FilesMatch "^(robots|OFL)\.txt$">
+    Require all granted
+</FilesMatch>
+
+# Dossiers internes
+RedirectMatch 404 /\.git
+RedirectMatch 404 ^/(vendor|dompdf/vendor)/
+
+# Bibliothèques PHP et fichier de session : pas d'appel direct
+<FilesMatch "^(session|composer)\.(php|json)$">
+    Require all denied
+</FilesMatch>
+
+# En-têtes de sécurité
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Mise en cache des fichiers statiques (le site devient plus rapide en visite répétée)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/webp "access plus 30 days"
+    ExpiresByType image/jpeg "access plus 30 days"
+    ExpiresByType image/png "access plus 30 days"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType text/css "access plus 7 days"
+    ExpiresByType application/javascript "access plus 7 days"
+    ExpiresByType application/pdf "access plus 7 days"
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>

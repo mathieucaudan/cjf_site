@@ -1,0 +1,4 @@
+# Dossier de fichiers téléversés : aucun script ne doit pouvoir s'y exécuter.
+<FilesMatch "\.(php\d?|phtml|phar|pht|cgi|pl|py|sh|htaccess)$">
+    Require all denied
+</FilesMatch>

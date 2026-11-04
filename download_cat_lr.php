@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/session.php';
 
 use Dompdf\Dompdf;
 require_once 'dompdf/autoload.inc.php';
@@ -47,6 +47,11 @@ if (isset($_GET['title']) && isset($_GET['file'])) {
     $titre = $_GET['title'] ?? "Résultats Natation";
     $titredoc = $_GET['titledoc'] ?? "Résultats Natation";
     $fileName = $_GET['file'] ?? "";
+    $fileName = fichier_competition($fileName);
+    if (!$fileName) {
+        http_response_code(404);
+        exit('Fichier de résultats introuvable.');
+    }
     $categorie = $_GET['cat'] ?? "";
 
     echo "<h1>$titre</h1>";

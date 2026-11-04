@@ -1,14 +1,12 @@
 #!/bin/bash
+# Sur le serveur Hostinger : récupère les mises à jour du site puis renvoie sur GitHub
+# les données modifiées depuis l'administration (articles, résultats, photos…).
+# Le fichier .gitignore empêche l'envoi du journal des connexions.
+set -e
 
 git pull
 
-# Exécutez la commande git add *
-git add *
+git add -A
+git commit -m "maj hostinger" || echo "Rien à envoyer."
 
-# Exécutez la commande git commit -m "maj"
-git commit -m "maj hostinger"
-
-# Exécutez la commande git push
 git push
-
-

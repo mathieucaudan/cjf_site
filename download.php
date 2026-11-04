@@ -1,15 +1,17 @@
 <?php
-if (isset($_POST['download']) && isset($_POST['pdf'])) {
-    $pdfFile = rawurldecode($_POST['pdf']);
-    $filePath = './article/article_pdf/' . $pdfFile;
+// Téléchargement d'un article PDF (bouton « Télécharger le PDF » de la page Articles).
+if (isset($_POST['download'], $_POST['pdf'])) {
+    // basename() empêche de sortir du dossier des articles (../athletes.json, etc.)
+    $pdfFile = basename(rawurldecode((string) $_POST['pdf']));
+    $filePath = __DIR__ . '/article/article_pdf/' . $pdfFile;
 
-    if (file_exists($filePath)) {
+    if (strtolower(pathinfo($pdfFile, PATHINFO_EXTENSION)) === 'pdf' && is_file($filePath)) {
         header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment; filename="' . $pdfFile . '"');
+        header('Content-Disposition: attachment; filename="' . str_replace('"', '', $pdfFile) . '"');
+        header('Content-Length: ' . filesize($filePath));
         readfile($filePath);
         exit;
-    } else {
-        echo "Fichier non trouvé.";
     }
-} 
-?>
+}
+http_response_code(404);
+echo "Fichier non trouvé.";

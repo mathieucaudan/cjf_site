@@ -1,0 +1,10 @@
+# Données personnelles et journaux : ne doivent jamais partir sur GitHub (dépôt public)
+connexion.txt
+*.log
+cjf_prive/
+comptes.json
+
+# Fichiers temporaires
+.DS_Store
+Thumbs.db
+*.tmp

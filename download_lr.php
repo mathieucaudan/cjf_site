@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/session.php';
 
 use Dompdf\Dompdf;
 
@@ -37,6 +37,11 @@ if (isset($_GET['title']) && isset($_GET['file']) && isset($_GET['discipline']))
 
     $titre = $_GET['title'];
     $fileName = $_GET['file'];
+    $fileName = fichier_competition($fileName);
+    if (!$fileName) {
+        http_response_code(404);
+        exit('Fichier de résultats introuvable.');
+    }
     $discipline = $_GET['discipline'];
 
     echo "<h1>$titre</h1>";

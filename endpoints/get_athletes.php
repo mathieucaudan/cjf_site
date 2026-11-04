@@ -1,8 +1,9 @@
 <?php
 header('Content-Type: application/json');
-session_start();
+require_once __DIR__ . '/../session.php';
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    http_response_code(403);
     echo json_encode(['ok' => false, 'error' => 'Non autorisé']);
     exit;
 }
@@ -10,7 +11,11 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 $discipline = $_GET['discipline'] ?? '';
 $competition = $_GET['competition'] ?? '';
 
-$file = "../competitions/$discipline/$competition/athletes.json";
+if (!competition_valide($discipline, $competition)) {
+    echo json_encode(['ok' => false, 'error' => 'Compétition inconnue']);
+    exit;
+}
+$file = __DIR__ . "/../competitions/$discipline/$competition/athletes.json";
 if (!file_exists($file)) {
     echo json_encode(['ok' => false, 'athletes' => []]);
     exit;

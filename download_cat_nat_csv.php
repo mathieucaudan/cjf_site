@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/session.php';
 require 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -6,13 +7,13 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 
-if (!isset($_GET['file'], $_GET['cat']) || !file_exists($_GET['file'])) {
+if (!isset($_GET['file'], $_GET['cat']) || !fichier_competition($_GET['file'])) {
     header('Content-Type: text/plain');
     echo "Fichier ou catégorie manquants.";
     exit();
 }
 
-$file = $_GET['file'];
+$file = fichier_competition($_GET['file']);
 // Récupération + normalisation de la catégorie
 $categorie = mb_strtolower(trim($_GET['cat']));
 $categorie = strtr($categorie, [

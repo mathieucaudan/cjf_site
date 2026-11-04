@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/session.php';
 
 use Dompdf\Dompdf;
 
@@ -31,6 +31,11 @@ th {
 if (isset($_GET['title']) && isset($_GET['file'])) {
     $titre = isset($_GET['title']) ? $_GET['title'] : "Résultats Natation"; // Titre par défaut si non spécifié dans l'URL
     $fileName = isset($_GET['file']) ? $_GET['file'] : ""; // Nom du fichier JSON
+    $fileName = fichier_competition($fileName);
+    if (!$fileName) {
+        http_response_code(404);
+        exit('Fichier de résultats introuvable.');
+    }
 
     // Ajout du titre dans l'en-tête du PDF
     echo '<h1>Résultat triathlé Championnat de <br>france de Triathlé Relais 2025</h1>';

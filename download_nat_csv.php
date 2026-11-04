@@ -1,11 +1,12 @@
 <?php
-if (!isset($_GET['file']) || !file_exists($_GET['file'])) {
+require_once __DIR__ . '/session.php';
+if (!isset($_GET['file']) || !fichier_competition($_GET['file'])) {
     header('Content-Type: text/plain');
     echo "Fichier non trouvé.";
     exit();
 }
 
-$athletes_data = json_decode(file_get_contents($_GET['file']), true);
+$athletes_data = json_decode(file_get_contents(fichier_competition($_GET['file'])), true);
 
 header('Content-Type: text/csv');
 header('Content-Disposition: attachment; filename="resultats_natation.csv"');

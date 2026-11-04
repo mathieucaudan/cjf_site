@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /parametres_
+Disallow: /compet.php
+Disallow: /ouvrir_competition.php
+Disallow: /creer_competition.php
+Disallow: /supprimer_competition.php
+Disallow: /ajouter_
+Disallow: /resultats.php
+Disallow: /connexion_LR.php
+Disallow: /endpoints/
+Disallow: /download
