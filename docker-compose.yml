@@ -1,0 +1,22 @@
+# Site CJF Saint-Malo Pentathlon Moderne
+# Lancement : docker compose up -d --build   →   http://<vm>:3300
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: cjf-site:latest
+    restart: unless-stopped
+    ports:
+      - "${CJF_PORT:-3300}:80"
+    volumes:
+      # Le code et les données du site (articles, résultats, photos) restent dans ce dossier,
+      # donc un « git pull » met le site à jour sans perdre ce qui a été saisi.
+      - ./:/var/www/html
+      # Comptes administrateurs, hors du dossier du site et hors de Git
+      - ${CJF_PRIVE:-../cjf_prive}:/var/www/cjf_prive
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@file_get_contents('http://localhost/accueil.php') === false ? 1 : 0);"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
